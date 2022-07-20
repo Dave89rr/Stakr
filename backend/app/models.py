@@ -17,7 +17,7 @@ class Users(db.Model):
     email = db.Column(db.String(100), nullable=False, unique=True)
     hashedPassword = db.Column(db.String(100))
     createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
-    updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, onupdate=func.now())
+    updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now(), onupdate=func.now())
 
     workspaceOwnership = db.relationship('Workspaces', back_populates='owner', cascade="all, delete-orphan")
     workspaces = db.relationship('Workspaces', secondary=ws_relationships, back_populates='users')
@@ -32,7 +32,7 @@ class Workspaces(db.Model):
     ownerId = db.Column(db.Integer, db.ForeignKey("users.id", ondelete='CASCADE'), nullable=False)
     name = db.Column(db.String(50), nullable=False)
     createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
-    updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, onupdate=func.now())
+    updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now(),  onupdate=func.now())
 
     boards = db.relationship('Boards', back_populates='workspace', cascade="all, delete-orphan")
     owner = db.relationship('Users', back_populates='workspaceOwnership')
@@ -56,7 +56,7 @@ class Boards(db.Model):
     name = db.Column(db.String(50),nullable=False)
     color = db.Column(db.String(100))
     createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
-    updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, onupdate=func.now())
+    updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now(), onupdate=func.now())
 
     workspace = db.relationship('Workspaces', back_populates='boards')
     stacks = db.relationship('Stacks', back_populates='board', cascade="all, delete-orphan")
@@ -71,7 +71,7 @@ class Stacks(db.Model):
     name = db.Column(db.String(50),nullable=False)
     position = db.Column(db.Integer, nullable=False, default = 1)
     createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
-    updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, onupdate=func.now())
+    updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now(), onupdate=func.now())
 
     board = db.relationship('Boards', back_populates='stacks')
     cards = db.relationship('Cards', back_populates='stack', cascade="all, delete-orphan")
@@ -88,7 +88,7 @@ class Cards(db.Model):
     description = db.Column(db.String(2000),nullable=False)
     position = db.Column(db.Integer, nullable=False, default = 1)
     createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
-    updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, onupdate=func.now())
+    updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now(), onupdate=func.now())
 
     stack = db.relationship('Stacks', back_populates='cards')
     comments = db.relationship('Comments', back_populates='card', cascade="all, delete-orphan")
@@ -102,7 +102,7 @@ class Comments(db.Model):
     cardId = db.Column(db.Integer, db.ForeignKey("cards.id", ondelete='CASCADE'), nullable=False)
     comment = db.Column(db.String(1000),nullable=False)
     createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
-    updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, onupdate=func.now())
+    updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now(), onupdate=func.now())
 
     card = db.relationship('Cards', back_populates='comments')
     user = db.relationship('Users', back_populates='comments')
@@ -114,7 +114,7 @@ class Checklists(db.Model):
     cardId = db.Column(db.Integer, db.ForeignKey("cards.id", ondelete='CASCADE'), nullable=False)
     name = db.Column(db.String(50),nullable=False)
     createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
-    updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, onupdate=func.now())
+    updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now(), onupdate=func.now())
 
     card = db.relationship('Cards', back_populates='checklists')
     items = db.relationship('ChecklistItems', back_populates='checklist', cascade="all, delete-orphan")
@@ -127,6 +127,6 @@ class ChecklistItems(db.Model):
     checklistId = db.Column(db.Integer, db.ForeignKey("checklists.id", ondelete='CASCADE'), nullable=False)
     checked = db.Column(db.Boolean, nullable=False, default=False)
     createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
-    updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, onupdate=func.now())
+    updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now(), onupdate=func.now())
 
     checklist = db.relationship('Checklists', back_populates='items')
