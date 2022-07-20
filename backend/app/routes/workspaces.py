@@ -20,6 +20,11 @@ def getAll(ownerId):
     data = [i.toDict() for i in workspaces]
     return {'workspaces': data}
 
+@workspace.route('/<workspaceId>')
+def getOne(workspaceId):
+    workspace = Workspaces.query.get(workspaceId)
+    return workspace.toDict()
+
 @workspace.route('/update', methods=['PUT'])
 def update():
     data = request.json
