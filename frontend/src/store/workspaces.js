@@ -15,6 +15,12 @@ const actionCreateWS = (workspace) => {
     workspace,
   };
 };
+const actionGetWS = (workspace) => {
+  return {
+    type: GET_WORKSPACE,
+    workspace,
+  };
+};
 
 // ==== Thunks ====//
 // ==== Reducers ====//
