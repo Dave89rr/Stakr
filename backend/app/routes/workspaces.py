@@ -32,6 +32,6 @@ def update():
 @workspace.route('/delete', methods=['DELETE'])
 def delete():
     data = request.json
-    Workspaces.query.filter_by(id=data['id']).delete()
+    Workspaces.query.filter_by(id=data['workspaceId']).delete()
     db.session.commit()
     return 'Workspace successfully deleted!'
