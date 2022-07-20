@@ -30,5 +30,12 @@ const actionUpdateWS = (workspace) => {
   };
 };
 
+const actionDeleteWS = (workspace) => {
+  return {
+    type: DELETE_WORKSPACE,
+    workspace,
+  };
+};
+
 // ==== Thunks ====//
 // ==== Reducers ====//
