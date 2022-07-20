@@ -18,6 +18,12 @@ function WorkspaceCluster() {
         <BoardCard />
         <BoardCard />
         <BoardCard />
+        <BoardCard />
+        <BoardCard />
+        <BoardCard />
+        <BoardCard />
+        <BoardCard />
+        <BoardCard />
       </div>
     </div>
   );
