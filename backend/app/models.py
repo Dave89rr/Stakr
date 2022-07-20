@@ -24,6 +24,16 @@ class Users(db.Model):
     comments = db.relationship('Comments', back_populates='user', cascade="all, delete-orphan")
     checklists = db.relationship('Checklists', back_populates='user', cascade="all, delete-orphan")
 
+    def toDict(self):
+        return dict(
+            id=self.id,
+            username=self.username,
+            email=self.email,
+            hashedPassword=self.hashedPassword,
+            createdAt=self.createdAt,
+            updatedAt=self.updatedAt
+        )
+
 
 class Workspaces(db.Model):
     __tablename__ = "workspaces"
@@ -37,6 +47,15 @@ class Workspaces(db.Model):
     boards = db.relationship('Boards', back_populates='workspace', cascade="all, delete-orphan")
     owner = db.relationship('Users', back_populates='workspaceOwnership')
     users = db.relationship('Users', secondary=ws_relationships, back_populates='workspaces')
+
+    def toDict(self):
+        return dict(
+            id=self.id,
+            ownerId=self.ownerId,
+            name=self.name,
+            createdAt=self.createdAt,
+            updatedAt=self.updatedAt
+        )
 
 # class BoardRelationships:
 #     __tablename__ = 'board_relationships'
@@ -61,6 +80,16 @@ class Boards(db.Model):
     workspace = db.relationship('Workspaces', back_populates='boards')
     stacks = db.relationship('Stacks', back_populates='board', cascade="all, delete-orphan")
 
+    def toDict(self):
+        return dict(
+            id=self.id,
+            workspaceId=self.workspaceId,
+            username=self.username,
+            name=self.name,
+            color=self.color,
+            createdAt=self.createdAt,
+            updatedAt=self.updatedAt
+        )
 
 class Stacks(db.Model):
     __tablename__ = "stacks"
@@ -76,6 +105,16 @@ class Stacks(db.Model):
     board = db.relationship('Boards', back_populates='stacks')
     cards = db.relationship('Cards', back_populates='stack', cascade="all, delete-orphan")
 
+    def toDict(self):
+        return dict(
+            id=self.id,
+            boardId=self.boardId,
+            username=self.username,
+            name=self.name,
+            position=self.position,
+            createdAt=self.createdAt,
+            updatedAt=self.updatedAt
+        )
 
 class Cards(db.Model):
     __tablename__ = "cards"
@@ -94,6 +133,19 @@ class Cards(db.Model):
     comments = db.relationship('Comments', back_populates='card', cascade="all, delete-orphan")
     checklists = db.relationship('Checklists', back_populates='card', cascade="all, delete-orphan")
 
+    def toDict(self):
+        return dict(
+            id=self.id,
+            stackId=self.stackId,
+            username=self.username,
+            name=self.name,
+            color=self.color,
+            description=self.description,
+            position=self.position,
+            createdAt=self.createdAt,
+            updatedAt=self.updatedAt
+        )
+
 class Comments(db.Model):
     __tablename__ = "comments"
 
@@ -106,6 +158,17 @@ class Comments(db.Model):
 
     card = db.relationship('Cards', back_populates='comments')
     user = db.relationship('Users', back_populates='comments')
+
+    def toDict(self):
+        return dict(
+            id=self.id,
+            userId=self.userId,
+            cardId=self.cardId,
+            comment=self.comment,
+            createdAt=self.createdAt,
+            updatedAt=self.updatedAt
+        )
+
 class Checklists(db.Model):
     __tablename__ = "checklists"
 
@@ -119,6 +182,17 @@ class Checklists(db.Model):
     card = db.relationship('Cards', back_populates='checklists')
     items = db.relationship('ChecklistItems', back_populates='checklist', cascade="all, delete-orphan")
     user = db.relationship('Users', back_populates='checklists')
+
+    def toDict(self):
+        return dict(
+            id=self.id,
+            userId=self.userId,
+            cardId=self.cardId,
+            name=self.name,
+            createdAt=self.createdAt,
+            updatedAt=self.updatedAt
+        )
+
 class ChecklistItems(db.Model):
     __tablename__ = "checklist_items"
 
@@ -130,3 +204,13 @@ class ChecklistItems(db.Model):
     updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now(), onupdate=func.now())
 
     checklist = db.relationship('Checklists', back_populates='items')
+
+    def toDict(self):
+        return dict(
+            id=self.id,
+            userId=self.userId,
+            checklistId=self.checklistId,
+            checked=self.checked,
+            createdAt=self.createdAt,
+            updatedAt=self.updatedAt
+        )

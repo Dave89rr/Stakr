@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from ..models import db, Workspaces
 
 workspace = Blueprint("workspace", __name__, url_prefix='/api/w')
@@ -13,6 +13,12 @@ def create():
     db.session.add(new_workspace)
     db.session.commit()
     return 'Workspace successfully created!'
+
+@workspace.route('/all/<ownerId>')
+def getAll(ownerId):
+    workspaces = Workspaces.query.filter_by(ownerId=ownerId).all()
+    data = [i.toDict() for i in workspaces]
+    return {'workspaces': data}
 
 @workspace.route('/update', methods=['PUT'])
 def update():
