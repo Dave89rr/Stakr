@@ -121,7 +121,13 @@ const workspaceReducer = (state = {}, action) => {
 
   switch (action.type) {
     case CREATE_WORKSPACE:
-      break;
+      const workspace = action.workspace;
+      newState = { ...state };
+      newState[workspace.id] = {
+        ownerId: workspace.ownerId,
+        name: workspace.name,
+      };
+      return newState;
 
     case GET_WORKSPACE:
       break;
