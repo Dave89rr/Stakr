@@ -1,4 +1,4 @@
-// ==== Types ====//
+// ==== Types ==== //
 
 const CREATE_WORKSPACE = "workspace/CREATE_WORKSPACE";
 
@@ -53,4 +53,5 @@ export const thunkCreateworkspace = (workspace) => async (dispatch) => {
     dispatch(actionCreateWorkspace(workspace.workspace));
   }
 };
+
 // ==== Reducers ====//
