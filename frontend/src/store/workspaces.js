@@ -9,6 +9,12 @@ const UPDATE_WORKSPACE = "workspace/UPDATE_WORKSPACE";
 const DELETE_WORKSPACE = "workspace/DELETE_WORKSPACE";
 
 // ==== Actions ====//
+const actionCreateWS = (workspace) => {
+  return {
+    type: CREATE_WORKSPACE,
+    workspace,
+  };
+};
 
 // ==== Thunks ====//
 // ==== Reducers ====//
