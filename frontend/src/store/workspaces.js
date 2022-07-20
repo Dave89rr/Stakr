@@ -4,11 +4,14 @@ const CREATE_WORKSPACE = "workspace/CREATE_WORKSPACE";
 
 const GET_WORKSPACE = "workspace/GET_WORKSPACE";
 
+const GET_WORKSPACES = "workspace/GET_WORKSPACES";
+
 const UPDATE_WORKSPACE = "workspace/UPDATE_WORKSPACE";
 
 const DELETE_WORKSPACE = "workspace/DELETE_WORKSPACE";
 
-// ==== Actions ====//
+// ==== Actions ==== //
+
 const actionCreateWorkspace = (workspace) => {
   return {
     type: CREATE_WORKSPACE,
@@ -16,6 +19,12 @@ const actionCreateWorkspace = (workspace) => {
   };
 };
 
+const actionGetUserWorkspaces = (workspaces) => {
+  return {
+    type: GET_WORKSPACES,
+    workspaces,
+  };
+};
 const actionGetWorkspace = (workspace) => {
   return {
     type: GET_WORKSPACE,
@@ -37,9 +46,9 @@ const actionDeleteWorkspace = (workspace) => {
   };
 };
 
-// ==== Thunks ====//
+// ==== Thunks ==== //
 
-export const thunkCreateworkspace = (workspace) => async (dispatch) => {
+export const thunkCreateWorkspace = (workspace) => async (dispatch) => {
   const response = await fetch(`/api/w/create`, {
     method: "POST",
     headers: {
@@ -54,4 +63,31 @@ export const thunkCreateworkspace = (workspace) => async (dispatch) => {
   }
 };
 
-// ==== Reducers ====//
+export const thunkGetAllWorkspaces = (ownerId) => async (dispatch) => {
+  const response = await fetch(`/api/w/all/${ownerId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (response.ok) {
+    const allUserWorkspaces = await response.json();
+    dispatch(actionGetUserWorkspaces(allUserWorkspaces));
+  }
+};
+
+export const thunkGetWorkspace = (workspaceId) => async (dispatch) => {
+  const response = await fetch(`/api/w/${workspaceId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (response.ok) {
+    const workspace = await response.json();
+    dispatch(actionGetWorkspace(workspace));
+  }
+};
+// ==== Reducers ==== //
