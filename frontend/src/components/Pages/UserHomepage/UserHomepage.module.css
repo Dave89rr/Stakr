@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.workspacesMenu {
+  width: 21.13%;
+  border: 1px dashed blue;
+}
+
+.workspacesView {
+  width: 78.86%;
+  border: 1px dashed red;
+}
