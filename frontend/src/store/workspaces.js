@@ -104,9 +104,9 @@ export const thunkUpdateWorkspace = (workspace) => async (dispatch) => {
 };
 
 export const thunkDeleteWorkspace = (workspaceId) => async (dispatch) => {
-  const response = await fetch(`/api/w/${workspaceId}`, {
-    method: "POST",
-    workspaceId,
+  const response = await fetch(`/api/w/delete`, {
+    method: "DELETE",
+    body: JSON.stringify(workspaceId),
   });
 
   if (response.ok) {
