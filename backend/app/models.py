@@ -5,8 +5,8 @@ db = SQLAlchemy()
 
 ws_relationships = db.Table(
     'ws_relationships',
-    db.Column('userId', db.Integer, db.ForeignKey('users.id')),
-    db.Column('workspaceId', db.Integer, db.ForeignKey('workspaces.id'))
+    db.Column('userId', db.Integer, db.ForeignKey('users.id', ondelete='CASCADE')),
+    db.Column('workspaceId', db.Integer, db.ForeignKey('workspaces.id', ondelete='CASCADE'))
 )
 
 class Users(db.Model):
@@ -29,7 +29,7 @@ class Workspaces(db.Model):
     __tablename__ = "workspaces"
 
     id = db.Column(db.Integer, primary_key=True)
-    ownerId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    ownerId = db.Column(db.Integer, db.ForeignKey("users.id", ondelete='CASCADE'), nullable=False)
     name = db.Column(db.String(50), nullable=False)
     createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
     updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, onupdate=func.now())
@@ -51,7 +51,7 @@ class Boards(db.Model):
     __tablename__ = "boards"
 
     id = db.Column(db.Integer, primary_key=True)
-    workspaceId = db.Column(db.Integer, db.ForeignKey("workspaces.id"), nullable=False)
+    workspaceId = db.Column(db.Integer, db.ForeignKey("workspaces.id", ondelete='CASCADE'), nullable=False)
     username = db.Column(db.String(20),nullable=False)
     name = db.Column(db.String(50),nullable=False)
     color = db.Column(db.String(100))
@@ -66,7 +66,7 @@ class Stacks(db.Model):
     __tablename__ = "stacks"
 
     id = db.Column(db.Integer, primary_key=True)
-    boardId = db.Column(db.Integer, db.ForeignKey("boards.id"), nullable=False)
+    boardId = db.Column(db.Integer, db.ForeignKey("boards.id", ondelete='CASCADE'), nullable=False)
     username = db.Column(db.String(20),nullable=False)
     name = db.Column(db.String(50),nullable=False)
     position = db.Column(db.Integer, nullable=False, default = 1)
@@ -81,7 +81,7 @@ class Cards(db.Model):
     __tablename__ = "cards"
 
     id = db.Column(db.Integer, primary_key=True)
-    stakcId = db.Column(db.Integer, db.ForeignKey("stacks.id"), nullable=False)
+    stackId = db.Column(db.Integer, db.ForeignKey("stacks.id", ondelete='CASCADE'), nullable=False)
     username = db.Column(db.String(20),nullable=False)
     name = db.Column(db.String(50),nullable=False)
     color = db.Column(db.String(100))
@@ -98,8 +98,8 @@ class Comments(db.Model):
     __tablename__ = "comments"
 
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    cardId = db.Column(db.Integer, db.ForeignKey("cards.id"), nullable=False)
+    userId = db.Column(db.Integer, db.ForeignKey("users.id", ondelete='CASCADE'), nullable=False)
+    cardId = db.Column(db.Integer, db.ForeignKey("cards.id", ondelete='CASCADE'), nullable=False)
     comment = db.Column(db.String(1000),nullable=False)
     createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
     updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, onupdate=func.now())
@@ -110,8 +110,8 @@ class Checklists(db.Model):
     __tablename__ = "checklists"
 
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    cardId = db.Column(db.Integer, db.ForeignKey("cards.id"), nullable=False)
+    userId = db.Column(db.Integer, db.ForeignKey("users.id", ondelete='CASCADE'), nullable=False)
+    cardId = db.Column(db.Integer, db.ForeignKey("cards.id", ondelete='CASCADE'), nullable=False)
     name = db.Column(db.String(50),nullable=False)
     createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
     updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, onupdate=func.now())
@@ -123,8 +123,8 @@ class ChecklistItems(db.Model):
     __tablename__ = "checklist_items"
 
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    checklistId = db.Column(db.Integer, db.ForeignKey("checklists.id"), nullable=False)
+    userId = db.Column(db.Integer, db.ForeignKey("users.id", ondelete='CASCADE'), nullable=False)
+    checklistId = db.Column(db.Integer, db.ForeignKey("checklists.id", ondelete='CASCADE'), nullable=False)
     checked = db.Column(db.Boolean, nullable=False, default=False)
     createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
     updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, onupdate=func.now())
