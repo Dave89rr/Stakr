@@ -1,12 +1,12 @@
-import classes from './Homepage.module.css';
+import classes from './SignUpPage.module.css';
 import uniCss from '../pagesuniversal.module.css';
 
-function HomePage() {
+function SignUpPage() {
   return (
     <div className={uniCss.mainContainer}>
-      <h1>Howdy</h1>
+      <h1>SignUpPage</h1>;
     </div>
   );
 }
 
-export default HomePage;
+export default SignUpPage;
