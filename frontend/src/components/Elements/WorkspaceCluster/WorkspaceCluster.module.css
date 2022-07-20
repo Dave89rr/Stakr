@@ -2,6 +2,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  margin-bottom: 5%;
 }
 
 .clusterInteractions {
@@ -20,4 +21,5 @@
 .boardsContainer {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
