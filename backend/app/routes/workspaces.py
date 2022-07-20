@@ -12,3 +12,4 @@ def create():
     )
     db.session.add(new_workspace)
     db.session.commit()
+    return 'success!'
