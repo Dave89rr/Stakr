@@ -19,10 +19,10 @@ const actionCreateWorkspace = (workspace) => {
   };
 };
 
-const actionGetUserWorkspaces = (workspaces) => {
+const actionGetUserWorkspaces = (workspace) => {
   return {
     type: GET_WORKSPACES,
-    workspaces,
+    workspace,
   };
 };
 const actionGetWorkspace = (workspace) => {
@@ -113,4 +113,38 @@ export const thunkDeleteWorkspace = (workspaceId) => async (dispatch) => {
     dispatch(actionDeleteWorkspace(workspaceId));
   }
 };
+
 // ==== Reducers ==== //
+
+const workspaceReducer = (state = {}, action) => {
+  let newState = {};
+
+  switch (action.type) {
+    case CREATE_WORKSPACE:
+      break;
+
+    case GET_WORKSPACE:
+      break;
+
+    case GET_WORKSPACES:
+      const ws = action.workspace.workspace;
+      ws.forEach((workspace) => {
+        newState[workspace.id] = workspace;
+      });
+
+      return newState;
+
+    case UPDATE_WORKSPACE:
+      break;
+
+    case DELETE_WORKSPACE:
+      newState = { ...state };
+      delete newState[action.workspaceId];
+      return newState;
+
+    default:
+      return state;
+  }
+};
+
+export default workspaceReducer;
