@@ -15,9 +15,17 @@ const actionCreateWS = (workspace) => {
     workspace,
   };
 };
+
 const actionGetWS = (workspace) => {
   return {
     type: GET_WORKSPACE,
+    workspace,
+  };
+};
+
+const actionUpdateWS = (workspace) => {
+  return {
+    type: UPDATE_WORKSPACE,
     workspace,
   };
 };
