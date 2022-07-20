@@ -1,8 +1,11 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
 
+
+
 db = SQLAlchemy()
 
+ws_relationships = db.Table('ws_relationships', )
 class Users(db.Model):
     __tablename__ = "users"
 
@@ -13,24 +16,32 @@ class Users(db.Model):
     createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
     updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, onupdate=func.now())
 
+    workspaces = db.relationship('Workspaces', back_populates='owner', cascade="all, delete-orphan")
+    comments = db.relationship('Comments', back_populates='user', cascade="all, delete-orphan")
+    checklists = db.relationship('Checklists', back_populates='user', cascade="all, delete-orphan")
+
 
 class Workspaces(db.Model):
     __tablename__ = "workspaces"
 
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    ownerId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     name = db.Column(db.String(50), nullable=False)
     createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
     updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, onupdate=func.now())
 
-class BoardRelationships:
-    __tablename__ = 'board_relationships'
+    boards = db.relationship('Boards', back_populates='workspace', cascade="all, delete-orphan")
+    owner = db.relationship('Users', back_populates='workspaces')
 
-    id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    workspaceId = db.Column(db.Integer, db.ForeignKey("workspaces.id"), nullable=False)
-    createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
-    updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, onupdate=func.now())
+
+# class BoardRelationships:
+#     __tablename__ = 'board_relationships'
+
+#     id = db.Column(db.Integer, primary_key=True)
+#     userId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+#     workspaceId = db.Column(db.Integer, db.ForeignKey("workspaces.id"), nullable=False)
+#     createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
+#     updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, onupdate=func.now())
 
 class Boards(db.Model):
     __tablename__ = "boards"
@@ -43,6 +54,10 @@ class Boards(db.Model):
     createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
     updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, onupdate=func.now())
 
+    workspace = db.relationship('Workspaces', back_populates='boards')
+    stacks = db.relationship('Stacks', back_populates='board', cascade="all, delete-orphan")
+
+
 class Stacks(db.Model):
     __tablename__ = "stacks"
 
@@ -53,6 +68,9 @@ class Stacks(db.Model):
     position = db.Column(db.Integer, nullable=False, default = 1)
     createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
     updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, onupdate=func.now())
+
+    board = db.relationship('Boards', back_populates='stacks')
+    cards = db.relationship('Cards', back_populates='stack', cascade="all, delete-orphan")
 
 
 class Cards(db.Model):
@@ -68,6 +86,10 @@ class Cards(db.Model):
     createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
     updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, onupdate=func.now())
 
+    stack = db.relationship('Stacks', back_populates='cards')
+    comments = db.relationship('Comments', back_populates='card', cascade="all, delete-orphan")
+    checklists = db.relationship('Checklists', back_populates='card', cascade="all, delete-orphan")
+
 class Comments(db.Model):
     __tablename__ = "comments"
 
@@ -78,6 +100,8 @@ class Comments(db.Model):
     createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
     updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, onupdate=func.now())
 
+    card = db.relationship('Cards', back_populates='comments')
+    user = db.relationship('Users', back_populates='comments')
 class Checklists(db.Model):
     __tablename__ = "checklists"
 
@@ -88,6 +112,9 @@ class Checklists(db.Model):
     createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
     updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, onupdate=func.now())
 
+    card = db.relationship('Cards', back_populates='checklists')
+    items = db.relationship('ChecklistItems', back_populates='checklist', cascade="all, delete-orphan")
+    user = db.relationship('Users', back_populates='checklists')
 class ChecklistItems(db.Model):
     __tablename__ = "checklist_items"
 
@@ -97,3 +124,5 @@ class ChecklistItems(db.Model):
     checked = db.Column(db.Boolean, nullable=False, default=False)
     createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
     updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, onupdate=func.now())
+
+    checklist = db.relationship('Checklists', back_populates='items')
