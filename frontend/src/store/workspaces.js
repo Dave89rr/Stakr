@@ -121,20 +121,22 @@ const workspaceReducer = (state = {}, action) => {
 
   switch (action.type) {
     case CREATE_WORKSPACE:
-      const workspace = action.workspace;
+      const ws = action.workspace;
       newState = { ...state };
-      newState[workspace.id] = {
-        ownerId: workspace.ownerId,
-        name: workspace.name,
+      newState[ws.id] = {
+        ownerId: ws.ownerId,
+        name: ws.name,
       };
       return newState;
 
     case GET_WORKSPACE:
-      break;
+      const workspace = action.workspace.workspace;
+      newState[workspace.id] = workspace;
+      return newState;
 
     case GET_WORKSPACES:
-      const ws = action.workspace.workspace;
-      ws.forEach((workspace) => {
+      const workspaces = action.workspace.workspace;
+      workspaces.forEach((workspace) => {
         newState[workspace.id] = workspace;
       });
 
