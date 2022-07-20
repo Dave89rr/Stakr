@@ -90,4 +90,16 @@ export const thunkGetWorkspace = (workspaceId) => async (dispatch) => {
     dispatch(actionGetWorkspace(workspace));
   }
 };
+
+export const thunkUpdateWorkspace = (workspace) => async (dispatch) => {
+  const response = await fetch(`api/w/${workspace.worspaceId}`, {
+    method: "PUT",
+    body: JSON.stringify(workspace),
+  });
+
+  if (response.ok) {
+    const workspaceData = await response.json;
+    dispatch(actionUpdateWorkspace(workspaceData));
+  }
+};
 // ==== Reducers ==== //
