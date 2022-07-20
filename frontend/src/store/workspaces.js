@@ -141,7 +141,10 @@ const workspaceReducer = (state = {}, action) => {
       return newState;
 
     case UPDATE_WORKSPACE:
-      break;
+      newState = { ...state };
+      const workspaceData = action.workspace.workspace;
+      newState[workspaceData.id] = workspaceData;
+      return newState;
 
     case DELETE_WORKSPACE:
       newState = { ...state };
