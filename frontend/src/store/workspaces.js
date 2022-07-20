@@ -102,4 +102,15 @@ export const thunkUpdateWorkspace = (workspace) => async (dispatch) => {
     dispatch(actionUpdateWorkspace(workspaceData));
   }
 };
+
+export const thunkDeleteWorkspace = (workspaceId) => async (dispatch) => {
+  const response = await fetch(`/api/w/${workspaceId}`, {
+    method: "POST",
+    workspaceId,
+  });
+
+  if (response.ok) {
+    dispatch(actionDeleteWorkspace(workspaceId));
+  }
+};
 // ==== Reducers ==== //
