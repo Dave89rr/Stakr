@@ -1,7 +1,12 @@
 import classes from './CardPage.module.css';
+import uniCss from '../pagesuniversal.module.css';
 
 function CardPage() {
-  return <h1>CardPage</h1>;
+  return (
+    <div className={uniCss.mainContainer}>
+      <h1>CardPage</h1>
+    </div>
+  );
 }
 
 export default CardPage;
