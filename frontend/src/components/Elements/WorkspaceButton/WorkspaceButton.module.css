@@ -1,5 +1,13 @@
 .btnContainer {
-  border-radius: 10px;
+  border-radius: 3px;
   background-color: rgb(240, 242, 245);
   color: rgb(23, 43, 77);
+  margin: 2%;
+  display: flex;
+  flex-direction: row;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
 }

@@ -1,9 +1,15 @@
 import classes from './WorkspaceButton.module.css';
-function WorkspaceButton(props) {
+function WorkspaceButton({ name }) {
+  console.log('this is the props');
+  console.log(name);
   return (
     <div className={classes.btnContainer}>
-      <img src={`/media/icon/${props.name}.svg`} alt={`${props.name} button`} />
-      <span>{`${props.name}s`}</span>
+      <img
+        className={classes.icon}
+        src={`/media/icons/${name}.svg`}
+        alt={`${name} button`}
+      />
+      <span>{`${name}`}</span>
     </div>
   );
 }
