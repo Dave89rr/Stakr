@@ -8,7 +8,7 @@ from .routes import workspaces
 app = Flask(__name__)
 app.config.from_object(Config)
 
-app.register_blueprint
+app.register_blueprint(workspaces.workspace)
 
 db.init_app(app)
 migrate = Migrate(app, db)
