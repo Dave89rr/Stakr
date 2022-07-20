@@ -1,8 +1,8 @@
-"""initial db migration
+"""init
 
-Revision ID: 78044e5dc843
+Revision ID: 57d01c1489be
 Revises: 
-Create Date: 2022-07-20 11:28:39.046725
+Create Date: 2022-07-20 14:13:58.012138
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '78044e5dc843'
+revision = '57d01c1489be'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -24,7 +24,7 @@ def upgrade():
     sa.Column('email', sa.String(length=100), nullable=False),
     sa.Column('hashedPassword', sa.String(length=100), nullable=True),
     sa.Column('createdAt', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
-    sa.Column('updatedAt', sa.DateTime(timezone=True), nullable=False),
+    sa.Column('updatedAt', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
@@ -34,8 +34,8 @@ def upgrade():
     sa.Column('ownerId', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
     sa.Column('createdAt', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
-    sa.Column('updatedAt', sa.DateTime(timezone=True), nullable=False),
-    sa.ForeignKeyConstraint(['ownerId'], ['users.id'], ),
+    sa.Column('updatedAt', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
+    sa.ForeignKeyConstraint(['ownerId'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('boards',
@@ -45,15 +45,15 @@ def upgrade():
     sa.Column('name', sa.String(length=50), nullable=False),
     sa.Column('color', sa.String(length=100), nullable=True),
     sa.Column('createdAt', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
-    sa.Column('updatedAt', sa.DateTime(timezone=True), nullable=False),
-    sa.ForeignKeyConstraint(['workspaceId'], ['workspaces.id'], ),
+    sa.Column('updatedAt', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
+    sa.ForeignKeyConstraint(['workspaceId'], ['workspaces.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('ws_relationships',
     sa.Column('userId', sa.Integer(), nullable=True),
     sa.Column('workspaceId', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
-    sa.ForeignKeyConstraint(['workspaceId'], ['workspaces.id'], )
+    sa.ForeignKeyConstraint(['userId'], ['users.id'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['workspaceId'], ['workspaces.id'], ondelete='CASCADE')
     )
     op.create_table('stacks',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -62,21 +62,21 @@ def upgrade():
     sa.Column('name', sa.String(length=50), nullable=False),
     sa.Column('position', sa.Integer(), nullable=False),
     sa.Column('createdAt', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
-    sa.Column('updatedAt', sa.DateTime(timezone=True), nullable=False),
-    sa.ForeignKeyConstraint(['boardId'], ['boards.id'], ),
+    sa.Column('updatedAt', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
+    sa.ForeignKeyConstraint(['boardId'], ['boards.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('cards',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('stakcId', sa.Integer(), nullable=False),
+    sa.Column('stackId', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=20), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
     sa.Column('color', sa.String(length=100), nullable=True),
     sa.Column('description', sa.String(length=2000), nullable=False),
     sa.Column('position', sa.Integer(), nullable=False),
     sa.Column('createdAt', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
-    sa.Column('updatedAt', sa.DateTime(timezone=True), nullable=False),
-    sa.ForeignKeyConstraint(['stakcId'], ['stacks.id'], ),
+    sa.Column('updatedAt', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
+    sa.ForeignKeyConstraint(['stackId'], ['stacks.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('checklists',
@@ -85,9 +85,9 @@ def upgrade():
     sa.Column('cardId', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
     sa.Column('createdAt', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
-    sa.Column('updatedAt', sa.DateTime(timezone=True), nullable=False),
-    sa.ForeignKeyConstraint(['cardId'], ['cards.id'], ),
-    sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
+    sa.Column('updatedAt', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
+    sa.ForeignKeyConstraint(['cardId'], ['cards.id'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['userId'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('comments',
@@ -96,9 +96,9 @@ def upgrade():
     sa.Column('cardId', sa.Integer(), nullable=False),
     sa.Column('comment', sa.String(length=1000), nullable=False),
     sa.Column('createdAt', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
-    sa.Column('updatedAt', sa.DateTime(timezone=True), nullable=False),
-    sa.ForeignKeyConstraint(['cardId'], ['cards.id'], ),
-    sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
+    sa.Column('updatedAt', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
+    sa.ForeignKeyConstraint(['cardId'], ['cards.id'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['userId'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('checklist_items',
@@ -107,9 +107,9 @@ def upgrade():
     sa.Column('checklistId', sa.Integer(), nullable=False),
     sa.Column('checked', sa.Boolean(), nullable=False),
     sa.Column('createdAt', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
-    sa.Column('updatedAt', sa.DateTime(timezone=True), nullable=False),
-    sa.ForeignKeyConstraint(['checklistId'], ['checklists.id'], ),
-    sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
+    sa.Column('updatedAt', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
+    sa.ForeignKeyConstraint(['checklistId'], ['checklists.id'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['userId'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
