@@ -1,11 +1,14 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
 
-
-
 db = SQLAlchemy()
 
-ws_relationships = db.Table('ws_relationships', )
+ws_relationships = db.Table(
+    'ws_relationships',
+    db.Column('userId', db.Integer, db.ForeignKey('users.id')),
+    db.Column('workspaceId', db.Integer, db.ForeignKey('workspaces.id'))
+)
+
 class Users(db.Model):
     __tablename__ = "users"
 
@@ -16,7 +19,8 @@ class Users(db.Model):
     createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
     updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, onupdate=func.now())
 
-    workspaces = db.relationship('Workspaces', back_populates='owner', cascade="all, delete-orphan")
+    workspaceOwnership = db.relationship('Workspaces', back_populates='owner', cascade="all, delete-orphan")
+    workspaces = db.relationship('Workspaces', secondary=ws_relationships, back_populates='users')
     comments = db.relationship('Comments', back_populates='user', cascade="all, delete-orphan")
     checklists = db.relationship('Checklists', back_populates='user', cascade="all, delete-orphan")
 
@@ -31,8 +35,8 @@ class Workspaces(db.Model):
     updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, onupdate=func.now())
 
     boards = db.relationship('Boards', back_populates='workspace', cascade="all, delete-orphan")
-    owner = db.relationship('Users', back_populates='workspaces')
-
+    owner = db.relationship('Users', back_populates='workspaceOwnership')
+    users = db.relationship('Users', secondary=ws_relationships, back_populates='workspaces')
 
 # class BoardRelationships:
 #     __tablename__ = 'board_relationships'
