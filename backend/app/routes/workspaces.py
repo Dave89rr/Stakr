@@ -13,3 +13,10 @@ def create():
     db.session.add(new_workspace)
     db.session.commit()
     return 'success!'
+
+@workspace.route('/delete', methods=['DELETE'])
+def delete():
+    data = request.json
+    Workspaces.query.filter_by(id=data['id']).delete()
+    db.session.commit()
+    return 'success!'
