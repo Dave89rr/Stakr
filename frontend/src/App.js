@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -7,20 +7,21 @@ import CardPage from './components/Pages/CardPage';
 import HomePage from './components/Pages/Homepage';
 import LoginPage from './components/Pages/LoginPage';
 import SignUpPage from './components/Pages/SignUpPage';
-import LogoutButton from './components/Elements/LogoutButton';
 import UserHomepage from './components/Pages/UserHomepage';
 import Workspace from './components/Pages/Workspace/Workspace';
+import ProtectedRoute from './components/utils/ProtectedRoute';
 
 import { authenticate } from './store/session';
+import NavBar from './components/Elements/Navbar/NavBar';
 
 function App() {
-  const user = useSelector(state => state.session.user);
+  const user = useSelector((state) => state.session.user);
 
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -32,10 +33,10 @@ function App() {
 
   return (
     <BrowserRouter>
-      {user ? <LogoutButton /> : null}
+      <NavBar user={user} />
       <Switch>
         <Route exact path="/">
-          <HomePage />
+          {user ? <UserHomepage /> : <HomePage />}
         </Route>
         <Route exact path="/login">
           <LoginPage />
@@ -43,18 +44,18 @@ function App() {
         <Route exact path="/signup">
           <SignUpPage />
         </Route>
-        <Route exact path="/:username/boards">
+        <ProtectedRoute exact path="/:username/boards">
           <UserHomepage />
-        </Route>
-        <Route exact path="/:workspace/home">
+        </ProtectedRoute>
+        <ProtectedRoute exact path="/:workspace/home">
           <Workspace />
-        </Route>
-        <Route exact path="/b/:boardId/:boardname">
+        </ProtectedRoute>
+        <ProtectedRoute exact path="/b/:boardId/:boardname">
           <BoardPage />
-        </Route>
-        <Route exact path="/c/:cardId/:cardname">
+        </ProtectedRoute>
+        <ProtectedRoute exact path="/c/:cardId/:cardname">
           <CardPage />
-        </Route>
+        </ProtectedRoute>
         <Route>
           <Redirect to="/" />
         </Route>
