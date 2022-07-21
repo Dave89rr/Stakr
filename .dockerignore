@@ -1,0 +1,6 @@
+frontend/node_modules
+backend/.venv
+backend/Pipfile
+backend/Pipfile.lock
+backend/.env
+.DS_Store
