@@ -1,5 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
 
 db = SQLAlchemy()
 
@@ -9,13 +11,13 @@ ws_relationships = db.Table(
     db.Column('workspaceId', db.Integer, db.ForeignKey('workspaces.id', ondelete='CASCADE'))
 )
 
-class Users(db.Model):
+class Users(db.Model, UserMixin):
     __tablename__ = "users"
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), nullable=False, unique=True)
     email = db.Column(db.String(100), nullable=False, unique=True)
-    hashedPassword = db.Column(db.String(100))
+    hashedPassword = db.Column(db.String(500))
     createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
     updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now(), onupdate=func.now())
 
@@ -23,6 +25,17 @@ class Users(db.Model):
     workspaces = db.relationship('Workspaces', secondary=ws_relationships, back_populates='users')
     comments = db.relationship('Comments', back_populates='user', cascade="all, delete-orphan")
     checklists = db.relationship('Checklists', back_populates='user', cascade="all, delete-orphan")
+
+    @property
+    def password(self):
+        return self.hashedPassword
+
+    @password.setter
+    def password(self, password):
+        self.hashedPassword = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
 
     def toDict(self):
         return dict(
