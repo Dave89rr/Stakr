@@ -1,5 +1,7 @@
-import GET_BOARDS from "./boards";
-import GET_STACKS from "./stacks";
+// import {
+//   GET_BOARDS,
+//   actionGetUserBoards,
+// } from "./boards";
 
 // ==== Types ==== //
 
@@ -13,7 +15,7 @@ const UPDATE_WORKSPACE = "workspace/UPDATE_WORKSPACE";
 
 const DELETE_WORKSPACE = "workspace/DELETE_WORKSPACE";
 
-const GET_ALL_BS = "workspace/GET_ALL_BS";
+// const GET_ALL_BS = "workspace/GET_ALL_BS";
 
 // ==== Actions ==== //
 
@@ -51,12 +53,12 @@ const actionDeleteWorkspace = (workspace) => {
   };
 };
 
-const actionGetAllBS = (userId) => {
-  return {
-    type: GET_ALL_BS,
-    userId,
-  };
-};
+// const actionGetAllBS = (userId) => {
+//   return {
+//     type: GET_ALL_BS,
+//     userId,
+//   };
+// };
 
 // ==== Thunks ==== //
 
@@ -86,6 +88,7 @@ export const thunkGetAllWorkspaces = (ownerId) => async (dispatch) => {
   if (response.ok) {
     const allUserWorkspaces = await response.json();
     dispatch(actionGetUserWorkspaces(allUserWorkspaces));
+    // dispatch(actionGetUserBoards());
   }
 };
 
@@ -153,6 +156,7 @@ const workspaces = (state = initialState, action) => {
     case GET_WORKSPACES:
       const workspaces = action.workspace.workspaces;
       workspaces.forEach((workspace) => {
+
         newState[workspace.id] = workspace;
       });
 

@@ -55,9 +55,9 @@ class Workspaces(db.Model):
     ownerId = db.Column(db.Integer, db.ForeignKey("users.id", ondelete='CASCADE'), nullable=False)
     name = db.Column(db.String(50), nullable=False)
     createdAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
-    updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now(),  onupdate=func.now())
+    updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now(), onupdate=func.now())
 
-    boards = db.relationship('Boards', back_populates='workspace', cascade="all, delete-orphan")
+    boards = db.relationship('Boards', back_populates='workspace', cascade="all, delete-orphan", lazy='joined')
     owner = db.relationship('Users', back_populates='workspaceOwnership')
     users = db.relationship('Users', secondary=ws_relationships, back_populates='workspaces')
 
@@ -67,7 +67,8 @@ class Workspaces(db.Model):
             ownerId=self.ownerId,
             name=self.name,
             createdAt=self.createdAt,
-            updatedAt=self.updatedAt
+            updatedAt=self.updatedAt,
+            boards={i.id: i.toDict() for i in self.boards}
         )
 
 # class BoardRelationships:
@@ -91,7 +92,7 @@ class Boards(db.Model):
     updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now(), onupdate=func.now())
 
     workspace = db.relationship('Workspaces', back_populates='boards')
-    stacks = db.relationship('Stacks', back_populates='board', cascade="all, delete-orphan")
+    stacks = db.relationship('Stacks', back_populates='board', cascade="all, delete-orphan", lazy='joined')
 
     def toDict(self):
         return dict(
@@ -116,7 +117,7 @@ class Stacks(db.Model):
     updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now(), onupdate=func.now())
 
     board = db.relationship('Boards', back_populates='stacks')
-    cards = db.relationship('Cards', back_populates='stack', cascade="all, delete-orphan")
+    cards = db.relationship('Cards', back_populates='stack', cascade="all, delete-orphan", lazy='joined')
 
     def toDict(self):
         return dict(
@@ -143,8 +144,8 @@ class Cards(db.Model):
     updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now(), onupdate=func.now())
 
     stack = db.relationship('Stacks', back_populates='cards')
-    comments = db.relationship('Comments', back_populates='card', cascade="all, delete-orphan")
-    checklists = db.relationship('Checklists', back_populates='card', cascade="all, delete-orphan")
+    comments = db.relationship('Comments', back_populates='card', cascade="all, delete-orphan", lazy='joined')
+    checklists = db.relationship('Checklists', back_populates='card', cascade="all, delete-orphan", lazy='joined')
 
     def toDict(self):
         return dict(
@@ -193,7 +194,7 @@ class Checklists(db.Model):
     updatedAt = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now(), onupdate=func.now())
 
     card = db.relationship('Cards', back_populates='checklists')
-    items = db.relationship('ChecklistItems', back_populates='checklist', cascade="all, delete-orphan")
+    items = db.relationship('ChecklistItems', back_populates='checklist', cascade="all, delete-orphan", lazy='joined')
     user = db.relationship('Users', back_populates='checklists')
 
     def toDict(self):
