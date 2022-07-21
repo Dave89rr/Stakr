@@ -1,14 +1,14 @@
 // ==== Types ==== //
 
-const CREATE_BOARD = "board/CREATE_BOARD";
+export const CREATE_BOARD = "board/CREATE_BOARD";
 
-const GET_BOARD = "board/GET_BOARD";
+export const GET_BOARD = "board/GET_BOARD";
 
-const GET_BOARDS = "board/GET_BOARDS";
+export const GET_BOARDS = "board/GET_BOARDS";
 
-const UPDATE_BOARD = "board/UPDATE_BOARD";
+export const UPDATE_BOARD = "board/UPDATE_BOARD";
 
-const DELETE_BOARD = "board/DELETE_BOARD";
+export const DELETE_BOARD = "board/DELETE_BOARD";
 
 // ==== Actions ==== //
 
@@ -19,12 +19,13 @@ const actionCreateBoard = (board) => {
   };
 };
 
-const actionGetUserBoards = (board) => {
+export const actionGetUserBoards = (board) => {
   return {
     type: GET_BOARDS,
     board,
   };
 };
+
 const actionGetBoard = (board) => {
   return {
     type: GET_BOARD,
@@ -141,7 +142,6 @@ const boards = (state = {}, action) => {
       boards.forEach((board) => {
         newState[board.id] = board;
       });
-
       return newState;
 
     case UPDATE_BOARD:
