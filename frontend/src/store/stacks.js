@@ -11,6 +11,39 @@ const UPDATE_STACK = "stack/UPDATE_STACK";
 const DELETE_STACK = "stack/DELETE_STACK";
 
 // ==== Actions ==== //
+const actionCreateStack = (stack) => {
+  return {
+    type: CREATE_STACK,
+    stack,
+  };
+};
+
+const actionGetUserStacks = (stack) => {
+  return {
+    type: GET_STACKS,
+    stack,
+  };
+};
+const actionGetStack = (stack) => {
+  return {
+    type: GET_STACK,
+    stack,
+  };
+};
+
+const actionUpdateStack = (stack) => {
+  return {
+    type: UPDATE_STACK,
+    stack,
+  };
+};
+
+const actionDeleteStack = (stack) => {
+  return {
+    type: DELETE_STACK,
+    stack,
+  };
+};
 
 // ==== Thunks ==== //
 
