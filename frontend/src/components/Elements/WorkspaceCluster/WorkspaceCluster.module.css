@@ -1,0 +1,26 @@
+.clusterContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5%;
+}
+
+.clusterInteractions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btnContainer {
+  display: flex;
+  flex-direction: row;
+  width: 28%;
+}
+
+.boardsContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 3.4%;
+}
