@@ -116,7 +116,7 @@ export const thunkDeleteWorkspace = (workspaceId) => async (dispatch) => {
 
 // ==== Reducers ==== //
 
-const workspaceReducer = (state = {}, action) => {
+const workspaces = (state = {}, action) => {
   let newState = {};
 
   switch (action.type) {
@@ -158,4 +158,4 @@ const workspaceReducer = (state = {}, action) => {
   }
 };
 
-export default workspaceReducer;
+export default workspaces;
