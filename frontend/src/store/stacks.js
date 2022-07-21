@@ -1,14 +1,14 @@
 // ==== Types ==== //
 
-const CREATE_STACK = "stack/CREATE_STACK";
+export const CREATE_STACK = "stack/CREATE_STACK";
 
-const GET_STACK = "stack/GET_STACK";
+export const GET_STACK = "stack/GET_STACK";
 
-const GET_STACKS = "stack/GET_STACKS";
+export const GET_STACKS = "stack/GET_STACKS";
 
-const UPDATE_STACK = "stack/UPDATE_STACK";
+export const UPDATE_STACK = "stack/UPDATE_STACK";
 
-const DELETE_STACK = "stack/DELETE_STACK";
+export const DELETE_STACK = "stack/DELETE_STACK";
 
 // ==== Actions ==== //
 const actionCreateStack = (stack) => {

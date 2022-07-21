@@ -1,3 +1,6 @@
+import GET_BOARDS from "./boards";
+import GET_STACKS from "./stacks";
+
 // ==== Types ==== //
 
 const CREATE_WORKSPACE = "workspace/CREATE_WORKSPACE";
@@ -9,6 +12,8 @@ const GET_WORKSPACES = "workspace/GET_WORKSPACES";
 const UPDATE_WORKSPACE = "workspace/UPDATE_WORKSPACE";
 
 const DELETE_WORKSPACE = "workspace/DELETE_WORKSPACE";
+
+const GET_ALL_BS = "workspace/GET_ALL_BS";
 
 // ==== Actions ==== //
 
@@ -43,6 +48,13 @@ const actionDeleteWorkspace = (workspace) => {
   return {
     type: DELETE_WORKSPACE,
     workspace,
+  };
+};
+
+const actionGetAllBS = (userId) => {
+  return {
+    type: GET_ALL_BS,
+    userId,
   };
 };
 
@@ -115,8 +127,12 @@ export const thunkDeleteWorkspace = (workspaceId) => async (dispatch) => {
 };
 
 // ==== Reducers ==== //
+const initialState = {
+  stacks: null,
+  boards: null,
+};
 
-const workspaces = (state = {}, action) => {
+const workspaces = (state = initialState, action) => {
   let newState = {};
 
   switch (action.type) {
@@ -159,3 +175,7 @@ const workspaces = (state = {}, action) => {
 };
 
 export default workspaces;
+
+/* action to get boards/stakcs in here create cases in reducer for them
+reducer will copy state and call reducer
+*/
