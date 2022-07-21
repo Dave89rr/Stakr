@@ -47,6 +47,72 @@ const actionDeleteStack = (stack) => {
 
 // ==== Thunks ==== //
 
+export const thunkCreateStack = (stack) => async (dispatch) => {
+  const response = await fetch(`/api/s/create`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(stack),
+  });
+
+  if (response.ok) {
+    const Stack = await response.json();
+    dispatch(actionCreateStack(Stack.stack));
+  }
+};
+
+export const thunkGetAllStacks = (ownerId) => async (dispatch) => {
+  const response = await fetch(`/api/s/all/${ownerId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (response.ok) {
+    const allUserStacks = await response.json();
+    dispatch(actionGetUserStacks(allUserStacks));
+  }
+};
+
+export const thunkGetStack = (stackId) => async (dispatch) => {
+  const response = await fetch(`/api/s/${stackId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (response.ok) {
+    const stack = await response.json();
+    dispatch(actionGetStack(stack));
+  }
+};
+
+export const thunkUpdateStack = (stack) => async (dispatch) => {
+  const response = await fetch(`api/s/update`, {
+    method: "PUT",
+    body: JSON.stringify(stack),
+  });
+
+  if (response.ok) {
+    const stackData = await response.json;
+    dispatch(actionUpdateStack(stackData));
+  }
+};
+
+export const thunkDeleteStack = (stackId) => async (dispatch) => {
+  const response = await fetch(`/api/s/delete`, {
+    method: "DELETE",
+    body: JSON.stringify(stackId),
+  });
+
+  if (response.ok) {
+    dispatch(actionDeleteStack(stackId));
+  }
+};
+
 // ==== Reducers ==== //
 const stacks = (state = {}, action) => {
   let newState = {};
