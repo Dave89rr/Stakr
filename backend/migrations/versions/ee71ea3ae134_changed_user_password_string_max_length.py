@@ -1,8 +1,8 @@
-"""added toDict methods to all classes
+"""changed user password string max length
 
-Revision ID: ddd1d05c7955
-Revises: 57d01c1489be
-Create Date: 2022-07-20 17:21:49.482817
+Revision ID: ee71ea3ae134
+Revises: 
+Create Date: 2022-07-21 13:00:33.722726
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'ddd1d05c7955'
-down_revision = '57d01c1489be'
+revision = 'ee71ea3ae134'
+down_revision = None
 branch_labels = None
 depends_on = None
 
@@ -22,7 +22,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=20), nullable=False),
     sa.Column('email', sa.String(length=100), nullable=False),
-    sa.Column('hashedPassword', sa.String(length=100), nullable=True),
+    sa.Column('hashedPassword', sa.String(length=500), nullable=True),
     sa.Column('createdAt', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
     sa.Column('updatedAt', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
     sa.PrimaryKeyConstraint('id'),
