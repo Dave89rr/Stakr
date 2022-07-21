@@ -11,5 +11,52 @@ const UPDATE_STACK = "stack/UPDATE_STACK";
 const DELETE_STACK = "stack/DELETE_STACK";
 
 // ==== Actions ==== //
+
 // ==== Thunks ==== //
+
 // ==== Reducers ==== //
+const stacks = (state = {}, action) => {
+  let newState = {};
+
+  switch (action.type) {
+    case CREATE_STACK:
+      const stck = action.stack;
+      newState = { ...state };
+      newState[stck.id] = {
+        boardId: stck.boardId,
+        username: stck.username,
+        name: stck.name,
+        position: stck.position,
+      };
+      return newState;
+
+    case GET_STACK:
+      const stack = action.stack.stack;
+      newState[stack.id] = stack;
+      return newState;
+
+    case GET_STACKS:
+      const stacks = action.stack.stack;
+      stacks.forEach((stack) => {
+        newState[stack.id] = stack;
+      });
+
+      return newState;
+
+    case UPDATE_STACK:
+      newState = { ...state };
+      const stackData = action.stack.stack;
+      newState[stackData.id] = stackData;
+      return newState;
+
+    case DELETE_STACK:
+      newState = { ...state };
+      delete newState[action.stackId];
+      return newState;
+
+    default:
+      return state;
+  }
+};
+
+export default stacks;
