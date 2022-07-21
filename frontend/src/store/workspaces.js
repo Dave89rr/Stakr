@@ -116,7 +116,7 @@ export const thunkDeleteWorkspace = (workspaceId) => async (dispatch) => {
 
 // ==== Reducers ==== //
 
-const workspaceReducer = (state = {}, action) => {
+const workspaces = (state = {}, action) => {
   let newState = {};
 
   switch (action.type) {
@@ -130,12 +130,12 @@ const workspaceReducer = (state = {}, action) => {
       return newState;
 
     case GET_WORKSPACE:
-      const workspace = action.workspace.workspace;
+      const workspace = action.workspace.workspaces;
       newState[workspace.id] = workspace;
       return newState;
 
     case GET_WORKSPACES:
-      const workspaces = action.workspace.workspace;
+      const workspaces = action.workspace.workspaces;
       workspaces.forEach((workspace) => {
         newState[workspace.id] = workspace;
       });
@@ -144,7 +144,7 @@ const workspaceReducer = (state = {}, action) => {
 
     case UPDATE_WORKSPACE:
       newState = { ...state };
-      const workspaceData = action.workspace.workspace;
+      const workspaceData = action.workspace.workspaces;
       newState[workspaceData.id] = workspaceData;
       return newState;
 
@@ -158,4 +158,4 @@ const workspaceReducer = (state = {}, action) => {
   }
 };
 
-export default workspaceReducer;
+export default workspaces;
