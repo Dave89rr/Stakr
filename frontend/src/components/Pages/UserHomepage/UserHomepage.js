@@ -14,7 +14,7 @@ function UserHomepage() {
         <div className={classes.workspacesView}>
           <h3>Your Workspaces</h3>
           {Object.values(workspaces).map(ele => {
-            return <WorkspaceCluster />
+            return ele ? <WorkspaceCluster key={ele.id}/> : null
           })}
         </div>
       </div>

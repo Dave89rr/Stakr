@@ -19,12 +19,13 @@ const actionCreateBoard = (board) => {
   };
 };
 
-const actionGetUserBoards = (board) => {
+export const actionGetUserBoards = (board) => {
   return {
     type: GET_BOARDS,
     board,
   };
 };
+
 const actionGetBoard = (board) => {
   return {
     type: GET_BOARD,
@@ -141,7 +142,6 @@ const boards = (state = {}, action) => {
       boards.forEach((board) => {
         newState[board.id] = board;
       });
-
       return newState;
 
     case UPDATE_BOARD:
