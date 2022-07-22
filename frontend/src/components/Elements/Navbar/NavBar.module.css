@@ -3,19 +3,17 @@ nav {
   height: 45px;
   display: flex;
   flex-direction: row;
-  border: 1px solid red;
+  background-color: rgb(2, 106, 167);
   justify-content: space-between;
   align-items: center;
 }
 .leftContainer {
-  margin-left: .5%;
+  margin-left: 0.5%;
   height: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
   width: 25%;
-  border: 1px solid rebeccapurple;
 }
 
 .userInteractionsContainer {

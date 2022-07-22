@@ -4,7 +4,7 @@ function Logo({ user }) {
   const logo = (
     <img
       className={classes.icons}
-      src="/media/icons/stakr-logo.svg"
+      src="/media/icons/stakr-logo-white.svg"
       alt="stakr logo"
     />
   );
@@ -17,7 +17,8 @@ function Logo({ user }) {
   );
   return (
     <div className={classes.container}>
-      {about} <Link to="/">{logo}</Link>
+      <Link to="/">{about}</Link>
+      <Link to="/">{logo}</Link>
     </div>
   );
 }
