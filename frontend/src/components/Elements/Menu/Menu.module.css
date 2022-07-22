@@ -18,3 +18,16 @@
 .wsContainer > span {
   color: white;
 }
+
+.createBtn {
+  border-radius: 3px;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  padding-left: 7%;
+  padding-right: 7%;
+  margin-left: 10%;
+  color: white;
+  font-weight: 300;
+  font-size: 0.75em;
+  background-color: rgb(1, 74, 117);
+}
