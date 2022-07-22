@@ -99,5 +99,16 @@ export const thunkCreateCard = (card) => (dispatch) => {
         }
       };
 
+      export const thunkDeleteCard = (cardId) => async (dispatch) => {
+        const response = await fetch(`/api/c/delete`, {
+          method: "DELETE",
+          body: JSON.stringify(cardId),
+        });
+
+        if (response.ok) {
+          dispatch(actionDeleteCard(cardId));
+        }
+      };
+
 
 // ==== Reducer ?? ==== //
