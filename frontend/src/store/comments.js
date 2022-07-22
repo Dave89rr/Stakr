@@ -24,6 +24,13 @@ const actionGetComments = () => {
   };
 };
 
+const actionGetComment = (commentId) => {
+  return {
+    type: GET_COMMENTS,
+    commentId,
+  };
+};
+
 const actionUpdateComment = (comment) => {
   return {
     type: UPDATE_COMMENT,
