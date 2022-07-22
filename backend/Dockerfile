@@ -8,7 +8,7 @@ FROM python:3.9
 # FLASK_ENV -> Tell flask to use the production server
 # SQLALCHEMY_ECHO -> Just set it to true
 ENV REACT_APP_BASE_URL=https://stakr-app.herokuapp.com/
-ENV FLASK_APP=/backend/app
+ENV FLASK_APP=app
 ENV FLASK_ENV=production
 ENV SQLALCHEMY_ECHO=True
 
@@ -20,7 +20,7 @@ COPY . .
 
 # Copy the built react app (it's built for us) from the
 # /react-app/build/ directory into your flasks app/static directory
-COPY /frontend/build/*
+COPY ../frontend/build/* app/static/
 
 # Run the next two python install commands with PIP
 # install -r requirements.txt
@@ -30,4 +30,4 @@ RUN pip install psycopg2
 
 # Start the flask environment by setting our
 # closing command to gunicorn app:app
-CMD gunicorn .backend.app:app
+CMD gunicorn app:app
