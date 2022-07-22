@@ -87,7 +87,17 @@ export const thunkCreateCard = (card) => (dispatch) => {
         }
       };
 
+      export const thunkUpdateCard = (card) => async (dispatch) => {
+        const response = await fetch(`api/c/update`, {
+          method: "PUT",
+          body: JSON.stringify(card),
+        });
+
+        if (response.ok) {
+          const cardData = await response.json;
+          dispatch(actionUpdateCard(cardData));
+        }
+      };
 
 
-
-// ==== Reducer ==== //
+// ==== Reducer ?? ==== //
