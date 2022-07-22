@@ -15,8 +15,8 @@ function WorkspaceCluster({ data }) {
         </div>
       </div>
       <div className={classes.boardsContainer}>
-        {Object.values(data.boards).map(ele => {
-          return <BoardCard data={ele}/>
+        {Object.values(data.boards).map((ele, i) => {
+          return <BoardCard data={ele} key={i} />
         })}
       </div>
     </div>

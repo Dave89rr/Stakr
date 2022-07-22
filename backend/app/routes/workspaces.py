@@ -1,5 +1,4 @@
 from flask import Blueprint, request
-from sqlalchemy.orm import lazyload
 from ..models import db, Workspaces
 
 workspace = Blueprint("workspace", __name__, url_prefix='/api/w')

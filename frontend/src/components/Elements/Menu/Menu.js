@@ -2,7 +2,7 @@ import classes from './Menu.module.css';
 import { useSelector } from 'react-redux';
 
 function Menu() {
-  const workspacesState = useSelector((state) => state.workspaces);
+  // const workspacesState = useSelector((state) => state.workspaces);
   const workspaces = (
     <div className={classes.wsContainer}>
       <span>Workspaces</span>
