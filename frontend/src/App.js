@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+import NavBar from './components/Elements/Navbar/NavBar';
 import BoardPage from './components/Pages/BoardPage';
 import CardPage from './components/Pages/CardPage';
 import HomePage from './components/Pages/Homepage';
@@ -12,7 +13,7 @@ import Workspace from './components/Pages/Workspace/Workspace';
 import ProtectedRoute from './components/utils/ProtectedRoute';
 
 import { authenticate } from './store/session';
-import NavBar from './components/Elements/Navbar/NavBar';
+import { thunkGetAllWorkspaces } from './store/workspaces'
 
 function App() {
   const user = useSelector((state) => state.session.user);
@@ -22,10 +23,14 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      await dispatch(authenticate());
+      if (!user) await dispatch(authenticate());
+      if (loaded && user) {
+        await dispatch(thunkGetAllWorkspaces(user.id));
+      }
       setLoaded(true);
     })();
-  }, [dispatch]);
+  }, [dispatch, loaded, user]);
+
 
   if (!loaded) {
     return null;
