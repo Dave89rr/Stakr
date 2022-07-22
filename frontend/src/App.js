@@ -19,6 +19,7 @@ function App() {
   const user = useSelector((state) => state.session.user);
 
   const [loaded, setLoaded] = useState(false);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -54,7 +55,7 @@ function App() {
         <ProtectedRoute exact path="/:workspace/home">
           <Workspace />
         </ProtectedRoute>
-        <ProtectedRoute exact path="/b/:boardId/:boardname">
+        <ProtectedRoute exact path="/b/:workspaceId/:boardId/:boardname">
           <BoardPage />
         </ProtectedRoute>
         <ProtectedRoute exact path="/c/:cardId/:cardname">
