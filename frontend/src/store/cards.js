@@ -1,16 +1,16 @@
 // ==== Types ==== //
 
-const CREATE_CARDS = "cards/GET_CARDS";
+const CREATE_CARDS = "stacks/GET_CARDS";
 
-const GET_CARDS = "cards/GET_CARDS";
+const GET_CARDS = "stacks/GET_CARDS";
 
-const GET_CARD = "cards/GET_CARD";
+const GET_CARD = "stacks/GET_CARD";
 
-const UPDATE_CARDS = "cards/GET_CARDS";
+const UPDATE_CARDS = "stacks/GET_CARDS";
 
-const DELETE_CARDS = "cards/GET_CARDS";
+const DELETE_CARDS = "stacks/GET_CARDS";
 
-const DELETE_CARD = "cards/GET_CARD";
+const DELETE_CARD = "stacks/GET_CARD";
 
 // ==== Actions ==== //
 
