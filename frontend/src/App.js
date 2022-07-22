@@ -13,7 +13,7 @@ import Workspace from './components/Pages/Workspace/Workspace';
 import ProtectedRoute from './components/utils/ProtectedRoute';
 
 import { authenticate } from './store/session';
-import { thunkGetAllWorkspaces } from './store/workspaces'
+import { thunkGetAllWorkspaces } from './store/workspaces';
 
 function App() {
   const user = useSelector((state) => state.session.user);
@@ -31,7 +31,6 @@ function App() {
     })();
   }, [dispatch, loaded, user]);
 
-
   if (!loaded) {
     return null;
   }
@@ -41,7 +40,7 @@ function App() {
       <NavBar user={user} />
       <Switch>
         <Route exact path="/">
-          {user ? <UserHomepage /> : <HomePage />}
+          {user ? <Redirect to={`/${user.username}/boards`} /> : <HomePage />}
         </Route>
         <Route exact path="/login">
           <LoginPage />

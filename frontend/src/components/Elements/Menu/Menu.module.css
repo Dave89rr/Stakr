@@ -1,0 +1,20 @@
+.menuContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.dropArrow {
+  height: 25%;
+  margin-left: 2%;
+}
+.wsContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.wsContainer > span {
+  color: white;
+}
