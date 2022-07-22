@@ -129,12 +129,8 @@ export const thunkDeleteWorkspace = (workspaceId) => async (dispatch) => {
 };
 
 // ==== Reducers ==== //
-const initialState = {
-  stacks: null,
-  boards: null,
-};
 
-const workspaces = (state = initialState, action) => {
+const workspaces = (state = {}, action) => {
   let newState = {};
 
   switch (action.type) {
@@ -181,8 +177,8 @@ const workspaces = (state = initialState, action) => {
         stacksObj[stack.id] = stack;
       });
 
-      if (stacks[0]) {
-        newState[stacks[0].boardId].stacks = stacksObj;
+      if (stacks.length) {
+        newState[stacks[0].workspaceId].stacks = stacksObj;
       }
 
       return newState;

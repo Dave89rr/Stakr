@@ -18,10 +18,10 @@ const actionCreateStack = (stack) => {
   };
 };
 
-const actionGetUserStacks = (stack) => {
+const actionGetUserStacks = (payload) => {
   return {
     type: GET_STACKS,
-    stack,
+    payload
   };
 };
 const actionGetStack = (stack) => {
