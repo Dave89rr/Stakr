@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+from sqlalchemy.orm import lazyload
 from ..models import db, Workspaces
 
 workspace = Blueprint("workspace", __name__, url_prefix='/api/w')
@@ -18,6 +19,11 @@ def create():
 def getAll(ownerId):
     workspaces = Workspaces.query.filter_by(ownerId=ownerId).all()
     data = [i.toDict() for i in workspaces]
+
+    for i in range(len(workspaces)):
+        boardsDict = {i.id: i.toDict() for i in workspaces[i].boards}
+        data[i]['boards'] = boardsDict
+
     return {'workspaces': data}
 
 @workspace.route('/<workspaceId>')

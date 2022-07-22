@@ -1,7 +1,6 @@
-// import {
-//   GET_BOARDS,
-//   actionGetUserBoards,
-// } from "./boards";
+import {
+  GET_STACKS,
+} from "./stacks";
 
 // ==== Types ==== //
 
@@ -171,6 +170,21 @@ const workspaces = (state = initialState, action) => {
     case DELETE_WORKSPACE:
       newState = { ...state };
       delete newState[action.workspaceId];
+      return newState;
+
+    case GET_STACKS:
+      newState = { ...state };
+      const stacks = action.stack.stacks;
+
+      const stacksObj = {}
+      stacks.forEach(stack => {
+        stacksObj[stack.id] = stack;
+      });
+
+      if (stacks[0]) {
+        newState[stacks[0].boardId].stacks = stacksObj;
+      }
+
       return newState;
 
     default:

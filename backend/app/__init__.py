@@ -6,7 +6,7 @@ from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
 
 from .config import Config
-from .models import db, Users
+from .models import db, Users, Workspaces, Boards, Stacks, Cards, Comments, Checklists, ChecklistItems
 from .routes import user_routes, auth_routes, workspaces, boards, stacks
 
 from .seeds import seed_commands
