@@ -30,7 +30,8 @@ const LoginPage = () => {
   };
 
   if (user) {
-    return <Redirect to="/" />;
+    console.log(user.username);
+    return <Redirect to={`/${user.username}/boards`} />;
   }
 
   return (

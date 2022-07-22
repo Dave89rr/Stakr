@@ -2,6 +2,7 @@ import classes from './NavBar.module.css';
 import Logo from '../Logo';
 import LogoutButton from '../LogoutButton';
 import Menu from '../Menu';
+import { NavLink } from 'react-router-dom';
 
 function NavBar({ user }) {
   return (
@@ -11,7 +12,14 @@ function NavBar({ user }) {
         <Menu />
       </div>
       <div className={classes.userInteractionsContainer}>
-        {user ? <LogoutButton /> : null}
+        {user ? (
+          <LogoutButton />
+        ) : (
+          <>
+            <NavLink to="/login">Login</NavLink>
+            <NavLink to="/signup">Signup</NavLink>
+          </>
+        )}
       </div>
     </nav>
   );
