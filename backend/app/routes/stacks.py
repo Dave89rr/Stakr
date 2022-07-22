@@ -15,3 +15,9 @@ def create():
     db.session.add(new_stack)
     db.session.commit()
     return 'Workspace successfully created!'
+
+@stack.route('/all/<boardId>')
+def getAll(boardId):
+    stacks = Stacks.query.filter_by(boardId=boardId).all()
+    data = [i.toDict() for i in stacks]
+    return {'stacks': data}
