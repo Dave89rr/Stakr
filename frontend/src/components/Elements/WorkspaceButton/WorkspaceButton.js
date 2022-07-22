@@ -1,7 +1,7 @@
 import classes from './WorkspaceButton.module.css';
 function WorkspaceButton({ name }) {
-  console.log('this is the props');
-  console.log(name);
+  // console.log('this is the props');
+  // console.log(name);
   return (
     <div className={classes.btnContainer}>
       <img
