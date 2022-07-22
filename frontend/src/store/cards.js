@@ -57,20 +57,20 @@ const actionDeleteCard = (cardId) => {
 
 // ==== Thunks ==== //
 
-export const thunkCreateCard = (card) => (dispatch) => {
-    const response = await fetch(`/api/c/create`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(card),
-      });
+    export const thunkCreateCard = (card) => (dispatch) => {
+        const response = await fetch(`/api/c/create`, {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify(card),
+        });
 
-      if (response.ok) {
-        const card = await response.json();
-        dispatch(actionCreateWorkspace(card.card));
-      }
-    };
+        if (response.ok) {
+            const card = await response.json();
+            dispatch(actionCreateWorkspace(card.card));
+        }
+        };
 
     export const thunkGetCards = (stackId) => async (dispatch) => {
         const response = await fetch(`/api/c/all/${stackId}`, {
@@ -87,28 +87,28 @@ export const thunkCreateCard = (card) => (dispatch) => {
         }
       };
 
-      export const thunkUpdateCard = (card) => async (dispatch) => {
-        const response = await fetch(`api/c/update`, {
-          method: "PUT",
-          body: JSON.stringify(card),
-        });
+    export const thunkUpdateCard = (card) => async (dispatch) => {
+    const response = await fetch(`api/c/update`, {
+        method: "PUT",
+        body: JSON.stringify(card),
+    });
 
-        if (response.ok) {
-          const cardData = await response.json;
-          dispatch(actionUpdateCard(cardData));
-        }
-      };
+    if (response.ok) {
+        const cardData = await response.json;
+        dispatch(actionUpdateCard(cardData));
+    }
+    };
 
-      export const thunkDeleteCard = (cardId) => async (dispatch) => {
-        const response = await fetch(`/api/c/delete`, {
-          method: "DELETE",
-          body: JSON.stringify(cardId),
-        });
+    export const thunkDeleteCard = (cardId) => async (dispatch) => {
+    const response = await fetch(`/api/c/delete`, {
+        method: "DELETE",
+        body: JSON.stringify(cardId),
+    });
 
-        if (response.ok) {
-          dispatch(actionDeleteCard(cardId));
-        }
-      };
+    if (response.ok) {
+        dispatch(actionDeleteCard(cardId));
+    }
+    };
 
 
 // ==== Reducer ?? ==== //
