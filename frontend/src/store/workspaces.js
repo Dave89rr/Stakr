@@ -1,3 +1,8 @@
+// import {
+//   GET_BOARDS,
+//   actionGetUserBoards,
+// } from "./boards";
+
 // ==== Types ==== //
 
 const CREATE_WORKSPACE = "workspace/CREATE_WORKSPACE";
@@ -9,6 +14,8 @@ const GET_WORKSPACES = "workspace/GET_WORKSPACES";
 const UPDATE_WORKSPACE = "workspace/UPDATE_WORKSPACE";
 
 const DELETE_WORKSPACE = "workspace/DELETE_WORKSPACE";
+
+// const GET_ALL_BS = "workspace/GET_ALL_BS";
 
 // ==== Actions ==== //
 
@@ -46,6 +53,13 @@ const actionDeleteWorkspace = (workspace) => {
   };
 };
 
+// const actionGetAllBS = (userId) => {
+//   return {
+//     type: GET_ALL_BS,
+//     userId,
+//   };
+// };
+
 // ==== Thunks ==== //
 
 export const thunkCreateWorkspace = (workspace) => async (dispatch) => {
@@ -74,6 +88,7 @@ export const thunkGetAllWorkspaces = (ownerId) => async (dispatch) => {
   if (response.ok) {
     const allUserWorkspaces = await response.json();
     dispatch(actionGetUserWorkspaces(allUserWorkspaces));
+    // dispatch(actionGetUserBoards());
   }
 };
 
@@ -115,8 +130,12 @@ export const thunkDeleteWorkspace = (workspaceId) => async (dispatch) => {
 };
 
 // ==== Reducers ==== //
+const initialState = {
+  stacks: null,
+  boards: null,
+};
 
-const workspaceReducer = (state = {}, action) => {
+const workspaces = (state = initialState, action) => {
   let newState = {};
 
   switch (action.type) {
@@ -130,13 +149,14 @@ const workspaceReducer = (state = {}, action) => {
       return newState;
 
     case GET_WORKSPACE:
-      const workspace = action.workspace.workspace;
+      const workspace = action.workspace.workspaces;
       newState[workspace.id] = workspace;
       return newState;
 
     case GET_WORKSPACES:
-      const workspaces = action.workspace.workspace;
+      const workspaces = action.workspace.workspaces;
       workspaces.forEach((workspace) => {
+
         newState[workspace.id] = workspace;
       });
 
@@ -144,7 +164,7 @@ const workspaceReducer = (state = {}, action) => {
 
     case UPDATE_WORKSPACE:
       newState = { ...state };
-      const workspaceData = action.workspace.workspace;
+      const workspaceData = action.workspace.workspaces;
       newState[workspaceData.id] = workspaceData;
       return newState;
 
@@ -158,4 +178,8 @@ const workspaceReducer = (state = {}, action) => {
   }
 };
 
-export default workspaceReducer;
+export default workspaces;
+
+/* action to get boards/stakcs in here create cases in reducer for them
+reducer will copy state and call reducer
+*/

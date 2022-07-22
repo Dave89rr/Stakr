@@ -2,11 +2,12 @@ import WorkspaceButton from '../WorkspaceButton/WorkspaceButton';
 import classes from './WorkspaceCluster.module.css';
 import BoardCard from '../BoardCard';
 
-function WorkspaceCluster() {
+function WorkspaceCluster({ data }) {
+
   return (
     <div className={classes.clusterContainer}>
       <div className={classes.clusterInteractions}>
-        <span>WorkspaceCluster</span>
+        <span>{data.name}</span>
         <div className={classes.btnContainer}>
           <WorkspaceButton name={'board'} />
           <WorkspaceButton name={'member'} />
@@ -14,16 +15,9 @@ function WorkspaceCluster() {
         </div>
       </div>
       <div className={classes.boardsContainer}>
-        <BoardCard />
-        <BoardCard />
-        <BoardCard />
-        <BoardCard />
-        <BoardCard />
-        <BoardCard />
-        <BoardCard />
-        <BoardCard />
-        <BoardCard />
-        <BoardCard />
+        {Object.values(data.boards).map(ele => {
+          return <BoardCard data={ele}/>
+        })}
       </div>
     </div>
   );

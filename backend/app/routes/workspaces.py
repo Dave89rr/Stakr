@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from ..models import db, Workspaces
+from ..models import db, Workspaces, Boards
 
 workspace = Blueprint("workspace", __name__, url_prefix='/api/w')
 
