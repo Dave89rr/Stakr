@@ -62,6 +62,21 @@ export const thunkCreateComment = (comment) => async (dispatch) => {
   }
 };
 
+export const thunkGetComment = (commentid) => async (dispatch) => {
+  const response = await fetch("api/comment", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(commentid),
+  });
+
+  if (response.ok) {
+    const comment = await response.json();
+    dispatch(actionGetComment(comment));
+  }
+};
+
 export const thunkUpdateComment = (comment) => async (dispatch) => {
   const response = await fetch(`api/comment/update`, {
     method: "PUT",
