@@ -37,3 +37,10 @@ def update():
     board.color = data['color']
     db.session.commit()
     return 'Board successfully updated!'
+
+@board.route('/delete', methods=['DELETE'])
+def delete():
+    data = request.json
+    Boards.query.filter_by(id=data['boardId']).delete()
+    db.session.commit()
+    return 'Board successfully deleted!'

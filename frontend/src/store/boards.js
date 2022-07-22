@@ -40,10 +40,10 @@ const actionUpdateBoard = (board) => {
   };
 };
 
-const actionDeleteBoard = (board) => {
+const actionDeleteBoard = (boardId) => {
   return {
     type: DELETE_BOARD,
-    board,
+    boardId,
   };
 };
 
