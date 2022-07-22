@@ -21,3 +21,8 @@ def getAll(boardId):
     stacks = Stacks.query.filter_by(boardId=boardId).all()
     data = [i.toDict() for i in stacks]
     return {'stacks': data}
+
+@stack.route('/<stackId>')
+def getOne(stackId):
+    stack = Stacks.query.get(stackId)
+    return stack.toDict()
