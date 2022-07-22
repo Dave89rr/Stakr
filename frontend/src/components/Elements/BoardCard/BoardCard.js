@@ -1,9 +1,9 @@
 import classes from './BoardCard.module.css';
 
-function BoardCard() {
+function BoardCard({ data }) {
   return (
     <div className={classes.boardcard}>
-      <span>Title</span>
+      <span>{data.name}</span>
     </div>
   );
 }

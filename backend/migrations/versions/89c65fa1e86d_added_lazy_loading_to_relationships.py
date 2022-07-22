@@ -1,8 +1,8 @@
-"""changed user password string max length
+"""added lazy loading to relationships
 
-Revision ID: ee71ea3ae134
+Revision ID: 89c65fa1e86d
 Revises: 
-Create Date: 2022-07-21 13:00:33.722726
+Create Date: 2022-07-21 17:45:30.126344
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'ee71ea3ae134'
+revision = '89c65fa1e86d'
 down_revision = None
 branch_labels = None
 depends_on = None
