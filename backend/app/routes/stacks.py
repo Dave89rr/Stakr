@@ -14,7 +14,7 @@ def create():
     )
     db.session.add(new_stack)
     db.session.commit()
-    return 'Workspace successfully created!'
+    return 'Stack successfully created!'
 
 @stack.route('/all/<boardId>')
 def getAll(boardId):
@@ -26,3 +26,14 @@ def getAll(boardId):
 def getOne(stackId):
     stack = Stacks.query.get(stackId)
     return stack.toDict()
+
+@stack.route('/update', methods=['PUT'])
+def update():
+    data = request.json
+    stack = Stacks.query.get(data['id'])
+    stack.username = data['username']
+    stack.boardId = data['boardId']
+    stack.name = data['name']
+    stack.position = data['position']
+    db.session.commit()
+    return 'Stack successfully updated!'
