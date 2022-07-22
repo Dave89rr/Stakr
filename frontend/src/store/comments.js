@@ -46,3 +46,18 @@ const actionDeleteComment = (commentId) => {
 };
 
 // ==== Thunks ==== //
+
+export const thunkCreateComment = (comment) => async (dispatch) => {
+  const response = await fetch(`/api/comment/create`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(comment),
+  });
+
+  if (response.ok) {
+    const comment = await response.json();
+    dispatch(actionCreateComment(comment.comment));
+  }
+};
