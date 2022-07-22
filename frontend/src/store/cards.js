@@ -57,4 +57,20 @@ const actionDeleteCard = (cardId) => {
 
 // ==== Thunks ==== //
 
+export const thunkCreateCard = (card) => (dispatch) => {
+    const response = await fetch(`/api/c/create`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(card),
+      });
+
+      if (response.ok) {
+        const card = await response.json();
+        dispatch(actionCreateWorkspace(card.card));
+      }
+    };
+
+
 // ==== Reducer ==== //
