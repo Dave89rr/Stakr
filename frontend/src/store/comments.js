@@ -18,6 +18,12 @@ const actionCreateComment = (comment) => {
   };
 };
 
+const actionGetComments = () => {
+  return {
+    type: GET_COMMENTS,
+  };
+};
+
 const actionUpdateComment = (comment) => {
   return {
     type: UPDATE_COMMENT,
