@@ -26,7 +26,7 @@ const actionGetComments = () => {
 
 const actionGetComment = (commentId) => {
   return {
-    type: GET_COMMENTS,
+    type: GET_COMMENT,
     commentId,
   };
 };
@@ -74,6 +74,20 @@ export const thunkGetComment = (commentid) => async (dispatch) => {
   if (response.ok) {
     const comment = await response.json();
     dispatch(actionGetComment(comment));
+  }
+};
+
+export const thunkGetAllComments = (stackId) => async (dispatch) => {
+  const response = await fetch(`/api/comment/all/${stackId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (response.ok) {
+    const allStackComments = await response.json();
+    dispatch(actionGetComments(allStackComments));
   }
 };
 
