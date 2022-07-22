@@ -26,3 +26,14 @@ def getAll(username):
 def getOne(boardId):
     board = Boards.query.get(boardId)
     return board.toDict()
+
+@board.route('/update', methods=['PUT'])
+def update():
+    data = request.json
+    board = Boards.query.get(data['id'])
+    board.username = data['username']
+    board.workspaceId = data['workspaceId']
+    board.name = data['name']
+    board.color = data['color']
+    db.session.commit()
+    return 'Board successfully updated!'
