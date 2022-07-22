@@ -37,3 +37,10 @@ def update():
     stack.position = data['position']
     db.session.commit()
     return 'Stack successfully updated!'
+
+@stack.route('/delete', methods=['DELETE'])
+def delete():
+    data = request.json
+    Stacks.query.filter_by(id=data['stackId']).delete()
+    db.session.commit()
+    return 'Stack successfully deleted!'
