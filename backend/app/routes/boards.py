@@ -15,3 +15,9 @@ def create():
     db.session.add(new_board)
     db.session.commit()
     return 'Board successfully created!'
+
+@board.route('/all/<username>')
+def getAll(username):
+    boards = Boards.query.filter_by(username=username).all()
+    data = [i.toDict() for i in boards]
+    return {'boards': data}

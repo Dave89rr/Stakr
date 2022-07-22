@@ -64,8 +64,8 @@ export const thunkCreateBoard = (board) => async (dispatch) => {
   }
 };
 
-export const thunkGetAllBoards = (ownerId) => async (dispatch) => {
-  const response = await fetch(`/api/b/all/${ownerId}`, {
+export const thunkGetAllBoards = (username) => async (dispatch) => {
+  const response = await fetch(`/api/b/all/${username}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
