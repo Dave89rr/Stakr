@@ -1,9 +1,10 @@
-// import {
-//   GET_BOARDS,
-//   actionGetUserBoards,
-// } from "./boards";
+import {
+  GET_STACKS,
+} from "./stacks";
 
 // ==== Types ==== //
+
+const LOGOUT_WORKSPACE = "workspace/LOGOUT_WORKSPACE";
 
 const CREATE_WORKSPACE = "workspace/CREATE_WORKSPACE";
 
@@ -50,6 +51,12 @@ const actionDeleteWorkspace = (workspace) => {
   return {
     type: DELETE_WORKSPACE,
     workspace,
+  };
+};
+
+const actionLogoutWorkspace = () => {
+  return {
+    type: LOGOUT_WORKSPACE,
   };
 };
 
@@ -129,13 +136,13 @@ export const thunkDeleteWorkspace = (workspaceId) => async (dispatch) => {
   }
 };
 
-// ==== Reducers ==== //
-const initialState = {
-  stacks: null,
-  boards: null,
+export const thunkLogoutWorkspace = () => async (dispatch) => {
+  dispatch(actionLogoutWorkspace());
 };
 
-const workspaces = (state = initialState, action) => {
+// ==== Reducers ==== //
+
+const workspaces = (state = {}, action) => {
   let newState = {};
 
   switch (action.type) {
@@ -156,7 +163,6 @@ const workspaces = (state = initialState, action) => {
     case GET_WORKSPACES:
       const workspaces = action.workspace.workspaces;
       workspaces.forEach((workspace) => {
-
         newState[workspace.id] = workspace;
       });
 
@@ -171,6 +177,27 @@ const workspaces = (state = initialState, action) => {
     case DELETE_WORKSPACE:
       newState = { ...state };
       delete newState[action.workspaceId];
+      return newState;
+
+    case LOGOUT_WORKSPACE:
+      newState = {};
+
+      return newState;
+
+    case GET_STACKS:
+      newState = { ...state };
+
+      const stacks = action.stack.stacks;
+      let stacksObj = { ...state[stacks[0].workspaceId].stacks }
+
+      stacks.forEach(stack => {
+        stacksObj[stack.id] = stack;
+      });
+
+      if (stacks.length) {
+        newState[stacks[0].workspaceId].stacks = stacksObj;
+      }
+
       return newState;
 
     default:
