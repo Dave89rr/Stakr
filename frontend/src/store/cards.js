@@ -72,5 +72,22 @@ export const thunkCreateCard = (card) => (dispatch) => {
       }
     };
 
+    export const thunkGetCards = (stackId) => async (dispatch) => {
+        const response = await fetch(`/api/c/all/${stackId}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (response.ok) {
+          const allStackCards = await response.json();
+          dispatch(actionGetCards(allStackCards));
+          // dispatch(actionGetUserBoards());
+        }
+      };
+
+
+
 
 // ==== Reducer ==== //
