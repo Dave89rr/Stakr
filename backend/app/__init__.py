@@ -7,7 +7,7 @@ from flask_login import LoginManager
 
 from .config import Config
 from .models import db, Users
-from .routes import user_routes, auth_routes, workspaces, boards
+from .routes import user_routes, auth_routes, workspaces, boards, stacks
 
 from .seeds import seed_commands
 
@@ -29,6 +29,7 @@ app.register_blueprint(user_routes.user_route)
 app.register_blueprint(auth_routes.auth_route)
 app.register_blueprint(workspaces.workspace)
 app.register_blueprint(boards.board)
+app.register_blueprint(stacks.stack)
 
 db.init_app(app)
 migrate = Migrate(app, db)
