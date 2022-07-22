@@ -10,6 +10,7 @@ nav {
 .leftContainer {
   margin-left: 0.5%;
   height: 100%;
+  max-height: 45px;
   display: flex;
   flex-direction: row;
   align-items: center;

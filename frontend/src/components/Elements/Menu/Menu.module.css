@@ -20,6 +20,8 @@
 }
 
 .createBtn {
+  height: 75%;
+  border: 1px solid red;
   border-radius: 3px;
   padding-top: 5%;
   padding-bottom: 5%;
@@ -30,4 +32,14 @@
   font-weight: 300;
   font-size: 0.75em;
   background-color: rgb(1, 74, 117);
+}
+
+.formContainer {
+  display: fixed;
+  /* flex-direction: row; */
+  /* left: 50px; */
+  border: 1px solid green;
+  margin-left: 50px;
+  margin-top: 250px;
+  z-index: 2;
 }
