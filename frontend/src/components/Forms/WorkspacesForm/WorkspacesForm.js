@@ -28,7 +28,7 @@ function WorkspacesForm({ toggleView, setToggleView }) {
   };
 
   return (
-    <div className={classes.container}>
+    <>
       <form onSubmit={handleSubmit}>
         <div>
           {/* {validationErrors.map((error, ind) => (
@@ -47,7 +47,7 @@ function WorkspacesForm({ toggleView, setToggleView }) {
           <button type="submit">Create WS</button>
         </div>
       </form>
-    </div>
+    </>
   );
 }
 

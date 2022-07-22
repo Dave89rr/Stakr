@@ -1,5 +1,6 @@
 .menuContainer {
   height: 100%;
+  width: 70%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -10,9 +11,12 @@
 }
 .wsContainer {
   height: 100%;
+  max-height: 45px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
+  /* border: 3px dashed #ff00ff; */
 }
 
 .wsContainer > span {
@@ -21,25 +25,33 @@
 
 .createBtn {
   height: 75%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   border-radius: 3px;
-  padding-top: 5%;
-  padding-bottom: 5%;
-  padding-left: 7%;
-  padding-right: 7%;
+  padding-left: 3%;
+  padding-right: 3%;
   margin-left: 10%;
   color: white;
-  font-weight: 300;
-  font-size: 0.75em;
+  font-weight: 400;
+  font-size: 0.8em;
   background-color: rgb(1, 74, 117);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+
+.createBtn > span {
+  pointer-events: none;
 }
 
 .formContainer {
-  display: fixed;
-  /* flex-direction: row; */
-  /* left: 50px; */
-  border: 1px solid green;
-  margin-left: 50px;
-  margin-top: 250px;
+  display: absolute;
+  top: 0px;
+  right: 0px;
+  border-radius: 3px;
+  background-color: white;
+  border: 1px solid red;
+  /* margin-left: 50px;
+  margin-top: 250px; */
   z-index: 2;
 }

@@ -15,6 +15,7 @@ nav {
   flex-direction: row;
   align-items: center;
   width: 25%;
+  /* border: 1px solid rgb(0, 255, 21); */
 }
 
 .userInteractionsContainer {

@@ -8,7 +8,7 @@ function Menu() {
   // const workspacesState = useSelector((state) => state.workspaces);
   const handleCreateWs = (e) => {
     console.log('Clicked');
-    setToggleView(true);
+    setToggleView(!toggleView);
   };
   const loggedinMenu = (
     <div className={classes.wsContainer}>
@@ -19,16 +19,16 @@ function Menu() {
         alt="dropdown menu arrow"
       />
       <div className={classes.createBtn} onClick={(e) => handleCreateWs()}>
-        Create
+        <span>Create</span>
       </div>
-      {toggleView ? (
-        // <div className={classes.formContainer}>
+      {toggleView && (
+        <div className={classes.formContainer}>
           <WorkspacesForm
             toggleView={toggleView}
             setToggleView={setToggleView}
           />
-        // </div>
-      ) : null}
+        </div>
+      )}
     </div>
   );
   return <div className={classes.menuContainer}>{loggedinMenu}</div>;
