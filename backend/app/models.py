@@ -122,6 +122,7 @@ class Stacks(db.Model):
     def toDict(self):
         return dict(
             id=self.id,
+            workspaceId=self.workspaceId,
             boardId=self.boardId,
             username=self.username,
             name=self.name,

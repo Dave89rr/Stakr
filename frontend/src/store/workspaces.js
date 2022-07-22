@@ -170,9 +170,10 @@ const workspaces = (state = {}, action) => {
 
     case GET_STACKS:
       newState = { ...state };
-      const stacks = action.stack.stacks;
 
-      const stacksObj = {}
+      const stacks = action.stack.stacks;
+      let stacksObj = { ...state[stacks[0].workspaceId].stacks }
+
       stacks.forEach(stack => {
         stacksObj[stack.id] = stack;
       });
