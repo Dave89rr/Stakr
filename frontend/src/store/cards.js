@@ -110,5 +110,16 @@ const actionDeleteCard = (cardId) => {
     }
     };
 
+    export const thunkDeleteCards = (stackId) => async (dispatch) => {
+    const response = await fetch(`/api/c/delete`, {
+        method: "DELETE",
+        body: JSON.stringify(stackId),
+    });
+
+    if (response.ok) {
+        dispatch(actionDeleteCards(stackId));
+    }
+    };
+
 
 // ==== Reducer ?? ==== //
