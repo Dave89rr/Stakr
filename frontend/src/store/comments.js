@@ -61,3 +61,15 @@ export const thunkCreateComment = (comment) => async (dispatch) => {
     dispatch(actionCreateComment(comment.comment));
   }
 };
+
+export const thunkUpdateComment = (comment) => async (dispatch) => {
+  const response = await fetch(`api/comment/update`, {
+    method: "PUT",
+    body: JSON.stringify(comment),
+  });
+
+  if (response.ok) {
+    const commentData = await response.json;
+    dispatch(actionUpdateComment(commentData));
+  }
+};
