@@ -18,4 +18,11 @@ const actionCreateComment = (comment) => {
   };
 };
 
+const actionDeleteComment = (commentId) => {
+  return {
+    type: DELETE_COMMENT,
+    commentId,
+  };
+};
+
 // ==== Thunks ==== //
