@@ -21,3 +21,8 @@ def getAll(username):
     boards = Boards.query.filter_by(username=username).all()
     data = [i.toDict() for i in boards]
     return {'boards': data}
+
+@board.route('/<boardId>')
+def getOne(boardId):
+    board = Boards.query.get(boardId)
+    return board.toDict()
