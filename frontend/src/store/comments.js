@@ -11,4 +11,11 @@ const DELETE_COMMENT = "card/DELETE_COMMENT";
 
 // ==== Actions ==== //
 
+const actionCreateComment = (comment) => {
+  return {
+    type: CREATE_COMMENT,
+    comment,
+  };
+};
+
 // ==== Thunks ==== //
