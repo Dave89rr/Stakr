@@ -18,6 +18,13 @@ const actionCreateComment = (comment) => {
   };
 };
 
+const actionUpdateComment = (comment) => {
+  return {
+    type: UPDATE_COMMENT,
+    comment,
+  };
+};
+
 const actionDeleteComment = (commentId) => {
   return {
     type: DELETE_COMMENT,
