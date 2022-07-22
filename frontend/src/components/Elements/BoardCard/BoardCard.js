@@ -1,10 +1,14 @@
+import { Link } from 'react-router-dom'
+
 import classes from './BoardCard.module.css';
 
-function BoardCard() {
+function BoardCard({ data }) {
   return (
-    <div className={classes.boardcard}>
-      <span>Title</span>
-    </div>
+    <Link to={`/b/${data.id}/${data.name}`}>
+      <div className={classes.boardcard}>
+        <span>{data.name}</span>
+      </div>
+    </Link>
   );
 }
 

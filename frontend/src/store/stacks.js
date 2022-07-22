@@ -62,8 +62,8 @@ export const thunkCreateStack = (stack) => async (dispatch) => {
   }
 };
 
-export const thunkGetAllStacks = (ownerId) => async (dispatch) => {
-  const response = await fetch(`/api/s/all/${ownerId}`, {
+export const thunkGetAllStacks = (boardId) => async (dispatch) => {
+  const response = await fetch(`/api/s/all/${boardId}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

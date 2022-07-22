@@ -1,6 +1,5 @@
-from flask import Blueprint, request, jsonify
-from sqlalchemy.orm import joinedload
-from ..models import db, Workspaces, Boards
+from flask import Blueprint, request
+from ..models import db, Workspaces
 
 workspace = Blueprint("workspace", __name__, url_prefix='/api/w')
 
