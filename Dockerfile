@@ -16,15 +16,16 @@ ENV SQLALCHEMY_ECHO=True
 WORKDIR /var/www
 
 # Copy all the files from your repo to the working directory
-COPY ./backend .
+COPY . .
 
 # Copy the built react app (it's built for us) from the
 # /react-app/build/ directory into your flasks app/static directory
-COPY ../frontend/build/* app/static/
+COPY /frontend/build/* app/static/
 
 # Run the next two python install commands with PIP
 # install -r requirements.txt
 # install psycopg2
+WORKDIR /var/www/backend
 RUN pip install -r requirements.txt
 RUN pip install psycopg2
 
