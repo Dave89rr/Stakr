@@ -1,16 +1,21 @@
 nav {
   width: 100%;
+  height: 45px;
   display: flex;
   flex-direction: row;
-  border: 1px solid red;
+  background-color: rgb(2, 106, 167);
   justify-content: space-between;
   align-items: center;
 }
 .leftContainer {
+  margin-left: 0.5%;
+  height: 100%;
+  max-height: 45px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  align-items: center;
   width: 25%;
+  /* border: 1px solid rgb(0, 255, 21); */
 }
 
 .userInteractionsContainer {

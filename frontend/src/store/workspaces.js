@@ -1,7 +1,6 @@
-// import {
-//   GET_BOARDS,
-//   actionGetUserBoards,
-// } from "./boards";
+import {
+  GET_STACKS,
+} from "./stacks";
 
 // ==== Types ==== //
 
@@ -182,6 +181,23 @@ const workspaces = (state = {}, action) => {
 
     case LOGOUT_WORKSPACE:
       newState = {};
+
+      return newState;
+
+    case GET_STACKS:
+      newState = { ...state };
+
+      const stacks = action.stack.stacks;
+      let stacksObj = { ...state[stacks[0].workspaceId].stacks }
+
+      stacks.forEach(stack => {
+        stacksObj[stack.id] = stack;
+      });
+
+      if (stacks.length) {
+        newState[stacks[0].workspaceId].stacks = stacksObj;
+      }
+
       return newState;
 
     default:

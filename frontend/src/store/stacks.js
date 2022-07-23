@@ -4,7 +4,7 @@ export const CREATE_STACK = "stack/CREATE_STACK";
 
 export const GET_STACK = "stack/GET_STACK";
 
-export const GET_STACKS = "stack/GET_STACKS";
+export const GET_STACKS = "workspace/GET_STACKS";
 
 export const UPDATE_STACK = "stack/UPDATE_STACK";
 
@@ -21,7 +21,7 @@ const actionCreateStack = (stack) => {
 const actionGetUserStacks = (stack) => {
   return {
     type: GET_STACKS,
-    stack,
+    stack
   };
 };
 const actionGetStack = (stack) => {
