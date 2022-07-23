@@ -25,7 +25,6 @@ COPY /frontend/build/* app/static/
 # Run the next two python install commands with PIP
 # install -r requirements.txt
 # install psycopg2
-WORKDIR /var/www/backend
 RUN pip install -r requirements.txt
 RUN pip install psycopg2
 
