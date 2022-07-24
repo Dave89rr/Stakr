@@ -51,16 +51,16 @@ function BoardPage() {
         <Droppable droppableId='allStacks' direction='horizontal' type='column'>
           {(provided) => (
             <div
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-              className={classes.stackContainer}
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+            className={classes.stackContainer}
             >
               <div className={classes.stackContainer}>
-              {stacks ? sortedStacks.map((ele, i) => {
+                {stacks ? sortedStacks.map((ele, i) => {
                   if (ele.boardId === parseInt(boardId)) return <Stack data={ele} key={i}/>
-              }) : null}
+                }) : null}
+                {provided.placeholder}
               </div>
-              {provided.placeholder}
             </div>
           )}
         </Droppable>
