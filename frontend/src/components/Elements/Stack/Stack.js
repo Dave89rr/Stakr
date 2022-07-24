@@ -8,7 +8,7 @@ const Stack = ({ data }) => {
                 {data.name}
             </div>
             <div className={classes.stackContent}>
-                {Array(21).fill('test').map(ele => <p>{ele}</p>)}
+                {Array(22).fill('test').map(ele => <p>{ele}</p>)}
             </div>
         </div>
         </div>
