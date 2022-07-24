@@ -213,18 +213,6 @@ const workspaces = (state = {}, action) => {
         newState[updatedStacks[0].workspaceId].stacks = obj;
       }
 
-      // const flattenedUpdatedStacks = {}
-      // updatedStacks.forEach((ele, i) => flattenedUpdatedStacks[ele.id] = ele)
-      // const stacksArr = Object.values(newState[updatedStack.workspaceId].stacks)
-
-      // stacksArr.forEach(ele => {
-      //   if ((ele.boardId === updatedStack.boardId)
-      //        && (ele.id === updatedStack.id)) {
-      //     newState[updatedStack.workspaceId]
-      //             .stacks[ele.id].position = updatedStack.position;
-      //   }
-      // });
-
       return newState;
 
     default:

@@ -4,7 +4,12 @@ import classes from './Stack.module.css';
 
 const Stack = ({ data }) => {
     return (
-        <Draggable draggableId={`${data.id}`} index={data.position}>
+        <Draggable
+            draggableId={`${data.id}`}
+            index={data.position}
+            onClick={() => console.log('testr')}
+            // isDragDisabled={true}
+        >
         {(provided) => (
             <div
                 ref={provided.innerRef}

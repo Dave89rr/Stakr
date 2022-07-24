@@ -4,7 +4,6 @@
 
 .stackContainer {
     display: flex;
-    gap: 20px;
     height: 98%;
     overflow-x: auto;
     padding-bottom: 8px;

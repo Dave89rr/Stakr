@@ -20,6 +20,7 @@ function BoardPage() {
   }
 
   const [loaded, setLoaded] = useState(false);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -50,7 +51,6 @@ function BoardPage() {
       sortedStacks = newStackOrder;
       await dispatch(thunkUpdateStackOrder(sortedStacks, boardId));
     }
-
   }
 
   return (
@@ -67,8 +67,8 @@ function BoardPage() {
             className={classes.stackContainer}
             >
               <div className={classes.stackContainer}>
-                {stacks ? sortedStacks.map((ele, i) => {
-                  return <Stack data={stacks[ele]} key={i}/>
+                {stacks ? sortedStacks.map(ele => {
+                  return <Stack data={stacks[ele]} key={stacks[ele].id}/>
                 }) : null}
                 {provided.placeholder}
               </div>
