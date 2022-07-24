@@ -1,5 +1,6 @@
 import {
   GET_STACKS,
+  UPDATE_STACK_ORDER
 } from "./stacks";
 
 // ==== Types ==== //
@@ -196,6 +197,33 @@ const workspaces = (state = {}, action) => {
       if (stacks.length) {
         newState[stacks[0].workspaceId].stacks = stacksObj;
       }
+
+      return newState;
+
+    case UPDATE_STACK_ORDER:
+      newState = { ...state };
+
+      const updatedStacks = action.stacks;
+
+      if (updatedStacks.length) {
+        let obj = newState[updatedStacks[0].workspaceId].stacks
+        updatedStacks.forEach(stack => {
+          obj[stack.id].position = stack.position;
+        });
+        newState[updatedStacks[0].workspaceId].stacks = obj;
+      }
+
+      // const flattenedUpdatedStacks = {}
+      // updatedStacks.forEach((ele, i) => flattenedUpdatedStacks[ele.id] = ele)
+      // const stacksArr = Object.values(newState[updatedStack.workspaceId].stacks)
+
+      // stacksArr.forEach(ele => {
+      //   if ((ele.boardId === updatedStack.boardId)
+      //        && (ele.id === updatedStack.id)) {
+      //     newState[updatedStack.workspaceId]
+      //             .stacks[ele.id].position = updatedStack.position;
+      //   }
+      // });
 
       return newState;
 

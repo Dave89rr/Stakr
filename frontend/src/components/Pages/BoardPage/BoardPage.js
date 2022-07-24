@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
-import { thunkGetAllStacks, thunkUpdateStack } from '../../../store/stacks';
+import { thunkGetAllStacks, thunkUpdateStackOrder } from '../../../store/stacks';
 
 import classes from './BoardPage.module.css';
 import Stack from '../../Elements/Stack/Stack';
@@ -35,12 +35,22 @@ function BoardPage() {
 
   let sortedStacks;
   if (stacks) {
-    sortedStacks = Object.values(stacks).sort((a, b) => a.position-b.position);
+    let stackIds = Object.values(stacks).map(ele => (ele.id).toString());
+    let filterStackIds = stackIds.filter(id => stacks[id].boardId === parseInt(boardId))
+    sortedStacks = filterStackIds.sort((a, b) => stacks[a].position-stacks[b].position)
   }
 
   const onDragEnd = async (res) => {
-    await dispatch(thunkUpdateStack(res));
-    console.log(res)
+    const { destination, source, draggableId, type } = res;
+
+    if (type === 'column') {
+      const newStackOrder = Array.from(sortedStacks);
+      newStackOrder.splice(source.index, 1);
+      newStackOrder.splice(destination.index, 0, draggableId);
+      sortedStacks = newStackOrder;
+      await dispatch(thunkUpdateStackOrder(sortedStacks, boardId));
+    }
+
   }
 
   return (
@@ -58,7 +68,7 @@ function BoardPage() {
             >
               <div className={classes.stackContainer}>
                 {stacks ? sortedStacks.map((ele, i) => {
-                  if (ele.boardId === parseInt(boardId)) return <Stack data={ele} key={i}/>
+                  return <Stack data={stacks[ele]} key={i}/>
                 }) : null}
                 {provided.placeholder}
               </div>

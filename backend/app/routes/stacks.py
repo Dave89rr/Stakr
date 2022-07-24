@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from ..models import db, Stacks
+from ..models import db, Stacks, Boards
 
 stack = Blueprint("stack", __name__, url_prefix='/api/s')
 
@@ -30,13 +30,31 @@ def getOne(stackId):
 @stack.route('/update', methods=['PUT'])
 def update():
     data = request.json
-    stack = Stacks.query.get(data['draggableId'])
-    # stack.username = data['username']
-    # stack.boardId = data['boardId']
-    # stack.name = data['name']
-    stack.position = data['destination']['index']
+    stack = Stacks.query.get(data['id'])
+
+    stack.username = data['username']
+    stack.boardId = data['boardId']
+    stack.name = data['name']
+    stack.position = data['position']
+
     db.session.commit()
     return 'Stack successfully updated!'
+
+@stack.route('/updateOrder', methods=['PUT'])
+def updateOrder():
+    data = request.json
+    stackData = Stacks.query.filter_by(boardId=data['boardId']).all()
+    stacks = [i.toDict() for i in stackData]
+    newStacks = []
+
+    for i in data['stacks']:
+        stack = Stacks.query.get(i)
+        if not (stack.position == data['stacks'].index(str(stack.toDict()['id']))):
+            stack.position = data['stacks'].index(str(stack.toDict()['id']))
+            newStacks.append(stack.toDict())
+
+    db.session.commit()
+    return {'stacks': newStacks, 'boardId': data['boardId']}
 
 @stack.route('/delete', methods=['DELETE'])
 def delete():
