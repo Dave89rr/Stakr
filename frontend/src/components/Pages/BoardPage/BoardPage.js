@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { thunkGetAllStacks } from '../../../store/stacks';
 
+import Stack from '../../Elements/Stack/Stack';
+
 // import classes from './BoardPage.module.css';
 import uniCss from '../pagesuniversal.module.css';
 
@@ -33,6 +35,9 @@ function BoardPage() {
   return (
     <div className={uniCss.mainContainer}>
       <h1>BoardPage #{boardId} {workspaceId}</h1>
+      {stacks ? Object.values(stacks).map(ele => {
+        if (ele.boardId === parseInt(boardId)) return <Stack data={ele}/>
+      }) : null}
     </div>
   );
 }
