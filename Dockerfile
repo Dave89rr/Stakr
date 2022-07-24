@@ -20,12 +20,12 @@ COPY . .
 
 # Copy the built react app (it's built for us) from the
 # /react-app/build/ directory into your flasks app/static directory
-COPY ../frontend/build/* app/static/
+COPY ./frontend/build/* app/static/
 
 # Run the next two python install commands with PIP
 # install -r requirements.txt
 # install psycopg2
-RUN pip install -r requirements.txt
+RUN pip install -r ./backend/requirements.txt
 RUN pip install psycopg2
 
 # Start the flask environment by setting our

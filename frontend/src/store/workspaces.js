@@ -4,6 +4,8 @@ import {
 
 // ==== Types ==== //
 
+const LOGOUT_WORKSPACE = "workspace/LOGOUT_WORKSPACE";
+
 const CREATE_WORKSPACE = "workspace/CREATE_WORKSPACE";
 
 const GET_WORKSPACE = "workspace/GET_WORKSPACE";
@@ -49,6 +51,12 @@ const actionDeleteWorkspace = (workspace) => {
   return {
     type: DELETE_WORKSPACE,
     workspace,
+  };
+};
+
+const actionLogoutWorkspace = () => {
+  return {
+    type: LOGOUT_WORKSPACE,
   };
 };
 
@@ -128,6 +136,10 @@ export const thunkDeleteWorkspace = (workspaceId) => async (dispatch) => {
   }
 };
 
+export const thunkLogoutWorkspace = () => async (dispatch) => {
+  dispatch(actionLogoutWorkspace());
+};
+
 // ==== Reducers ==== //
 
 const workspaces = (state = {}, action) => {
@@ -151,7 +163,6 @@ const workspaces = (state = {}, action) => {
     case GET_WORKSPACES:
       const workspaces = action.workspace.workspaces;
       workspaces.forEach((workspace) => {
-
         newState[workspace.id] = workspace;
       });
 
@@ -166,6 +177,11 @@ const workspaces = (state = {}, action) => {
     case DELETE_WORKSPACE:
       newState = { ...state };
       delete newState[action.workspaceId];
+      return newState;
+
+    case LOGOUT_WORKSPACE:
+      newState = {};
+
       return newState;
 
     case GET_STACKS:

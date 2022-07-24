@@ -5,7 +5,7 @@ import WorkspaceCluster from '../../Elements/WorkspaceCluster';
 import { useSelector } from 'react-redux';
 
 function UserHomepage() {
-  let workspaces = useSelector((state) => state.workspaces)
+  let workspaces = useSelector((state) => state.workspaces);
 
   return (
     <div className={uniCss.mainContainer}>
