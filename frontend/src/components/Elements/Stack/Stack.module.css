@@ -1,4 +1,15 @@
 .stack {
-    min-width: 20%;
-    background-color: gray;
+    min-width: 272px;
+    height: 100%; /* SWITCH TO 'fit-content' AFTER TESTING */
+
+    border-radius: 3px;
+    background-color: #ebecf0;
+}
+
+.stackTitle {
+    padding: 15px 20px 15px 20px;
+
+    color: #172b4d;
+    font-size: 14px;
+    font-weight: 600;
 }

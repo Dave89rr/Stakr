@@ -6,7 +6,6 @@ import { thunkGetAllStacks } from '../../../store/stacks';
 import Stack from '../../Elements/Stack/Stack';
 
 import classes from './BoardPage.module.css';
-import uniCss from '../pagesuniversal.module.css';
 
 function BoardPage() {
   const workspaces = useSelector((state) => state.workspaces);
@@ -38,7 +37,7 @@ function BoardPage() {
   }
 
   return (
-    <div className={uniCss.mainContainer}>
+    <div className={classes.containerWrapper}>
       <h1>BoardPage #{boardId} {workspaceId}</h1>
       <div className={classes.stackContainer}>
         {stacks ? sortedStacks.map((ele, i) => {
