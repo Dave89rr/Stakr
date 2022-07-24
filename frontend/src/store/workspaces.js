@@ -95,7 +95,6 @@ export const thunkGetAllWorkspaces = (ownerId) => async (dispatch) => {
   if (response.ok) {
     const allUserWorkspaces = await response.json();
     dispatch(actionGetUserWorkspaces(allUserWorkspaces));
-    // dispatch(actionGetUserBoards());
   }
 };
 

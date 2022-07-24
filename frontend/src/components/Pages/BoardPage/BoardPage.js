@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
-import { thunkGetAllStacks } from '../../../store/stacks';
+import { thunkGetAllStacks, thunkUpdateStack } from '../../../store/stacks';
 
 import classes from './BoardPage.module.css';
 import Stack from '../../Elements/Stack/Stack';
@@ -38,15 +38,16 @@ function BoardPage() {
     sortedStacks = Object.values(stacks).sort((a, b) => a.position-b.position);
   }
 
-  const onDragEnd = (res) => {
-    //todo
+  const onDragEnd = async (res) => {
+    await dispatch(thunkUpdateStack(res));
+    console.log(res)
   }
 
   return (
     <div className={classes.containerWrapper}>
       <h1>BoardPage #{boardId} {workspaceId}</h1>
       <DragDropContext
-        onDragEnd = {onDragEnd}
+        onDragEnd={onDragEnd}
       >
         <Droppable droppableId='allStacks' direction='horizontal' type='column'>
           {(provided) => (

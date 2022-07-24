@@ -91,7 +91,7 @@ export const thunkGetStack = (stackId) => async (dispatch) => {
 };
 
 export const thunkUpdateStack = (stack) => async (dispatch) => {
-  const response = await fetch(`api/s/update`, {
+  const response = await fetch(`/api/s/update`, {
     method: "PUT",
     body: JSON.stringify(stack),
   });

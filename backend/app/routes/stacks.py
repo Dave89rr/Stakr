@@ -30,11 +30,11 @@ def getOne(stackId):
 @stack.route('/update', methods=['PUT'])
 def update():
     data = request.json
-    stack = Stacks.query.get(data['id'])
-    stack.username = data['username']
-    stack.boardId = data['boardId']
-    stack.name = data['name']
-    stack.position = data['position']
+    stack = Stacks.query.get(data['draggableId'])
+    # stack.username = data['username']
+    # stack.boardId = data['boardId']
+    # stack.name = data['name']
+    stack.position = data['destination']['index']
     db.session.commit()
     return 'Stack successfully updated!'
 
