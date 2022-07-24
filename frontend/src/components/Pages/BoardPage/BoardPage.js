@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+
 import { thunkGetAllStacks } from '../../../store/stacks';
 
-import Stack from '../../Elements/Stack/Stack';
-
 import classes from './BoardPage.module.css';
+import Stack from '../../Elements/Stack/Stack';
 
 function BoardPage() {
   const workspaces = useSelector((state) => state.workspaces);
@@ -36,14 +38,33 @@ function BoardPage() {
     sortedStacks = Object.values(stacks).sort((a, b) => a.position-b.position);
   }
 
+  const onDragEnd = (res) => {
+    //todo
+  }
+
   return (
     <div className={classes.containerWrapper}>
       <h1>BoardPage #{boardId} {workspaceId}</h1>
-      <div className={classes.stackContainer}>
-        {stacks ? sortedStacks.map((ele, i) => {
-          if (ele.boardId === parseInt(boardId)) return <Stack data={ele} key={i}/>
-        }) : null}
-      </div>
+      <DragDropContext
+        onDragEnd = {onDragEnd}
+      >
+        <Droppable droppableId='allStacks' direction='horizontal' type='column'>
+          {(provided) => (
+            <div
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+              className={classes.stackContainer}
+            >
+              <div className={classes.stackContainer}>
+              {stacks ? sortedStacks.map((ele, i) => {
+                  if (ele.boardId === parseInt(boardId)) return <Stack data={ele} key={i}/>
+              }) : null}
+              </div>
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
     </div>
   );
 }
