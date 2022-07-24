@@ -1,6 +1,10 @@
+import classes from './Stack.module.css';
+
 const Stack = ({ data }) => {
     return (
-        <p>{data.name}</p>
+        <div className={classes.stack}>
+            <p>{data.name}</p>
+        </div>
     );
 }
 

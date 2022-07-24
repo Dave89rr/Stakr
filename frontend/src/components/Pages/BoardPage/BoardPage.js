@@ -5,7 +5,7 @@ import { thunkGetAllStacks } from '../../../store/stacks';
 
 import Stack from '../../Elements/Stack/Stack';
 
-// import classes from './BoardPage.module.css';
+import classes from './BoardPage.module.css';
 import uniCss from '../pagesuniversal.module.css';
 
 function BoardPage() {
@@ -32,12 +32,19 @@ function BoardPage() {
 
   if (!loaded) return null;
 
+  let sortedStacks;
+  if (stacks) {
+    sortedStacks = Object.values(stacks).sort((a, b) => a.position-b.position);
+  }
+
   return (
     <div className={uniCss.mainContainer}>
       <h1>BoardPage #{boardId} {workspaceId}</h1>
-      {stacks ? Object.values(stacks).map(ele => {
-        if (ele.boardId === parseInt(boardId)) return <Stack data={ele}/>
-      }) : null}
+      <div className={classes.stackContainer}>
+        {stacks ? sortedStacks.map((ele, i) => {
+          if (ele.boardId === parseInt(boardId)) return <Stack data={ele} key={i}/>
+        }) : null}
+      </div>
     </div>
   );
 }
