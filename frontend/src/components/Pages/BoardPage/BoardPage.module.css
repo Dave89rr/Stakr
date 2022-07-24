@@ -1,0 +1,10 @@
+.containerWrapper {
+    height: 86.5vh;
+}
+
+.stackContainer {
+    display: flex;
+    gap: 20px;
+    height: 95%;
+    overflow-x: auto;
+}
