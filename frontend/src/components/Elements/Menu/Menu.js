@@ -9,7 +9,6 @@ function Menu() {
   const user = useSelector((state) => state.session.user);
   // const workspacesState = useSelector((state) => state.workspaces);
   const handleCreateWs = (e) => {
-    console.log('Clicked');
     setToggleView(!toggleView);
   };
   const loggedinMenu = (
