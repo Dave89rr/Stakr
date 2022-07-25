@@ -15,7 +15,7 @@ def create():
     )
     db.session.add(new_stack)
     db.session.commit()
-    return 'Stack successfully created!'
+    return new_stack.toDict()
 
 @stack.route('/all/<boardId>')
 def getAll(boardId):
