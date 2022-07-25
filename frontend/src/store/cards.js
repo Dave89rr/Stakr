@@ -30,7 +30,7 @@ const actionGetCards = (stackId) => {
 const actionGetCard = (cardId) => {
   return {
     type: GET_CARD,
-    stackId,
+    cardId,
   };
 };
 
@@ -57,7 +57,7 @@ const actionDeleteCard = (cardId) => {
 
 // ==== Thunks ==== //
 
-    export const thunkCreateCard = (card) => (dispatch) => {
+    export const thunkCreateCard = (card) => async (dispatch) => {
         const response = await fetch(`/api/c/create`, {
             method: "POST",
             headers: {
@@ -68,7 +68,7 @@ const actionDeleteCard = (cardId) => {
 
         if (response.ok) {
             const card = await response.json();
-            dispatch(actionCreateWorkspace(card.card));
+            dispatch(actionCreateCard(card.card));
         }
         };
 
@@ -83,7 +83,6 @@ const actionDeleteCard = (cardId) => {
         if (response.ok) {
           const allStackCards = await response.json();
           dispatch(actionGetCards(allStackCards));
-          // dispatch(actionGetUserBoards());
         }
       };
 

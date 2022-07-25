@@ -22,7 +22,7 @@ function BoardPage() {
     (async () => {
       if (workspaces[workspaceId]) {
         await dispatch(thunkGetAllStacks(boardId));
-        setLoaded(true)
+        setLoaded(true);
       }
     })();
   }, [dispatch, workspaces[workspaceId]]);
@@ -81,7 +81,14 @@ function BoardPage() {
             >
               <div className={classes.stackContainer}>
                 {stacks ? sortedStacks.map(ele => {
-                  return <Stack data={stacks[ele]} disabled={disabled} key={stacks[ele].id}/>
+                  return (
+                    <Stack
+                      data={stacks[ele]}
+                      disabled={disabled}
+                      key={stacks[ele].id}
+                      workspaces={workspaces}
+                    />
+                  )
                 }) : null}
                 {provided.placeholder}
               </div>
