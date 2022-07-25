@@ -3,3 +3,4 @@ from .user_routes import user_route
 from .workspaces import workspace
 from .boards import board
 from .stacks import stack
+from .cards import card
