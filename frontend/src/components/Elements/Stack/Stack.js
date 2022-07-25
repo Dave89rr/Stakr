@@ -8,15 +8,21 @@ import { thunkGetCards } from '../../../store/cards';
 
 import classes from './Stack.module.css';
 
-const Stack = ({ data, disabled, workspaces }) => {
+const Stack = ({ data, disabled, workspaces, cards, cardIds }) => {
     const { workspaceId, boardId } = useParams();
     const dispatch = useDispatch();
 
-    let cards;
-    if (workspaces[workspaceId].cards) {
-        const allCards = Object.values(workspaces[workspaceId].cards);
-        cards = allCards.filter(ele => ele.stackId === data.id)
-            .sort((a, b) => a.position-b.position)
+    // let cards;
+    // if (workspaces[workspaceId].cards) {
+    //     const allCards = Object.values(workspaces[workspaceId].cards);
+    //     cards = allCards.filter(ele => ele.stackId === data.id)
+    //         .sort((a, b) => a.position-b.position)
+    // }
+    let filteredCardIds;
+    if (cardIds) {
+        filteredCardIds = cardIds.filter(id => {
+            return cards[id].stackId === data.id
+        }).sort((a, b) => cards[a].position-cards[b].position);
     }
 
     useEffect(() => {
@@ -51,8 +57,8 @@ const Stack = ({ data, disabled, workspaces }) => {
                         ref={provided.innerRef}
                         className={classes.stackContent}
                     >
-                        {cards ? cards.map((ele) => {
-                            return <Card data={ele} key={ele.id}/>
+                        {cards ? filteredCardIds.map((ele) => {
+                            return <Card data={cards[ele]} key={ele.id}/>
                         })
                         : null}
                         {provided.placeholder}

@@ -41,6 +41,16 @@ function BoardPage() {
     sortedStacks = filterStackIds.sort((a, b) => stacks[a].position-stacks[b].position)
   }
 
+  let cards;
+  let cardIds;
+  if (workspaces[workspaceId].cards) {
+      cards = workspaces[workspaceId].cards;
+      cardIds = Object.values(cards).map(card => (card.id).toString());
+      console.log(cardIds)
+      // cards = allCards.filter(ele => ele.stackId === data.id)
+      //     .sort((a, b) => a.position-b.position)
+  }
+
   const onDragStart = () => {
     setDisabled(true)
   }
@@ -71,6 +81,8 @@ function BoardPage() {
           setDisabled(false);
           return;
         }
+
+      // change made vvvvv
       setDisabled(false);
     }
   }
@@ -94,6 +106,8 @@ function BoardPage() {
                   return (
                     <Stack
                       data={stacks[ele]}
+                      cards={cards}
+                      cardIds={cardIds}
                       disabled={disabled}
                       key={stacks[ele].id}
                       workspaces={workspaces}
