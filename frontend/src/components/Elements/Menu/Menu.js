@@ -2,9 +2,11 @@ import classes from './Menu.module.css';
 // import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import WorkspacesForm from '../../Forms/WorkspacesForm/WorkspacesForm';
+import { useSelector } from 'react-redux';
 
 function Menu() {
   const [toggleView, setToggleView] = useState(false);
+  const user = useSelector((state) => state.session.user);
   // const workspacesState = useSelector((state) => state.workspaces);
   const handleCreateWs = (e) => {
     console.log('Clicked');
@@ -18,9 +20,11 @@ function Menu() {
         src="/media/icons/downarrow-white.svg"
         alt="dropdown menu arrow"
       />
-      <div className={classes.createBtn} onClick={(e) => handleCreateWs()}>
-        <span>Create</span>
-      </div>
+      {user && (
+        <div className={classes.createBtn} onClick={(e) => handleCreateWs()}>
+          <span>Create</span>
+        </div>
+      )}
       {toggleView && (
         <div className={classes.formContainer}>
           <WorkspacesForm
