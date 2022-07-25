@@ -20,23 +20,23 @@ function WorkspacesForm({ toggleView, setToggleView }) {
       name,
     };
 
-    if (!name.length) {
-      errors.push(
-        'Name for a workspace cannot be left blank. Please provide a name'
-      );
+    if (name.length === 0) {
+      errors.push('Name for a workspace cannot be left blank');
     }
     if (errors.length > 0) {
       setValidationErrors(errors);
     } else {
-      const data = dispatch(thunkCreateWorkspace(workspace));
-      if (data) {
-        console.log(data);
-        setValidationErrors(data);
-      }
-      dispatch(thunkGetAllWorkspaces(user.id));
+      setValidationErrors([]);
+      dispatch(thunkCreateWorkspace(workspace));
+      // const data = await dispatch(thunkCreateWorkspace(workspace));
+      setName('');
+      setToggleView(false);
+      // Unable to get the backend data to properly work for
+      // validations, leaving commented out code here for now
+      //   if (data) {
+      //     setValidationErrors(data);
+      //   }
     }
-
-    setName('');
   };
 
   return (
