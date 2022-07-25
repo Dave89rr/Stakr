@@ -188,14 +188,16 @@ const workspaces = (state = {}, action) => {
       newState = { ...state };
 
       const stacks = action.stack.stacks;
-      let stacksObj = { ...state[stacks[0].workspaceId].stacks }
-
-      stacks.forEach(stack => {
-        stacksObj[stack.id] = stack;
-      });
-
       if (stacks.length) {
-        newState[stacks[0].workspaceId].stacks = stacksObj;
+        let stacksObj = { ...state[stacks[0].workspaceId].stacks }
+
+        stacks.forEach(stack => {
+          stacksObj[stack.id] = stack;
+        });
+
+        if (stacks.length) {
+          newState[stacks[0].workspaceId].stacks = stacksObj;
+        }
       }
 
       return newState;

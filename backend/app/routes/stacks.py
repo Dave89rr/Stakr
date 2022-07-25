@@ -43,8 +43,6 @@ def update():
 @stack.route('/updateOrder', methods=['PUT'])
 def updateOrder():
     data = request.json
-    stackData = Stacks.query.filter_by(boardId=data['boardId']).all()
-    stacks = [i.toDict() for i in stackData]
     newStacks = []
 
     for i in data['stacks']:

@@ -2,13 +2,13 @@ import { Draggable } from 'react-beautiful-dnd'
 
 import classes from './Stack.module.css';
 
-const Stack = ({ data }) => {
+const Stack = ({ data, disabled }) => {
     return (
         <Draggable
             draggableId={`${data.id}`}
             index={data.position}
-            onClick={() => console.log('testr')}
-            // isDragDisabled={true}
+            key={data.id}
+            isDragDisabled={disabled}
         >
         {(provided) => (
             <div
@@ -21,7 +21,7 @@ const Stack = ({ data }) => {
                     {data.name}
                 </div>
                 <div className={classes.stackContent}>
-                    {Array(50).fill('test').map((ele, i) => <p key={i}>{ele}</p>)}
+                    {Array(10).fill('test').map((ele, i) => <p key={i}>{ele}</p>)}
                 </div>
             </div>
             </div>
