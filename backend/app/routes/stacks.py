@@ -11,10 +11,11 @@ def create():
         boardId = data['boardId'],
         name = data['name'],
         position = data['position'],
+        workspaceId = data['workspaceId']
     )
     db.session.add(new_stack)
     db.session.commit()
-    return 'Stack successfully created!'
+    return new_stack.toDict()
 
 @stack.route('/all/<boardId>')
 def getAll(boardId):

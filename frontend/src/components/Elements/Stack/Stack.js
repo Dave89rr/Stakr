@@ -58,7 +58,7 @@ const Stack = ({ data, disabled, workspaces, cards, cardIds }) => {
                         className={classes.stackContent}
                     >
                         {cards ? filteredCardIds.map((ele) => {
-                            return <Card data={cards[ele]} key={ele.id}/>
+                            return <Card data={cards[ele]} key={ele}/>
                         })
                         : null}
                         {provided.placeholder}
