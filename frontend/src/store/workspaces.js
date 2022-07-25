@@ -212,6 +212,10 @@ const workspaces = (state = {}, action) => {
       newState[stck.workspaceId].stacks = stacksObj;
       return newState;
 
+    case DELETE_STACK:
+      newState = { ...state };
+      return newState;
+
     case UPDATE_STACK_ORDER:
       newState = { ...state };
 

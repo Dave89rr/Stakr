@@ -48,10 +48,10 @@ const actionUpdateStackOrder = (stacks, boardId) => {
   };
 };
 
-const actionDeleteStack = (stack) => {
+const actionDeleteStack = (stackId) => {
   return {
     type: DELETE_STACK,
-    stack,
+    stackId,
   };
 };
 
