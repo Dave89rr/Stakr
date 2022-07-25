@@ -1,4 +1,5 @@
 import { Draggable } from 'react-beautiful-dnd'
+import Card from '../Card';
 
 import classes from './Stack.module.css';
 
@@ -21,7 +22,7 @@ const Stack = ({ data, disabled }) => {
                     {data.name}
                 </div>
                 <div className={classes.stackContent}>
-                    {Array(10).fill('test').map((ele, i) => <p key={i}>{ele}</p>)}
+                    {Array(10).fill('x').map((ele, i) => <Card />)}
                 </div>
             </div>
             </div>
