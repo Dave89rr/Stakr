@@ -194,15 +194,18 @@ const workspaces = (state = {}, action) => {
           stacksObj[stack.id] = stack;
         });
 
-        if (stacks.length) {
-          newState[stacks[0].workspaceId].stacks = stacksObj;
-        }
+        newState[stacks[0].workspaceId].stacks = stacksObj;
       }
 
       return newState;
 
     case CREATE_STACK:
       newState = { ...state };
+      const stck = action.stack;
+      let stacksObj = { ...state[stck.workspaceId].stacks };
+      stacksObj[stck.id] = stck;
+      // console.log(stacksObj);
+      newState[stck.workspaceId].stacks = stacksObj;
       return newState;
 
     case UPDATE_STACK_ORDER:

@@ -1,13 +1,13 @@
-import classes from './Menu.module.css';
+import classes from "./Menu.module.css";
 // import { useSelector } from 'react-redux';
-import { useState } from 'react';
-import WorkspacesForm from '../../Forms/WorkspacesForm/WorkspacesForm';
+import { useState } from "react";
+import WorkspacesForm from "../../Forms/WorkspacesForm/WorkspacesForm";
 
 function Menu() {
   const [toggleView, setToggleView] = useState(false);
   // const workspacesState = useSelector((state) => state.workspaces);
   const handleCreateWs = (e) => {
-    console.log('Clicked');
+    // console.log('Clicked');
     setToggleView(!toggleView);
   };
   const loggedinMenu = (

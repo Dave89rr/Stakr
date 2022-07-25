@@ -67,7 +67,7 @@ export const thunkCreateStack = (stack) => async (dispatch) => {
   });
   if (response.ok) {
     const stack = await response.json();
-    console.log(stack);
+    // console.log(stack);
     dispatch(actionCreateStack(stack));
   }
 };
@@ -147,14 +147,8 @@ const stacks = (state = {}, action) => {
 
   switch (action.type) {
     case CREATE_STACK:
-      console.log("Hey HELLO ");
-      console.log(action.stack);
       const stck = action.stack;
       newState = { ...state };
-      console.clear();
-      console.log("\n\n*****************");
-      console.log(newState);
-      console.log("*****************\n\n");
       newState.workspaces[stck.id] = stck;
       return newState;
 

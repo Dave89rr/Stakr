@@ -13,7 +13,7 @@ const Stack = ({ data, disabled, workspaces }) => {
   const dispatch = useDispatch();
 
   let cards;
-  console.log(workspaces);
+  // console.log(workspaces);
   if (workspaces[workspaceId].cards) {
     const allCards = Object.values(workspaces[workspaceId].cards);
     cards = allCards.filter((ele) => ele.stackId === data.id);
