@@ -11,6 +11,7 @@ def create():
         boardId = data['boardId'],
         name = data['name'],
         position = data['position'],
+        workspaceId = data['workspaceId']
     )
     db.session.add(new_stack)
     db.session.commit()

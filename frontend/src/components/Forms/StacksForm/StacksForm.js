@@ -6,19 +6,28 @@ import { useParams } from "react-router-dom";
 function StacksForm() {
   const [name, setName] = useState("");
   const user = useSelector((state) => state.session.user);
-  const url = useParams();
-  const workspaceId = url.workspaceId;
-  const boardId = url.boardId;
-  dispatch = useDispatch();
+  const { workspaceId, boardId } = useParams();
+
+  const test = useSelector((state) => state.workspaces[workspaceId]);
+  let stacks;
+
+  if (test) {
+    stacks = test.stacks;
+  }
+
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const stack = {
       boardId,
-      workspaceId,
-      username: user.name,
+      username: user.username,
       name,
+      //postion needs to changed
+      position: 12,
+      workspaceId,
     };
+    console.log(stack);
     if (stack) {
       dispatch(thunkCreateStack(stack));
       setName("");
@@ -28,11 +37,11 @@ function StacksForm() {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <div>
+        {/* <div>
           {validationErrors.map((error, i) => (
             <div key={i}>{error}</div>
           ))}
-        </div>
+        </div> */}
         <div>
           <label htmlFor="name">Name</label>
           <input
