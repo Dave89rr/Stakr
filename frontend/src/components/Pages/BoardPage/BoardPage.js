@@ -103,7 +103,7 @@ function BoardPage() {
                     })
                   : null}
                 {provided.placeholder}
-                <StacksForm />
+                <StacksForm positionNum={sortedStacks.length} />
               </div>
             </div>
           )}

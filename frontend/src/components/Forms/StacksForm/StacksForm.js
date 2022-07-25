@@ -3,10 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { thunkCreateStack } from "../../../store/stacks";
 import { useParams } from "react-router-dom";
 
-function StacksForm() {
+function StacksForm(positionNum) {
   const [name, setName] = useState("");
   const user = useSelector((state) => state.session.user);
   const { workspaceId, boardId } = useParams();
+  let position = positionNum.positionNum;
+  console.log(position);
 
   const test = useSelector((state) => state.workspaces[workspaceId]);
   let stacks;
@@ -23,8 +25,7 @@ function StacksForm() {
       boardId,
       username: user.username,
       name,
-      //postion needs to changed
-      position: 12,
+      position,
       workspaceId,
     };
     console.log(stack);
