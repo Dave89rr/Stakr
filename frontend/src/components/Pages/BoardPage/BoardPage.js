@@ -97,6 +97,7 @@ function BoardPage() {
                             data={stacks[ele]}
                             disabled={disabled}
                             key={stacks[ele].id}
+                            workspaces={workspaces}
                           />
                         </>
                       );

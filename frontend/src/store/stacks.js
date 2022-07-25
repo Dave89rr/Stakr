@@ -155,7 +155,7 @@ const stacks = (state = {}, action) => {
       console.log("\n\n*****************");
       console.log(newState);
       console.log("*****************\n\n");
-      newState.workspaces[1][stck.id] = stck;
+      newState.workspaces[stck.id] = stck;
       return newState;
 
     case GET_STACK:

@@ -1,10 +1,5 @@
-import {
-  GET_STACKS,
-  UPDATE_STACK_ORDER
-} from "./stacks";
-import {
-  GET_CARDS,
-} from "./cards";
+import { GET_STACKS, CREATE_STACK, UPDATE_STACK_ORDER } from "./stacks";
+import { GET_CARDS } from "./cards";
 
 // ==== Types ==== //
 
@@ -193,9 +188,9 @@ const workspaces = (state = {}, action) => {
 
       const stacks = action.stack.stacks;
       if (stacks.length) {
-        let stacksObj = { ...state[stacks[0].workspaceId].stacks }
+        let stacksObj = { ...state[stacks[0].workspaceId].stacks };
 
-        stacks.forEach(stack => {
+        stacks.forEach((stack) => {
           stacksObj[stack.id] = stack;
         });
 
@@ -206,14 +201,18 @@ const workspaces = (state = {}, action) => {
 
       return newState;
 
+    case CREATE_STACK:
+      newState = { ...state };
+      return newState;
+
     case UPDATE_STACK_ORDER:
       newState = { ...state };
 
       const updatedStacks = action.stacks;
 
       if (updatedStacks.length) {
-        let obj = newState[updatedStacks[0].workspaceId].stacks
-        updatedStacks.forEach(stack => {
+        let obj = newState[updatedStacks[0].workspaceId].stacks;
+        updatedStacks.forEach((stack) => {
           obj[stack.id].position = stack.position;
         });
         newState[updatedStacks[0].workspaceId].stacks = obj;
@@ -226,12 +225,12 @@ const workspaces = (state = {}, action) => {
       newState = { ...state };
 
       const cards = action.cards.cards;
-      const workspaceId = action.workspaceId
+      const workspaceId = action.workspaceId;
 
       if (cards.length) {
-        let cardsObj = {...state[workspaceId].cards}
+        let cardsObj = { ...state[workspaceId].cards };
 
-        cards.forEach(card => {
+        cards.forEach((card) => {
           cardsObj[card.id] = card;
         });
 
