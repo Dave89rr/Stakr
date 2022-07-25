@@ -23,7 +23,7 @@ const actionCreateStack = (stack) => {
 const actionGetUserStacks = (stack) => {
   return {
     type: GET_STACKS,
-    stack
+    stack,
   };
 };
 const actionGetStack = (stack) => {
@@ -44,7 +44,7 @@ const actionUpdateStackOrder = (stacks, boardId) => {
   return {
     type: UPDATE_STACK_ORDER,
     stacks,
-    boardId
+    boardId,
   };
 };
 
@@ -65,10 +65,10 @@ export const thunkCreateStack = (stack) => async (dispatch) => {
     },
     body: JSON.stringify(stack),
   });
-
   if (response.ok) {
-    const Stack = await response.json();
-    dispatch(actionCreateStack(Stack.stack));
+    const stack = await response.json();
+    console.log(stack);
+    dispatch(actionCreateStack(stack));
   }
 };
 
@@ -121,7 +121,7 @@ export const thunkUpdateStackOrder = (stacks, boardId) => async (dispatch) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({stacks, boardId}),
+    body: JSON.stringify({ stacks, boardId }),
   });
 
   if (response.ok) {
@@ -147,14 +147,15 @@ const stacks = (state = {}, action) => {
 
   switch (action.type) {
     case CREATE_STACK:
+      console.log("Hey HELLO ");
+      console.log(action.stack);
       const stck = action.stack;
       newState = { ...state };
-      newState[stck.id] = {
-        boardId: stck.boardId,
-        username: stck.username,
-        name: stck.name,
-        position: stck.position,
-      };
+      console.clear();
+      console.log("\n\n*****************");
+      console.log(newState);
+      console.log("*****************\n\n");
+      newState.workspaces[1][stck.id] = stck;
       return newState;
 
     case GET_STACK:

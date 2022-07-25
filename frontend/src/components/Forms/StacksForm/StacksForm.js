@@ -8,7 +8,6 @@ function StacksForm(positionNum) {
   const user = useSelector((state) => state.session.user);
   const { workspaceId, boardId } = useParams();
   let position = positionNum.positionNum;
-  console.log(position);
 
   const test = useSelector((state) => state.workspaces[workspaceId]);
   let stacks;
@@ -28,7 +27,7 @@ function StacksForm(positionNum) {
       position,
       workspaceId,
     };
-    console.log(stack);
+
     if (stack) {
       dispatch(thunkCreateStack(stack));
       setName("");
