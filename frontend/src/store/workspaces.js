@@ -2,6 +2,9 @@ import {
   GET_STACKS,
   UPDATE_STACK_ORDER
 } from "./stacks";
+import {
+  GET_CARDS,
+} from "./cards";
 
 // ==== Types ==== //
 
@@ -184,6 +187,7 @@ const workspaces = (state = {}, action) => {
 
       return newState;
 
+    // ==== stacks ==== //
     case GET_STACKS:
       newState = { ...state };
 
@@ -213,6 +217,27 @@ const workspaces = (state = {}, action) => {
           obj[stack.id].position = stack.position;
         });
         newState[updatedStacks[0].workspaceId].stacks = obj;
+      }
+
+      return newState;
+
+    // ==== cards ==== //
+    case GET_CARDS:
+      newState = { ...state };
+
+      const cards = action.cards.cards;
+      const workspaceId = action.workspaceId
+
+      if (cards.length) {
+        let cardsObj = {...state[workspaceId].cards}
+
+        cards.forEach(card => {
+          cardsObj[card.id] = card;
+        });
+
+        if (cards.length) {
+          newState[workspaceId].cards = cardsObj;
+        }
       }
 
       return newState;
