@@ -1,9 +1,14 @@
-// import {
-//   GET_BOARDS,
-//   actionGetUserBoards,
-// } from "./boards";
+import {
+  GET_STACKS,
+  CREATE_STACK,
+  UPDATE_STACK_ORDER,
+  DELETE_STACK,
+} from "./stacks";
+import { GET_CARDS } from "./cards";
 
 // ==== Types ==== //
+
+const LOGOUT_WORKSPACE = "workspace/LOGOUT_WORKSPACE";
 
 const CREATE_WORKSPACE = "workspace/CREATE_WORKSPACE";
 
@@ -53,6 +58,12 @@ const actionDeleteWorkspace = (workspace) => {
   };
 };
 
+const actionLogoutWorkspace = () => {
+  return {
+    type: LOGOUT_WORKSPACE,
+  };
+};
+
 // const actionGetAllBS = (userId) => {
 //   return {
 //     type: GET_ALL_BS,
@@ -88,7 +99,6 @@ export const thunkGetAllWorkspaces = (ownerId) => async (dispatch) => {
   if (response.ok) {
     const allUserWorkspaces = await response.json();
     dispatch(actionGetUserWorkspaces(allUserWorkspaces));
-    // dispatch(actionGetUserBoards());
   }
 };
 
@@ -129,13 +139,13 @@ export const thunkDeleteWorkspace = (workspaceId) => async (dispatch) => {
   }
 };
 
-// ==== Reducers ==== //
-const initialState = {
-  stacks: null,
-  boards: null,
+export const thunkLogoutWorkspace = () => async (dispatch) => {
+  dispatch(actionLogoutWorkspace());
 };
 
-const workspaces = (state = initialState, action) => {
+// ==== Reducers ==== //
+
+const workspaces = (state = {}, action) => {
   let newState = {};
 
   switch (action.type) {
@@ -156,7 +166,6 @@ const workspaces = (state = initialState, action) => {
     case GET_WORKSPACES:
       const workspaces = action.workspace.workspaces;
       workspaces.forEach((workspace) => {
-
         newState[workspace.id] = workspace;
       });
 
@@ -171,6 +180,72 @@ const workspaces = (state = initialState, action) => {
     case DELETE_WORKSPACE:
       newState = { ...state };
       delete newState[action.workspaceId];
+      return newState;
+
+    case LOGOUT_WORKSPACE:
+      newState = {};
+
+      return newState;
+
+    // ==== stacks ==== //
+    case GET_STACKS:
+      newState = { ...state };
+
+      const stacks = action.stack.stacks;
+      if (stacks.length) {
+        let stacksObj = { ...state[stacks[0].workspaceId].stacks };
+
+        stacks.forEach((stack) => {
+          stacksObj[stack.id] = stack;
+        });
+
+        newState[stacks[0].workspaceId].stacks = stacksObj;
+      }
+
+      return newState;
+
+    case CREATE_STACK:
+      newState = { ...state };
+      const stck = action.stack;
+      let stacksObj = { ...state[stck.workspaceId].stacks };
+      stacksObj[stck.id] = stck;
+      newState[stck.workspaceId].stacks = stacksObj;
+      return newState;
+
+    case UPDATE_STACK_ORDER:
+      newState = { ...state };
+
+      const updatedStacks = action.stacks;
+
+      if (updatedStacks.length) {
+        let obj = newState[updatedStacks[0].workspaceId].stacks;
+        updatedStacks.forEach((stack) => {
+          obj[stack.id].position = stack.position;
+        });
+        newState[updatedStacks[0].workspaceId].stacks = obj;
+      }
+
+      return newState;
+
+    // ==== cards ==== //
+    case GET_CARDS:
+      newState = { ...state };
+
+      const cards = action.cards.cards;
+      const workspaceId = action.workspaceId;
+
+      if (cards.length) {
+        let cardsObj = { ...state[workspaceId].cards };
+
+        cards.forEach((card) => {
+          cardsObj[card.id] = card;
+        });
+
+        if (cards.length) {
+          newState[workspaceId].cards = cardsObj;
+        }
+      }
+
       return newState;
 
     default:

@@ -1,8 +1,8 @@
-"""added lazy loading to relationships
+"""lazy load none
 
-Revision ID: 89c65fa1e86d
+Revision ID: 0041cc5b625c
 Revises: 
-Create Date: 2022-07-21 17:45:30.126344
+Create Date: 2022-07-22 16:14:18.647970
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '89c65fa1e86d'
+revision = '0041cc5b625c'
 down_revision = None
 branch_labels = None
 depends_on = None
