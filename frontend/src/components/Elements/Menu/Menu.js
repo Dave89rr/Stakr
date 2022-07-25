@@ -1,4 +1,4 @@
-import classes from './Menu.module.css';
+import classes from "./Menu.module.css";
 // import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import WorkspacesForm from '../../Forms/WorkspacesForm/WorkspacesForm';
