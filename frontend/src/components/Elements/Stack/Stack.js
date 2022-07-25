@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Draggable } from 'react-beautiful-dnd';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 
 import Card from '../Card';
 import { thunkGetCards } from '../../../store/cards';
@@ -43,11 +43,21 @@ const Stack = ({ data, disabled, workspaces }) => {
                 <div className={classes.stackTitle} {...provided.dragHandleProps}>
                     {data.name}
                 </div>
-                <div className={classes.stackContent}>
-                    {cards ?
-                        cards.map((ele, i) => <Card data={ele} key={i}/>)
-                    : null}
-                </div>
+                <Droppable droppableId={`drop${data.id}`} direction='vertical' type='row'>
+                {(provided) => (
+                    <div
+                        {...provided.droppableProps}
+                        ref={provided.innerRef}
+                        className={classes.stackContent}
+                    >
+                        {cards ? cards.map((ele) => {
+                            return <Card data={ele} key={ele.id}/>
+                        })
+                        : null}
+                        {provided.placeholder}
+                    </div>
+                )}
+                </Droppable>
             </div>
             </div>
         )}
