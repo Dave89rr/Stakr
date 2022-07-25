@@ -6,7 +6,9 @@ import { useSelector } from 'react-redux';
 
 function UserHomepage() {
   let workspaces = useSelector((state) => state.workspaces);
-
+  if (!workspaces) {
+    return <h1>Loading...</h1>;
+  }
   return (
     <div className={uniCss.mainContainer}>
       <div className={classes.container}>

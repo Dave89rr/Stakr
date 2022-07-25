@@ -4,9 +4,11 @@ export const CREATE_STACK = "stack/CREATE_STACK";
 
 export const GET_STACK = "stack/GET_STACK";
 
-export const GET_STACKS = "workspace/GET_STACKS";
+export const GET_STACKS = "stack/GET_STACKS";
 
 export const UPDATE_STACK = "stack/UPDATE_STACK";
+
+export const UPDATE_STACK_ORDER = "stack/UPDATE_STACK_ORDER";
 
 export const DELETE_STACK = "stack/DELETE_STACK";
 
@@ -21,7 +23,7 @@ const actionCreateStack = (stack) => {
 const actionGetUserStacks = (stack) => {
   return {
     type: GET_STACKS,
-    stack
+    stack,
   };
 };
 const actionGetStack = (stack) => {
@@ -35,6 +37,14 @@ const actionUpdateStack = (stack) => {
   return {
     type: UPDATE_STACK,
     stack,
+  };
+};
+
+const actionUpdateStackOrder = (stacks, boardId) => {
+  return {
+    type: UPDATE_STACK_ORDER,
+    stacks,
+    boardId,
   };
 };
 
@@ -55,10 +65,10 @@ export const thunkCreateStack = (stack) => async (dispatch) => {
     },
     body: JSON.stringify(stack),
   });
-
   if (response.ok) {
-    const Stack = await response.json();
-    dispatch(actionCreateStack(Stack.stack));
+    const stack = await response.json();
+    // console.log(stack);
+    dispatch(actionCreateStack(stack));
   }
 };
 
@@ -91,14 +101,32 @@ export const thunkGetStack = (stackId) => async (dispatch) => {
 };
 
 export const thunkUpdateStack = (stack) => async (dispatch) => {
-  const response = await fetch(`api/s/update`, {
+  const response = await fetch(`/api/s/update`, {
     method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(stack),
   });
 
   if (response.ok) {
-    const stackData = await response.json;
-    dispatch(actionUpdateStack(stackData));
+    const stackData = await response.json();
+    return dispatch(actionUpdateStack(stackData));
+  }
+};
+
+export const thunkUpdateStackOrder = (stacks, boardId) => async (dispatch) => {
+  const response = await fetch(`/api/s/updateOrder`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ stacks, boardId }),
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    return dispatch(actionUpdateStackOrder(data.stacks, data.boardId));
   }
 };
 
@@ -121,12 +149,7 @@ const stacks = (state = {}, action) => {
     case CREATE_STACK:
       const stck = action.stack;
       newState = { ...state };
-      newState[stck.id] = {
-        boardId: stck.boardId,
-        username: stck.username,
-        name: stck.name,
-        position: stck.position,
-      };
+      newState.workspaces[stck.id] = stck;
       return newState;
 
     case GET_STACK:
