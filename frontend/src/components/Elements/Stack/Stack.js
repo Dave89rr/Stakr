@@ -16,6 +16,7 @@ const Stack = ({ data, disabled, workspaces }) => {
     if (workspaces[workspaceId].cards) {
         const allCards = Object.values(workspaces[workspaceId].cards);
         cards = allCards.filter(ele => ele.stackId === data.id)
+            .sort((a, b) => a.position-b.position)
     }
 
     useEffect(() => {
@@ -55,6 +56,7 @@ const Stack = ({ data, disabled, workspaces }) => {
                         })
                         : null}
                         {provided.placeholder}
+                        <p>+ New Card</p>
                     </div>
                 )}
                 </Droppable>

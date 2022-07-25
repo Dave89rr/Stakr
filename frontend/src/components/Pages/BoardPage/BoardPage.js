@@ -48,19 +48,29 @@ function BoardPage() {
   const onDragEnd = async (res) => {
     const { destination, source, draggableId, type } = res;
 
-    // dont do anything when dragged into the same spot as before
-    if (destination.droppableId === source.droppableId &&
-      destination.index === source.index) {
-        setDisabled(false);
-        return;
-      }
 
     if (type === 'column') {
+      // dont do anything when dragged into the same spot as before
+      if (destination.droppableId === source.droppableId &&
+        destination.index === source.index) {
+          setDisabled(false);
+          return;
+        }
+
       const newStackOrder = Array.from(sortedStacks);
       newStackOrder.splice(source.index, 1);
       newStackOrder.splice(destination.index, 0, draggableId);
       sortedStacks = newStackOrder;
       await dispatch(thunkUpdateStackOrder(sortedStacks, boardId))
+      setDisabled(false);
+    }
+    if (type === 'row') {
+      // dont do anything when dragged into the same spot as before
+      if ((destination && destination.droppableId === source.droppableId &&
+        destination.index === source.index) || !destination) {
+          setDisabled(false);
+          return;
+        }
       setDisabled(false);
     }
   }
