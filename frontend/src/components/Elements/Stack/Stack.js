@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
 
 import Card from '../Card';
@@ -11,6 +11,12 @@ import classes from './Stack.module.css';
 const Stack = ({ data, disabled, workspaces }) => {
     const { workspaceId, boardId } = useParams();
     const dispatch = useDispatch();
+
+    let cards;
+    if (workspaces[workspaceId].cards) {
+        const allCards = Object.values(workspaces[workspaceId].cards);
+        cards = allCards.filter(ele => ele.stackId === data.id)
+    }
 
     useEffect(() => {
         (async () => {
@@ -38,7 +44,9 @@ const Stack = ({ data, disabled, workspaces }) => {
                     {data.name}
                 </div>
                 <div className={classes.stackContent}>
-                    {Array(10).fill('x').map((ele, i) => <Card key={i}/>)}
+                    {cards ?
+                        cards.map((ele, i) => <Card data={ele} key={i}/>)
+                    : null}
                 </div>
             </div>
             </div>

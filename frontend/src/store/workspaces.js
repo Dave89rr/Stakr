@@ -219,6 +219,8 @@ const workspaces = (state = {}, action) => {
         newState[updatedStacks[0].workspaceId].stacks = obj;
       }
 
+      return newState;
+
     // ==== cards ==== //
     case GET_CARDS:
       newState = { ...state };
