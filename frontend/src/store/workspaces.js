@@ -1,7 +1,10 @@
 import {
   GET_STACKS,
-  UPDATE_STACK_ORDER
+  CREATE_STACK,
+  UPDATE_STACK_ORDER,
+  DELETE_STACK,
 } from "./stacks";
+import { GET_CARDS } from "./cards";
 
 // ==== Types ==== //
 
@@ -184,22 +187,29 @@ const workspaces = (state = {}, action) => {
 
       return newState;
 
+    // ==== stacks ==== //
     case GET_STACKS:
       newState = { ...state };
 
       const stacks = action.stack.stacks;
       if (stacks.length) {
-        let stacksObj = { ...state[stacks[0].workspaceId].stacks }
+        let stacksObj = { ...state[stacks[0].workspaceId].stacks };
 
-        stacks.forEach(stack => {
+        stacks.forEach((stack) => {
           stacksObj[stack.id] = stack;
         });
 
-        if (stacks.length) {
-          newState[stacks[0].workspaceId].stacks = stacksObj;
-        }
+        newState[stacks[0].workspaceId].stacks = stacksObj;
       }
 
+      return newState;
+
+    case CREATE_STACK:
+      newState = { ...state };
+      const stck = action.stack;
+      let stacksObj = { ...state[stck.workspaceId].stacks };
+      stacksObj[stck.id] = stck;
+      newState[stck.workspaceId].stacks = stacksObj;
       return newState;
 
     case UPDATE_STACK_ORDER:
@@ -208,11 +218,32 @@ const workspaces = (state = {}, action) => {
       const updatedStacks = action.stacks;
 
       if (updatedStacks.length) {
-        let obj = newState[updatedStacks[0].workspaceId].stacks
-        updatedStacks.forEach(stack => {
+        let obj = newState[updatedStacks[0].workspaceId].stacks;
+        updatedStacks.forEach((stack) => {
           obj[stack.id].position = stack.position;
         });
         newState[updatedStacks[0].workspaceId].stacks = obj;
+      }
+
+      return newState;
+
+    // ==== cards ==== //
+    case GET_CARDS:
+      newState = { ...state };
+
+      const cards = action.cards.cards;
+      const workspaceId = action.workspaceId;
+
+      if (cards.length) {
+        let cardsObj = { ...state[workspaceId].cards };
+
+        cards.forEach((card) => {
+          cardsObj[card.id] = card;
+        });
+
+        if (cards.length) {
+          newState[workspaceId].cards = cardsObj;
+        }
       }
 
       return newState;

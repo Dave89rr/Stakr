@@ -27,4 +27,5 @@
 
 .stackContent {
     overflow-y: auto;
+    padding: 0px 8px;
 }

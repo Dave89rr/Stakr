@@ -6,8 +6,8 @@ from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
 
 from .config import Config
-from .models import db, Users, Workspaces, Boards, Stacks, Cards, Comments, Checklists, ChecklistItems
-from .routes import user_routes, auth_routes, workspaces, boards, stacks
+from .models import db, Users
+from .routes import user_routes, auth_routes, workspaces, boards, stacks, cards
 
 from .seeds import seed_commands
 
@@ -30,6 +30,7 @@ app.register_blueprint(auth_routes.auth_route)
 app.register_blueprint(workspaces.workspace)
 app.register_blueprint(boards.board)
 app.register_blueprint(stacks.stack)
+app.register_blueprint(cards.card)
 
 db.init_app(app)
 migrate = Migrate(app, db)

@@ -1,0 +1,12 @@
+.cardContainer {
+    padding: 6px 8px 2px;
+    margin-bottom: 8px;
+    background-color: white;
+}
+
+.description {
+    margin: 0 0 4px;
+    padding: 0;
+
+    font-size: 14px;
+}
