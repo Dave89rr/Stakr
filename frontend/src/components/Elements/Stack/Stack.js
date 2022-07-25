@@ -15,7 +15,7 @@ const Stack = ({ data, disabled, workspaces }) => {
     useEffect(() => {
         (async () => {
           if (workspaces[workspaceId]) {
-            await dispatch(thunkGetCards(data.id));
+            await dispatch(thunkGetCards(data.id, workspaceId));
           }
         })();
       }, [dispatch, workspaces[workspaceId]]);

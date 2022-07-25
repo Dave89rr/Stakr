@@ -1,16 +1,16 @@
 // ==== Types ==== //
 
-const CREATE_CARDS = "stacks/GET_CARDS";
+const CREATE_CARDS = "stack/GET_CARDS";
 
-const GET_CARDS = "stacks/GET_CARDS";
+export const GET_CARDS = "stack/GET_CARDS";
 
-const GET_CARD = "stacks/GET_CARD";
+const GET_CARD = "stack/GET_CARD";
 
-const UPDATE_CARDS = "stacks/GET_CARDS";
+const UPDATE_CARDS = "stack/GET_CARDS";
 
-const DELETE_CARDS = "stacks/GET_CARDS";
+const DELETE_CARDS = "stack/GET_CARDS";
 
-const DELETE_CARD = "stacks/GET_CARD";
+const DELETE_CARD = "stack/GET_CARD";
 
 // ==== Actions ==== //
 
@@ -21,10 +21,11 @@ const actionCreateCard = (card) => {
   };
 };
 
-const actionGetCards = (stackId) => {
+const actionGetCards = (cards, workspaceId) => {
   return {
     type: GET_CARDS,
-    stackId,
+    cards,
+    workspaceId
   };
 };
 const actionGetCard = (cardId) => {
@@ -72,7 +73,7 @@ const actionDeleteCard = (cardId) => {
         }
         };
 
-    export const thunkGetCards = (stackId) => async (dispatch) => {
+    export const thunkGetCards = (stackId, workspaceId) => async (dispatch) => {
         const response = await fetch(`/api/c/all/${stackId}`, {
           method: "GET",
           headers: {
@@ -82,7 +83,7 @@ const actionDeleteCard = (cardId) => {
 
         if (response.ok) {
           const allStackCards = await response.json();
-          dispatch(actionGetCards(allStackCards));
+          dispatch(actionGetCards(allStackCards, workspaceId));
         }
       };
 
