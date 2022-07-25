@@ -1,4 +1,9 @@
-import { GET_STACKS, CREATE_STACK, UPDATE_STACK_ORDER } from "./stacks";
+import {
+  GET_STACKS,
+  CREATE_STACK,
+  UPDATE_STACK_ORDER,
+  DELETE_STACK,
+} from "./stacks";
 import { GET_CARDS } from "./cards";
 
 // ==== Types ==== //
@@ -204,7 +209,6 @@ const workspaces = (state = {}, action) => {
       const stck = action.stack;
       let stacksObj = { ...state[stck.workspaceId].stacks };
       stacksObj[stck.id] = stck;
-      // console.log(stacksObj);
       newState[stck.workspaceId].stacks = stacksObj;
       return newState;
 
