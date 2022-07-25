@@ -1,0 +1,30 @@
+.stackWrapper {
+    height: 100%;
+    margin-right: 20px;
+}
+
+.stack {
+    display: flex;
+    flex-direction: column;
+
+    width: 272px;
+    max-height: 100%;
+
+    border-radius: 3px;
+    background-color: #ebecf0;
+}
+
+.stackTitle {
+    padding: 15px 20px 15px 20px;
+
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+
+    color: #172b4d;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.stackContent {
+    overflow-y: auto;
+}
