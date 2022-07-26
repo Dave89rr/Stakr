@@ -11,11 +11,11 @@ function CreateCard(stackId, positionNum) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const card = {
-      stackId,
+      stackId: 120,
       username: user.username,
       name,
-      position,
-      description: "",
+      position: 2,
+      description: "Add a description...",
       color: "White",
     };
 
