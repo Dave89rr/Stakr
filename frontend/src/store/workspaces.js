@@ -4,6 +4,7 @@ import {
 } from "./stacks";
 import {
   GET_CARDS,
+  UPDATE_CARD
 } from "./cards";
 
 // ==== Types ==== //
@@ -239,6 +240,18 @@ const workspaces = (state = {}, action) => {
           newState[workspaceId].cards = cardsObj;
         }
       }
+
+      return newState;
+
+    case UPDATE_CARD:
+      newState = { ...state };
+
+      const card = action.card
+      const id = action.workspaceId
+
+      let newCardObj = {...state[id].cards}
+      newCardObj[card.id] = card
+      newState[id].cards = newCardObj
 
       return newState;
 

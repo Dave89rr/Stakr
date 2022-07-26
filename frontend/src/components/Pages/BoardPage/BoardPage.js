@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 import { thunkGetAllStacks, thunkUpdateStackOrder } from '../../../store/stacks';
+import { thunkUpdateCard } from '../../../store/cards';
 
 import classes from './BoardPage.module.css';
 import Stack from '../../Elements/Stack/Stack';
@@ -33,7 +34,6 @@ function BoardPage() {
   if (loaded) {
     stacks = workspaces[workspaceId].stacks
   }
-
   let sortedStacks;
   if (workspaces[workspaceId].stacks) {
     let stackIds = Object.values(stacks).map(ele => (ele.id).toString());
@@ -42,14 +42,11 @@ function BoardPage() {
   }
 
   let cards;
-  let cardIds;
+  let sortedCards = [];
   if (workspaces[workspaceId].cards) {
-      cards = workspaces[workspaceId].cards;
-      cardIds = Object.values(cards).map(card => (card.id).toString());
-      console.log(cardIds)
-      // cards = allCards.filter(ele => ele.stackId === data.id)
-      //     .sort((a, b) => a.position-b.position)
+    cards = workspaces[workspaceId].cards;
   }
+
 
   const onDragStart = () => {
     setDisabled(true)
@@ -80,9 +77,36 @@ function BoardPage() {
         destination.index === source.index) || !destination) {
           setDisabled(false);
           return;
-        }
+      }
 
-      // change made vvvvv
+      const cardOrder = Object.values(cards).filter(ele => {
+        return (ele.stackId === parseInt(res.destination.droppableId.split(':')[1]))
+      }).map(ele => ele.id)
+      console.log('yyyyy', cardOrder)
+      if (cardOrder.includes(parseInt(res.draggableId.split(':')[1]))) {
+        cardOrder.splice(source.index, 1);
+      }
+      cardOrder.splice(destination.index, 0, parseInt(res.draggableId.split(':')[1]));
+
+      const otherCards = Object.values(cards).filter(ele => {
+        return (
+          (ele.stackId === parseInt(res.source.droppableId.split(':')[1]))
+          &&
+          ele.id !== parseInt(res.draggableId.split(':')[1])
+        )
+      }).map(ele => ele.id);
+
+      const data = {
+        cardId: parseInt(res.draggableId.split(':')[1]),
+        stackId: parseInt(res.destination.droppableId.split(':')[1]),
+        newPos: res.destination.index,
+        cardOrder,
+        otherCards
+      }
+
+      sortedCards = cardOrder;
+
+      await dispatch(thunkUpdateCard(data, workspaceId));
       setDisabled(false);
     }
   }
@@ -103,11 +127,16 @@ function BoardPage() {
             >
               <div className={classes.stackContainer}>
                 {stacks ? sortedStacks.map(ele => {
+                  if (cards) {
+                    let cardIds = Object.values(cards).map(ele => (ele.id));
+                    let filterCardIds = cardIds.filter(id => cards[id].stackId === stacks[ele].id)
+                    sortedCards = filterCardIds.sort((a, b) => cards[a].position-cards[b].position)
+                  }
                   return (
                     <Stack
                       data={stacks[ele]}
                       cards={cards}
-                      cardIds={cardIds}
+                      sortedCards={sortedCards}
                       disabled={disabled}
                       key={stacks[ele].id}
                       workspaces={workspaces}
