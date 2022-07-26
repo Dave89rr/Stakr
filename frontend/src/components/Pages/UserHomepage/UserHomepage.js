@@ -15,8 +15,8 @@ function UserHomepage() {
         <div className={classes.workspacesMenu}></div>
         <div className={classes.workspacesView}>
           <h3>Your Workspaces</h3>
-          {Object.values(workspaces).map(ele => {
-            return ele ? <WorkspaceCluster key={ele.id} data={ele} /> : null
+          {Object.values(workspaces).map((ele) => {
+            return ele ? <WorkspaceCluster key={ele.id} id={ele.id} /> : null;
           })}
         </div>
       </div>
