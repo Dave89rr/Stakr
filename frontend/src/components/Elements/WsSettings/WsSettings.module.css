@@ -1,0 +1,10 @@
+.settingsMenuContainer {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+}
+
+.deleteBtn {
+  border: 2px solid red;
+  width: 200px;
+}

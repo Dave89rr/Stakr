@@ -4,21 +4,24 @@ import {
   UPDATE_STACK_ORDER,
   DELETE_STACK,
 } from './stacks';
-import { GET_CARDS } from './cards';
+import {
+  GET_CARDS,
+  UPDATE_CARD
+} from "./cards";
 
 // ==== Types ==== //
 
-const LOGOUT_WORKSPACE = 'workspace/LOGOUT_WORKSPACE';
+const LOGOUT_WORKSPACE = "workspace/LOGOUT_WORKSPACE";
 
-const CREATE_WORKSPACE = 'workspace/CREATE_WORKSPACE';
+const CREATE_WORKSPACE = "workspace/CREATE_WORKSPACE";
 
-const GET_WORKSPACE = 'workspace/GET_WORKSPACE';
+const GET_WORKSPACE = "workspace/GET_WORKSPACE";
 
-const GET_WORKSPACES = 'workspace/GET_WORKSPACES';
+const GET_WORKSPACES = "workspace/GET_WORKSPACES";
 
-const UPDATE_WORKSPACE = 'workspace/UPDATE_WORKSPACE';
+const UPDATE_WORKSPACE = "workspace/UPDATE_WORKSPACE";
 
-const DELETE_WORKSPACE = 'workspace/DELETE_WORKSPACE';
+const DELETE_WORKSPACE = "workspace/DELETE_WORKSPACE";
 
 // const GET_ALL_BS = "workspace/GET_ALL_BS";
 
@@ -51,10 +54,10 @@ const actionUpdateWorkspace = (workspace) => {
   };
 };
 
-const actionDeleteWorkspace = (workspace) => {
+const actionDeleteWorkspace = (workspaceId) => {
   return {
     type: DELETE_WORKSPACE,
-    workspace,
+    workspaceId,
   };
 };
 
@@ -75,9 +78,9 @@ const actionLogoutWorkspace = () => {
 
 export const thunkCreateWorkspace = (workspace) => async (dispatch) => {
   const response = await fetch(`/api/w/create`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(workspace),
   });
@@ -85,15 +88,14 @@ export const thunkCreateWorkspace = (workspace) => async (dispatch) => {
   if (response.ok) {
     const workspaceRes = await response.json();
     dispatch(actionCreateWorkspace(workspaceRes));
-    return workspaceRes;
   }
 };
 
 export const thunkGetAllWorkspaces = (ownerId) => async (dispatch) => {
   const response = await fetch(`/api/w/all/${ownerId}`, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
 
@@ -105,9 +107,9 @@ export const thunkGetAllWorkspaces = (ownerId) => async (dispatch) => {
 
 export const thunkGetWorkspace = (workspaceId) => async (dispatch) => {
   const response = await fetch(`/api/w/${workspaceId}`, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
 
@@ -119,7 +121,7 @@ export const thunkGetWorkspace = (workspaceId) => async (dispatch) => {
 
 export const thunkUpdateWorkspace = (workspace) => async (dispatch) => {
   const response = await fetch(`api/w/update`, {
-    method: 'PUT',
+    method: "PUT",
     body: JSON.stringify(workspace),
   });
 
@@ -132,7 +134,10 @@ export const thunkUpdateWorkspace = (workspace) => async (dispatch) => {
 export const thunkDeleteWorkspace = (workspaceId) => async (dispatch) => {
   const response = await fetch(`/api/w/delete`, {
     method: 'DELETE',
-    body: JSON.stringify(workspaceId),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ workspaceId }),
   });
 
   if (response.ok) {
@@ -153,10 +158,7 @@ const workspaces = (state = {}, action) => {
     case CREATE_WORKSPACE:
       const ws = action.workspace;
       newState = { ...state };
-      newState[ws.id] = {
-        ownerId: ws.ownerId,
-        name: ws.name,
-      };
+      newState[ws.id] = { ...ws, boards: {} };
       return newState;
 
     case GET_WORKSPACE:
@@ -213,6 +215,13 @@ const workspaces = (state = {}, action) => {
       newState[stck.workspaceId].stacks = stacksObj;
       return newState;
 
+    case DELETE_STACK:
+      newState = { ...state };
+      const { stackData } = action;
+      const wsId = parseInt(stackData.workspaceId, 10);
+      delete newState[wsId].stacks[stackData.stackId];
+      return newState;
+
     case UPDATE_STACK_ORDER:
       newState = { ...state };
 
@@ -246,6 +255,34 @@ const workspaces = (state = {}, action) => {
           newState[workspaceId].cards = cardsObj;
         }
       }
+
+      return newState;
+
+    case UPDATE_CARD:
+      newState = { ...state };
+
+      const card = action.payload.card;
+      const cardOrder = action.payload.cardOrder;
+      const otherCards = action.payload.otherCards;
+      const id = action.workspaceId;
+
+      let newCardObj = {...state[id].cards}
+      newCardObj[card.id] = card;
+
+      if ((otherCards.length) && !cardOrder.includes(otherCards[0])) {
+        otherCards.forEach((id, i) => {
+          newCardObj[id].position = i;
+        });
+        cardOrder.forEach((id, i) => {
+          newCardObj[id].position = i;
+        });
+      } else {
+        cardOrder.forEach((id, i) => {
+          newCardObj[id].position = i;
+        });
+      }
+
+      newState[id].cards = newCardObj;
 
       return newState;
 
