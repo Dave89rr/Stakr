@@ -24,9 +24,9 @@ function CardForm(stackId, positionNum) {
     console.log(card);
 
     if (card) {
-      //   dispatch(thunkCreateCard(card));
+      dispatch(thunkCreateCard(card));
       setName("");
-      setColor("");
+      setColor("White");
       setDescription("");
     }
   };

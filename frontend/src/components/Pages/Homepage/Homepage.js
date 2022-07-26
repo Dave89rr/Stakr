@@ -6,7 +6,6 @@ function HomePage() {
   return (
     <div className={uniCss.mainContainer}>
       <h1>Howdy</h1>
-      <CardForm />
     </div>
   );
 }
