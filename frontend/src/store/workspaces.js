@@ -1,7 +1,9 @@
 import {
   GET_STACKS,
-  UPDATE_STACK_ORDER
-} from "./stacks";
+  CREATE_STACK,
+  UPDATE_STACK_ORDER,
+  DELETE_STACK,
+} from './stacks';
 import {
   GET_CARDS,
   UPDATE_CARD
@@ -52,10 +54,10 @@ const actionUpdateWorkspace = (workspace) => {
   };
 };
 
-const actionDeleteWorkspace = (workspace) => {
+const actionDeleteWorkspace = (workspaceId) => {
   return {
     type: DELETE_WORKSPACE,
-    workspace,
+    workspaceId,
   };
 };
 
@@ -84,8 +86,8 @@ export const thunkCreateWorkspace = (workspace) => async (dispatch) => {
   });
 
   if (response.ok) {
-    const workspace = await response.json();
-    dispatch(actionCreateWorkspace(workspace.workspace));
+    const workspaceRes = await response.json();
+    dispatch(actionCreateWorkspace(workspaceRes));
   }
 };
 
@@ -131,8 +133,11 @@ export const thunkUpdateWorkspace = (workspace) => async (dispatch) => {
 
 export const thunkDeleteWorkspace = (workspaceId) => async (dispatch) => {
   const response = await fetch(`/api/w/delete`, {
-    method: "DELETE",
-    body: JSON.stringify(workspaceId),
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ workspaceId }),
   });
 
   if (response.ok) {
@@ -153,10 +158,7 @@ const workspaces = (state = {}, action) => {
     case CREATE_WORKSPACE:
       const ws = action.workspace;
       newState = { ...state };
-      newState[ws.id] = {
-        ownerId: ws.ownerId,
-        name: ws.name,
-      };
+      newState[ws.id] = { ...ws, boards: {} };
       return newState;
 
     case GET_WORKSPACE:
@@ -194,17 +196,30 @@ const workspaces = (state = {}, action) => {
 
       const stacks = action.stack.stacks;
       if (stacks.length) {
-        let stacksObj = { ...state[stacks[0].workspaceId].stacks }
+        let stacksObj = { ...state[stacks[0].workspaceId].stacks };
 
-        stacks.forEach(stack => {
+        stacks.forEach((stack) => {
           stacksObj[stack.id] = stack;
         });
 
-        if (stacks.length) {
-          newState[stacks[0].workspaceId].stacks = stacksObj;
-        }
+        newState[stacks[0].workspaceId].stacks = stacksObj;
       }
 
+      return newState;
+
+    case CREATE_STACK:
+      newState = { ...state };
+      const stck = action.stack;
+      let stacksObj = { ...state[stck.workspaceId].stacks };
+      stacksObj[stck.id] = stck;
+      newState[stck.workspaceId].stacks = stacksObj;
+      return newState;
+
+    case DELETE_STACK:
+      newState = { ...state };
+      const { stackData } = action;
+      const wsId = parseInt(stackData.workspaceId, 10);
+      delete newState[wsId].stacks[stackData.stackId];
       return newState;
 
     case UPDATE_STACK_ORDER:
@@ -213,8 +228,8 @@ const workspaces = (state = {}, action) => {
       const updatedStacks = action.stacks;
 
       if (updatedStacks.length) {
-        let obj = newState[updatedStacks[0].workspaceId].stacks
-        updatedStacks.forEach(stack => {
+        let obj = newState[updatedStacks[0].workspaceId].stacks;
+        updatedStacks.forEach((stack) => {
           obj[stack.id].position = stack.position;
         });
         newState[updatedStacks[0].workspaceId].stacks = obj;
@@ -227,12 +242,12 @@ const workspaces = (state = {}, action) => {
       newState = { ...state };
 
       const cards = action.cards.cards;
-      const workspaceId = action.workspaceId
+      const workspaceId = action.workspaceId;
 
       if (cards.length) {
-        let cardsObj = {...state[workspaceId].cards}
+        let cardsObj = { ...state[workspaceId].cards };
 
-        cards.forEach(card => {
+        cards.forEach((card) => {
           cardsObj[card.id] = card;
         });
 

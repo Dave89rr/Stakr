@@ -1,10 +1,7 @@
 import classes from './WorkspacesForm.module.css';
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  thunkCreateWorkspace,
-  thunkGetAllWorkspaces,
-} from '../../../store/workspaces';
+import { thunkCreateWorkspace } from '../../../store/workspaces';
 
 function WorkspacesForm({ toggleView, setToggleView }) {
   const [validationErrors, setValidationErrors] = useState([]);
@@ -12,18 +9,24 @@ function WorkspacesForm({ toggleView, setToggleView }) {
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const errors = [];
     const workspace = {
       ownerId: user.id,
       name,
     };
-    const data = dispatch(thunkCreateWorkspace(workspace));
-    dispatch(thunkGetAllWorkspaces(user.id));
 
-    setName('');
-    if (data) {
-      setValidationErrors(data);
+    if (name.length === 0) {
+      errors.push('Name for a workspace cannot be left blank');
+    }
+    if (errors.length > 0) {
+      setValidationErrors(errors);
+    } else {
+      setValidationErrors([]);
+      dispatch(thunkCreateWorkspace(workspace));
+      setName('');
+      setToggleView(false);
     }
   };
 
@@ -31,9 +34,9 @@ function WorkspacesForm({ toggleView, setToggleView }) {
     <>
       <form onSubmit={handleSubmit}>
         <div>
-          {/* {validationErrors.map((error, ind) => (
+          {validationErrors.map((error, ind) => (
             <div key={ind}>{error}</div>
-          ))} */}
+          ))}
         </div>
         <div>
           <label htmlFor="name">Name</label>

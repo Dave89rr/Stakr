@@ -1,14 +1,18 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
-import { thunkGetAllStacks, thunkUpdateStackOrder } from '../../../store/stacks';
+import {
+  thunkGetAllStacks,
+  thunkUpdateStackOrder,
+} from "../../../store/stacks";
 import { thunkUpdateCard } from '../../../store/cards';
 
-import classes from './BoardPage.module.css';
-import Stack from '../../Elements/Stack/Stack';
+import classes from "./BoardPage.module.css";
+import Stack from "../../Elements/Stack/Stack";
+import StacksForm from "../../Forms/StacksForm/StacksForm";
 
 function BoardPage() {
   const workspaces = useSelector((state) => state.workspaces);
@@ -32,13 +36,17 @@ function BoardPage() {
 
   let stacks;
   if (loaded) {
-    stacks = workspaces[workspaceId].stacks
+    stacks = workspaces[workspaceId].stacks;
   }
   let sortedStacks;
   if (workspaces[workspaceId].stacks) {
-    let stackIds = Object.values(stacks).map(ele => (ele.id).toString());
-    let filterStackIds = stackIds.filter(id => stacks[id].boardId === parseInt(boardId))
-    sortedStacks = filterStackIds.sort((a, b) => stacks[a].position-stacks[b].position)
+    let stackIds = Object.values(stacks).map((ele) => ele.id.toString());
+    let filterStackIds = stackIds.filter(
+      (id) => stacks[id].boardId === parseInt(boardId)
+    );
+    sortedStacks = filterStackIds.sort(
+      (a, b) => stacks[a].position - stacks[b].position
+    );
   }
 
   let cards;
@@ -48,8 +56,8 @@ function BoardPage() {
   }
 
   const onDragStart = () => {
-    setDisabled(true)
-  }
+    setDisabled(true);
+  };
 
   const onDragEnd = async (res) => {
     const { destination, source, draggableId, type } = res;
@@ -66,7 +74,7 @@ function BoardPage() {
       newStackOrder.splice(source.index, 1);
       newStackOrder.splice(destination.index, 0, draggableId);
       sortedStacks = newStackOrder;
-      await dispatch(thunkUpdateStackOrder(sortedStacks, boardId))
+      await dispatch(thunkUpdateStackOrder(sortedStacks, boardId));
       setDisabled(false);
     }
     if (type === 'row') {
@@ -114,12 +122,11 @@ function BoardPage() {
 
   return (
     <div className={classes.containerWrapper}>
-      <h1>BoardPage #{boardId} {workspaceId}</h1>
-      <DragDropContext
-        onDragEnd={onDragEnd}
-        onDragStart={onDragStart}
-      >
-        <Droppable droppableId='allStacks' direction='horizontal' type='column'>
+      <h1>
+        BoardPage #{boardId} {workspaceId}
+      </h1>
+      <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
+        <Droppable droppableId="allStacks" direction="horizontal" type="column">
           {(provided) => (
             <div
               {...provided.droppableProps}
@@ -145,6 +152,7 @@ function BoardPage() {
                   )
                 }) : null}
                 {provided.placeholder}
+                <StacksForm positionNum={sortedStacks.length} />
               </div>
             </div>
           )}

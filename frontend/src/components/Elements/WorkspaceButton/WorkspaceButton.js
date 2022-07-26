@@ -1,7 +1,5 @@
 import classes from './WorkspaceButton.module.css';
-function WorkspaceButton({ name }) {
-  // console.log('this is the props');
-  // console.log(name);
+function WorkspaceButton({ name, plural }) {
   return (
     <div className={classes.btnContainer}>
       <img
@@ -9,7 +7,7 @@ function WorkspaceButton({ name }) {
         src={`/media/icons/${name}.svg`}
         alt={`${name} button`}
       />
-      <span>{`${name}`}</span>
+      <span>{`${name}${plural}`}</span>
     </div>
   );
 }
