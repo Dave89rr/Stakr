@@ -2,19 +2,20 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { thunkCreateCard } from "../../../store/cards";
 
-function CreateCard(stackId, positionNum) {
+function CreateCard({ stackId }) {
   const [name, setName] = useState("");
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
-  let position = positionNum.positionNum;
+
+  console.log(stackId);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const card = {
-      stackId: 120,
+      stackId,
       username: user.username,
       name,
-      position: 2,
+      position: 100000,
       description: "Add a description...",
       color: "White",
     };
