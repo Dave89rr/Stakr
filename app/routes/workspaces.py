@@ -1,26 +1,24 @@
 from flask import Blueprint, request
 from ..models import db, Workspaces
 from ..forms import WorkspaceForm
-from .auth_routes import validation_errors_to_error_messages
 
 workspace = Blueprint("workspace", __name__, url_prefix='/api/w')
+
 
 @workspace.route('/create', methods=['POST'])
 def create():
     form = WorkspaceForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        # data = request.json
         new_workspace = Workspaces(
             ownerId=form.data['ownerId'],
             name=form.data['name'],
-            # ownerId=data['ownerId'],
-            # name=data['name'],
         )
         db.session.add(new_workspace)
         db.session.commit()
         return new_workspace.toDict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}
+    return 400
+
 
 @workspace.route('/all/<ownerId>')
 def getAll(ownerId):
@@ -33,10 +31,12 @@ def getAll(ownerId):
 
     return {'workspaces': data}
 
+
 @workspace.route('/<workspaceId>')
 def getOne(workspaceId):
     workspace = Workspaces.query.get(workspaceId)
     return workspace.toDict()
+
 
 @workspace.route('/update', methods=['PUT'])
 def update():
@@ -46,6 +46,7 @@ def update():
     workspace.name = data['name']
     db.session.commit()
     return 'Workspace successfully updated!'
+
 
 @workspace.route('/delete', methods=['DELETE'])
 def delete():

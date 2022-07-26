@@ -1,0 +1,31 @@
+.addStack {
+  display: flex;
+  flex-direction: column;
+
+  width: 272px;
+  max-height: 5%;
+
+  border-radius: 3px;
+  background-color: #ebecf0;
+  justify-content: center;
+  align-items: center;
+  opacity: 50%;
+}
+
+.addStack:hover {
+  opacity: 100%;
+  cursor: pointer;
+}
+
+.stackForm {
+  display: flex;
+  flex-direction: column;
+
+  width: 272px;
+  height: 72px;
+
+  border-radius: 3px;
+  background-color: #ebecf0;
+  justify-content: center;
+  align-items: center;
+}

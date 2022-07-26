@@ -1,20 +1,18 @@
 import WorkspaceButton from '../WorkspaceButton/WorkspaceButton';
 import classes from './WorkspaceCluster.module.css';
 import BoardCard from '../BoardCard';
-import { useDispatch, useSelector } from 'react-redux';
-import { thunkDeleteWorkspace } from '../../../store/workspaces';
+import { useSelector } from 'react-redux';
+import WsSettings from '../WsSettings/WsSettings';
+import { useState } from 'react';
 
 function WorkspaceCluster({ id }) {
-  const dispatch = useDispatch();
+  const [showSettings, setShowSettings] = useState(false);
   const data = useSelector((state) => state.workspaces[id]);
   let boards;
   if (data) {
     boards = Object.values(data.boards);
   }
 
-  const handleDelete = (wsId) => {
-    dispatch(thunkDeleteWorkspace(wsId));
-  };
   if (!data) {
     return <h1>Loading...</h1>;
   } else {
@@ -23,11 +21,18 @@ function WorkspaceCluster({ id }) {
         <div className={classes.clusterInteractions}>
           <span>{data.name}</span>
           <div className={classes.btnContainer}>
-            <WorkspaceButton name={'board'} />
-            <WorkspaceButton name={'member'} />
-            <div onClick={() => handleDelete(id)}>
-              <WorkspaceButton name={'settings'} />
+            <WorkspaceButton name={'board'} plural={'s'} />
+            <WorkspaceButton name={'member'} plural={'s'} />
+            {/* <div onClick={() => handleDelete(id)}> */}
+            <div onClick={() => setShowSettings(!showSettings)}>
+              <WorkspaceButton name={'settings'} plural={''} />
             </div>
+            {showSettings && (
+              <WsSettings
+                id={id}
+                settingsState={(showSettings, setShowSettings)}
+              />
+            )}
           </div>
         </div>
         <div className={classes.boardsContainer}>

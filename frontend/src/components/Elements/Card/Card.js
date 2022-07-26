@@ -2,11 +2,11 @@ import { Draggable } from 'react-beautiful-dnd';
 
 import classes from './Card.module.css';
 
-function Card({ data }) {
+function Card({ data, pos }) {
   return (
     <Draggable
-      draggableId={`drag${data.id}`}
-      index={data.position}
+      draggableId={`drag:${data.id}`}
+      index={pos}
       key={data.id}
     >
       {(provided) => (

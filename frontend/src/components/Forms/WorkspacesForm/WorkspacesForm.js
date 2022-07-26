@@ -1,10 +1,7 @@
 import classes from './WorkspacesForm.module.css';
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  thunkCreateWorkspace,
-  thunkGetAllWorkspaces,
-} from '../../../store/workspaces';
+import { thunkCreateWorkspace } from '../../../store/workspaces';
 
 function WorkspacesForm({ toggleView, setToggleView }) {
   const [validationErrors, setValidationErrors] = useState([]);
@@ -28,14 +25,8 @@ function WorkspacesForm({ toggleView, setToggleView }) {
     } else {
       setValidationErrors([]);
       dispatch(thunkCreateWorkspace(workspace));
-      // const data = await dispatch(thunkCreateWorkspace(workspace));
       setName('');
       setToggleView(false);
-      // Unable to get the backend data to properly work for
-      // validations, leaving commented out code here for now
-      //   if (data) {
-      //     setValidationErrors(data);
-      //   }
     }
   };
 
