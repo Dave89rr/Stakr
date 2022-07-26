@@ -49,6 +49,15 @@ function BoardPage() {
     );
   }
 
+  let cards;
+  let cardIds;
+  if (workspaces[workspaceId].cards) {
+      cards = workspaces[workspaceId].cards;
+      cardIds = Object.values(cards).map(card => (card.id).toString());
+      // cards = allCards.filter(ele => ele.stackId === data.id)
+      //     .sort((a, b) => a.position-b.position)
+  }
+
   const onDragStart = () => {
     setDisabled(true);
   };
@@ -56,16 +65,15 @@ function BoardPage() {
   const onDragEnd = async (res) => {
     const { destination, source, draggableId, type } = res;
 
-    // dont do anything when dragged into the same spot as before
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
-      setDisabled(false);
-      return;
-    }
 
-    if (type === "column") {
+    if (type === 'column') {
+      // dont do anything when dragged into the same spot as before
+      if (destination.droppableId === source.droppableId &&
+        destination.index === source.index) {
+          setDisabled(false);
+          return;
+        }
+
       const newStackOrder = Array.from(sortedStacks);
       newStackOrder.splice(source.index, 1);
       newStackOrder.splice(destination.index, 0, draggableId);
@@ -73,7 +81,18 @@ function BoardPage() {
       await dispatch(thunkUpdateStackOrder(sortedStacks, boardId));
       setDisabled(false);
     }
-  };
+    if (type === 'row') {
+      // dont do anything when dragged into the same spot as before
+      if ((destination && destination.droppableId === source.droppableId &&
+        destination.index === source.index) || !destination) {
+          setDisabled(false);
+          return;
+        }
+
+      // change made vvvvv
+      setDisabled(false);
+    }
+  }
 
   return (
     <div className={classes.containerWrapper}>
@@ -89,20 +108,18 @@ function BoardPage() {
               className={classes.stackContainer}
             >
               <div className={classes.stackContainer}>
-                {stacks
-                  ? sortedStacks.map((ele) => {
-                      return (
-                        <>
-                          <Stack
-                            data={stacks[ele]}
-                            disabled={disabled}
-                            key={stacks[ele].id}
-                            workspaces={workspaces}
-                          />
-                        </>
-                      );
-                    })
-                  : null}
+                {stacks ? sortedStacks.map(ele => {
+                  return (
+                    <Stack
+                      data={stacks[ele]}
+                      cards={cards}
+                      cardIds={cardIds}
+                      disabled={disabled}
+                      key={stacks[ele].id}
+                      workspaces={workspaces}
+                    />
+                  )
+                }) : null}
                 {provided.placeholder}
                 <StacksForm positionNum={sortedStacks.length} />
               </div>
