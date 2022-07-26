@@ -1,7 +1,10 @@
 .cardContainer {
     padding: 6px 8px 2px;
     margin-bottom: 8px;
-    background-color: white;
+    background-color: #ffffff;
+}
+.cardContainer:hover {
+   background-color: #ffffff98;
 }
 
 .description {

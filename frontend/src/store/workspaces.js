@@ -3,22 +3,22 @@ import {
   CREATE_STACK,
   UPDATE_STACK_ORDER,
   DELETE_STACK,
-} from "./stacks";
-import { GET_CARDS } from "./cards";
+} from './stacks';
+import { GET_CARDS } from './cards';
 
 // ==== Types ==== //
 
-const LOGOUT_WORKSPACE = "workspace/LOGOUT_WORKSPACE";
+const LOGOUT_WORKSPACE = 'workspace/LOGOUT_WORKSPACE';
 
-const CREATE_WORKSPACE = "workspace/CREATE_WORKSPACE";
+const CREATE_WORKSPACE = 'workspace/CREATE_WORKSPACE';
 
-const GET_WORKSPACE = "workspace/GET_WORKSPACE";
+const GET_WORKSPACE = 'workspace/GET_WORKSPACE';
 
-const GET_WORKSPACES = "workspace/GET_WORKSPACES";
+const GET_WORKSPACES = 'workspace/GET_WORKSPACES';
 
-const UPDATE_WORKSPACE = "workspace/UPDATE_WORKSPACE";
+const UPDATE_WORKSPACE = 'workspace/UPDATE_WORKSPACE';
 
-const DELETE_WORKSPACE = "workspace/DELETE_WORKSPACE";
+const DELETE_WORKSPACE = 'workspace/DELETE_WORKSPACE';
 
 // const GET_ALL_BS = "workspace/GET_ALL_BS";
 
@@ -51,10 +51,10 @@ const actionUpdateWorkspace = (workspace) => {
   };
 };
 
-const actionDeleteWorkspace = (workspace) => {
+const actionDeleteWorkspace = (workspaceId) => {
   return {
     type: DELETE_WORKSPACE,
-    workspace,
+    workspaceId,
   };
 };
 
@@ -75,24 +75,24 @@ const actionLogoutWorkspace = () => {
 
 export const thunkCreateWorkspace = (workspace) => async (dispatch) => {
   const response = await fetch(`/api/w/create`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(workspace),
   });
 
   if (response.ok) {
-    const workspace = await response.json();
-    dispatch(actionCreateWorkspace(workspace.workspace));
+    const workspaceRes = await response.json();
+    dispatch(actionCreateWorkspace(workspaceRes));
   }
 };
 
 export const thunkGetAllWorkspaces = (ownerId) => async (dispatch) => {
   const response = await fetch(`/api/w/all/${ownerId}`, {
-    method: "GET",
+    method: 'GET',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   });
 
@@ -104,9 +104,9 @@ export const thunkGetAllWorkspaces = (ownerId) => async (dispatch) => {
 
 export const thunkGetWorkspace = (workspaceId) => async (dispatch) => {
   const response = await fetch(`/api/w/${workspaceId}`, {
-    method: "GET",
+    method: 'GET',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   });
 
@@ -118,7 +118,7 @@ export const thunkGetWorkspace = (workspaceId) => async (dispatch) => {
 
 export const thunkUpdateWorkspace = (workspace) => async (dispatch) => {
   const response = await fetch(`api/w/update`, {
-    method: "PUT",
+    method: 'PUT',
     body: JSON.stringify(workspace),
   });
 
@@ -130,8 +130,11 @@ export const thunkUpdateWorkspace = (workspace) => async (dispatch) => {
 
 export const thunkDeleteWorkspace = (workspaceId) => async (dispatch) => {
   const response = await fetch(`/api/w/delete`, {
-    method: "DELETE",
-    body: JSON.stringify(workspaceId),
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ workspaceId }),
   });
 
   if (response.ok) {
@@ -152,10 +155,7 @@ const workspaces = (state = {}, action) => {
     case CREATE_WORKSPACE:
       const ws = action.workspace;
       newState = { ...state };
-      newState[ws.id] = {
-        ownerId: ws.ownerId,
-        name: ws.name,
-      };
+      newState[ws.id] = { ...ws, boards: {} };
       return newState;
 
     case GET_WORKSPACE:
