@@ -1,32 +1,17 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { Droppable, Draggable } from "react-beautiful-dnd";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 
-import Card from "../Card";
-import { thunkGetCards } from "../../../store/cards";
-import { thunkDeleteStack } from "../../../store/stacks";
+import Card from '../Card';
+import { thunkGetCards } from '../../../store/cards';
+import { thunkDeleteStack } from '../../../store/stacks';
 
-import classes from "./Stack.module.css";
+import classes from './Stack.module.css';
 
-const Stack = ({ data, disabled, workspaces, cards, cardIds }) => {
+const Stack = ({ data, disabled, workspaces, cards, sortedCards }) => {
   const { workspaceId, boardId } = useParams();
   const dispatch = useDispatch();
-
-  // let cards;
-  // if (workspaces[workspaceId].cards) {
-  //     const allCards = Object.values(workspaces[workspaceId].cards);
-  //     cards = allCards.filter(ele => ele.stackId === data.id)
-  //         .sort((a, b) => a.position-b.position)
-  // }
-  let filteredCardIds;
-  if (cardIds) {
-    filteredCardIds = cardIds
-      .filter((id) => {
-        return cards[id].stackId === data.id;
-      })
-      .sort((a, b) => cards[a].position - cards[b].position);
-  }
 
   useEffect(() => {
     (async () => {
@@ -71,7 +56,7 @@ const Stack = ({ data, disabled, workspaces, cards, cardIds }) => {
               </button>
             </div>
             <Droppable
-              droppableId={`drop${data.id}`}
+              droppableId={`drop:${data.id}`}
               direction="vertical"
               type="row"
             >
@@ -81,13 +66,13 @@ const Stack = ({ data, disabled, workspaces, cards, cardIds }) => {
                   ref={provided.innerRef}
                   className={classes.stackContent}
                 >
-                  {cards
-                    ? filteredCardIds.map((ele) => {
-                        return <Card data={cards[ele]} key={ele} />;
+                  {sortedCards
+                    ? sortedCards.map((ele, i) => {
+                        return <Card data={cards[ele]} pos={i} key={ele} />;
                       })
                     : null}
                   {provided.placeholder}
-                  <div>+ New Card</div>
+                  <p>+ New Card</p>
                 </div>
               )}
             </Droppable>
