@@ -4,9 +4,11 @@ import BoardCard from '../BoardCard';
 import { useSelector } from 'react-redux';
 import WsSettings from '../WsSettings/WsSettings';
 import { useState } from 'react';
+import BoardsForm from '../../Forms/BoardsForm';
 
 function WorkspaceCluster({ id }) {
   const [showSettings, setShowSettings] = useState(false);
+  const [showBoardForm, setShowBoardForm] = useState(false);
   const data = useSelector((state) => state.workspaces[id]);
   let boards;
   if (data) {
@@ -43,7 +45,20 @@ function WorkspaceCluster({ id }) {
           ) : (
             // TODO - Refactor BoardCards or make new component
             // to placehold "create new board" button
-            <h2>No boards in this workspace</h2>
+            <div
+              className={classes.createBoardcard}
+              onClick={() => setShowBoardForm(true)}
+            >
+              {showBoardForm ? (
+                <BoardsForm
+                  wsId={id}
+                  setShowBoardForm={setShowBoardForm}
+                  showBoardForm={showBoardForm}
+                />
+              ) : (
+                <span>Create New Board</span>
+              )}
+            </div>
           )}
         </div>
       </div>
