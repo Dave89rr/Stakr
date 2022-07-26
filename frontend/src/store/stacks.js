@@ -133,6 +133,9 @@ export const thunkUpdateStackOrder = (stacks, boardId) => async (dispatch) => {
 export const thunkDeleteStack = (stackId) => async (dispatch) => {
   const response = await fetch(`/api/s/delete`, {
     method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(stackId),
   });
 
