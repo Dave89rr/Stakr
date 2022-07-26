@@ -61,6 +61,6 @@ def delete():
     print('******************************************')
     print(data)
     print('******************************************')
-    Stacks.query.filter_by(id=data['stackId']).delete()
+    Stacks.query.filter_by(id=data).delete()
     db.session.commit()
     return 'Stack successfully deleted!'
