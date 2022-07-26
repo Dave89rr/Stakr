@@ -47,14 +47,12 @@ function BoardPage() {
     cards = workspaces[workspaceId].cards;
   }
 
-
   const onDragStart = () => {
     setDisabled(true)
   }
 
   const onDragEnd = async (res) => {
     const { destination, source, draggableId, type } = res;
-
 
     if (type === 'column') {
       // dont do anything when dragged into the same spot as before
@@ -79,26 +77,29 @@ function BoardPage() {
           return;
       }
 
+      const cardId = parseInt(res.draggableId.split(':')[1]);
+      const stackId = parseInt(res.destination.droppableId.split(':')[1]);
+
       const cardOrder = Object.values(cards).filter(ele => {
-        return (ele.stackId === parseInt(res.destination.droppableId.split(':')[1]))
-      }).map(ele => ele.id)
-      console.log('yyyyy', cardOrder)
-      if (cardOrder.includes(parseInt(res.draggableId.split(':')[1]))) {
+        return (ele.stackId === stackId)
+      }).map(ele => ele.id).sort((a, b) => cards[a].position-cards[b].position)
+
+      if (cardOrder.includes(cardId)) {
         cardOrder.splice(source.index, 1);
       }
-      cardOrder.splice(destination.index, 0, parseInt(res.draggableId.split(':')[1]));
+      cardOrder.splice(destination.index, 0, cardId);
 
       const otherCards = Object.values(cards).filter(ele => {
         return (
           (ele.stackId === parseInt(res.source.droppableId.split(':')[1]))
           &&
-          ele.id !== parseInt(res.draggableId.split(':')[1])
+          ele.id !== cardId
         )
       }).map(ele => ele.id);
 
       const data = {
-        cardId: parseInt(res.draggableId.split(':')[1]),
-        stackId: parseInt(res.destination.droppableId.split(':')[1]),
+        cardId,
+        stackId,
         newPos: res.destination.index,
         cardOrder,
         otherCards
@@ -129,7 +130,7 @@ function BoardPage() {
                 {stacks ? sortedStacks.map(ele => {
                   if (cards) {
                     let cardIds = Object.values(cards).map(ele => (ele.id));
-                    let filterCardIds = cardIds.filter(id => cards[id].stackId === stacks[ele].id)
+                    let filterCardIds = cardIds.filter(id => cards[id].stackId === parseInt(ele))
                     sortedCards = filterCardIds.sort((a, b) => cards[a].position-cards[b].position)
                   }
                   return (

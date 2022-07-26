@@ -35,10 +35,10 @@ const actionGetCard = (cardId) => {
   };
 };
 
-const actionUpdateCard = (card, workspaceId) => {
+const actionUpdateCard = (payload, workspaceId) => {
   return {
     type: UPDATE_CARD,
-    card,
+    payload,
     workspaceId
   };
 };

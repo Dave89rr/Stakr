@@ -28,4 +28,8 @@ def update():
 
     db.session.commit()
 
-    return card.toDict()
+    return {
+        "card": card.toDict(),
+        "otherCards": data['otherCards'],
+        "cardOrder": data['cardOrder']
+    }

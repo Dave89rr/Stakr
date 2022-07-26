@@ -246,12 +246,25 @@ const workspaces = (state = {}, action) => {
     case UPDATE_CARD:
       newState = { ...state };
 
-      const card = action.card
-      const id = action.workspaceId
+      const card = action.payload.card;
+      const cardOrder = action.payload.cardOrder;
+      const otherCards = action.payload.otherCards;
+      const id = action.workspaceId;
 
       let newCardObj = {...state[id].cards}
-      newCardObj[card.id] = card
-      newState[id].cards = newCardObj
+      newCardObj[card.id] = card;
+
+      if ((otherCards.length) && !cardOrder.includes(otherCards[0])) {
+        otherCards.forEach((id, i) => {
+          newCardObj[id].position = i;
+        });
+      } else {
+        cardOrder.forEach((id, i) => {
+          newCardObj[id].position = i;
+        });
+      }
+
+      newState[id].cards = newCardObj;
 
       return newState;
 
