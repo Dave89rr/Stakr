@@ -45,7 +45,6 @@ const Stack = ({ data, disabled, workspaces, cards, sortedCards }) => {
                         className={classes.stackContent}
                     >
                         {sortedCards ? sortedCards.map((ele, i) => {
-
                             return <Card data={cards[ele]} pos={i} key={ele}/>
                         })
                         : null}

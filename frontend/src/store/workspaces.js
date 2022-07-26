@@ -258,6 +258,9 @@ const workspaces = (state = {}, action) => {
         otherCards.forEach((id, i) => {
           newCardObj[id].position = i;
         });
+        cardOrder.forEach((id, i) => {
+          newCardObj[id].position = i;
+        });
       } else {
         cardOrder.forEach((id, i) => {
           newCardObj[id].position = i;

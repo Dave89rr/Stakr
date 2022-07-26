@@ -21,6 +21,9 @@ def update():
         for i in data['otherCards']:
             cur = Cards.query.get(i)
             cur.position = data['otherCards'].index(i)
+        for i in data['cardOrder']:
+            cur = Cards.query.get(i)
+            cur.position = data['cardOrder'].index(i)
     else:
         for i in data['cardOrder']:
             cur = Cards.query.get(i)
