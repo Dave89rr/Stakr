@@ -58,9 +58,6 @@ def updateOrder():
 @stack.route('/delete', methods=['DELETE'])
 def delete():
     data = request.json
-    print('******************************************')
-    print(data)
-    print('******************************************')
     Stacks.query.filter_by(id=data).delete()
     db.session.commit()
     return 'Stack successfully deleted!'
