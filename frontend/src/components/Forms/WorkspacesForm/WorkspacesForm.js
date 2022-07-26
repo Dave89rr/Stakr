@@ -1,10 +1,7 @@
 import classes from './WorkspacesForm.module.css';
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  thunkCreateWorkspace,
-  thunkGetAllWorkspaces,
-} from '../../../store/workspaces';
+import { thunkCreateWorkspace } from '../../../store/workspaces';
 
 function WorkspacesForm({ toggleView, setToggleView }) {
   const [validationErrors, setValidationErrors] = useState([]);
