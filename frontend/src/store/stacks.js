@@ -48,10 +48,10 @@ const actionUpdateStackOrder = (stacks, boardId) => {
   };
 };
 
-const actionDeleteStack = (stack) => {
+const actionDeleteStack = (stackData) => {
   return {
     type: DELETE_STACK,
-    stack,
+    stackData,
   };
 };
 
@@ -130,14 +130,18 @@ export const thunkUpdateStackOrder = (stacks, boardId) => async (dispatch) => {
   }
 };
 
-export const thunkDeleteStack = (stackId) => async (dispatch) => {
+export const thunkDeleteStack = (stackData) => async (dispatch) => {
+  const stackId = stackData.stackId;
   const response = await fetch(`/api/s/delete`, {
     method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(stackId),
   });
 
   if (response.ok) {
-    dispatch(actionDeleteStack(stackId));
+    dispatch(actionDeleteStack(stackData));
   }
 };
 

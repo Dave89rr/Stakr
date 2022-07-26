@@ -11,17 +11,17 @@ import {
 
 // ==== Types ==== //
 
-const LOGOUT_WORKSPACE = 'workspace/LOGOUT_WORKSPACE';
+const LOGOUT_WORKSPACE = "workspace/LOGOUT_WORKSPACE";
 
-const CREATE_WORKSPACE = 'workspace/CREATE_WORKSPACE';
+const CREATE_WORKSPACE = "workspace/CREATE_WORKSPACE";
 
-const GET_WORKSPACE = 'workspace/GET_WORKSPACE';
+const GET_WORKSPACE = "workspace/GET_WORKSPACE";
 
-const GET_WORKSPACES = 'workspace/GET_WORKSPACES';
+const GET_WORKSPACES = "workspace/GET_WORKSPACES";
 
-const UPDATE_WORKSPACE = 'workspace/UPDATE_WORKSPACE';
+const UPDATE_WORKSPACE = "workspace/UPDATE_WORKSPACE";
 
-const DELETE_WORKSPACE = 'workspace/DELETE_WORKSPACE';
+const DELETE_WORKSPACE = "workspace/DELETE_WORKSPACE";
 
 // const GET_ALL_BS = "workspace/GET_ALL_BS";
 
@@ -78,9 +78,9 @@ const actionLogoutWorkspace = () => {
 
 export const thunkCreateWorkspace = (workspace) => async (dispatch) => {
   const response = await fetch(`/api/w/create`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(workspace),
   });
@@ -93,9 +93,9 @@ export const thunkCreateWorkspace = (workspace) => async (dispatch) => {
 
 export const thunkGetAllWorkspaces = (ownerId) => async (dispatch) => {
   const response = await fetch(`/api/w/all/${ownerId}`, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
 
@@ -107,9 +107,9 @@ export const thunkGetAllWorkspaces = (ownerId) => async (dispatch) => {
 
 export const thunkGetWorkspace = (workspaceId) => async (dispatch) => {
   const response = await fetch(`/api/w/${workspaceId}`, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
 
@@ -121,7 +121,7 @@ export const thunkGetWorkspace = (workspaceId) => async (dispatch) => {
 
 export const thunkUpdateWorkspace = (workspace) => async (dispatch) => {
   const response = await fetch(`api/w/update`, {
-    method: 'PUT',
+    method: "PUT",
     body: JSON.stringify(workspace),
   });
 
@@ -213,6 +213,13 @@ const workspaces = (state = {}, action) => {
       let stacksObj = { ...state[stck.workspaceId].stacks };
       stacksObj[stck.id] = stck;
       newState[stck.workspaceId].stacks = stacksObj;
+      return newState;
+
+    case DELETE_STACK:
+      newState = { ...state };
+      const { stackData } = action;
+      const wsId = parseInt(stackData.workspaceId, 10);
+      delete newState[wsId].stacks[stackData.stackId];
       return newState;
 
     case UPDATE_STACK_ORDER:
