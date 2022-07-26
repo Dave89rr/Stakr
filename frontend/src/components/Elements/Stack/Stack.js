@@ -60,7 +60,11 @@ const Stack = ({ data, disabled, workspaces, cards, cardIds }) => {
               <button
                 onClick={(e) => {
                   e.preventDefault();
-                  dispatch(thunkDeleteStack(data.id));
+                  const payload = {
+                    stackId: data.id,
+                    workspaceId,
+                  };
+                  dispatch(thunkDeleteStack(payload));
                 }}
               >
                 Del
