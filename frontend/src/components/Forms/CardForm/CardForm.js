@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { thunkCreateCard } from "../../../store/cards";
-import classes from "../../Elements/Stack";
 
 function CardForm(stackId, positionNum) {
   const [name, setName] = useState("");

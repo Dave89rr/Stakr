@@ -8,6 +8,7 @@ import { thunkGetCards } from "../../../store/cards";
 import { thunkDeleteStack } from "../../../store/stacks";
 
 import classes from "./Stack.module.css";
+import CreateCard from "../../Forms/CreateCard";
 
 const Stack = ({ data, disabled, workspaces, cards, sortedCards }) => {
   const { workspaceId, boardId } = useParams();
@@ -76,7 +77,7 @@ const Stack = ({ data, disabled, workspaces, cards, sortedCards }) => {
                   {form === "False" ? (
                     <div onClick={(e) => setForm("True")}>+ New Card</div>
                   ) : (
-                    <div>hi</div>
+                    <CreateCard />
                   )}
                 </div>
               )}
