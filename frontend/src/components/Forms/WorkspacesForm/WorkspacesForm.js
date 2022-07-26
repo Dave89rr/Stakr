@@ -28,14 +28,8 @@ function WorkspacesForm({ toggleView, setToggleView }) {
     } else {
       setValidationErrors([]);
       dispatch(thunkCreateWorkspace(workspace));
-      // const data = await dispatch(thunkCreateWorkspace(workspace));
       setName('');
       setToggleView(false);
-      // Unable to get the backend data to properly work for
-      // validations, leaving commented out code here for now
-      //   if (data) {
-      //     setValidationErrors(data);
-      //   }
     }
   };
 
