@@ -4,7 +4,10 @@ import {
   UPDATE_STACK_ORDER,
   DELETE_STACK,
 } from './stacks';
-import { GET_CARDS } from './cards';
+import {
+  GET_CARDS,
+  UPDATE_CARD
+} from "./cards";
 
 // ==== Types ==== //
 
@@ -245,6 +248,34 @@ const workspaces = (state = {}, action) => {
           newState[workspaceId].cards = cardsObj;
         }
       }
+
+      return newState;
+
+    case UPDATE_CARD:
+      newState = { ...state };
+
+      const card = action.payload.card;
+      const cardOrder = action.payload.cardOrder;
+      const otherCards = action.payload.otherCards;
+      const id = action.workspaceId;
+
+      let newCardObj = {...state[id].cards}
+      newCardObj[card.id] = card;
+
+      if ((otherCards.length) && !cardOrder.includes(otherCards[0])) {
+        otherCards.forEach((id, i) => {
+          newCardObj[id].position = i;
+        });
+        cardOrder.forEach((id, i) => {
+          newCardObj[id].position = i;
+        });
+      } else {
+        cardOrder.forEach((id, i) => {
+          newCardObj[id].position = i;
+        });
+      }
+
+      newState[id].cards = newCardObj;
 
       return newState;
 
