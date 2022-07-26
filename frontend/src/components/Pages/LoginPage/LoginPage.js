@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { login } from '../../../store/session';
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { login } from "../../../store/session";
 
-import classes from './LoginPage.module.css';
-import uniCss from '../pagesuniversal.module.css';
+import classes from "./LoginPage.module.css";
+import uniCss from "../pagesuniversal.module.css";
 
 const LoginPage = () => {
   const [errors, setErrors] = useState([]);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
@@ -30,7 +30,8 @@ const LoginPage = () => {
   };
 
   if (user) {
-    return <Redirect to="/" />;
+    // console.log(user.username);
+    return <Redirect to={`/${user.username}/boards`} />;
   }
 
   return (

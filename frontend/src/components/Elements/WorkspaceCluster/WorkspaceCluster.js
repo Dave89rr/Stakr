@@ -3,7 +3,10 @@ import classes from './WorkspaceCluster.module.css';
 import BoardCard from '../BoardCard';
 
 function WorkspaceCluster({ data }) {
-
+  let boards;
+  if (data.boards !== undefined) {
+    boards = Object.values(data.boards);
+  }
   return (
     <div className={classes.clusterContainer}>
       <div className={classes.clusterInteractions}>
@@ -15,9 +18,15 @@ function WorkspaceCluster({ data }) {
         </div>
       </div>
       <div className={classes.boardsContainer}>
-        {Object.values(data.boards).map(ele => {
-          return <BoardCard data={ele}/>
-        })}
+        {boards && boards.length > 0 ? (
+          boards.map((ele, i) => {
+            return <BoardCard data={ele} key={i} />;
+          })
+        ) : (
+          // TODO - Refactor BoardCards or make new component
+          // to placehold "create new board" button
+          <h2>No boards in this workspace</h2>
+        )}
       </div>
     </div>
   );

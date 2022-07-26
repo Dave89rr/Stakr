@@ -1,24 +1,36 @@
-from flask import Blueprint, request, jsonify
-from sqlalchemy.orm import joinedload
-from ..models import db, Workspaces, Boards
+from flask import Blueprint, request
+from ..models import db, Workspaces
+from ..forms import WorkspaceForm
+from .auth_routes import validation_errors_to_error_messages
 
 workspace = Blueprint("workspace", __name__, url_prefix='/api/w')
 
 @workspace.route('/create', methods=['POST'])
 def create():
-    data = request.json
-    new_workspace = Workspaces(
-        ownerId = data['ownerId'],
-        name = data['name'],
-    )
-    db.session.add(new_workspace)
-    db.session.commit()
-    return 'Workspace successfully created!'
+    form = WorkspaceForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        # data = request.json
+        new_workspace = Workspaces(
+            ownerId=form.data['ownerId'],
+            name=form.data['name'],
+            # ownerId=data['ownerId'],
+            # name=data['name'],
+        )
+        db.session.add(new_workspace)
+        db.session.commit()
+        return new_workspace.toDict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}
 
 @workspace.route('/all/<ownerId>')
 def getAll(ownerId):
     workspaces = Workspaces.query.filter_by(ownerId=ownerId).all()
     data = [i.toDict() for i in workspaces]
+
+    for i in range(len(workspaces)):
+        boardsDict = {i.id: i.toDict() for i in workspaces[i].boards}
+        data[i]['boards'] = boardsDict
+
     return {'workspaces': data}
 
 @workspace.route('/<workspaceId>')

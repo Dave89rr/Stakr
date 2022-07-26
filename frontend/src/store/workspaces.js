@@ -1,19 +1,24 @@
-// import {
-//   GET_BOARDS,
-//   actionGetUserBoards,
-// } from "./boards";
+import {
+  GET_STACKS,
+  CREATE_STACK,
+  UPDATE_STACK_ORDER,
+  DELETE_STACK,
+} from './stacks';
+import { GET_CARDS } from './cards';
 
 // ==== Types ==== //
 
-const CREATE_WORKSPACE = "workspace/CREATE_WORKSPACE";
+const LOGOUT_WORKSPACE = 'workspace/LOGOUT_WORKSPACE';
 
-const GET_WORKSPACE = "workspace/GET_WORKSPACE";
+const CREATE_WORKSPACE = 'workspace/CREATE_WORKSPACE';
 
-const GET_WORKSPACES = "workspace/GET_WORKSPACES";
+const GET_WORKSPACE = 'workspace/GET_WORKSPACE';
 
-const UPDATE_WORKSPACE = "workspace/UPDATE_WORKSPACE";
+const GET_WORKSPACES = 'workspace/GET_WORKSPACES';
 
-const DELETE_WORKSPACE = "workspace/DELETE_WORKSPACE";
+const UPDATE_WORKSPACE = 'workspace/UPDATE_WORKSPACE';
+
+const DELETE_WORKSPACE = 'workspace/DELETE_WORKSPACE';
 
 // const GET_ALL_BS = "workspace/GET_ALL_BS";
 
@@ -53,6 +58,12 @@ const actionDeleteWorkspace = (workspace) => {
   };
 };
 
+const actionLogoutWorkspace = () => {
+  return {
+    type: LOGOUT_WORKSPACE,
+  };
+};
+
 // const actionGetAllBS = (userId) => {
 //   return {
 //     type: GET_ALL_BS,
@@ -64,39 +75,39 @@ const actionDeleteWorkspace = (workspace) => {
 
 export const thunkCreateWorkspace = (workspace) => async (dispatch) => {
   const response = await fetch(`/api/w/create`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(workspace),
   });
 
   if (response.ok) {
-    const workspace = await response.json();
-    dispatch(actionCreateWorkspace(workspace.workspace));
+    const workspaceRes = await response.json();
+    dispatch(actionCreateWorkspace(workspaceRes));
+    return workspaceRes;
   }
 };
 
 export const thunkGetAllWorkspaces = (ownerId) => async (dispatch) => {
   const response = await fetch(`/api/w/all/${ownerId}`, {
-    method: "GET",
+    method: 'GET',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   });
 
   if (response.ok) {
     const allUserWorkspaces = await response.json();
     dispatch(actionGetUserWorkspaces(allUserWorkspaces));
-    // dispatch(actionGetUserBoards());
   }
 };
 
 export const thunkGetWorkspace = (workspaceId) => async (dispatch) => {
   const response = await fetch(`/api/w/${workspaceId}`, {
-    method: "GET",
+    method: 'GET',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   });
 
@@ -108,7 +119,7 @@ export const thunkGetWorkspace = (workspaceId) => async (dispatch) => {
 
 export const thunkUpdateWorkspace = (workspace) => async (dispatch) => {
   const response = await fetch(`api/w/update`, {
-    method: "PUT",
+    method: 'PUT',
     body: JSON.stringify(workspace),
   });
 
@@ -120,7 +131,7 @@ export const thunkUpdateWorkspace = (workspace) => async (dispatch) => {
 
 export const thunkDeleteWorkspace = (workspaceId) => async (dispatch) => {
   const response = await fetch(`/api/w/delete`, {
-    method: "DELETE",
+    method: 'DELETE',
     body: JSON.stringify(workspaceId),
   });
 
@@ -129,13 +140,13 @@ export const thunkDeleteWorkspace = (workspaceId) => async (dispatch) => {
   }
 };
 
-// ==== Reducers ==== //
-const initialState = {
-  stacks: null,
-  boards: null,
+export const thunkLogoutWorkspace = () => async (dispatch) => {
+  dispatch(actionLogoutWorkspace());
 };
 
-const workspaces = (state = initialState, action) => {
+// ==== Reducers ==== //
+
+const workspaces = (state = {}, action) => {
   let newState = {};
 
   switch (action.type) {
@@ -156,7 +167,6 @@ const workspaces = (state = initialState, action) => {
     case GET_WORKSPACES:
       const workspaces = action.workspace.workspaces;
       workspaces.forEach((workspace) => {
-
         newState[workspace.id] = workspace;
       });
 
@@ -171,6 +181,72 @@ const workspaces = (state = initialState, action) => {
     case DELETE_WORKSPACE:
       newState = { ...state };
       delete newState[action.workspaceId];
+      return newState;
+
+    case LOGOUT_WORKSPACE:
+      newState = {};
+
+      return newState;
+
+    // ==== stacks ==== //
+    case GET_STACKS:
+      newState = { ...state };
+
+      const stacks = action.stack.stacks;
+      if (stacks.length) {
+        let stacksObj = { ...state[stacks[0].workspaceId].stacks };
+
+        stacks.forEach((stack) => {
+          stacksObj[stack.id] = stack;
+        });
+
+        newState[stacks[0].workspaceId].stacks = stacksObj;
+      }
+
+      return newState;
+
+    case CREATE_STACK:
+      newState = { ...state };
+      const stck = action.stack;
+      let stacksObj = { ...state[stck.workspaceId].stacks };
+      stacksObj[stck.id] = stck;
+      newState[stck.workspaceId].stacks = stacksObj;
+      return newState;
+
+    case UPDATE_STACK_ORDER:
+      newState = { ...state };
+
+      const updatedStacks = action.stacks;
+
+      if (updatedStacks.length) {
+        let obj = newState[updatedStacks[0].workspaceId].stacks;
+        updatedStacks.forEach((stack) => {
+          obj[stack.id].position = stack.position;
+        });
+        newState[updatedStacks[0].workspaceId].stacks = obj;
+      }
+
+      return newState;
+
+    // ==== cards ==== //
+    case GET_CARDS:
+      newState = { ...state };
+
+      const cards = action.cards.cards;
+      const workspaceId = action.workspaceId;
+
+      if (cards.length) {
+        let cardsObj = { ...state[workspaceId].cards };
+
+        cards.forEach((card) => {
+          cardsObj[card.id] = card;
+        });
+
+        if (cards.length) {
+          newState[workspaceId].cards = cardsObj;
+        }
+      }
+
       return newState;
 
     default:
