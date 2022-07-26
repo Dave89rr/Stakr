@@ -87,7 +87,7 @@ const Stack = ({ data, disabled, workspaces, cards, cardIds }) => {
                       })
                     : null}
                   {provided.placeholder}
-                  <p>+ New Card</p>
+                  <div>+ New Card</div>
                 </div>
               )}
             </Droppable>

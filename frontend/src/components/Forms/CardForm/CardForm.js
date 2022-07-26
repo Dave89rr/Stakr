@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { thunkCreateCard } from "../../../store/cards";
+import classes from "../../Elements/Stack";
 
 function CardForm(stackId, positionNum) {
   const [name, setName] = useState("");
@@ -31,7 +32,7 @@ function CardForm(stackId, positionNum) {
 
   return (
     <>
-      <>
+      <div>
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="name">Name</label>
@@ -65,7 +66,7 @@ function CardForm(stackId, positionNum) {
             <button type="submit">Create Card</button>
           </div>
         </form>
-      </>
+      </div>
     </>
   );
 }
