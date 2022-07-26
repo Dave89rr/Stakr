@@ -51,10 +51,10 @@ const actionUpdateWorkspace = (workspace) => {
   };
 };
 
-const actionDeleteWorkspace = (workspace) => {
+const actionDeleteWorkspace = (workspaceId) => {
   return {
     type: DELETE_WORKSPACE,
-    workspace,
+    workspaceId,
   };
 };
 
@@ -85,7 +85,6 @@ export const thunkCreateWorkspace = (workspace) => async (dispatch) => {
   if (response.ok) {
     const workspaceRes = await response.json();
     dispatch(actionCreateWorkspace(workspaceRes));
-    return workspaceRes;
   }
 };
 
@@ -132,7 +131,10 @@ export const thunkUpdateWorkspace = (workspace) => async (dispatch) => {
 export const thunkDeleteWorkspace = (workspaceId) => async (dispatch) => {
   const response = await fetch(`/api/w/delete`, {
     method: 'DELETE',
-    body: JSON.stringify(workspaceId),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ workspaceId }),
   });
 
   if (response.ok) {
@@ -153,10 +155,7 @@ const workspaces = (state = {}, action) => {
     case CREATE_WORKSPACE:
       const ws = action.workspace;
       newState = { ...state };
-      newState[ws.id] = {
-        ownerId: ws.ownerId,
-        name: ws.name,
-      };
+      newState[ws.id] = { ...ws, boards: {} };
       return newState;
 
     case GET_WORKSPACE:
