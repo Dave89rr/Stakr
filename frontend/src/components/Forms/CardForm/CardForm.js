@@ -21,8 +21,6 @@ function CardForm(stackId, positionNum) {
       color,
     };
 
-    console.log(card);
-
     if (card) {
       dispatch(thunkCreateCard(card));
       setName("");
