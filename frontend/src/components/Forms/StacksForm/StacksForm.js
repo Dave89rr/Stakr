@@ -54,11 +54,6 @@ function StacksForm(positionNum) {
     <div className={classes.stackForm}>
       <div>
         <form onSubmit={handleSubmit}>
-          {/* <div>
-          {validationErrors.map((error, i) => (
-            <div key={i}>{error}</div>
-            ))}
-          </div> */}
           <div>
             <label htmlFor="name">Name</label>
             <input
