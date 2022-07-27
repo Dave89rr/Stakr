@@ -73,6 +73,7 @@ export const thunkCreateCard = (card) => async (dispatch) => {
   if (response.ok) {
     const card = await response.json();
     dispatch(actionCreateCard(card, workspaceId));
+    return card;
   }
 };
 

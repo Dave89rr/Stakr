@@ -182,6 +182,7 @@ function BoardPage() {
                           disabled={disabled}
                           cards={cards}
                           cardOrder={cardOrder}
+                          setCardOrder={setCardOrder}
                           key={stacks[ele].id}
                         />
                       );
