@@ -33,6 +33,19 @@ function BoardPage() {
       if (workspaces[workspaceId] && workspaces[workspaceId].stacks) {
         await dispatch(thunkGetCards(boardId, workspaceId));
       }
+      // if (workspaces[workspaceId] && workspaces[workspaceId].cards) {
+      //   let cards = workspaces[workspaceId].cards;
+      //   let stacks = workspaces[workspaceId].stacks;
+
+      //   let cardIds = Object.values(cards).map(ele => (ele.id));
+      //   let stackIds = Object.values(stacks).map(ele => (ele.id));
+      //   let filterStackIds = stackIds.filter(id => stacks[id].boardId === parseInt(boardId));
+      //   let filterCardIds = cardIds.filter(id => cards[id].stackId === data.id)
+      //   console.log(filterStackIds)
+
+      //   // filterCardIds.sort((a, b) => cards[a].position-cards[b].position)
+      //   // await setCardOrder(newSortedCards)
+      // }
     })();
   }, [dispatch, workspaces[workspaceId]]);
 

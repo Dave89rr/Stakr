@@ -15,24 +15,6 @@ const Stack = ({ data, disabled, workspaces, cards, sortedCards, cardOrder, setC
   const dispatch = useDispatch();
   const [form, setForm] = useState("False");
 
-  // useEffect(() => {
-  //   (async () => {
-  //     if (workspaces[workspaceId]) {
-  //       await dispatch(thunkGetCards(data.id, workspaceId));
-  //     }
-  //     if (workspaces[workspaceId] && workspaces[workspaceId].cards) {
-  //       let newSortedCards = {...cardOrder};
-  //       let cards = workspaces[workspaceId].cards
-
-  //       let cardIds = Object.values(cards).map(ele => (ele.id));
-  //       let filterCardIds = cardIds.filter(id => cards[id].stackId === data.id)
-
-  //       newSortedCards[data.id] = filterCardIds.sort((a, b) => cards[a].position-cards[b].position)
-  //       await setCardOrder(newSortedCards)
-  //     }
-  //   })();
-  // }, [dispatch, workspaces[workspaceId]]);
-
   return (
     <Draggable
       draggableId={`${data.id}`}
