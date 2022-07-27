@@ -13,7 +13,7 @@ import { thunkGetCards, thunkUpdateCard } from '../../../store/cards';
 import classes from './BoardPage.module.css';
 import Stack from '../../Elements/Stack/Stack';
 import StacksForm from '../../Forms/StacksForm/StacksForm';
-import CardForm from '../../Forms/CardForm';
+import EditCardForm from '../../Forms/EditCardForm';
 
 function BoardPage() {
   const workspaces = useSelector((state) => state.workspaces);
@@ -161,7 +161,7 @@ function BoardPage() {
 
   return (
     <div className={classes.containerWrapper}>
-      <CardForm setDisplay={setDisplay} display={display} />
+      <EditCardForm setDisplay={setDisplay} display={display} />
       <h1>
         BoardPage #{boardId} {workspaceId}
       </h1>

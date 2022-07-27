@@ -67,7 +67,6 @@ export const thunkCreateStack = (stack) => async (dispatch) => {
   });
   if (response.ok) {
     const stack = await response.json();
-    // console.log(stack);
     dispatch(actionCreateStack(stack));
   }
 };

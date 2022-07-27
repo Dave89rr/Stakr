@@ -1,6 +1,5 @@
-import classes from "./Homepage.module.css";
-import uniCss from "../pagesuniversal.module.css";
-import CardForm from "../../Forms/CardForm";
+import classes from './Homepage.module.css';
+import uniCss from '../pagesuniversal.module.css';
 
 function HomePage() {
   return (

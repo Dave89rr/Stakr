@@ -17,7 +17,6 @@ function EditWorkspaceForm({
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
-    console.log('attempted handle submit ws name');
     e.preventDefault();
     const errors = [];
     const workspace = {
