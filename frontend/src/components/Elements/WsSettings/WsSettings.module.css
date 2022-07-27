@@ -4,7 +4,8 @@
   width: 100%;
 }
 
-.deleteBtn {
-  border: 2px solid red;
+.btn {
+  border: 2px solid black;
   width: 200px;
+  cursor: pointer;
 }
