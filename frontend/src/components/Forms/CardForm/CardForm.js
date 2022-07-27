@@ -46,6 +46,7 @@ function CardForm(stackId, positionNum) {
             <label htmlFor="name">Name</label>
             <div>
               <input
+                className={classes.nameField}
                 name="name"
                 type="text"
                 placeholder="Enter a card name..."
@@ -55,7 +56,11 @@ function CardForm(stackId, positionNum) {
             </div>
             <div>
               <label htmlFor="color">Select a color</label>
-              <select color="color" onChange={(e) => setColor(e.target.value)}>
+              <select
+                className={classes.selectField}
+                color="color"
+                onChange={(e) => setColor(e.target.value)}
+              >
                 <option value={"White"}>White</option>
                 <option value={"Red"}>Red</option>
                 <option value={"Orange"}>Orange</option>
@@ -78,7 +83,7 @@ function CardForm(stackId, positionNum) {
                 onChange={(e) => setDescription(e.target.value)}
               />
             </div>
-            <button type="submit">Create Card</button>
+            <button type="submit">Submit</button>
           </div>
         </form>
         <button>Delete Card</button>
