@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from ..models import db, Workspaces
-from ..forms import WorkspaceForm
+from ..forms import WorkspaceForm, EditWorkspaceForm
+from os import system
 
 workspace = Blueprint("workspace", __name__, url_prefix='/api/w')
 
@@ -40,12 +41,14 @@ def getOne(workspaceId):
 
 @workspace.route('/update', methods=['PUT'])
 def update():
+    # form = EditWorkspaceForm()
+    # form['csrf_token'].data = request.cookies['csrf_token']
     data = request.json
     workspace = Workspaces.query.get(data['id'])
     workspace.ownerId = data['ownerId']
     workspace.name = data['name']
     db.session.commit()
-    return 'Workspace successfully updated!'
+    return workspace.toDict()
 
 
 @workspace.route('/delete', methods=['DELETE'])

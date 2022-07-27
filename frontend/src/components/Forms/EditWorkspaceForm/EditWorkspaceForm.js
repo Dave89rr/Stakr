@@ -3,7 +3,13 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { thunkUpdateWorkspace } from '../../../store/workspaces';
 
-function EditWorkspaceForm({ id, wsname, setEditWsMode, setEditWsId }) {
+function EditWorkspaceForm({
+  id,
+  wsname,
+  setEditWsMode,
+  setEditWsId,
+  setShowSettings,
+}) {
   const [validationErrors, setValidationErrors] = useState([]);
   const user = useSelector((state) => state.session.user);
 
@@ -31,6 +37,7 @@ function EditWorkspaceForm({ id, wsname, setEditWsMode, setEditWsId }) {
       setName('');
       setEditWsMode(false);
       setEditWsId(null);
+      setShowSettings(false);
     }
   };
 

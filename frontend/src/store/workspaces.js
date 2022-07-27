@@ -127,7 +127,7 @@ export const thunkUpdateWorkspace = (workspace) => async (dispatch) => {
   });
 
   if (response.ok) {
-    const workspaceData = await response.json;
+    const workspaceData = await response.json();
     dispatch(actionUpdateWorkspace(workspaceData));
   }
 };
@@ -175,8 +175,10 @@ const workspaces = (state = {}, action) => {
 
     case UPDATE_WORKSPACE:
       newState = { ...state };
-      const workspaceData = action.workspace.workspaces;
-      newState[workspaceData.id] = workspaceData;
+      const workspaceData = action.workspace;
+      newState[workspaceData.id].name = workspaceData.name;
+      newState[workspaceData.id].ownerId = workspaceData.ownerId;
+      newState[workspaceData.id].updatedAt = workspaceData.updatedAt;
       return newState;
 
     case DELETE_WORKSPACE:
@@ -195,7 +197,7 @@ const workspaces = (state = {}, action) => {
       newState[wid].boards[action.board.id] = action.board;
       return newState;
 
-      // ==== stacks ==== //
+    // ==== stacks ==== //
     case GET_STACKS:
       newState = { ...state };
 
@@ -212,13 +214,13 @@ const workspaces = (state = {}, action) => {
 
       return newState;
 
-    // case CREATE_STACK:
-    //   newState = { ...state };
-    //   const stck = action.stack;
-    //   let stacksObj = { ...state[stck.workspaceId].stacks };
-    //   stacksObj[stck.id] = stck;
-    //   newState[stck.workspaceId].stacks = stacksObj;
-    //   return newState;
+    case CREATE_STACK:
+      newState = { ...state };
+      const stck = action.stack;
+      let stacksObj = { ...state[stck.workspaceId].stacks };
+      stacksObj[stck.id] = stck;
+      newState[stck.workspaceId].stacks = stacksObj;
+      return newState;
 
     case DELETE_STACK:
       newState = { ...state };
