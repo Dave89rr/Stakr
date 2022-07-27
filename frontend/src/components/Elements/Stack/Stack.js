@@ -55,8 +55,8 @@ const Stack = ({ data, disabled, workspaces, cards, sortedCards, cardOrder, setC
                   ref={provided.innerRef}
                   className={classes.stackContent}
                 >
-                  {sortedCards?.map((ele, i) => {
-                    return <Card data={cards[ele]} pos={i} key={ele} />;
+                  {cardOrder[data.id]?.map((ele, i) => {
+                    return <Card data={cards[ele.id]} pos={i} key={ele.id} />;
                   })}
                   {provided.placeholder}
                   {form === "False" ? (

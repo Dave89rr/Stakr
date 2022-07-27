@@ -33,19 +33,20 @@ function BoardPage() {
       if (workspaces[workspaceId] && workspaces[workspaceId].stacks) {
         await dispatch(thunkGetCards(boardId, workspaceId));
       }
-      // if (workspaces[workspaceId] && workspaces[workspaceId].cards) {
-      //   let cards = workspaces[workspaceId].cards;
-      //   let stacks = workspaces[workspaceId].stacks;
+      if (workspaces[workspaceId] && workspaces[workspaceId].cards) {
+        let cards = workspaces[workspaceId].cards;
+        let stacks = workspaces[workspaceId].stacks;
 
-      //   let cardIds = Object.values(cards).map(ele => (ele.id));
-      //   let stackIds = Object.values(stacks).map(ele => (ele.id));
-      //   let filterStackIds = stackIds.filter(id => stacks[id].boardId === parseInt(boardId));
-      //   let filterCardIds = cardIds.filter(id => cards[id].stackId === data.id)
-      //   console.log(filterStackIds)
+        let stackIds = Object.values(stacks).map(ele => (ele.id));
+        let filterStackIds = stackIds.filter(id => stacks[id].boardId === parseInt(boardId));
+        let cardsObj = {}
+        filterStackIds.forEach(id => {
+          let stackCards = Object.values(cards).filter(ele => ele.stackId === id)
+          cardsObj[id] = stackCards
+        });
 
-      //   // filterCardIds.sort((a, b) => cards[a].position-cards[b].position)
-      //   // await setCardOrder(newSortedCards)
-      // }
+        await setCardOrder(cardsObj)
+      }
     })();
   }, [dispatch, workspaces[workspaceId]]);
 
@@ -105,30 +106,35 @@ function BoardPage() {
       const cardId = parseInt(res.draggableId.split(':')[1]);
       const stackId = parseInt(res.destination.droppableId.split(':')[1]);
 
-      let cardOrder = Object.values(cards).filter(ele => {
+      let orderList = Object.values(cards).filter(ele => {
         return (ele.stackId === stackId)
       }).map(ele => ele.id).sort((a, b) => cards[a].position-cards[b].position)
 
-      if (cardOrder.includes(cardId)) {
-        cardOrder.splice(source.index, 1);
+      if (orderList.includes(cardId)) {
+        orderList.splice(source.index, 1);
       }
-      cardOrder.splice(destination.index, 0, cardId);
-      sortedCards = cardOrder;
-      // setCardOrder(cardOrder)
+      orderList.splice(destination.index, 0, cardId);
 
       const otherCards = Object.values(cards).filter(ele => {
         return (
           (ele.stackId === parseInt(res.source.droppableId.split(':')[1]))
           &&
           ele.id !== cardId
-          )
-        }).map(ele => ele.id);
+        )
+      }).map(ele => ele.id).sort((a, b) => cards[a].position-cards[b].position);
+
+        const newCardOrder = {...cardOrder}
+        const list = orderList.map(id => cards[id]);
+        const otherList = otherCards.map(id => cards[id]);
+        newCardOrder[source.droppableId.split(':')[1]] = otherList;
+        newCardOrder[stackId] = list;
+        setCardOrder(newCardOrder)
 
         const data = {
           cardId,
           stackId,
           newPos: res.destination.index,
-          cardOrder,
+          orderList,
           otherCards
         }
 
@@ -161,7 +167,6 @@ function BoardPage() {
                     <Stack
                       data={stacks[ele]}
                       cards={cards}
-                      sortedCards={sortedCards}
                       cardOrder={cardOrder}
                       setCardOrder={setCardOrder}
                       disabled={disabled}
