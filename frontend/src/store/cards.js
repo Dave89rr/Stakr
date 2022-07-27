@@ -76,8 +76,8 @@ export const thunkCreateCard = (card) => async (dispatch) => {
   }
 };
 
-export const thunkGetCards = (stackId, workspaceId) => async (dispatch) => {
-  const response = await fetch(`/api/c/all/${stackId}`, {
+export const thunkGetCards = (boardId, workspaceId) => async (dispatch) => {
+  const response = await fetch(`/api/c/all/${boardId}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
