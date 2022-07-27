@@ -68,7 +68,6 @@ function BoardPage() {
   }
 
   let cards;
-  let sortedCards = [];
   if (workspaces[workspaceId].cards) {
     cards = workspaces[workspaceId].cards;
   }
@@ -158,20 +157,13 @@ function BoardPage() {
             >
               <div className={classes.stackContainer}>
                 {stacks ? sortedStacks.map(ele => {
-                  if (cards) {
-                    let cardIds = Object.values(cards).map(ele => (ele.id));
-                    let filterCardIds = cardIds.filter(id => cards[id].stackId === parseInt(ele))
-                    sortedCards = filterCardIds.sort((a, b) => cards[a].position-cards[b].position)
-                  }
                   return (
                     <Stack
                       data={stacks[ele]}
+                      disabled={disabled}
                       cards={cards}
                       cardOrder={cardOrder}
-                      setCardOrder={setCardOrder}
-                      disabled={disabled}
                       key={stacks[ele].id}
-                      workspaces={workspaces}
                     />
                     )
                   }) : null}
