@@ -3,23 +3,22 @@ import {
   CREATE_STACK,
   UPDATE_STACK_ORDER,
   DELETE_STACK,
-} from './stacks';
-import { GET_CARDS, UPDATE_CARD } from './cards';
-import { CREATE_BOARD } from './boards';
+} from "./stacks";
+import { GET_CARDS, UPDATE_CARD, CREATE_CARDS } from "./cards";
 
 // ==== Types ==== //
 
-const LOGOUT_WORKSPACE = 'workspace/LOGOUT_WORKSPACE';
+const LOGOUT_WORKSPACE = "workspace/LOGOUT_WORKSPACE";
 
-const CREATE_WORKSPACE = 'workspace/CREATE_WORKSPACE';
+const CREATE_WORKSPACE = "workspace/CREATE_WORKSPACE";
 
-const GET_WORKSPACE = 'workspace/GET_WORKSPACE';
+const GET_WORKSPACE = "workspace/GET_WORKSPACE";
 
-const GET_WORKSPACES = 'workspace/GET_WORKSPACES';
+const GET_WORKSPACES = "workspace/GET_WORKSPACES";
 
-const UPDATE_WORKSPACE = 'workspace/UPDATE_WORKSPACE';
+const UPDATE_WORKSPACE = "workspace/UPDATE_WORKSPACE";
 
-const DELETE_WORKSPACE = 'workspace/DELETE_WORKSPACE';
+const DELETE_WORKSPACE = "workspace/DELETE_WORKSPACE";
 
 // const GET_ALL_BS = "workspace/GET_ALL_BS";
 
@@ -76,9 +75,9 @@ const actionLogoutWorkspace = () => {
 
 export const thunkCreateWorkspace = (workspace) => async (dispatch) => {
   const response = await fetch(`/api/w/create`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(workspace),
   });
@@ -91,9 +90,9 @@ export const thunkCreateWorkspace = (workspace) => async (dispatch) => {
 
 export const thunkGetAllWorkspaces = (ownerId) => async (dispatch) => {
   const response = await fetch(`/api/w/all/${ownerId}`, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
 
@@ -105,9 +104,9 @@ export const thunkGetAllWorkspaces = (ownerId) => async (dispatch) => {
 
 export const thunkGetWorkspace = (workspaceId) => async (dispatch) => {
   const response = await fetch(`/api/w/${workspaceId}`, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
 
@@ -119,7 +118,7 @@ export const thunkGetWorkspace = (workspaceId) => async (dispatch) => {
 
 export const thunkUpdateWorkspace = (workspace) => async (dispatch) => {
   const response = await fetch(`api/w/update`, {
-    method: 'PUT',
+    method: "PUT",
     body: JSON.stringify(workspace),
   });
 
@@ -131,9 +130,9 @@ export const thunkUpdateWorkspace = (workspace) => async (dispatch) => {
 
 export const thunkDeleteWorkspace = (workspaceId) => async (dispatch) => {
   const response = await fetch(`/api/w/delete`, {
-    method: 'DELETE',
+    method: "DELETE",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({ workspaceId }),
   });
@@ -192,7 +191,7 @@ const workspaces = (state = {}, action) => {
       newState[wid].boards[action.board.id] = action.board;
       return newState;
 
-      // ==== stacks ==== //
+    // ==== stacks ==== //
     case GET_STACKS:
       newState = { ...state };
 
@@ -240,7 +239,7 @@ const workspaces = (state = {}, action) => {
       return newState;
 
     // ==== cards ==== //
-    case GET_CARDS:
+    case GET_CARDS: {
       newState = { ...state };
 
       const cards = action.cards.cards;
@@ -259,8 +258,18 @@ const workspaces = (state = {}, action) => {
       }
 
       return newState;
+    }
+    case CREATE_CARDS: {
+      newState = { ...state };
+      const card = action.card;
+      const workspaceId = action.workspaceId;
 
-    case UPDATE_CARD:
+      let newCardObj = { ...state[workspaceId].cards };
+      newCardObj[card.id] = card;
+      newState[workspaceId].cards = newCardObj;
+      return newState;
+    }
+    case UPDATE_CARD: {
       newState = { ...state };
 
       const card = action.payload.card;
@@ -287,6 +296,7 @@ const workspaces = (state = {}, action) => {
       newState[id].cards = newCardObj;
 
       return newState;
+    }
 
     default:
       return state;

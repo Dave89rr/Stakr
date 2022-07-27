@@ -3,6 +3,21 @@ from ..models import db, Cards, Stacks
 
 card = Blueprint("card", __name__, url_prefix='/api/c')
 
+@card.route('/create', methods=['POST'])
+def create():
+    data = request.json
+    new_card = Cards(
+        stackId= data['stackId'],
+        username= data['username'],
+        name = data['name'],
+        color = data['color'],
+        description = data['description'],
+        position = data['position']
+    )
+    db.session.add(new_card)
+    db.session.commit()
+    return new_card.toDict()
+
 @card.route('/all/<stackId>')
 def getAll(stackId):
     cards = Cards.query.filter_by(stackId=stackId).all()
