@@ -150,13 +150,13 @@ export const thunkLogoutWorkspace = () => async (dispatch) => {
   dispatch(actionLogoutWorkspace());
 };
 
+//**************** Reducer **********************************//
 const workspaces = (state = {}, action) => {
   let newState = JSON.parse(JSON.stringify(state));
 
   switch (action.type) {
     case CREATE_WORKSPACE:
       const ws = action.workspace;
-      newState = { ...state };
       newState[ws.id] = { ...ws, boards: {} };
       return newState;
 
@@ -174,7 +174,6 @@ const workspaces = (state = {}, action) => {
       return newState;
 
     case UPDATE_WORKSPACE:
-      newState = { ...state };
       const workspaceData = action.workspace;
       newState[workspaceData.id].name = workspaceData.name;
       newState[workspaceData.id].ownerId = workspaceData.ownerId;
@@ -182,7 +181,6 @@ const workspaces = (state = {}, action) => {
       return newState;
 
     case DELETE_WORKSPACE:
-      newState = { ...state };
       delete newState[action.workspaceId];
       return newState;
 
@@ -199,8 +197,6 @@ const workspaces = (state = {}, action) => {
 
     // ==== stacks ==== //
     case GET_STACKS:
-      newState = { ...state };
-
       const stacks = action.stack.stacks;
       if (stacks.length) {
         let stacksObj = { ...state[stacks[0].workspaceId].stacks };
@@ -215,7 +211,6 @@ const workspaces = (state = {}, action) => {
       return newState;
 
     case CREATE_STACK:
-      newState = { ...state };
       const stck = action.stack;
       let stacksObj = { ...state[stck.workspaceId].stacks };
       stacksObj[stck.id] = stck;
@@ -223,15 +218,12 @@ const workspaces = (state = {}, action) => {
       return newState;
 
     case DELETE_STACK:
-      newState = { ...state };
       const { stackData } = action;
       const wsId = parseInt(stackData.workspaceId, 10);
       delete newState[wsId].stacks[stackData.stackId];
       return newState;
 
     case UPDATE_STACK_ORDER:
-      newState = { ...state };
-
       const updatedStacks = action.stacks;
 
       if (updatedStacks.length) {
@@ -246,8 +238,6 @@ const workspaces = (state = {}, action) => {
 
     // ==== cards ==== //
     case GET_CARDS: {
-      newState = { ...state };
-
       const cards = action.cards.cards;
       const workspaceId = action.workspaceId;
 
@@ -266,7 +256,6 @@ const workspaces = (state = {}, action) => {
       return newState;
     }
     case CREATE_CARDS: {
-      newState = { ...state };
       const card = action.card;
       const workspaceId = action.workspaceId;
 
@@ -276,8 +265,6 @@ const workspaces = (state = {}, action) => {
       return newState;
     }
     case UPDATE_CARD: {
-      newState = { ...state };
-
       const card = action.payload.card;
       const orderList = action.payload.orderList;
       const otherCards = action.payload.otherCards;
