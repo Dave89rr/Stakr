@@ -1,7 +1,10 @@
 .cardContainer {
     padding: 6px 8px 2px;
     margin-bottom: 8px;
+
+    border-radius: 3px;
     background-color: #ffffff;
+    box-shadow: 0 1px 0 #091e4240;
 }
 .cardContainer:hover {
    background-color: #ffffff98;
