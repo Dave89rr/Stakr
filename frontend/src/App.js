@@ -14,7 +14,6 @@ import ProtectedRoute from "./components/utils/ProtectedRoute";
 
 import { authenticate } from "./store/session";
 import { thunkGetAllWorkspaces } from "./store/workspaces";
-import CardForm from "./components/Forms/CardForm";
 
 function App() {
   const user = useSelector((state) => state.session.user);
@@ -51,7 +50,7 @@ function App() {
           <SignUpPage />
         </Route>
         <ProtectedRoute exact path="/:username/boards">
-          <CardForm />
+          <UserHomepage />
         </ProtectedRoute>
         <ProtectedRoute exact path="/:workspace/home">
           <Workspace />
