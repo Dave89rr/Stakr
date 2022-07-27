@@ -6,7 +6,6 @@ import {
 } from './stacks';
 import { GET_CARDS, UPDATE_CARD } from './cards';
 import { CREATE_BOARD } from './boards';
-import boards from './boards';
 
 // ==== Types ==== //
 
@@ -70,14 +69,6 @@ const actionLogoutWorkspace = () => {
 //   return {
 //     type: GET_ALL_BS,
 //     userId,
-//   };
-// };
-
-// export const actionCatchAll = (type, payload) => {
-//   // CREATE_BOARD;
-//   return {
-//     type: CREATE_BOARD,
-//     payload,
 //   };
 // };
 
@@ -155,11 +146,6 @@ export const thunkDeleteWorkspace = (workspaceId) => async (dispatch) => {
 export const thunkLogoutWorkspace = () => async (dispatch) => {
   dispatch(actionLogoutWorkspace());
 };
-
-// export const thunkCatchAll = () => (dispatch) => {
-//   dispatch(actionCatchAll());
-// };
-// ==== Reducers ==== //
 
 const workspaces = (state = {}, action) => {
   let newState = JSON.parse(JSON.stringify(state));
