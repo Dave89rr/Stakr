@@ -5,14 +5,20 @@ import { useSelector } from 'react-redux';
 import WsSettings from '../WsSettings/WsSettings';
 import { useState } from 'react';
 import BoardsForm from '../../Forms/BoardsForm';
+import EditWorkspaceForm from '../../Forms/EditWorkspaceForm';
 
 function WorkspaceCluster({ id }) {
   const [showSettings, setShowSettings] = useState(false);
   const [showBoardForm, setShowBoardForm] = useState(false);
+  const [editWsMode, setEditWsMode] = useState(true);
+  const [editWsId, setEditWsId] = useState(0);
   const data = useSelector((state) => state.workspaces[id]);
   let boards;
   if (data) {
+    console.log('^^^^^^^^^^^^^^^^^^^^^^^^^');
+    console.log(data.boards);
     boards = Object.values(data.boards);
+    console.log(boards);
   }
 
   if (!data) {
@@ -21,11 +27,20 @@ function WorkspaceCluster({ id }) {
     return (
       <div className={classes.clusterContainer}>
         <div className={classes.clusterInteractions}>
-          <span>{data.name}</span>
+          {editWsMode && id === editWsId ? (
+            <EditWorkspaceForm
+              id={id}
+              wsname={data.name}
+              setEditWsMode={setEditWsMode}
+              setEditWsId={setEditWsId}
+              setShowSettings={setShowSettings}
+            />
+          ) : (
+            <span>{data.name}</span>
+          )}
           <div className={classes.btnContainer}>
             <WorkspaceButton name={'board'} plural={'s'} />
             <WorkspaceButton name={'member'} plural={'s'} />
-            {/* <div onClick={() => handleDelete(id)}> */}
             <div onClick={() => setShowSettings(!showSettings)}>
               <WorkspaceButton name={'settings'} plural={''} />
             </div>
@@ -33,6 +48,8 @@ function WorkspaceCluster({ id }) {
               <WsSettings
                 id={id}
                 settingsState={(showSettings, setShowSettings)}
+                setEditWsId={setEditWsId}
+                setEditWsMode={setEditWsMode}
               />
             )}
           </div>
