@@ -1,0 +1,4 @@
+.editWsContainer {
+  display: flex;
+  flex-direction: row;
+}
