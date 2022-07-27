@@ -1,19 +1,20 @@
-import { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState, useEffect } from "react";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-import NavBar from './components/Elements/Navbar/NavBar';
-import BoardPage from './components/Pages/BoardPage';
-import CardPage from './components/Pages/CardPage';
-import HomePage from './components/Pages/Homepage';
-import LoginPage from './components/Pages/LoginPage';
-import SignUpPage from './components/Pages/SignUpPage';
-import UserHomepage from './components/Pages/UserHomepage';
-import Workspace from './components/Pages/Workspace/Workspace';
-import ProtectedRoute from './components/utils/ProtectedRoute';
+import NavBar from "./components/Elements/Navbar/NavBar";
+import BoardPage from "./components/Pages/BoardPage";
+import CardPage from "./components/Pages/CardPage";
+import HomePage from "./components/Pages/Homepage";
+import LoginPage from "./components/Pages/LoginPage";
+import SignUpPage from "./components/Pages/SignUpPage";
+import UserHomepage from "./components/Pages/UserHomepage";
+import Workspace from "./components/Pages/Workspace/Workspace";
+import ProtectedRoute from "./components/utils/ProtectedRoute";
 
-import { authenticate } from './store/session';
-import { thunkGetAllWorkspaces } from './store/workspaces';
+import { authenticate } from "./store/session";
+import { thunkGetAllWorkspaces } from "./store/workspaces";
+import CardForm from "./components/Forms/CardForm";
 
 function App() {
   const user = useSelector((state) => state.session.user);
@@ -50,7 +51,7 @@ function App() {
           <SignUpPage />
         </Route>
         <ProtectedRoute exact path="/:username/boards">
-          <UserHomepage />
+          <CardForm />
         </ProtectedRoute>
         <ProtectedRoute exact path="/:workspace/home">
           <Workspace />

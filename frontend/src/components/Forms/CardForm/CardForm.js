@@ -27,45 +27,54 @@ function CardForm(stackId, positionNum) {
       setName("");
       setColor("White");
       setDescription("");
+      // setHidden(true)
+      // onclick={(e)=>{setHiddem(true)}
     }
   };
 
   return (
     <div className={classes.background}>
-      <div>
+      <div className={classes.formBody}>
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="name">Name</label>
-            <input
-              name="name"
-              type="text"
-              placeholder="Enter Card Title..."
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <label htmlFor="color">Select A Color</label>
-            <select color="color" onChange={(e) => setColor(e.target.value)}>
-              <option value={"White"}>White</option>
-              <option value={"Red"}>Red</option>
-              <option value={"Orange"}>Orange</option>
-              <option value={"Blue"}>Blue</option>
-              <option value={"Yellow"}>Yellow</option>
-              <option value={"Green"}>Green</option>
-              <option value={"Purple"}>Purple</option>
-              <option value={"Pink"}>Pink</option>
-              <option value={"Grey"}>Grey</option>
-            </select>
+            <div>
+              <input
+                name="name"
+                type="text"
+                placeholder="Enter a card name..."
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="color">Select a color</label>
+              <select color="color" onChange={(e) => setColor(e.target.value)}>
+                <option value={"White"}>White</option>
+                <option value={"Red"}>Red</option>
+                <option value={"Orange"}>Orange</option>
+                <option value={"Blue"}>Blue</option>
+                <option value={"Yellow"}>Yellow</option>
+                <option value={"Green"}>Green</option>
+                <option value={"Purple"}>Purple</option>
+                <option value={"Pink"}>Pink</option>
+                <option value={"Grey"}>Grey</option>
+              </select>
+            </div>
             <label htmlFor="description">Description</label>
-            <textarea
-              description="description"
-              type="text"
-              placeholder="Enter Your Card Description..."
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
+            <div>
+              <textarea
+                description="description"
+                type="text"
+                placeholder="Enter your card description..."
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </div>
             <button type="submit">Create Card</button>
           </div>
         </form>
+        <button>Delete Card</button>
       </div>
     </div>
   );
