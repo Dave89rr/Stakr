@@ -24,3 +24,11 @@
   flex-wrap: wrap;
   gap: 3.4%;
 }
+
+.createBoardcard {
+  border-radius: 3px;
+  width: 194px;
+  height: 98px;
+  border: 1px solid blue;
+  margin-bottom: 2%;
+}
