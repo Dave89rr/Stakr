@@ -155,10 +155,11 @@ const workspaces = (state = {}, action) => {
   let newState = JSON.parse(JSON.stringify(state));
 
   switch (action.type) {
-    case CREATE_WORKSPACE:
-      const ws = action.workspace;
-      newState[ws.id] = { ...ws, boards: {} };
+    case CREATE_WORKSPACE: {
+      const { workspace } = action;
+      newState[workspace.id] = { ...workspace, boards: {} };
       return newState;
+    }
 
     case GET_WORKSPACE:
       const workspace = action.workspace.workspaces;
