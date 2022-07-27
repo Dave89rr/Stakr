@@ -3,18 +3,20 @@ from ..models import db, Boards
 
 board = Blueprint("board", __name__, url_prefix='/api/b')
 
+
 @board.route('/create', methods=['POST'])
 def create():
     data = request.json
     new_board = Boards(
-        username = data['username'],
-        workspaceId = data['workspaceId'],
-        name = data['name'],
-        color = data['color']
+        username=data['username'],
+        workspaceId=data['workspaceId'],
+        name=data['name'],
+        color=data['color']
     )
     db.session.add(new_board)
     db.session.commit()
-    return 'Board successfully created!'
+    return new_board.toDict()
+
 
 @board.route('/all/<username>')
 def getAll(username):
@@ -22,10 +24,12 @@ def getAll(username):
     data = [i.toDict() for i in boards]
     return {'boards': data}
 
+
 @board.route('/<boardId>')
 def getOne(boardId):
     board = Boards.query.get(boardId)
     return board.toDict()
+
 
 @board.route('/update', methods=['PUT'])
 def update():
@@ -37,6 +41,7 @@ def update():
     board.color = data['color']
     db.session.commit()
     return 'Board successfully updated!'
+
 
 @board.route('/delete', methods=['DELETE'])
 def delete():

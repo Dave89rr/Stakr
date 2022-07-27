@@ -4,24 +4,22 @@ import {
   UPDATE_STACK_ORDER,
   DELETE_STACK,
 } from './stacks';
-import {
-  GET_CARDS,
-  UPDATE_CARD
-} from "./cards";
+import { GET_CARDS, UPDATE_CARD } from './cards';
+import { CREATE_BOARD } from './boards';
 
 // ==== Types ==== //
 
-const LOGOUT_WORKSPACE = "workspace/LOGOUT_WORKSPACE";
+const LOGOUT_WORKSPACE = 'workspace/LOGOUT_WORKSPACE';
 
-const CREATE_WORKSPACE = "workspace/CREATE_WORKSPACE";
+const CREATE_WORKSPACE = 'workspace/CREATE_WORKSPACE';
 
-const GET_WORKSPACE = "workspace/GET_WORKSPACE";
+const GET_WORKSPACE = 'workspace/GET_WORKSPACE';
 
-const GET_WORKSPACES = "workspace/GET_WORKSPACES";
+const GET_WORKSPACES = 'workspace/GET_WORKSPACES';
 
-const UPDATE_WORKSPACE = "workspace/UPDATE_WORKSPACE";
+const UPDATE_WORKSPACE = 'workspace/UPDATE_WORKSPACE';
 
-const DELETE_WORKSPACE = "workspace/DELETE_WORKSPACE";
+const DELETE_WORKSPACE = 'workspace/DELETE_WORKSPACE';
 
 // const GET_ALL_BS = "workspace/GET_ALL_BS";
 
@@ -78,9 +76,9 @@ const actionLogoutWorkspace = () => {
 
 export const thunkCreateWorkspace = (workspace) => async (dispatch) => {
   const response = await fetch(`/api/w/create`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(workspace),
   });
@@ -93,9 +91,9 @@ export const thunkCreateWorkspace = (workspace) => async (dispatch) => {
 
 export const thunkGetAllWorkspaces = (ownerId) => async (dispatch) => {
   const response = await fetch(`/api/w/all/${ownerId}`, {
-    method: "GET",
+    method: 'GET',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   });
 
@@ -107,9 +105,9 @@ export const thunkGetAllWorkspaces = (ownerId) => async (dispatch) => {
 
 export const thunkGetWorkspace = (workspaceId) => async (dispatch) => {
   const response = await fetch(`/api/w/${workspaceId}`, {
-    method: "GET",
+    method: 'GET',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   });
 
@@ -121,7 +119,7 @@ export const thunkGetWorkspace = (workspaceId) => async (dispatch) => {
 
 export const thunkUpdateWorkspace = (workspace) => async (dispatch) => {
   const response = await fetch(`api/w/update`, {
-    method: "PUT",
+    method: 'PUT',
     body: JSON.stringify(workspace),
   });
 
@@ -149,10 +147,8 @@ export const thunkLogoutWorkspace = () => async (dispatch) => {
   dispatch(actionLogoutWorkspace());
 };
 
-// ==== Reducers ==== //
-
 const workspaces = (state = {}, action) => {
-  let newState = {};
+  let newState = JSON.parse(JSON.stringify(state));
 
   switch (action.type) {
     case CREATE_WORKSPACE:
@@ -190,7 +186,13 @@ const workspaces = (state = {}, action) => {
 
       return newState;
 
-    // ==== stacks ==== //
+    // ==== boards ==== //
+    case CREATE_BOARD:
+      const wid = action.board.workspaceId;
+      newState[wid].boards[action.board.id] = action.board;
+      return newState;
+
+      // ==== stacks ==== //
     case GET_STACKS:
       newState = { ...state };
 
@@ -207,13 +209,13 @@ const workspaces = (state = {}, action) => {
 
       return newState;
 
-    case CREATE_STACK:
-      newState = { ...state };
-      const stck = action.stack;
-      let stacksObj = { ...state[stck.workspaceId].stacks };
-      stacksObj[stck.id] = stck;
-      newState[stck.workspaceId].stacks = stacksObj;
-      return newState;
+    // case CREATE_STACK:
+    //   newState = { ...state };
+    //   const stck = action.stack;
+    //   let stacksObj = { ...state[stck.workspaceId].stacks };
+    //   stacksObj[stck.id] = stck;
+    //   newState[stck.workspaceId].stacks = stacksObj;
+    //   return newState;
 
     case DELETE_STACK:
       newState = { ...state };
@@ -266,10 +268,10 @@ const workspaces = (state = {}, action) => {
       const otherCards = action.payload.otherCards;
       const id = action.workspaceId;
 
-      let newCardObj = {...state[id].cards}
+      let newCardObj = { ...state[id].cards };
       newCardObj[card.id] = card;
 
-      if ((otherCards.length) && !cardOrder.includes(otherCards[0])) {
+      if (otherCards.length && !cardOrder.includes(otherCards[0])) {
         otherCards.forEach((id, i) => {
           newCardObj[id].position = i;
         });
