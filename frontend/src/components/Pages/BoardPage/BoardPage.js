@@ -8,7 +8,7 @@ import {
   thunkGetAllStacks,
   thunkUpdateStackOrder,
 } from "../../../store/stacks";
-import { thunkUpdateCard } from '../../../store/cards';
+import { thunkGetCards, thunkUpdateCard } from '../../../store/cards';
 
 import classes from "./BoardPage.module.css";
 import Stack from "../../Elements/Stack/Stack";
@@ -22,6 +22,7 @@ function BoardPage() {
 
   const [loaded, setLoaded] = useState(false);
   const [disabled, setDisabled] = useState(false);
+  const [cardOrder, setCardOrder] = useState({});
 
   useEffect(() => {
     (async () => {
@@ -29,6 +30,22 @@ function BoardPage() {
         await dispatch(thunkGetAllStacks(boardId));
         setLoaded(true);
       }
+      if (workspaces[workspaceId] && workspaces[workspaceId].stacks) {
+        await dispatch(thunkGetCards(boardId, workspaceId));
+      }
+      // if (workspaces[workspaceId] && workspaces[workspaceId].cards) {
+      //   let cards = workspaces[workspaceId].cards;
+      //   let stacks = workspaces[workspaceId].stacks;
+
+      //   let cardIds = Object.values(cards).map(ele => (ele.id));
+      //   let stackIds = Object.values(stacks).map(ele => (ele.id));
+      //   let filterStackIds = stackIds.filter(id => stacks[id].boardId === parseInt(boardId));
+      //   let filterCardIds = cardIds.filter(id => cards[id].stackId === data.id)
+      //   console.log(filterStackIds)
+
+      //   // filterCardIds.sort((a, b) => cards[a].position-cards[b].position)
+      //   // await setCardOrder(newSortedCards)
+      // }
     })();
   }, [dispatch, workspaces[workspaceId]]);
 
@@ -46,7 +63,7 @@ function BoardPage() {
     );
     sortedStacks = filterStackIds.sort(
       (a, b) => stacks[a].position - stacks[b].position
-    );
+      );
   }
 
   let cards;
@@ -88,7 +105,7 @@ function BoardPage() {
       const cardId = parseInt(res.draggableId.split(':')[1]);
       const stackId = parseInt(res.destination.droppableId.split(':')[1]);
 
-      const cardOrder = Object.values(cards).filter(ele => {
+      let cardOrder = Object.values(cards).filter(ele => {
         return (ele.stackId === stackId)
       }).map(ele => ele.id).sort((a, b) => cards[a].position-cards[b].position)
 
@@ -96,32 +113,32 @@ function BoardPage() {
         cardOrder.splice(source.index, 1);
       }
       cardOrder.splice(destination.index, 0, cardId);
+      sortedCards = cardOrder;
+      // setCardOrder(cardOrder)
 
       const otherCards = Object.values(cards).filter(ele => {
         return (
           (ele.stackId === parseInt(res.source.droppableId.split(':')[1]))
           &&
           ele.id !== cardId
-        )
-      }).map(ele => ele.id);
+          )
+        }).map(ele => ele.id);
 
-      const data = {
-        cardId,
-        stackId,
-        newPos: res.destination.index,
-        cardOrder,
-        otherCards
+        const data = {
+          cardId,
+          stackId,
+          newPos: res.destination.index,
+          cardOrder,
+          otherCards
+        }
+
+        await dispatch(thunkUpdateCard(data, workspaceId));
+        setDisabled(false);
       }
-
-      sortedCards = cardOrder;
-
-      await dispatch(thunkUpdateCard(data, workspaceId));
-      setDisabled(false);
     }
-  }
 
-  return (
-    <div className={classes.containerWrapper}>
+    return (
+      <div className={classes.containerWrapper}>
       <h1>
         BoardPage #{boardId} {workspaceId}
       </h1>
@@ -145,6 +162,8 @@ function BoardPage() {
                       data={stacks[ele]}
                       cards={cards}
                       sortedCards={sortedCards}
+                      cardOrder={cardOrder}
+                      setCardOrder={setCardOrder}
                       disabled={disabled}
                       key={stacks[ele].id}
                       workspaces={workspaces}

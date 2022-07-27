@@ -13,10 +13,17 @@ function Card({ data, pos }) {
         <div
           ref={provided.innerRef}
           {...provided.draggableProps}
-          {...provided.dragHandleProps}
           className={classes.cardContainer}
-        >
+          >
+          <div
+            className={classes.dragHandle}
+            {...provided.dragHandleProps}
+          >
             <p className={classes.description}>{data.name}</p>
+          </div>
+          <div className={classes.editButton}>
+            <img src='/media/icons/pencil.svg' alt='pencil' className={classes.pencil}/>
+          </div>
         </div>
       )}
     </Draggable>
