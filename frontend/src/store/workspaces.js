@@ -146,10 +146,8 @@ export const thunkLogoutWorkspace = () => async (dispatch) => {
   dispatch(actionLogoutWorkspace());
 };
 
-// ==== Reducers ==== //
-
 const workspaces = (state = {}, action) => {
-  let newState = {};
+  let newState = JSON.parse(JSON.stringify(state));
 
   switch (action.type) {
     case CREATE_WORKSPACE:
@@ -187,6 +185,12 @@ const workspaces = (state = {}, action) => {
 
       return newState;
 
+    // ==== boards ==== //
+    case CREATE_BOARD:
+      const wid = action.board.workspaceId;
+      newState[wid].boards[action.board.id] = action.board;
+      return newState;
+
     // ==== stacks ==== //
     case GET_STACKS:
       newState = { ...state };
@@ -204,13 +208,13 @@ const workspaces = (state = {}, action) => {
 
       return newState;
 
-    case CREATE_STACK:
-      newState = { ...state };
-      const stck = action.stack;
-      let stacksObj = { ...state[stck.workspaceId].stacks };
-      stacksObj[stck.id] = stck;
-      newState[stck.workspaceId].stacks = stacksObj;
-      return newState;
+    // case CREATE_STACK:
+    //   newState = { ...state };
+    //   const stck = action.stack;
+    //   let stacksObj = { ...state[stck.workspaceId].stacks };
+    //   stacksObj[stck.id] = stck;
+    //   newState[stck.workspaceId].stacks = stacksObj;
+    //   return newState;
 
     case DELETE_STACK:
       newState = { ...state };
