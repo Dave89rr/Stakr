@@ -118,8 +118,11 @@ export const thunkGetWorkspace = (workspaceId) => async (dispatch) => {
 };
 
 export const thunkUpdateWorkspace = (workspace) => async (dispatch) => {
-  const response = await fetch(`api/w/update`, {
+  const response = await fetch(`/api/w/update`, {
     method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify(workspace),
   });
 
