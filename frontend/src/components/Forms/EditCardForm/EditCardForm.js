@@ -25,7 +25,6 @@ function EditCardForm(stackId, positionNum) {
 
     if (card) {
       // dispatch(thunkCreateCard(card));
-      console.log('This would update');
       setName('');
       setColor('White');
       setDescription('');
@@ -41,7 +40,6 @@ function EditCardForm(stackId, positionNum) {
           <div
             className={classes.closeModel}
             onClick={(e) => {
-              console.log('This would close');
               setDisplay('none');
             }}
           >
@@ -100,7 +98,6 @@ function EditCardForm(stackId, positionNum) {
               onClick={(e) => {
                 e.preventDefault();
                 setDisplay('none');
-                console.log('this would del');
               }}
             >
               Delete Card

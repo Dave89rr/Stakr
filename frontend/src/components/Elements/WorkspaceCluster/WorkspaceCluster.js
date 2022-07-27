@@ -15,10 +15,7 @@ function WorkspaceCluster({ id }) {
   const data = useSelector((state) => state.workspaces[id]);
   let boards;
   if (data) {
-    console.log('^^^^^^^^^^^^^^^^^^^^^^^^^');
-    console.log(data.boards);
     boards = Object.values(data.boards);
-    console.log(boards);
   }
 
   if (!data) {
