@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { thunkCreateCard } from "../../../store/cards";
 
-function CreateCard({ stackId, setForm }) {
+function CreateCard({ stackId, setForm, cardOrder, setCardOrder }) {
   const [name, setName] = useState("");
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
@@ -21,9 +21,15 @@ function CreateCard({ stackId, setForm }) {
       workspaceId,
     };
 
-    await dispatch(thunkCreateCard(card));
     setName("");
     setForm("False");
+    const newCard = await dispatch(thunkCreateCard(card, workspaceId))
+
+    const newCardOrder = {...cardOrder}
+    const curOrder = newCardOrder[stackId];
+    curOrder.push(newCard);
+    newCardOrder[stackId] = curOrder;
+    setCardOrder(newCardOrder);
   };
 
   return (
