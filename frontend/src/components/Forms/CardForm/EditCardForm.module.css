@@ -21,4 +21,16 @@
   background-color: black;
   height: 100px;
   border-radius: 5px;
+  resize: none;
+}
+.closeModel {
+  background-color: Grey;
+  width: 2%;
+  font-size: 32px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  margin-left: 81%;
+  padding-bottom: 3px;
+  cursor: pointer;
 }

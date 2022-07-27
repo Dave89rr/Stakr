@@ -34,6 +34,12 @@ function CardForm(stackId, positionNum) {
 
   return (
     <div className={classes.background}>
+      <div
+        className={classes.closeModel}
+        onClick={(e) => console.log("Clicky clicky")}
+      >
+        x
+      </div>
       <div className={classes.formBody}>
         <form onSubmit={handleSubmit}>
           <div>
