@@ -64,6 +64,7 @@ function CardForm(stackId, positionNum) {
             <label htmlFor="description">Description</label>
             <div>
               <textarea
+                className={classes.textArea}
                 description="description"
                 type="text"
                 placeholder="Enter your card description..."

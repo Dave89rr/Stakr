@@ -16,3 +16,9 @@
   z-index: 11;
   font-size: 150%;
 }
+.textArea {
+  width: 100%;
+  background-color: black;
+  height: 100px;
+  border-radius: 5px;
+}
