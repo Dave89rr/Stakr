@@ -18,6 +18,13 @@ def create():
     db.session.commit()
     return new_card.toDict()
 
+@card.route('/delete', methods=['DELETE'])
+def del_taco():
+    data = request.json
+    Cards.query.filter_by(id=data).delete()
+    db.session.commit()
+    return 'Brandon is a very cute boy who fixed dnd'
+
 @card.route('/all/<boardId>')
 def getAll(boardId):
     stacks = Stacks.query.filter_by(boardId=boardId).all()
