@@ -7,6 +7,7 @@ function CardForm(stackId, positionNum) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [color, setColor] = useState("White");
+  const [display, setDisplay] = useState(true);
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   let position = positionNum.positionNum;
@@ -23,20 +24,23 @@ function CardForm(stackId, positionNum) {
     };
 
     if (card) {
-      dispatch(thunkCreateCard(card));
+      // dispatch(thunkCreateCard(card));
+      console.log("This would update");
       setName("");
       setColor("White");
       setDescription("");
-      // setHidden(true)
-      // onclick={(e)=>{setHiddem(true)}
+      setDisplay("none");
     }
   };
 
   return (
-    <div className={classes.background}>
+    <div className={classes.background} style={{ display: display }}>
       <div
         className={classes.closeModel}
-        onClick={(e) => console.log("Clicky clicky")}
+        onClick={(e) => {
+          console.log("This would close");
+          setDisplay("none");
+        }}
       >
         x
       </div>
@@ -83,10 +87,21 @@ function CardForm(stackId, positionNum) {
                 onChange={(e) => setDescription(e.target.value)}
               />
             </div>
-            <button type="submit">Submit</button>
+            <button type="submit" className={classes.subButton}>
+              Submit
+            </button>
           </div>
         </form>
-        <button>Delete Card</button>
+        <button
+          className={classes.delButton}
+          onClick={(e) => {
+            e.preventDefault();
+            setDisplay("none");
+            console.log("this would del");
+          }}
+        >
+          Delete Card
+        </button>
       </div>
     </div>
   );
