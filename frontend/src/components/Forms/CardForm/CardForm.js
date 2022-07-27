@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { thunkCreateCard } from "../../../store/cards";
+import classes from "./EditCardForm.module.css";
 
 function CardForm(stackId, positionNum) {
   const [name, setName] = useState("");
@@ -30,7 +31,7 @@ function CardForm(stackId, positionNum) {
   };
 
   return (
-    <>
+    <div className={classes.background}>
       <div>
         <form onSubmit={handleSubmit}>
           <div>
@@ -66,7 +67,7 @@ function CardForm(stackId, positionNum) {
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 }
 
