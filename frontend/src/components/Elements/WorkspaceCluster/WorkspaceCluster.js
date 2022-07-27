@@ -43,8 +43,6 @@ function WorkspaceCluster({ id }) {
               return <BoardCard data={ele} key={i} />;
             })
           ) : (
-            // TODO - Refactor BoardCards or make new component
-            // to placehold "create new board" button
             <div
               className={classes.createBoardcard}
               onClick={() => setShowBoardForm(true)}
