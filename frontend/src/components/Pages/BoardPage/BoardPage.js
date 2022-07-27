@@ -1,18 +1,19 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 import {
   thunkGetAllStacks,
   thunkUpdateStackOrder,
-} from "../../../store/stacks";
-import { thunkUpdateCard } from '../../../store/cards';
+} from '../../../store/stacks';
+import { thunkGetCards, thunkUpdateCard } from '../../../store/cards';
 
-import classes from "./BoardPage.module.css";
-import Stack from "../../Elements/Stack/Stack";
-import StacksForm from "../../Forms/StacksForm/StacksForm";
+import classes from './BoardPage.module.css';
+import Stack from '../../Elements/Stack/Stack';
+import StacksForm from '../../Forms/StacksForm/StacksForm';
+import EditCardForm from '../../Forms/EditCardForm';
 
 function BoardPage() {
   const workspaces = useSelector((state) => state.workspaces);
@@ -22,12 +23,35 @@ function BoardPage() {
 
   const [loaded, setLoaded] = useState(false);
   const [disabled, setDisabled] = useState(false);
+  const [cardOrder, setCardOrder] = useState({});
+  const [display, setDisplay] = useState('none');
 
   useEffect(() => {
     (async () => {
       if (workspaces[workspaceId]) {
         await dispatch(thunkGetAllStacks(boardId));
         setLoaded(true);
+      }
+      if (workspaces[workspaceId] && workspaces[workspaceId].stacks) {
+        await dispatch(thunkGetCards(boardId, workspaceId));
+      }
+      if (workspaces[workspaceId] && workspaces[workspaceId].cards) {
+        let cards = workspaces[workspaceId].cards;
+        let stacks = workspaces[workspaceId].stacks;
+
+        let stackIds = Object.values(stacks).map((ele) => ele.id);
+        let filterStackIds = stackIds.filter(
+          (id) => stacks[id].boardId === parseInt(boardId)
+        );
+        let cardsObj = {};
+        filterStackIds.forEach((id) => {
+          let stackCards = Object.values(cards).filter(
+            (ele) => ele.stackId === id
+          );
+          cardsObj[id] = stackCards;
+        });
+
+        await setCardOrder(cardsObj);
       }
     })();
   }, [dispatch, workspaces[workspaceId]]);
@@ -50,7 +74,6 @@ function BoardPage() {
   }
 
   let cards;
-  let sortedCards = [];
   if (workspaces[workspaceId].cards) {
     cards = workspaces[workspaceId].cards;
   }
@@ -64,11 +87,13 @@ function BoardPage() {
 
     if (type === 'column') {
       // dont do anything when dragged into the same spot as before
-      if (destination.droppableId === source.droppableId &&
-        destination.index === source.index) {
-          setDisabled(false);
-          return;
-        }
+      if (
+        destination.droppableId === source.droppableId &&
+        destination.index === source.index
+      ) {
+        setDisabled(false);
+        return;
+      }
 
       const newStackOrder = Array.from(sortedStacks);
       newStackOrder.splice(source.index, 1);
@@ -79,49 +104,64 @@ function BoardPage() {
     }
     if (type === 'row') {
       // dont do anything when dragged into the same spot as before
-      if ((destination && destination.droppableId === source.droppableId &&
-        destination.index === source.index) || !destination) {
-          setDisabled(false);
-          return;
+      if (
+        (destination &&
+          destination.droppableId === source.droppableId &&
+          destination.index === source.index) ||
+        !destination
+      ) {
+        setDisabled(false);
+        return;
       }
 
       const cardId = parseInt(res.draggableId.split(':')[1]);
       const stackId = parseInt(res.destination.droppableId.split(':')[1]);
 
-      const cardOrder = Object.values(cards).filter(ele => {
-        return (ele.stackId === stackId)
-      }).map(ele => ele.id).sort((a, b) => cards[a].position-cards[b].position)
+      let orderList = Object.values(cards)
+        .filter((ele) => {
+          return ele.stackId === stackId;
+        })
+        .map((ele) => ele.id)
+        .sort((a, b) => cards[a].position - cards[b].position);
 
-      if (cardOrder.includes(cardId)) {
-        cardOrder.splice(source.index, 1);
+      if (orderList.includes(cardId)) {
+        orderList.splice(source.index, 1);
       }
-      cardOrder.splice(destination.index, 0, cardId);
+      orderList.splice(destination.index, 0, cardId);
 
-      const otherCards = Object.values(cards).filter(ele => {
-        return (
-          (ele.stackId === parseInt(res.source.droppableId.split(':')[1]))
-          &&
-          ele.id !== cardId
-        )
-      }).map(ele => ele.id);
+      const otherCards = Object.values(cards)
+        .filter((ele) => {
+          return (
+            ele.stackId === parseInt(res.source.droppableId.split(':')[1]) &&
+            ele.id !== cardId
+          );
+        })
+        .map((ele) => ele.id)
+        .sort((a, b) => cards[a].position - cards[b].position);
+
+      const newCardOrder = { ...cardOrder };
+      const list = orderList.map((id) => cards[id]);
+      const otherList = otherCards.map((id) => cards[id]);
+      newCardOrder[source.droppableId.split(':')[1]] = otherList;
+      newCardOrder[stackId] = list;
+      setCardOrder(newCardOrder);
 
       const data = {
         cardId,
         stackId,
         newPos: res.destination.index,
-        cardOrder,
-        otherCards
-      }
-
-      sortedCards = cardOrder;
+        orderList,
+        otherCards,
+      };
 
       await dispatch(thunkUpdateCard(data, workspaceId));
       setDisabled(false);
     }
-  }
+  };
 
   return (
     <div className={classes.containerWrapper}>
+      <EditCardForm setDisplay={setDisplay} display={display} />
       <h1>
         BoardPage #{boardId} {workspaceId}
       </h1>
@@ -134,23 +174,20 @@ function BoardPage() {
               className={classes.stackContainer}
             >
               <div className={classes.stackContainer}>
-                {stacks ? sortedStacks.map(ele => {
-                  if (cards) {
-                    let cardIds = Object.values(cards).map(ele => (ele.id));
-                    let filterCardIds = cardIds.filter(id => cards[id].stackId === parseInt(ele))
-                    sortedCards = filterCardIds.sort((a, b) => cards[a].position-cards[b].position)
-                  }
-                  return (
-                    <Stack
-                      data={stacks[ele]}
-                      cards={cards}
-                      sortedCards={sortedCards}
-                      disabled={disabled}
-                      key={stacks[ele].id}
-                      workspaces={workspaces}
-                    />
-                    )
-                  }) : null}
+                {stacks
+                  ? sortedStacks.map((ele) => {
+                      return (
+                        <Stack
+                          data={stacks[ele]}
+                          disabled={disabled}
+                          cards={cards}
+                          cardOrder={cardOrder}
+                          setCardOrder={setCardOrder}
+                          key={stacks[ele].id}
+                        />
+                      );
+                    })
+                  : null}
                 {provided.placeholder}
                 <StacksForm />
               </div>

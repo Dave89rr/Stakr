@@ -54,7 +54,9 @@ function StacksForm() {
           setForm(2);
         }}
       >
-        {stacks && Object.values(stacks).length?'+ Add another stack':'+ Add stack'}
+        {stacks && Object.values(stacks).length
+          ? "+ Add another stack"
+          : "+ Add stack"}
       </div>
     );
   }
@@ -79,5 +81,4 @@ function StacksForm() {
     </div>
   );
 }
-
 export default StacksForm;
