@@ -257,6 +257,12 @@ const workspaces = (state = {}, action) => {
     }
     case CREATE_CARDS: {
       newState = { ...state };
+      const card = action.card;
+      const workspaceId = action.workspaceId;
+
+      let newCardObj = { ...state[workspaceId].cards };
+      newCardObj[card.id] = card;
+      newState[workspaceId].cards = newCardObj;
       return newState;
     }
     case UPDATE_CARD: {

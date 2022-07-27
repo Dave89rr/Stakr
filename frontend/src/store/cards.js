@@ -14,10 +14,11 @@ const DELETE_CARD = "stack/GET_CARD";
 
 // ==== Actions ==== //
 
-const actionCreateCard = (card) => {
+const actionCreateCard = (card, workspaceId) => {
   return {
     type: CREATE_CARDS,
     card,
+    workspaceId,
   };
 };
 
@@ -60,6 +61,7 @@ const actionDeleteCard = (cardId) => {
 // ==== Thunks ==== //
 
 export const thunkCreateCard = (card) => async (dispatch) => {
+  const workspaceId = card.workspaceId;
   const response = await fetch(`/api/c/create`, {
     method: "POST",
     headers: {
@@ -70,7 +72,7 @@ export const thunkCreateCard = (card) => async (dispatch) => {
 
   if (response.ok) {
     const card = await response.json();
-    dispatch(actionCreateCard(card));
+    dispatch(actionCreateCard(card, workspaceId));
   }
 };
 

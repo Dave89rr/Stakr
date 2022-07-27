@@ -77,7 +77,7 @@ const Stack = ({ data, disabled, workspaces, cards, sortedCards }) => {
                   {form === "False" ? (
                     <div onClick={(e) => setForm("True")}>+ New Card</div>
                   ) : (
-                    <CreateCard stackId={data.id} />
+                    <CreateCard stackId={data.id} setForm={setForm} />
                   )}
                 </div>
               )}

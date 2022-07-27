@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { thunkCreateCard } from "../../../store/cards";
 
-function CreateCard({ stackId }) {
+function CreateCard({ stackId, setForm }) {
   const [name, setName] = useState("");
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
-
-  // console.log(stackId);
+  const { workspaceId } = useParams();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,10 +18,12 @@ function CreateCard({ stackId }) {
       position: 100000,
       description: "Add a description...",
       color: "White",
+      workspaceId,
     };
 
     await dispatch(thunkCreateCard(card));
     setName("");
+    setForm("False");
   };
 
   return (
