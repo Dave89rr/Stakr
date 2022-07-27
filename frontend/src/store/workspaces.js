@@ -3,11 +3,8 @@ import {
   CREATE_STACK,
   UPDATE_STACK_ORDER,
   DELETE_STACK,
-} from './stacks';
-import {
-  GET_CARDS,
-  UPDATE_CARD
-} from "./cards";
+} from "./stacks";
+import { GET_CARDS, UPDATE_CARD, CREATE_CARDS } from "./cards";
 
 // ==== Types ==== //
 
@@ -133,9 +130,9 @@ export const thunkUpdateWorkspace = (workspace) => async (dispatch) => {
 
 export const thunkDeleteWorkspace = (workspaceId) => async (dispatch) => {
   const response = await fetch(`/api/w/delete`, {
-    method: 'DELETE',
+    method: "DELETE",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({ workspaceId }),
   });
@@ -238,7 +235,7 @@ const workspaces = (state = {}, action) => {
       return newState;
 
     // ==== cards ==== //
-    case GET_CARDS:
+    case GET_CARDS: {
       newState = { ...state };
 
       const cards = action.cards.cards;
@@ -257,8 +254,12 @@ const workspaces = (state = {}, action) => {
       }
 
       return newState;
-
-    case UPDATE_CARD:
+    }
+    case CREATE_CARDS: {
+      newState = { ...state };
+      return newState;
+    }
+    case UPDATE_CARD: {
       newState = { ...state };
 
       const card = action.payload.card;
@@ -266,10 +267,10 @@ const workspaces = (state = {}, action) => {
       const otherCards = action.payload.otherCards;
       const id = action.workspaceId;
 
-      let newCardObj = {...state[id].cards}
+      let newCardObj = { ...state[id].cards };
       newCardObj[card.id] = card;
 
-      if ((otherCards.length) && !cardOrder.includes(otherCards[0])) {
+      if (otherCards.length && !cardOrder.includes(otherCards[0])) {
         otherCards.forEach((id, i) => {
           newCardObj[id].position = i;
         });
@@ -285,6 +286,7 @@ const workspaces = (state = {}, action) => {
       newState[id].cards = newCardObj;
 
       return newState;
+    }
 
     default:
       return state;

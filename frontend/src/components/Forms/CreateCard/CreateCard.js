@@ -7,9 +7,9 @@ function CreateCard({ stackId }) {
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
-  console.log(stackId);
+  // console.log(stackId);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const card = {
       stackId,
@@ -20,10 +20,8 @@ function CreateCard({ stackId }) {
       color: "White",
     };
 
-    if (card) {
-      dispatch(thunkCreateCard(card));
-      setName("");
-    }
+    await dispatch(thunkCreateCard(card));
+    setName("");
   };
 
   return (
