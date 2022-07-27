@@ -149,10 +149,10 @@ function BoardPage() {
                       key={stacks[ele].id}
                       workspaces={workspaces}
                     />
-                  )
-                }) : null}
+                    )
+                  }) : null}
                 {provided.placeholder}
-                <StacksForm positionNum={sortedStacks.length} />
+                <StacksForm />
               </div>
             </div>
           )}
