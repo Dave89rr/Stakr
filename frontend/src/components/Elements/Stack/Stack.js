@@ -1,17 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
 import Card from "../Card";
-import { thunkGetCards } from "../../../store/cards";
 import { thunkDeleteStack } from "../../../store/stacks";
 
 import classes from "./Stack.module.css";
 import CreateCard from "../../Forms/CreateCard";
 
-const Stack = ({ data, disabled, workspaces, cards, sortedCards, cardOrder, setCardOrder }) => {
-  const { workspaceId, boardId } = useParams();
+const Stack = ({ data, disabled, cards, cardOrder }) => {
+  const { workspaceId } = useParams();
   const dispatch = useDispatch();
   const [form, setForm] = useState("False");
 
@@ -55,14 +54,14 @@ const Stack = ({ data, disabled, workspaces, cards, sortedCards, cardOrder, setC
                   ref={provided.innerRef}
                   className={classes.stackContent}
                 >
-                  {sortedCards?.map((ele, i) => {
-                    return <Card data={cards[ele]} pos={i} key={ele} />;
+                  {cardOrder[data.id]?.map((ele, i) => {
+                    return <Card data={cards[ele.id]} pos={i} key={ele.id} />;
                   })}
                   {provided.placeholder}
                   {form === "False" ? (
                     <div onClick={(e) => setForm("True")}>+ New Card</div>
                     ) : (
-                      <CreateCard stackId={data.id} setForm={setForm} />
+                      <CreateCard stackId={data.id} disabled={disabled} setForm={setForm} />
                     )}
                 </div>
               )}

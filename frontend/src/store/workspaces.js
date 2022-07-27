@@ -279,22 +279,22 @@ const workspaces = (state = {}, action) => {
       newState = { ...state };
 
       const card = action.payload.card;
-      const cardOrder = action.payload.cardOrder;
+      const orderList = action.payload.orderList;
       const otherCards = action.payload.otherCards;
       const id = action.workspaceId;
 
       let newCardObj = { ...state[id].cards };
       newCardObj[card.id] = card;
 
-      if (otherCards.length && !cardOrder.includes(otherCards[0])) {
+      if (otherCards.length && !orderList.includes(otherCards[0])) {
         otherCards.forEach((id, i) => {
           newCardObj[id].position = i;
         });
-        cardOrder.forEach((id, i) => {
+        orderList.forEach((id, i) => {
           newCardObj[id].position = i;
         });
       } else {
-        cardOrder.forEach((id, i) => {
+        orderList.forEach((id, i) => {
           newCardObj[id].position = i;
         });
       }
