@@ -35,22 +35,22 @@ def update():
     card.position = data['newPos']
     card.stackId = data['stackId']
 
-    if (len(data['otherCards'])) and data['otherCards'][0] not in data['cardOrder']:
+    if (len(data['otherCards'])) and data['otherCards'][0] not in data['orderList']:
         for i in data['otherCards']:
             cur = Cards.query.get(i)
             cur.position = data['otherCards'].index(i)
-        for i in data['cardOrder']:
+        for i in data['orderList']:
             cur = Cards.query.get(i)
-            cur.position = data['cardOrder'].index(i)
+            cur.position = data['orderList'].index(i)
     else:
-        for i in data['cardOrder']:
+        for i in data['orderList']:
             cur = Cards.query.get(i)
-            cur.position = data['cardOrder'].index(i)
+            cur.position = data['orderList'].index(i)
 
     db.session.commit()
 
     return {
         "card": card.toDict(),
         "otherCards": data['otherCards'],
-        "cardOrder": data['cardOrder']
+        "orderList": data['orderList']
     }
