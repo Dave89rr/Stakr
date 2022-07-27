@@ -10,23 +10,10 @@ import { thunkDeleteStack } from "../../../store/stacks";
 import classes from "./Stack.module.css";
 import CreateCard from "../../Forms/CreateCard";
 
-const Stack = ({ data, disabled, workspaces, cards, sortedCards }) => {
+const Stack = ({ data, disabled, workspaces, cards, sortedCards, cardOrder, setCardOrder }) => {
   const { workspaceId, boardId } = useParams();
   const dispatch = useDispatch();
   const [form, setForm] = useState("False");
-
-  useEffect(() => {
-    (async () => {
-      if (workspaces[workspaceId]) {
-        await dispatch(thunkGetCards(data.id, workspaceId));
-      }
-    })();
-  }, [dispatch, workspaces[workspaceId]]);
-
-  // const handleDel = (e) => {
-  //   e.preventDefault();
-  //   console.log(data.id);
-  // };
 
   return (
     <Draggable
@@ -68,17 +55,15 @@ const Stack = ({ data, disabled, workspaces, cards, sortedCards }) => {
                   ref={provided.innerRef}
                   className={classes.stackContent}
                 >
-                  {sortedCards
-                    ? sortedCards.map((ele, i) => {
-                        return <Card data={cards[ele]} pos={i} key={ele} />;
-                      })
-                    : null}
+                  {sortedCards?.map((ele, i) => {
+                    return <Card data={cards[ele]} pos={i} key={ele} />;
+                  })}
                   {provided.placeholder}
                   {form === "False" ? (
                     <div onClick={(e) => setForm("True")}>+ New Card</div>
-                  ) : (
-                    <CreateCard stackId={data.id} setForm={setForm} />
-                  )}
+                    ) : (
+                      <CreateCard stackId={data.id} setForm={setForm} />
+                    )}
                 </div>
               )}
             </Droppable>

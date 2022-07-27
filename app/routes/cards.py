@@ -18,11 +18,14 @@ def create():
     db.session.commit()
     return new_card.toDict()
 
-@card.route('/all/<stackId>')
-def getAll(stackId):
-    cards = Cards.query.filter_by(stackId=stackId).all()
-    data = [i.toDict() for i in cards]
-    return {'cards': data}
+@card.route('/all/<boardId>')
+def getAll(boardId):
+    stacks = Stacks.query.filter_by(boardId=boardId).all()
+    cards = []
+    for i in stacks:
+        for j in i.cards:
+            cards.append(j.toDict())
+    return {'cards': cards}
 
 @card.route('/update', methods=['PUT'])
 def update():
