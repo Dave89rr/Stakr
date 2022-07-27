@@ -4,18 +4,27 @@ import { thunkCreateStack } from "../../../store/stacks";
 import { useParams } from "react-router-dom";
 import classes from "./StacksForm.module.css";
 
-function StacksForm(positionNum) {
+function StacksForm() {
   const [name, setName] = useState("");
   const [form, setForm] = useState(1);
   const user = useSelector((state) => state.session.user);
   const { workspaceId, boardId } = useParams();
-  let position = positionNum.positionNum;
 
-  const test = useSelector((state) => state.workspaces[workspaceId]);
-  let stacks;
-
-  if (test) {
-    stacks = test.stacks;
+  const workspaces = useSelector((state) => state.workspaces[workspaceId]);
+  const stacks = workspaces.stacks;
+  let position;
+  if (workspaces && stacks) {
+    // calculate new stack position:
+    let stackIds = Object.values(stacks).map((ele) => ele.id.toString());
+    let filterStackIds = stackIds.filter(
+      (id) => stacks[id].boardId === parseInt(boardId)
+    );
+    let sortedStacks = filterStackIds.sort(
+      (a, b) => stacks[a].position - stacks[b].position
+    );
+    position = sortedStacks.length;
+  } else if (workspaces && !stacks) {
+    position = 0;
   }
 
   const dispatch = useDispatch();
@@ -45,7 +54,7 @@ function StacksForm(positionNum) {
           setForm(2);
         }}
       >
-        + Add another stack
+        {stacks && Object.values(stacks).length?'+ Add another stack':'+ Add stack'}
       </div>
     );
   }
