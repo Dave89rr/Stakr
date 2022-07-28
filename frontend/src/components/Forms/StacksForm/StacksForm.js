@@ -65,8 +65,8 @@ function StacksForm() {
     <div className={classes.stackForm}>
       <div>
         <form onSubmit={handleSubmit}>
+          <label htmlFor="name">Name</label>
           <div>
-            <label htmlFor="name">Name</label>
             <input
               name="name"
               type="text"
