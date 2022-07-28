@@ -1,5 +1,5 @@
 .stackWrapper {
-    height: 100%;
+    height: fit-content;
     margin-right: 20px;
 }
 
@@ -28,4 +28,5 @@
 .stackContent {
     overflow-y: auto;
     padding: 0px 8px;
+    color: #172b4d;
 }

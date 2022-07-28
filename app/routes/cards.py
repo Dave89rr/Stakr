@@ -39,12 +39,9 @@ def update_data():
     data=request.json
 
     card = Cards.query.get(data['id'])
-    card.stackId = data['stackId']
-    card.username = data['username']
     card.name = data['name']
     card.color=data['color']
     card.description = data['description']
-    card.position = data['position']
 
     db.session.commit()
 
