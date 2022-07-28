@@ -73,6 +73,7 @@ function StacksForm() {
               placeholder="Enter Stack Title..."
               value={name}
               onChange={(e) => setName(e.target.value)}
+              required
             />
             <button type="submit">Create Stack</button>
           </div>
