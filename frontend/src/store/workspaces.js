@@ -246,14 +246,11 @@ const workspaces = (state = {}, action) => {
     }
 
     case CREATE_CARDS: {
-      const card = action.card;
-      const workspaceId = action.workspaceId;
-
-      let newCardObj = { ...state[workspaceId].cards };
-      newCardObj[card.id] = card;
-      newState[workspaceId].cards = newCardObj;
+      const { card, workspaceId } = action.payload;
+      newState[workspaceId].cards[card.id] = card;
       return newState;
     }
+
     case UPDATE_CARD: {
       const card = action.payload.card;
       const orderList = action.payload.orderList;

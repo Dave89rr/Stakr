@@ -19,8 +19,7 @@ export const DELETE_CARD = 'card/DELETE_CARD';
 const actionCreateCard = (card, workspaceId) => {
   return {
     type: CREATE_CARDS,
-    card,
-    workspaceId,
+    payload: { card, workspaceId },
   };
 };
 
