@@ -33,6 +33,7 @@
 .addCard {
   cursor: pointer;
   color: #172b4d;
+  padding-bottom: 3px;
 }
 
 .nameText {
