@@ -11,9 +11,9 @@ import {
 import { thunkGetCards, thunkUpdateCard } from "../../../store/cards";
 
 import classes from "./BoardPage.module.css";
+import uniclass from "../pagesuniversal.module.css"
 import Stack from "../../Elements/Stack/Stack";
 import StacksForm from "../../Forms/StacksForm/StacksForm";
-import boards from "../../../store/boards";
 
 function BoardPage() {
   const workspaces = useSelector((state) => state.workspaces);
@@ -162,8 +162,11 @@ function BoardPage() {
     }
   };
 
+  let color;
+  if (loaded) color=workspaces[workspaceId].boards[boardId].color;
+
   return (
-    <div className={classes.containerWrapper}>
+    <div className={`${classes.containerWrapper} ${uniclass[color]}`}>
       <h1>
         {boardData.name}
       </h1>
