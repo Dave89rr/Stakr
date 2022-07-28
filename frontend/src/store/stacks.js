@@ -40,11 +40,10 @@ const actionUpdateStack = (stack) => {
   };
 };
 
-const actionUpdateStackOrder = (stacks, boardId) => {
+const actionUpdateStackOrder = (stacks, workspaceId) => {
   return {
     type: UPDATE_STACK_ORDER,
-    stacks,
-    boardId,
+    payload: { stacks, workspaceId },
   };
 };
 
@@ -114,20 +113,21 @@ export const thunkUpdateStack = (stack) => async (dispatch) => {
   }
 };
 
-export const thunkUpdateStackOrder = (stacks, boardId) => async (dispatch) => {
-  const response = await fetch(`/api/s/updateOrder`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ stacks, boardId }),
-  });
+export const thunkUpdateStackOrder =
+  (stacks, boardId, workspaceId) => async (dispatch) => {
+    const response = await fetch(`/api/s/updateOrder`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ stacks, boardId }),
+    });
 
-  if (response.ok) {
-    const data = await response.json();
-    return dispatch(actionUpdateStackOrder(data.stacks, data.boardId));
-  }
-};
+    if (response.ok) {
+      const data = await response.json();
+      return dispatch(actionUpdateStackOrder(data.stacks, workspaceId));
+    }
+  };
 
 export const thunkDeleteStack = (payload) => async (dispatch) => {
   const { stackId, workspaceId } = payload;

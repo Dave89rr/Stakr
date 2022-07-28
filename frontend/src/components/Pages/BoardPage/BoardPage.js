@@ -102,7 +102,7 @@ function BoardPage() {
       newStackOrder.splice(source.index, 1);
       newStackOrder.splice(destination.index, 0, draggableId);
       sortedStacks = newStackOrder;
-      await dispatch(thunkUpdateStackOrder(sortedStacks, boardId));
+      await dispatch(thunkUpdateStackOrder(sortedStacks, boardId, workspaceId));
       setDisabled(false);
     }
     if (type === 'row') {

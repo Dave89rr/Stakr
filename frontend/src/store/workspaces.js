@@ -217,18 +217,17 @@ const workspaces = (state = {}, action) => {
       return newState;
     }
 
-    case UPDATE_STACK_ORDER:
-      const updatedStacks = action.stacks;
-
-      if (updatedStacks.length) {
-        let obj = newState[updatedStacks[0].workspaceId].stacks;
-        updatedStacks.forEach((stack) => {
+    case UPDATE_STACK_ORDER: {
+      const { stacks, workspaceId } = action.payload;
+      if (stacks.length) {
+        let obj = newState[workspaceId].stacks;
+        stacks.forEach((stack) => {
           obj[stack.id].position = stack.position;
         });
-        newState[updatedStacks[0].workspaceId].stacks = obj;
+        newState[workspaceId].stacks = obj;
       }
-
       return newState;
+    }
 
     // ==== cards ==== //
     case GET_CARDS: {
