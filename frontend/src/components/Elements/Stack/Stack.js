@@ -55,20 +55,33 @@ const Stack = ({ data, disabled, cards, cardOrder, setCardOrder }) => {
                   className={classes.stackContent}
                 >
                   {cardOrder[data.id]?.map((ele, i) => {
-                    return <Card data={cards[ele.id]} pos={i} key={ele.id} cardOrder={cardOrder} setCardOrder={setCardOrder} />;
-                  })}
-                  {provided.placeholder}
-                  {form === "False" ? (
-                    <div onClick={(e) => setForm("True")}>+ New Card</div>
-                    ) : (
-                      <CreateCard
-                        stackId={data.id}
-                        disabled={disabled}
-                        setForm={setForm}
+                    return (
+                      <Card
+                        data={cards[ele.id]}
+                        pos={i}
+                        key={ele.id}
                         cardOrder={cardOrder}
                         setCardOrder={setCardOrder}
                       />
-                    )}
+                    );
+                  })}
+                  {provided.placeholder}
+                  {form === "False" ? (
+                    <div
+                      className={classes.addCard}
+                      onClick={(e) => setForm("True")}
+                    >
+                      + New Card
+                    </div>
+                  ) : (
+                    <CreateCard
+                      stackId={data.id}
+                      disabled={disabled}
+                      setForm={setForm}
+                      cardOrder={cardOrder}
+                      setCardOrder={setCardOrder}
+                    />
+                  )}
                 </div>
               )}
             </Droppable>
