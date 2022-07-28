@@ -46,6 +46,8 @@ const SignUpPage = () => {
     return <Redirect to="/" />;
   }
 
+  // if (username != 2) errors.push("this is a test");
+
   return (
     <div className={classes.mainContainer}>
       <div className={classes.formContainer}>
@@ -102,7 +104,7 @@ const SignUpPage = () => {
             </div>
             <button
               disabled={!!errors.length}
-              className={classes.signupError}
+              className={classes.signup}
               type="submit"
             >
               Sign Up
