@@ -318,9 +318,7 @@ const workspaces = (state = {}, action) => {
 
     case DELETE_CARD: {
       newState = { ...state };
-      const cardId = action.cardId;
-      const workspaceId = action.workspaceId;
-
+      const { cardId, workspaceId } = action;
       delete newState[workspaceId].cards[cardId];
       return newState;
     }
