@@ -55,7 +55,7 @@ const Stack = ({ data, disabled, cards, cardOrder, setCardOrder }) => {
                   className={classes.stackContent}
                 >
                   {cardOrder[data.id]?.map((ele, i) => {
-                    return <Card data={cards[ele.id]} pos={i} key={ele.id} />;
+                    return <Card data={cards[ele.id]} pos={i} key={ele.id} cardOrder={cardOrder} setCardOrder={setCardOrder} />;
                   })}
                   {provided.placeholder}
                   {form === "False" ? (
