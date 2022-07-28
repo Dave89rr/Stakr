@@ -21,8 +21,6 @@ const UPDATE_WORKSPACE = 'workspace/UPDATE_WORKSPACE';
 
 const DELETE_WORKSPACE = 'workspace/DELETE_WORKSPACE';
 
-// const GET_ALL_BS = "workspace/GET_ALL_BS";
-
 // ==== Actions ==== //
 
 const actionCreateWorkspace = (workspace) => {
@@ -64,13 +62,6 @@ const actionLogoutWorkspace = () => {
     type: LOGOUT_WORKSPACE,
   };
 };
-
-// const actionGetAllBS = (userId) => {
-//   return {
-//     type: GET_ALL_BS,
-//     userId,
-//   };
-// };
 
 // ==== Thunks ==== //
 
@@ -161,10 +152,11 @@ const workspaces = (state = {}, action) => {
       return newState;
     }
 
-    case GET_WORKSPACE:
-      const workspace = action.workspace.workspaces;
+    case GET_WORKSPACE: {
+      const { workspace } = action;
       newState[workspace.id] = workspace;
       return newState;
+    }
 
     case GET_WORKSPACES:
       const workspaces = action.workspace.workspaces;
