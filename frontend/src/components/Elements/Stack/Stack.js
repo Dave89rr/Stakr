@@ -30,7 +30,8 @@ const Stack = ({ data, disabled, cards, cardOrder, setCardOrder }) => {
           <div className={classes.stack}>
             <div className={classes.stackTitle} {...provided.dragHandleProps}>
               {data.name}
-              <button
+              <div
+                className={classes.trahCan}
                 onClick={(e) => {
                   e.preventDefault();
                   const payload = {
@@ -40,8 +41,8 @@ const Stack = ({ data, disabled, cards, cardOrder, setCardOrder }) => {
                   dispatch(thunkDeleteStack(payload));
                 }}
               >
-                Del
-              </button>
+                X
+              </div>
             </div>
             <Droppable
               droppableId={`drop:${data.id}`}
