@@ -30,10 +30,10 @@ const actionCreateWorkspace = (workspace) => {
   };
 };
 
-const actionGetUserWorkspaces = (workspace) => {
+const actionGetUserWorkspaces = (workspaces) => {
   return {
     type: GET_WORKSPACES,
-    workspace,
+    workspaces,
   };
 };
 const actionGetWorkspace = (workspace) => {
@@ -90,7 +90,7 @@ export const thunkGetAllWorkspaces = (ownerId) => async (dispatch) => {
 
   if (response.ok) {
     const allUserWorkspaces = await response.json();
-    dispatch(actionGetUserWorkspaces(allUserWorkspaces));
+    dispatch(actionGetUserWorkspaces(allUserWorkspaces.workspaces));
   }
 };
 
@@ -158,13 +158,13 @@ const workspaces = (state = {}, action) => {
       return newState;
     }
 
-    case GET_WORKSPACES:
-      const workspaces = action.workspace.workspaces;
+    case GET_WORKSPACES: {
+      const { workspaces } = action;
       workspaces.forEach((workspace) => {
         newState[workspace.id] = workspace;
       });
-
       return newState;
+    }
 
     case UPDATE_WORKSPACE:
       const workspaceData = action.workspace;
