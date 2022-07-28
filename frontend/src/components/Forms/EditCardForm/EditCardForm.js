@@ -17,10 +17,7 @@ function EditCardForm({ setDisplay, data, cardOrder, setCardOrder }) {
     e.preventDefault();
     const card = {
       id: data.id,
-      stackId: data.stackId,
-      username: user.username,
       name,
-      position: data.position,
       description,
       color,
     };
