@@ -1,46 +1,48 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { thunkCreateCard } from '../../../store/cards';
-import classes from './EditCardForm.module.css';
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { thunkUpdateCardData, thunkDeleteCard } from "../../../store/cards";
+import classes from "./EditCardForm.module.css";
+import { useParams } from "react-router-dom";
 
-function EditCardForm(stackId, positionNum) {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [color, setColor] = useState('White');
-  const [display, setDisplay] = useState(true);
+function EditCardForm({ setDisplay, data, cardOrder, setCardOrder }) {
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [color, setColor] = useState("White");
+  const { workspaceId } = useParams();
+
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
-  let position = positionNum.positionNum;
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const card = {
-      stackId,
+      id: data.id,
+      stackId: data.stackId,
       username: user.username,
       name,
-      position,
+      position: data.position,
       description,
       color,
     };
 
     if (card) {
-      // dispatch(thunkCreateCard(card));
-      setName('');
-      setColor('White');
-      setDescription('');
-      setDisplay('none');
+      dispatch(thunkUpdateCardData(card, workspaceId));
+      setName("");
+      console.log(card);
+      setColor("White");
+      setDescription("");
+      setDisplay(false);
     }
   };
 
   return (
     <>
-      <div className={classes.background} style={{ display: display }}></div>
-      <div className={classes.container} style={{ display: display }}>
+      <div className={classes.background}></div>
+      <div className={classes.container}>
         <div>
           <div
             className={classes.closeModel}
             onClick={(e) => {
-              setDisplay('none');
+              setDisplay(false);
             }}
           >
             x
@@ -66,15 +68,15 @@ function EditCardForm(stackId, positionNum) {
                     color="color"
                     onChange={(e) => setColor(e.target.value)}
                   >
-                    <option value={'White'}>White</option>
-                    <option value={'Red'}>Red</option>
-                    <option value={'Orange'}>Orange</option>
-                    <option value={'Blue'}>Blue</option>
-                    <option value={'Yellow'}>Yellow</option>
-                    <option value={'Green'}>Green</option>
-                    <option value={'Purple'}>Purple</option>
-                    <option value={'Pink'}>Pink</option>
-                    <option value={'Grey'}>Grey</option>
+                    <option value={"White"}>White</option>
+                    <option value={"Red"}>Red</option>
+                    <option value={"Orange"}>Orange</option>
+                    <option value={"Blue"}>Blue</option>
+                    <option value={"Yellow"}>Yellow</option>
+                    <option value={"Green"}>Green</option>
+                    <option value={"Purple"}>Purple</option>
+                    <option value={"Pink"}>Pink</option>
+                    <option value={"Grey"}>Grey</option>
                   </select>
                 </div>
                 <label htmlFor="description">Description</label>
@@ -97,7 +99,11 @@ function EditCardForm(stackId, positionNum) {
               className={classes.delButton}
               onClick={(e) => {
                 e.preventDefault();
-                setDisplay('none');
+                setDisplay(false);
+                const newOrder = { ...cardOrder };
+                newOrder[data.stackId].splice(data.position, 1);
+                setCardOrder(newOrder);
+                dispatch(thunkDeleteCard(data.id, workspaceId));
               }}
             >
               Delete Card

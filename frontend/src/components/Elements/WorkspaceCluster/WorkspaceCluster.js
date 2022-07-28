@@ -55,11 +55,12 @@ function WorkspaceCluster({ id }) {
           </div>
         </div>
         <div className={classes.boardsContainer}>
+          <>
           {boards && boards.length > 0 ? (
             boards.map((ele, i) => {
               return <BoardCard data={ele} key={i} />;
             })
-          ) : (
+          ):null}
             <div
               className={classes.createBoardcard}
               onClick={() => setShowBoardForm(true)}
@@ -74,7 +75,7 @@ function WorkspaceCluster({ id }) {
                 <span>Create New Board</span>
               )}
             </div>
-          )}
+          </>
         </div>
       </div>
     );

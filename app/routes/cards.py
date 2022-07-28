@@ -18,6 +18,13 @@ def create():
     db.session.commit()
     return new_card.toDict()
 
+@card.route('/delete', methods=['DELETE'])
+def delete():
+    data = request.json
+    Cards.query.filter_by(id=data).delete()
+    db.session.commit()
+    return 'Brandon is a very cute boy who fixed dnd'
+
 @card.route('/all/<boardId>')
 def getAll(boardId):
     stacks = Stacks.query.filter_by(boardId=boardId).all()
@@ -26,6 +33,24 @@ def getAll(boardId):
         for j in i.cards:
             cards.append(j.toDict())
     return {'cards': cards}
+
+@card.route('/updatedata', methods=['PUT'])
+def update_data():
+    data=request.json
+
+    card = Cards.query.get(data['id'])
+    card.stackId = data['stackId']
+    card.username = data['username']
+    card.name = data['name']
+    card.color=data['color']
+    card.description = data['description']
+    card.position = data['position']
+
+    db.session.commit()
+
+    return card.toDict()
+
+
 
 @card.route('/update', methods=['PUT'])
 def update():
@@ -48,6 +73,10 @@ def update():
             cur.position = data['orderList'].index(i)
 
     db.session.commit()
+
+
+
+
 
     return {
         "card": card.toDict(),
