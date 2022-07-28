@@ -37,6 +37,9 @@ function BoardCard({ data }) {
       case 'Grey':
         setBgc(classes.grey);
         break;
+      default:
+        setBgc(classes.white);
+        break;
     }
   }, []);
 
