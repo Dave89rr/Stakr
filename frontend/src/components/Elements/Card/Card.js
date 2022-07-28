@@ -20,7 +20,7 @@ function Card({ data, pos, disabled, cardOrder, setCardOrder }) {
         <div
           ref={provided.innerRef}
           {...provided.draggableProps}
-          className={classes.cardContainer}
+          className={`${classes.cardContainer} ${classes[data.color]}`}
         >
           <div className={classes.dragHandle} {...provided.dragHandleProps}>
             <p className={classes.description}>{data.name}</p>

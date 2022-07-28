@@ -1,6 +1,7 @@
 .background {
   position: absolute;
   top: 45px;
+  left: 0px;
   background-color: black;
   padding-top: 5vh;
   opacity: 70%;
