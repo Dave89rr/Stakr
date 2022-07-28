@@ -30,7 +30,9 @@ const Stack = ({ data, disabled, cards, cardOrder, setCardOrder }) => {
           <div className={classes.stack}>
             <div className={classes.stackTitle} {...provided.dragHandleProps}>
               {data.name}
-              <button
+              <div
+                className={classes.trashCan}
+                style={{ cursor: "pointer" }}
                 onClick={(e) => {
                   e.preventDefault();
                   const payload = {
@@ -40,8 +42,8 @@ const Stack = ({ data, disabled, cards, cardOrder, setCardOrder }) => {
                   dispatch(thunkDeleteStack(payload));
                 }}
               >
-                Del
-              </button>
+                X
+              </div>
             </div>
             <Droppable
               droppableId={`drop:${data.id}`}
@@ -55,20 +57,33 @@ const Stack = ({ data, disabled, cards, cardOrder, setCardOrder }) => {
                   className={classes.stackContent}
                 >
                   {cardOrder[data.id]?.map((ele, i) => {
-                    return <Card data={cards[ele.id]} pos={i} key={ele.id} cardOrder={cardOrder} setCardOrder={setCardOrder} />;
-                  })}
-                  {provided.placeholder}
-                  {form === "False" ? (
-                    <div onClick={(e) => setForm("True")}>+ New Card</div>
-                    ) : (
-                      <CreateCard
-                        stackId={data.id}
-                        disabled={disabled}
-                        setForm={setForm}
+                    return (
+                      <Card
+                        data={cards[ele.id]}
+                        pos={i}
+                        key={ele.id}
                         cardOrder={cardOrder}
                         setCardOrder={setCardOrder}
                       />
-                    )}
+                    );
+                  })}
+                  {provided.placeholder}
+                  {form === "False" ? (
+                    <div
+                      className={classes.addCard}
+                      onClick={(e) => setForm("True")}
+                    >
+                      + New Card
+                    </div>
+                  ) : (
+                    <CreateCard
+                      stackId={data.id}
+                      disabled={disabled}
+                      setForm={setForm}
+                      cardOrder={cardOrder}
+                      setCardOrder={setCardOrder}
+                    />
+                  )}
                 </div>
               )}
             </Droppable>

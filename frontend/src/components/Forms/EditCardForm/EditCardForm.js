@@ -5,13 +5,14 @@ import classes from "./EditCardForm.module.css";
 import { useParams } from "react-router-dom";
 
 function EditCardForm({ setDisplay, data, cardOrder, setCardOrder }) {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [color, setColor] = useState("White");
+  const [name, setName] = useState(data.name);
+  const [description, setDescription] = useState(data.description);
+  const [color, setColor] = useState(data.color);
   const { workspaceId } = useParams();
 
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const card = {
@@ -23,10 +24,7 @@ function EditCardForm({ setDisplay, data, cardOrder, setCardOrder }) {
 
     if (card) {
       dispatch(thunkUpdateCardData(card, workspaceId));
-      setName("");
       console.log(card);
-      setColor("White");
-      setDescription("");
       setDisplay(false);
     }
   };
@@ -56,6 +54,7 @@ function EditCardForm({ setDisplay, data, cardOrder, setCardOrder }) {
                     placeholder="Enter a card name..."
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    required
                   />
                 </div>
                 <div>
@@ -85,6 +84,7 @@ function EditCardForm({ setDisplay, data, cardOrder, setCardOrder }) {
                     placeholder="Enter your card description..."
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
+                    required
                   />
                 </div>
                 <button type="submit" className={classes.subButton}>
