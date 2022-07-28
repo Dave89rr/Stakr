@@ -23,9 +23,9 @@ function CreateCard({ stackId, setForm, cardOrder, setCardOrder }) {
 
     setName("");
     setForm("False");
-    const newCard = await dispatch(thunkCreateCard(card, workspaceId))
+    const newCard = await dispatch(thunkCreateCard(card, workspaceId));
 
-    const newCardOrder = {...cardOrder}
+    const newCardOrder = { ...cardOrder };
     let curOrder;
     if (newCardOrder[stackId]) {
       curOrder = newCardOrder[stackId];
@@ -36,7 +36,7 @@ function CreateCard({ stackId, setForm, cardOrder, setCardOrder }) {
     }
     setCardOrder(newCardOrder);
   };
-  console.log(cardOrder)
+  console.log(cardOrder);
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -48,6 +48,7 @@ function CreateCard({ stackId, setForm, cardOrder, setCardOrder }) {
             placeholder="Enter Card Name..."
             value={name}
             onChange={(e) => setName(e.target.value)}
+            required
           />
           <button type="submit">Create Card</button>
         </div>
