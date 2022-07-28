@@ -46,7 +46,7 @@ function BoardPage() {
           filterStackIds.forEach((id) => {
             let stackCards = Object.values(cards).filter(
               (ele) => ele.stackId === id
-              );
+            ).sort((a, b) => a.position-b.position);
               cardsObj[id] = stackCards;
             });
 
@@ -178,24 +178,22 @@ function BoardPage() {
               ref={provided.innerRef}
               className={classes.stackContainer}
             >
-              <div className={classes.stackContainer}>
-                {stacks
-                  ? sortedStacks.map((ele) => {
-                      return (
-                        <Stack
-                          data={stacks[ele]}
-                          disabled={disabled}
-                          cards={cards}
-                          cardOrder={cardOrder}
-                          setCardOrder={setCardOrder}
-                          key={stacks[ele].id}
-                        />
-                      );
-                    })
-                  : null}
-                {provided.placeholder}
-                <StacksForm />
-              </div>
+              {stacks
+                ? sortedStacks.map((ele) => {
+                    return (
+                      <Stack
+                        data={stacks[ele]}
+                        disabled={disabled}
+                        cards={cards}
+                        cardOrder={cardOrder}
+                        setCardOrder={setCardOrder}
+                        key={stacks[ele].id}
+                      />
+                    );
+                  })
+                : null}
+              {provided.placeholder}
+              <StacksForm />
             </div>
           )}
         </Droppable>
