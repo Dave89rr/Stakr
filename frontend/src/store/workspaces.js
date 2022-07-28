@@ -58,7 +58,7 @@ const actionDeleteWorkspace = (workspaceId) => {
   };
 };
 
-const actionLogoutWorkspace = () => {
+export const actionLogoutWorkspace = () => {
   return {
     type: LOGOUT_WORKSPACE,
   };
@@ -138,10 +138,6 @@ export const thunkDeleteWorkspace = (workspaceId) => async (dispatch) => {
   }
 };
 
-export const thunkLogoutWorkspace = () => async (dispatch) => {
-  dispatch(actionLogoutWorkspace());
-};
-
 //**************** Reducer **********************************//
 const workspaces = (state = {}, action) => {
   let newState = JSON.parse(JSON.stringify(state));
@@ -178,9 +174,7 @@ const workspaces = (state = {}, action) => {
       return newState;
 
     case LOGOUT_WORKSPACE:
-      newState = {};
-
-      return newState;
+      return {};
 
     // ==== boards ==== //
     case CREATE_BOARD:
