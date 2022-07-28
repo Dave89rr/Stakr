@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import classes from "./Card.module.css";
 
-function Card({ data, pos, disabled }) {
+function Card({ data, pos, disabled, cardOrder, setCardOrder }) {
   const [display, setDisplay] = useState(false);
   return (
     <Draggable
@@ -30,7 +30,7 @@ function Card({ data, pos, disabled }) {
             />
           </div>
           {display ? (
-            <EditCardForm setDisplay={setDisplay} data={data} />
+            <EditCardForm setDisplay={setDisplay} data={data} cardOrder={cardOrder} setCardOrder={setCardOrder} />
           ) : null}
         </div>
       )}

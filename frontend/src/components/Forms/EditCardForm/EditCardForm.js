@@ -4,7 +4,7 @@ import { thunkCreateCard, thunkDeleteCard } from "../../../store/cards";
 import classes from "./EditCardForm.module.css";
 import { useParams } from "react-router-dom";
 
-function EditCardForm({ stackId, positionNum, setDisplay, data }) {
+function EditCardForm({ setDisplay, data, cardOrder, setCardOrder }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [color, setColor] = useState("White");
@@ -12,15 +12,13 @@ function EditCardForm({ stackId, positionNum, setDisplay, data }) {
 
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
-  let position = positionNum;
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const card = {
-      stackId,
+      stackId: data.stackId,
       username: user.username,
       name,
-      position,
+      position: data.position,
       description,
       color,
     };
@@ -101,7 +99,9 @@ function EditCardForm({ stackId, positionNum, setDisplay, data }) {
               onClick={(e) => {
                 e.preventDefault();
                 setDisplay(false);
-                console.log(data.id);
+                const newOrder = {...cardOrder};
+                newOrder[data.stackId].splice(data.position, 1);
+                setCardOrder(newOrder);
                 dispatch(thunkDeleteCard(data.id, workspaceId));
               }}
             >

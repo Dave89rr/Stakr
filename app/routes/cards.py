@@ -19,7 +19,7 @@ def create():
     return new_card.toDict()
 
 @card.route('/delete', methods=['DELETE'])
-def del_taco():
+def delete():
     data = request.json
     Cards.query.filter_by(id=data).delete()
     db.session.commit()
