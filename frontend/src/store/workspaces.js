@@ -312,8 +312,7 @@ const workspaces = (state = {}, action) => {
 
     case UPDATE_CARD_DATA: {
       const { card, workspaceId } = action;
-      console.log(card);
-      console.log(newState[workspaceId].cards);
+      newState[workspaceId].cards[card.id] = card;
       return newState;
     }
 

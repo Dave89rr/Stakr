@@ -25,7 +25,7 @@ function EditCardForm({ setDisplay, data, cardOrder, setCardOrder }) {
     };
 
     if (card) {
-      dispatch(thunkUpdateCardData(card));
+      dispatch(thunkUpdateCardData(card, workspaceId));
       setName("");
       console.log(card);
       setColor("White");

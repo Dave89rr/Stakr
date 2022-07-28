@@ -118,6 +118,7 @@ export const thunkUpdateCard = (data, workspaceId) => async (dispatch) => {
 };
 
 export const thunkUpdateCardData = (data, workspaceId) => async (dispatch) => {
+  console.log(workspaceId);
   const response = await fetch(`/api/c/updatedata`, {
     method: "PUT",
     headers: {
