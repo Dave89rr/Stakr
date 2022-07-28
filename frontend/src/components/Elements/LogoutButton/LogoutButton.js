@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom";
 import { logout } from "../../../store/session";
 import { thunkLogoutWorkspace } from "../../../store/workspaces";
 
+import classes from "./Logout.module.css";
+
 const LogoutButton = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -13,7 +15,7 @@ const LogoutButton = () => {
     history.push('/login');
   };
 
-  return <button onClick={onLogout}>Logout</button>;
+  return <div className={classes.logoutButton} onClick={onLogout}>Logout</div>;
 };
 
 export default LogoutButton;
