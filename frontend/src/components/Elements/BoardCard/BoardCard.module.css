@@ -1,7 +1,54 @@
 .boardcard {
-  border-radius: 3px;
   width: 194px;
   height: 98px;
-  border: 1px solid blue;
+
+  padding: 8px;
   margin-bottom: 2%;
+
+  border-radius: 3px;
+  font-weight: 600
+}
+.boardcard:hover {
+  box-shadow: inset 0px 0px 1000px rgba(0, 0, 0, 0.2);
+}
+.boardcard > a {
+  text-decoration: none;
+}
+
+/* BG COLORS */
+.white {
+  background-color: rgb(221, 221, 221);
+  color: #172b4d;
+}
+.red {
+  background-color: #b04632;
+  color: #fff;
+}
+.orange {
+  background-color: #de7b2f;
+  color: #fff;
+}
+.blue {
+  background-color: #0079bf;
+  color: #fff;
+}
+.yellow {
+  background-color: #f0cd30;
+  color: #fff;
+}
+.green {
+  background-color: #4bbf6b;
+  color: #fff;
+}
+.purple {
+  background-color: #89609e;
+  color: #fff;
+}
+.pink {
+  background-color: #ff8ed4;
+  color: #fff;
+}
+.grey {
+  background-color: #838c91;
+  color: #fff;
 }

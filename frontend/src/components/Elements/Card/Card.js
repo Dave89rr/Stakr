@@ -6,6 +6,9 @@ import classes from "./Card.module.css";
 
 function Card({ data, pos, disabled, cardOrder, setCardOrder }) {
   const [display, setDisplay] = useState(false);
+
+  if (!data) return null;
+
   return (
     <Draggable
       draggableId={`drag:${data.id}`}
