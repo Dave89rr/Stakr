@@ -65,6 +65,7 @@
 }
 
 .nameText {
+  padding-top: 3px;
   font-weight: 500;
   color: #172b4d;
 }
