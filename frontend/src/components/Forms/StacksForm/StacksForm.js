@@ -64,7 +64,7 @@ function StacksForm() {
   return (
     <div className={classes.stackForm}>
       <div className={classes.formContainer}>
-        <form onSubmit={handleSubmit}>
+        <form>
           <label htmlFor="name" className={classes.nameText}>
             Name
           </label>
