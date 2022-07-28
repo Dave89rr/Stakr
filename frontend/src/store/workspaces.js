@@ -232,23 +232,19 @@ const workspaces = (state = {}, action) => {
     // ==== cards ==== //
     case GET_CARDS: {
       newState = { ...state };
-      const cards = action.cards.cards;
-      const workspaceId = action.workspaceId;
-
+      const { cards, workspaceId } = action.payload;
       if (cards.length) {
-        let cardsObj = { ...state[workspaceId].cards };
-
+        let cardsObj = { ...newState[workspaceId].cards };
         cards.forEach((card) => {
           cardsObj[card.id] = card;
         });
-
         if (cards.length) {
           newState[workspaceId].cards = cardsObj;
         }
       }
-
       return newState;
     }
+
     case CREATE_CARDS: {
       const card = action.card;
       const workspaceId = action.workspaceId;
