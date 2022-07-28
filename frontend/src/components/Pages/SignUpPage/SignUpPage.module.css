@@ -80,10 +80,14 @@
 }
 
 .loginLink {
-  color: blue;
+  color: #0052cc;
   font-size: 12px;
   display: flex;
   justify-content: center;
   height: 20px;
   cursor: pointer;
+}
+
+.loginLink:hover {
+  text-decoration: underline;
 }
