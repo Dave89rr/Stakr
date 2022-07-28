@@ -22,5 +22,33 @@ nav {
 }
 
 .userInteractionsContainer {
-  width: 7%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 300px;
+  height: 100%;
+}
+.userInteractionsContainer > a {
+  display: flex;
+  align-items: center;
+
+  height: 100%;
+  padding: 0 25px 0 25px;
+
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+  box-shadow: inset 0px 0px 0px rgba(0, 0, 0, 0.1);
+
+  transition: border-left .25s ease, border-right .25s ease;
+}
+.userInteractionsContainer > a:hover {
+  box-shadow: inset 0px 0px 15px rgba(0, 0, 0, 0.1);
+  border-left: 1px solid rgba(0, 76, 120, 0.4);
+  border-right: 1px solid rgba(0, 76, 120, 0.4);
 }
