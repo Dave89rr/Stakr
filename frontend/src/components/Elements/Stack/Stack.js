@@ -31,7 +31,8 @@ const Stack = ({ data, disabled, cards, cardOrder, setCardOrder }) => {
             <div className={classes.stackTitle} {...provided.dragHandleProps}>
               {data.name}
               <div
-                className={classes.trahCan}
+                className={classes.trashCan}
+                style={{ cursor: "pointer" }}
                 onClick={(e) => {
                   e.preventDefault();
                   const payload = {

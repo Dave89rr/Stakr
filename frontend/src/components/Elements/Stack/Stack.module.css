@@ -43,5 +43,13 @@
   color: #172b4d;
 }
 .trashCan {
-  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+}
+.trashCan:hover {
+  background-color: #d30303c2;
+  border-radius: 3px;
 }
