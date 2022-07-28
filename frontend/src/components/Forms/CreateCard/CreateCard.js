@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { thunkCreateCard } from "../../../store/cards";
+import classes from "../StacksForm/StacksForm.module.css";
 
 function CreateCard({ stackId, setForm, cardOrder, setCardOrder }) {
   const [name, setName] = useState("");
@@ -43,6 +44,7 @@ function CreateCard({ stackId, setForm, cardOrder, setCardOrder }) {
         <label htmlFor="name">Name</label>
         <div>
           <input
+            className={classes.formName}
             name="name"
             type="text"
             placeholder="Enter Card Name..."
@@ -50,7 +52,14 @@ function CreateCard({ stackId, setForm, cardOrder, setCardOrder }) {
             onChange={(e) => setName(e.target.value)}
             required
           />
-          <button type="submit">Create Card</button>
+          <div className={classes.formButtonHolder}>
+            <button className={classes.formButton} type="submit">
+              Create Card
+            </button>
+            <div className={classes.formClose} onClick={() => setForm("False")}>
+              X
+            </div>
+          </div>
         </div>
       </form>
     </div>
