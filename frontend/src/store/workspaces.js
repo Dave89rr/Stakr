@@ -4,7 +4,13 @@ import {
   UPDATE_STACK_ORDER,
   DELETE_STACK,
 } from "./stacks";
-import { GET_CARDS, UPDATE_CARD, CREATE_CARDS, DELETE_CARD } from "./cards";
+import {
+  GET_CARDS,
+  UPDATE_CARD,
+  CREATE_CARDS,
+  DELETE_CARD,
+  UPDATE_CARD_DATA,
+} from "./cards";
 import { CREATE_BOARD } from "./boards";
 
 // ==== Types ==== //
@@ -304,11 +310,15 @@ const workspaces = (state = {}, action) => {
       return newState;
     }
 
+    case UPDATE_CARD_DATA: {
+      const { card, workspaceId } = action;
+      newState[workspaceId].cards[card.id] = card;
+      return newState;
+    }
+
     case DELETE_CARD: {
       newState = { ...state };
-      const cardId = action.cardId;
-      const workspaceId = action.workspaceId;
-
+      const { cardId, workspaceId } = action;
       delete newState[workspaceId].cards[cardId];
       return newState;
     }

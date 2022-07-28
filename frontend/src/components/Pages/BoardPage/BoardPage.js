@@ -19,6 +19,9 @@ function BoardPage() {
   const dispatch = useDispatch();
 
   const { workspaceId, boardId } = useParams();
+  const boardData = useSelector(
+    (state) => state.workspaces[workspaceId].boards[boardId]
+  );
 
   const [loaded, setLoaded] = useState(false);
   const [disabled, setDisabled] = useState(false);
@@ -159,9 +162,7 @@ function BoardPage() {
 
   return (
     <div className={classes.containerWrapper}>
-      <h1>
-        BoardPage #{boardId} {workspaceId}
-      </h1>
+      <h1>{boardData.name}</h1>
       <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
         <Droppable droppableId="allStacks" direction="horizontal" type="column">
           {(provided) => (
