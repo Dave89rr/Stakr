@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { signUp } from "../../../store/session";
 
 import classes from "./SignUpPage.module.css";
 import uniCss from "../pagesuniversal.module.css";
 
 const SignUpPage = () => {
+  const history = useHistory();
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -106,6 +107,12 @@ const SignUpPage = () => {
             >
               Sign Up
             </button>
+            <p
+              onClick={() => history.push(`/login`)}
+              className={classes.loginLink}
+            >
+              Aleardy have an account? Login
+            </p>
           </form>
         </div>
       </div>
