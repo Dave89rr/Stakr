@@ -34,3 +34,8 @@
   cursor: pointer;
   color: #172b4d;
 }
+
+.nameText {
+  font-weight: 500;
+  color: #172b4d;
+}

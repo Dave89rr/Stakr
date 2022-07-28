@@ -63,3 +63,8 @@
   width: 100%;
   padding: 6px;
 }
+
+.nameText {
+  font-weight: 500;
+  color: #172b4d;
+}

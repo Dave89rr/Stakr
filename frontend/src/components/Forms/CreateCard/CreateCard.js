@@ -41,7 +41,9 @@ function CreateCard({ stackId, setForm, cardOrder, setCardOrder }) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name</label>
+        <label htmlFor="name" className={classes.nameText}>
+          Name
+        </label>
         <div>
           <input
             className={classes.formName}
