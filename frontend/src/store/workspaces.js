@@ -177,10 +177,11 @@ const workspaces = (state = {}, action) => {
       return {};
 
     // ==== boards ==== //
-    case CREATE_BOARD:
-      const wid = action.board.workspaceId;
-      newState[wid].boards[action.board.id] = action.board;
+    case CREATE_BOARD: {
+      const { workspaceId } = action.board;
+      newState[workspaceId].boards[action.board.id] = action.board;
       return newState;
+    }
 
     // ==== stacks ==== //
     case GET_STACKS:
