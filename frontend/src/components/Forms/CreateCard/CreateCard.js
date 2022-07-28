@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { thunkCreateCard } from "../../../store/cards";
+import classes from "../StacksForm/StacksForm.module.css";
 
 function CreateCard({ stackId, setForm, cardOrder, setCardOrder }) {
   const [name, setName] = useState("");
@@ -23,9 +24,9 @@ function CreateCard({ stackId, setForm, cardOrder, setCardOrder }) {
 
     setName("");
     setForm("False");
-    const newCard = await dispatch(thunkCreateCard(card, workspaceId))
+    const newCard = await dispatch(thunkCreateCard(card, workspaceId));
 
-    const newCardOrder = {...cardOrder}
+    const newCardOrder = { ...cardOrder };
     let curOrder;
     if (newCardOrder[stackId]) {
       curOrder = newCardOrder[stackId];
@@ -36,20 +37,28 @@ function CreateCard({ stackId, setForm, cardOrder, setCardOrder }) {
     }
     setCardOrder(newCardOrder);
   };
-  console.log(cardOrder)
+  console.log(cardOrder);
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">Name</label>
           <input
+            className={classes.formName}
             name="name"
             type="text"
             placeholder="Enter Card Name..."
             value={name}
             onChange={(e) => setName(e.target.value)}
+            required
           />
-          <button type="submit">Create Card</button>
+          <div className={classes.formButtonHolder}>
+            <button className={classes.formButton} type="submit">
+              Create Card
+            </button>
+            <div className={classes.formClose} onClick={() => setForm("False")}>
+              X
+            </div>
+          </div>
         </div>
       </form>
     </div>
