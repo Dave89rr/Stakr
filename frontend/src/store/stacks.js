@@ -48,10 +48,10 @@ const actionUpdateStackOrder = (stacks, boardId) => {
   };
 };
 
-const actionDeleteStack = (stackData) => {
+const actionDeleteStack = (payload) => {
   return {
     type: DELETE_STACK,
-    stackData,
+    payload,
   };
 };
 
@@ -129,8 +129,8 @@ export const thunkUpdateStackOrder = (stacks, boardId) => async (dispatch) => {
   }
 };
 
-export const thunkDeleteStack = (stackData) => async (dispatch) => {
-  const stackId = stackData.stackId;
+export const thunkDeleteStack = (payload) => async (dispatch) => {
+  const { stackId, workspaceId } = payload;
   const response = await fetch(`/api/s/delete`, {
     method: 'DELETE',
     headers: {
@@ -140,7 +140,7 @@ export const thunkDeleteStack = (stackData) => async (dispatch) => {
   });
 
   if (response.ok) {
-    dispatch(actionDeleteStack(stackData));
+    dispatch(actionDeleteStack(payload));
   }
 };
 

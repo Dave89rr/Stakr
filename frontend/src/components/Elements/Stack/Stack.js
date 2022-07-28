@@ -1,18 +1,18 @@
-import { useState } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { Droppable, Draggable } from "react-beautiful-dnd";
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 
-import Card from "../Card";
-import { thunkDeleteStack } from "../../../store/stacks";
+import Card from '../Card';
+import { thunkDeleteStack } from '../../../store/stacks';
 
-import classes from "./Stack.module.css";
-import CreateCard from "../../Forms/CreateCard";
+import classes from './Stack.module.css';
+import CreateCard from '../../Forms/CreateCard';
 
 const Stack = ({ data, disabled, cards, cardOrder, setCardOrder }) => {
   const { workspaceId } = useParams();
   const dispatch = useDispatch();
-  const [form, setForm] = useState("False");
+  const [form, setForm] = useState('False');
 
   return (
     <Draggable
@@ -55,20 +55,28 @@ const Stack = ({ data, disabled, cards, cardOrder, setCardOrder }) => {
                   className={classes.stackContent}
                 >
                   {cardOrder[data.id]?.map((ele, i) => {
-                    return <Card data={cards[ele.id]} pos={i} key={ele.id} cardOrder={cardOrder} setCardOrder={setCardOrder} />;
-                  })}
-                  {provided.placeholder}
-                  {form === "False" ? (
-                    <div onClick={(e) => setForm("True")}>+ New Card</div>
-                    ) : (
-                      <CreateCard
-                        stackId={data.id}
-                        disabled={disabled}
-                        setForm={setForm}
+                    return (
+                      <Card
+                        data={cards[ele.id]}
+                        pos={i}
+                        key={ele.id}
                         cardOrder={cardOrder}
                         setCardOrder={setCardOrder}
                       />
-                    )}
+                    );
+                  })}
+                  {provided.placeholder}
+                  {form === 'False' ? (
+                    <div onClick={(e) => setForm('True')}>+ New Card</div>
+                  ) : (
+                    <CreateCard
+                      stackId={data.id}
+                      disabled={disabled}
+                      setForm={setForm}
+                      cardOrder={cardOrder}
+                      setCardOrder={setCardOrder}
+                    />
+                  )}
                 </div>
               )}
             </Droppable>

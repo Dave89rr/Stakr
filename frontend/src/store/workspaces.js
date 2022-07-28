@@ -211,11 +211,11 @@ const workspaces = (state = {}, action) => {
       return newState;
     }
 
-    case DELETE_STACK:
-      const { stackData } = action;
-      const wsId = parseInt(stackData.workspaceId, 10);
-      delete newState[wsId].stacks[stackData.stackId];
+    case DELETE_STACK: {
+      const { stackId, workspaceId } = action.payload;
+      delete newState[workspaceId].stacks[stackId];
       return newState;
+    }
 
     case UPDATE_STACK_ORDER:
       const updatedStacks = action.stacks;
