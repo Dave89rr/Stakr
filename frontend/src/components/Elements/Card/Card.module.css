@@ -11,10 +11,9 @@
     background-color: #ffffff;
 
     color: #172b4d;
-    box-shadow: 0 1px 0 #091e4240;
 }
 .cardContainer:hover {
-   background-color: #ffffff98;
+    box-shadow: inset 0px 0px 1000px rgba(0, 0, 0, 0.1);
 }
 
 .dragHandle {
@@ -30,9 +29,11 @@
     margin-bottom: 3px;
 
     border-radius: 3px;
+    background-color: #f4f5f7be;
 }
 .editButton:hover {
-    background-color: rgba(200, 200, 200, 0.5);
+    cursor: pointer;
+    background-color: #f4f5f7ed;
 }
 .pencil {
     width: 12px;
@@ -44,4 +45,52 @@
     padding: 0;
 
     font-size: 14px;
+    font-weight: 500;
+}
+
+/* BG COLORS */
+.White {
+    background-color: #fff;
+    box-shadow: 0 1px 0 #091e4240;
+    color: #172b4d;
+}
+.Red {
+    background-color: #EF7564;
+    box-shadow: 0 1px 0 #091e4240;
+    color: #172b4d;
+}
+.Orange {
+    background-color: #FFAF3F;
+    box-shadow: 0 1px 0 #091e4240;
+    color: #172b4d;
+}
+.Blue {
+    background-color: #5BA4CF;
+    box-shadow: 0 1px 0 #091e4240;
+    color: #172b4d;
+}
+.Yellow {
+    background-color: #F5DD29;
+    box-shadow: 0 1px 0 #091e4240;
+    color: #172b4d;
+}
+.Green {
+    background-color: #7BC86C;
+    box-shadow: 0 1px 0 #091e4240;
+    color: #172b4d;
+}
+.Purple {
+    background-color: #CD8DE5;
+    box-shadow: 0 1px 0 #091e4240;
+    color: #172b4d;
+}
+.Pink {
+    background-color: #FF8ED4;
+    box-shadow: 0 1px 0 #091e4240;
+    color: #172b4d;
+}
+.Grey {
+    background-color: #172B4D;
+    box-shadow: 0 1px 0 #091e4240;
+    color: #fff;
 }
