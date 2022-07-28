@@ -3,14 +3,14 @@ import classes from './Logo.module.css';
 function Logo({ user }) {
   const logo = (
     <img
-      className={classes.icons}
+      className={classes.icon}
       src="/media/icons/stakr-logo-white.svg"
       alt="stakr logo"
     />
   );
   const about = (
     <img
-      className={classes.icons}
+      className={classes.grid}
       src="/media/icons/abouticon.svg"
       alt="about icon"
     />
