@@ -1,6 +1,7 @@
 .mainContainer {
   width: 60%;
   margin: auto;
+  margin-top: 45px;
   border: 1px solid red;
 }
 
