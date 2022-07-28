@@ -26,9 +26,14 @@ function CreateCard({ stackId, setForm, cardOrder, setCardOrder }) {
     const newCard = await dispatch(thunkCreateCard(card, workspaceId))
 
     const newCardOrder = {...cardOrder}
-    const curOrder = newCardOrder[stackId];
-    curOrder.push(newCard);
-    newCardOrder[stackId] = curOrder;
+    let curOrder;
+    if (newCardOrder[stackId]) {
+      curOrder = newCardOrder[stackId];
+      curOrder.push(newCard);
+      newCardOrder[stackId] = curOrder;
+    } else {
+      newCardOrder[stackId] = [newCard];
+    }
     setCardOrder(newCardOrder);
   };
 
