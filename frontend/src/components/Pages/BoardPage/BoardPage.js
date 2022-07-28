@@ -1,19 +1,18 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 import {
   thunkGetAllStacks,
   thunkUpdateStackOrder,
-} from '../../../store/stacks';
-import { thunkGetCards, thunkUpdateCard } from '../../../store/cards';
+} from "../../../store/stacks";
+import { thunkGetCards, thunkUpdateCard } from "../../../store/cards";
 
-import classes from './BoardPage.module.css';
-import Stack from '../../Elements/Stack/Stack';
-import StacksForm from '../../Forms/StacksForm/StacksForm';
-import EditCardForm from '../../Forms/EditCardForm';
+import classes from "./BoardPage.module.css";
+import Stack from "../../Elements/Stack/Stack";
+import StacksForm from "../../Forms/StacksForm/StacksForm";
 
 function BoardPage() {
   const workspaces = useSelector((state) => state.workspaces);
@@ -24,7 +23,6 @@ function BoardPage() {
   const [loaded, setLoaded] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [cardOrder, setCardOrder] = useState({});
-  const [display, setDisplay] = useState('none');
 
   useEffect(() => {
     (async () => {
@@ -85,7 +83,7 @@ function BoardPage() {
   const onDragEnd = async (res) => {
     const { destination, source, draggableId, type } = res;
 
-    if (type === 'column') {
+    if (type === "column") {
       // dont do anything when dragged into the same spot as before
       if (
         destination.droppableId === source.droppableId &&
@@ -102,7 +100,7 @@ function BoardPage() {
       await dispatch(thunkUpdateStackOrder(sortedStacks, boardId));
       setDisabled(false);
     }
-    if (type === 'row') {
+    if (type === "row") {
       // dont do anything when dragged into the same spot as before
       if (
         (destination &&
@@ -114,8 +112,8 @@ function BoardPage() {
         return;
       }
 
-      const cardId = parseInt(res.draggableId.split(':')[1]);
-      const stackId = parseInt(res.destination.droppableId.split(':')[1]);
+      const cardId = parseInt(res.draggableId.split(":")[1]);
+      const stackId = parseInt(res.destination.droppableId.split(":")[1]);
 
       let orderList = Object.values(cards)
         .filter((ele) => {
@@ -132,7 +130,7 @@ function BoardPage() {
       const otherCards = Object.values(cards)
         .filter((ele) => {
           return (
-            ele.stackId === parseInt(res.source.droppableId.split(':')[1]) &&
+            ele.stackId === parseInt(res.source.droppableId.split(":")[1]) &&
             ele.id !== cardId
           );
         })
@@ -142,7 +140,7 @@ function BoardPage() {
       const newCardOrder = { ...cardOrder };
       const list = orderList.map((id) => cards[id]);
       const otherList = otherCards.map((id) => cards[id]);
-      newCardOrder[source.droppableId.split(':')[1]] = otherList;
+      newCardOrder[source.droppableId.split(":")[1]] = otherList;
       newCardOrder[stackId] = list;
       setCardOrder(newCardOrder);
 
@@ -161,7 +159,6 @@ function BoardPage() {
 
   return (
     <div className={classes.containerWrapper}>
-      <EditCardForm setDisplay={setDisplay} display={display} />
       <h1>
         BoardPage #{boardId} {workspaceId}
       </h1>
