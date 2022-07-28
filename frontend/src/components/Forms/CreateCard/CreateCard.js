@@ -36,7 +36,7 @@ function CreateCard({ stackId, setForm, cardOrder, setCardOrder }) {
     }
     setCardOrder(newCardOrder);
   };
-
+  console.log(cardOrder)
   return (
     <div>
       <form onSubmit={handleSubmit}>
