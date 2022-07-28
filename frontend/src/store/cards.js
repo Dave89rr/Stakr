@@ -10,7 +10,7 @@ export const UPDATE_CARD = "stack/UPDATE_CARD";
 
 const DELETE_CARDS = "stack/GET_CARDS";
 
-const DELETE_CARD = "stack/GET_CARD";
+export const DELETE_CARD = "stack/GET_CARD";
 
 // ==== Actions ==== //
 
@@ -51,10 +51,11 @@ const actionDeleteCards = (stackId) => {
   };
 };
 
-const actionDeleteCard = (cardId) => {
+const actionDeleteCard = (cardId, workspaceId) => {
   return {
     type: DELETE_CARD,
     cardId,
+    workspaceId,
   };
 };
 
@@ -73,11 +74,12 @@ export const thunkCreateCard = (card) => async (dispatch) => {
   if (response.ok) {
     const card = await response.json();
     dispatch(actionCreateCard(card, workspaceId));
+    return card;
   }
 };
 
-export const thunkGetCards = (stackId, workspaceId) => async (dispatch) => {
-  const response = await fetch(`/api/c/all/${stackId}`, {
+export const thunkGetCards = (boardId, workspaceId) => async (dispatch) => {
+  const response = await fetch(`/api/c/all/${boardId}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -105,14 +107,17 @@ export const thunkUpdateCard = (data, workspaceId) => async (dispatch) => {
   }
 };
 
-export const thunkDeleteCard = (cardId) => async (dispatch) => {
+export const thunkDeleteCard = (cardId, workspaceId) => async (dispatch) => {
   const response = await fetch(`/api/c/delete`, {
     method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(cardId),
   });
 
   if (response.ok) {
-    dispatch(actionDeleteCard(cardId));
+    dispatch(actionDeleteCard(cardId, workspaceId));
   }
 };
 
