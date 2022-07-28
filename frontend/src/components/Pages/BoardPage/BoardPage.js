@@ -46,7 +46,7 @@ function BoardPage() {
           filterStackIds.forEach((id) => {
             let stackCards = Object.values(cards).filter(
               (ele) => ele.stackId === id
-              );
+            ).sort((a, b) => a.position-b.position);
               cardsObj[id] = stackCards;
             });
 
@@ -120,17 +120,21 @@ function BoardPage() {
       const cardId = parseInt(res.draggableId.split(":")[1]);
       const stackId = parseInt(res.destination.droppableId.split(":")[1]);
 
+      console.log(cardOrder[stackId])
+
       let orderList = Object.values(cards)
         .filter((ele) => {
           return ele.stackId === stackId;
         })
         .map((ele) => ele.id)
         .sort((a, b) => cards[a].position - cards[b].position);
+      console.log(orderList)
 
       if (orderList.includes(cardId)) {
         orderList.splice(source.index, 1);
       }
       orderList.splice(destination.index, 0, cardId);
+      console.log(orderList)
 
       const otherCards = Object.values(cards)
         .filter((ele) => {
@@ -147,6 +151,7 @@ function BoardPage() {
       const otherList = otherCards.map((id) => cards[id]);
       newCardOrder[source.droppableId.split(":")[1]] = otherList;
       newCardOrder[stackId] = list;
+      console.log(newCardOrder[stackId])
       setCardOrder(newCardOrder);
 
       const data = {
