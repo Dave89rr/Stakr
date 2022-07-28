@@ -1,10 +1,16 @@
 .containerWrapper {
-    height: 90vh;
+    position: relative;
+    top: 45px;
+    height: calc(100% - 45px);
+    margin: 0;
+}
+.containerWrapper > h1 {
+    margin: 0;
 }
 
 .stackContainer {
     display: flex;
-    height: 98%;
+    height: calc(100% - 45px);
     overflow-x: auto;
     padding-bottom: 8px;
 }

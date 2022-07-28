@@ -11,9 +11,9 @@ import {
 import { thunkGetCards, thunkUpdateCard } from "../../../store/cards";
 
 import classes from "./BoardPage.module.css";
+import uniclass from "../pagesuniversal.module.css"
 import Stack from "../../Elements/Stack/Stack";
 import StacksForm from "../../Forms/StacksForm/StacksForm";
-import boards from "../../../store/boards";
 
 function BoardPage() {
   const workspaces = useSelector((state) => state.workspaces);
@@ -163,7 +163,7 @@ function BoardPage() {
   };
 
   return (
-    <div className={classes.containerWrapper}>
+    <div className={`${classes.containerWrapper} ${uniclass.Red}`}>
       <h1>
         {boardData.name}
       </h1>
@@ -175,24 +175,22 @@ function BoardPage() {
               ref={provided.innerRef}
               className={classes.stackContainer}
             >
-              <div className={classes.stackContainer}>
-                {stacks
-                  ? sortedStacks.map((ele) => {
-                      return (
-                        <Stack
-                          data={stacks[ele]}
-                          disabled={disabled}
-                          cards={cards}
-                          cardOrder={cardOrder}
-                          setCardOrder={setCardOrder}
-                          key={stacks[ele].id}
-                        />
-                      );
-                    })
-                  : null}
-                {provided.placeholder}
-                <StacksForm />
-              </div>
+              {stacks
+                ? sortedStacks.map((ele) => {
+                    return (
+                      <Stack
+                        data={stacks[ele]}
+                        disabled={disabled}
+                        cards={cards}
+                        cardOrder={cardOrder}
+                        setCardOrder={setCardOrder}
+                        key={stacks[ele].id}
+                      />
+                    );
+                  })
+                : null}
+              {provided.placeholder}
+              <StacksForm />
             </div>
           )}
         </Droppable>
