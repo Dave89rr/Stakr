@@ -29,3 +29,37 @@
   justify-content: center;
   align-items: center;
 }
+
+.formButton {
+  border: none;
+  background-color: rgb(48, 126, 216);
+  color: white;
+  border-radius: 3px;
+}
+
+.formName {
+  display: flex;
+  width: 100%;
+  border: 2px solid rgb(48, 126, 216);
+  border-radius: 3px;
+}
+
+.formClose {
+  padding-left: 4%;
+
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+
+.formButtonHolder {
+  display: flex;
+  padding-top: 3px;
+}
+.formContainer {
+  width: 100%;
+  padding: 6px;
+}

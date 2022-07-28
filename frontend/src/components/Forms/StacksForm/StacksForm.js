@@ -63,11 +63,14 @@ function StacksForm() {
 
   return (
     <div className={classes.stackForm}>
-      <div>
+      <div className={classes.formContainer}>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name" style={{ fontWeight: "500", color: "#172b4d" }}>
+            Name
+          </label>
           <div>
             <input
+              className={classes.formName}
               name="name"
               type="text"
               placeholder="Enter Stack Title..."
@@ -75,7 +78,14 @@ function StacksForm() {
               onChange={(e) => setName(e.target.value)}
               required
             />
-            <button type="submit">Create Stack</button>
+            <div className={classes.formButtonHolder}>
+              <button className={classes.formButton} type="submit">
+                Add Stack
+              </button>
+              <div className={classes.formClose} onClick={() => setForm(1)}>
+                X
+              </div>
+            </div>
           </div>
         </form>
       </div>
