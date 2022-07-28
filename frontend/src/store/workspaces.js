@@ -36,6 +36,7 @@ const actionGetUserWorkspaces = (workspaces) => {
     workspaces,
   };
 };
+
 const actionGetWorkspace = (workspace) => {
   return {
     type: GET_WORKSPACE,
@@ -118,8 +119,8 @@ export const thunkUpdateWorkspace = (workspace) => async (dispatch) => {
   });
 
   if (response.ok) {
-    const workspaceData = await response.json();
-    dispatch(actionUpdateWorkspace(workspaceData));
+    const workspace = await response.json();
+    dispatch(actionUpdateWorkspace(workspace));
   }
 };
 
@@ -166,12 +167,11 @@ const workspaces = (state = {}, action) => {
       return newState;
     }
 
-    case UPDATE_WORKSPACE:
-      const workspaceData = action.workspace;
-      newState[workspaceData.id].name = workspaceData.name;
-      newState[workspaceData.id].ownerId = workspaceData.ownerId;
-      newState[workspaceData.id].updatedAt = workspaceData.updatedAt;
+    case UPDATE_WORKSPACE: {
+      const { workspace } = action;
+      newState[workspace.id] = { ...newState[workspace.id], ...workspace };
       return newState;
+    }
 
     case DELETE_WORKSPACE:
       delete newState[action.workspaceId];
