@@ -9,6 +9,8 @@
 
     border-radius: 3px;
     background-color: #ffffff;
+
+    color: #172b4d;
     box-shadow: 0 1px 0 #091e4240;
 }
 .cardContainer:hover {

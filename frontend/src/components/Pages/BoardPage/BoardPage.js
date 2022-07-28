@@ -162,8 +162,11 @@ function BoardPage() {
     }
   };
 
+  let color;
+  if (loaded) color=workspaces[workspaceId].boards[boardId].color;
+
   return (
-    <div className={`${classes.containerWrapper} ${uniclass.Red}`}>
+    <div className={`${classes.containerWrapper} ${uniclass[color]}`}>
       <h1>
         {boardData.name}
       </h1>

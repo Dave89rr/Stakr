@@ -6,11 +6,12 @@
 
 /* BG COLORS */
 .White {
-  background-color: rgb(221, 221, 221);
+  background-color: #fff;
   color: #172b4d;
 }
 .Red {
   background-color: #b04632;
+  color: #fff;
 }
 .Orange {
   background-color: #de7b2f;
@@ -21,7 +22,7 @@
   color: #fff;
 }
 .Yellow {
-  background-color: #f0cd30;
+  background-color: rgb(224, 184, 50);
   color: #fff;
 }
 .Green {
@@ -33,7 +34,7 @@
   color: #fff;
 }
 .Pink {
-  background-color: #ff8ed4;
+  background-color: rgb(205, 90, 145);
   color: #fff;
 }
 .Grey {
