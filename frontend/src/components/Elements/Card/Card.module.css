@@ -30,11 +30,17 @@
 
     border-radius: 3px;
     background-color: #f4f5f7be;
+    opacity: 0%;
+    transition: opacity .2s ease;
 }
 .editButton:hover {
     cursor: pointer;
     background-color: #f4f5f7ed;
 }
+.cardContainer:hover .editButton {
+    opacity: 100%;
+}
+
 .pencil {
     width: 12px;
     height: 12px;
