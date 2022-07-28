@@ -190,19 +190,18 @@ const workspaces = (state = {}, action) => {
     }
 
     // ==== stacks ==== //
-    case GET_STACKS:
-      const stacks = action.stack.stacks;
+    case GET_STACKS: {
+      newState = { ...state };
+      const { stacks, workspaceId } = action.payload;
       if (stacks.length) {
-        let stacksObj = { ...state[stacks[0].workspaceId].stacks };
-
+        let stacksObj = { ...newState[workspaceId].stacks };
         stacks.forEach((stack) => {
           stacksObj[stack.id] = stack;
         });
-
-        newState[stacks[0].workspaceId].stacks = stacksObj;
+        newState[workspaceId].stacks = stacksObj;
       }
-
       return newState;
+    }
 
     case CREATE_STACK:
       const stck = action.stack;

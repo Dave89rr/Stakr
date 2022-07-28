@@ -1,16 +1,16 @@
 // ==== Types ==== //
 
-export const CREATE_STACK = "stack/CREATE_STACK";
+export const CREATE_STACK = 'stack/CREATE_STACK';
 
-export const GET_STACK = "stack/GET_STACK";
+export const GET_STACK = 'stack/GET_STACK';
 
-export const GET_STACKS = "stack/GET_STACKS";
+export const GET_STACKS = 'stack/GET_STACKS';
 
-export const UPDATE_STACK = "stack/UPDATE_STACK";
+export const UPDATE_STACK = 'stack/UPDATE_STACK';
 
-export const UPDATE_STACK_ORDER = "stack/UPDATE_STACK_ORDER";
+export const UPDATE_STACK_ORDER = 'stack/UPDATE_STACK_ORDER';
 
-export const DELETE_STACK = "stack/DELETE_STACK";
+export const DELETE_STACK = 'stack/DELETE_STACK';
 
 // ==== Actions ==== //
 const actionCreateStack = (stack) => {
@@ -20,10 +20,10 @@ const actionCreateStack = (stack) => {
   };
 };
 
-const actionGetUserStacks = (stack) => {
+const actionGetUserStacks = (stacks, workspaceId) => {
   return {
     type: GET_STACKS,
-    stack,
+    payload: { stacks, workspaceId },
   };
 };
 const actionGetStack = (stack) => {
@@ -59,9 +59,9 @@ const actionDeleteStack = (stackData) => {
 
 export const thunkCreateStack = (stack) => async (dispatch) => {
   const response = await fetch(`/api/s/create`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(stack),
   });
@@ -71,25 +71,25 @@ export const thunkCreateStack = (stack) => async (dispatch) => {
   }
 };
 
-export const thunkGetAllStacks = (boardId) => async (dispatch) => {
+export const thunkGetAllStacks = (boardId, workspaceId) => async (dispatch) => {
   const response = await fetch(`/api/s/all/${boardId}`, {
-    method: "GET",
+    method: 'GET',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   });
 
   if (response.ok) {
     const allUserStacks = await response.json();
-    dispatch(actionGetUserStacks(allUserStacks));
+    dispatch(actionGetUserStacks(allUserStacks.stacks, workspaceId));
   }
 };
 
 export const thunkGetStack = (stackId) => async (dispatch) => {
   const response = await fetch(`/api/s/${stackId}`, {
-    method: "GET",
+    method: 'GET',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   });
 
@@ -101,9 +101,9 @@ export const thunkGetStack = (stackId) => async (dispatch) => {
 
 export const thunkUpdateStack = (stack) => async (dispatch) => {
   const response = await fetch(`/api/s/update`, {
-    method: "PUT",
+    method: 'PUT',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(stack),
   });
@@ -116,9 +116,9 @@ export const thunkUpdateStack = (stack) => async (dispatch) => {
 
 export const thunkUpdateStackOrder = (stacks, boardId) => async (dispatch) => {
   const response = await fetch(`/api/s/updateOrder`, {
-    method: "PUT",
+    method: 'PUT',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({ stacks, boardId }),
   });
@@ -132,9 +132,9 @@ export const thunkUpdateStackOrder = (stacks, boardId) => async (dispatch) => {
 export const thunkDeleteStack = (stackData) => async (dispatch) => {
   const stackId = stackData.stackId;
   const response = await fetch(`/api/s/delete`, {
-    method: "DELETE",
+    method: 'DELETE',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(stackId),
   });
