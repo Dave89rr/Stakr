@@ -94,7 +94,7 @@
   display: flex;
   justify-content: space-evenly;
   margin: 1% 1% 1% 1%;
-  padding: 0 15%;
+  padding: 0 18%;
   height: fit-content;
 }
 
@@ -117,12 +117,16 @@
   text-align: left;
   max-width: 300px;
   line-height: 1.33333;
+  margin-right: 10%;
 }
 
 .bottomImgs {
   height: 75.67px;
   width: 62.98px;
   padding-top: 20%;
-  margin-top: 20%;
-  margin: 0 0 0 4%;
+  margin: 10% 20px 0 4%;
+}
+
+.sectionContainer {
+  display: flex;
 }
