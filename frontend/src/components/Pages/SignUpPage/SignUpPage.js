@@ -24,6 +24,7 @@ const SignUpPage = () => {
         setErrors(data);
       }
     }
+    return setErrors(["Passwords didn't match"]);
   };
 
   const updateUsername = (e) => {
@@ -46,19 +47,19 @@ const SignUpPage = () => {
     return <Redirect to="/" />;
   }
 
-  // if (username != 2) errors.push("this is a test");
-
   return (
     <div className={classes.mainContainer}>
       <div className={classes.formContainer}>
         <img src="/media/icons/stakr-logo.svg" className={classes.logo} />
         <div>
           <form onSubmit={onSignUp} className={classes.form}>
-            <div>
-              {errors.map((error, ind) => (
-                <div key={ind}>{error}</div>
-              ))}
-            </div>
+            {errors.length ? (
+              <div className={classes.error}>
+                {errors.map((error, ind) => (
+                  <div key={ind}>{error}</div>
+                ))}
+              </div>
+            ) : null}
             <div className={classes.signupText}>Sign up for your account</div>
 
             <div>
@@ -102,11 +103,7 @@ const SignUpPage = () => {
                 required={true}
               ></input>
             </div>
-            <button
-              disabled={!!errors.length}
-              className={classes.signup}
-              type="submit"
-            >
+            <button className={classes.signup} type="submit">
               Sign Up
             </button>
             <p
