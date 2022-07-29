@@ -1,13 +1,16 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../store/session";
-import { actionLogoutWorkspace } from '../../../store/workspaces';
+import { actionLogoutWorkspace } from "../../../store/workspaces";
+import { useHistory } from "react-router-dom";
 
 const LogoutButton = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const onLogout = async (e) => {
     await dispatch(actionLogoutWorkspace());
     await dispatch(logout());
+    history.push("/");
   };
 
   return <button onClick={onLogout}>Logout</button>;
