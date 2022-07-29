@@ -11,6 +11,7 @@ import SignUpPage from './components/Pages/SignUpPage';
 import UserHomepage from './components/Pages/UserHomepage';
 import Workspace from './components/Pages/Workspace/Workspace';
 import ProtectedRoute from './components/utils/ProtectedRoute';
+import Footer from './components/Elements/Footer'
 
 import { authenticate } from './store/session';
 import { thunkGetAllWorkspaces } from './store/workspaces';
@@ -65,6 +66,7 @@ function App() {
           <Redirect to="/" />
         </Route>
       </Switch>
+      <Footer user={user}/>
     </BrowserRouter>
   );
 }
