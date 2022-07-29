@@ -30,68 +30,74 @@ function HomePage() {
         </div>
         <div className={classes.line}></div>
         <div className={classes.bottom}>
-          <div>
-            <img
-              className={classes.bottomImgs}
-              src="/media/icons/compass.svg"
-            ></img>
-          </div>
-          <div className={classes.bottomContainer}>
-            <p className={classes.subHeader}>Discover Stakr</p>{" "}
-            <p className={classes.subText}>
-              The productivity tool teams love, paired with the features and
-              security needed for scale.
-            </p>
-            <div
-              className={classes.button}
-              onClick={(e) => {
-                history.push("/signup");
-              }}
-            >
-              Sign up
+          <div className={classes.sectionContainer}>
+            <div>
+              <img
+                className={classes.bottomImgs}
+                src="/media/icons/compass.svg"
+              ></img>
+            </div>
+            <div className={classes.bottomContainer}>
+              <p className={classes.subHeader}>Discover Stakr</p>{" "}
+              <p className={classes.subText}>
+                The productivity tool teams love, paired with the features and
+                security needed for scale.
+              </p>
+              <div
+                className={classes.button}
+                onClick={(e) => {
+                  history.push("/signup");
+                }}
+              >
+                Sign up
+              </div>
             </div>
           </div>
-          <div>
-            <img
-              className={classes.bottomImgs}
-              src="/media/icons/solutions.svg"
-            ></img>
+          <div className={classes.sectionContainer}>
+            <div>
+              <img
+                className={classes.bottomImgs}
+                src="/media/icons/solutions.svg"
+              ></img>
+            </div>
+            <div className={classes.bottomContainer}>
+              <p className={classes.subHeader}>What is Stakr?</p>{" "}
+              <p className={classes.subText}>
+                Stakr is the visual tool that empowers your team to manage any
+                type of project, workflow, or task tracking.
+              </p>
+              <a
+                href="https://github.com/Dave89rr/Stakr"
+                target="_blank"
+                rel="noreferrer"
+                className={classes.button}
+              >
+                Learn More
+              </a>
+            </div>
           </div>
-          <div className={classes.bottomContainer}>
-            <p className={classes.subHeader}>What is Stakr?</p>{" "}
-            <p className={classes.subText}>
-              Stakr is the visual tool that empowers your team to manage any
-              type of project, workflow, or task tracking.
-            </p>
-            <a
-              href="https://github.com/Dave89rr/Stakr"
-              target="_blank"
-              rel="noreferrer"
-              className={classes.button}
-            >
-              Learn More
-            </a>
-          </div>
-          <div>
-            <img
-              className={classes.bottomImgs}
-              src="/media/icons/solutions.svg"
-            ></img>
-          </div>
-          <div className={classes.bottomContainer}>
-            <p className={classes.subHeader}>Inspiration</p>{" "}
-            <p className={classes.subText}>
-              Our inspiration for this project comes from Trello. Go checkout
-              there products and see why we love it so much we made a clone!
-            </p>
-            <a
-              href="https://trello.com/"
-              target="_blank"
-              rel="noreferrer"
-              className={classes.button}
-            >
-              To Trello
-            </a>
+          <div className={classes.sectionContainer}>
+            <div>
+              <img
+                className={classes.bottomImgs}
+                src="/media/icons/solutions.svg"
+              ></img>
+            </div>
+            <div className={classes.bottomContainer}>
+              <p className={classes.subHeader}>Inspiration</p>{" "}
+              <p className={classes.subText}>
+                Our inspiration for this project comes from Trello. Go checkout
+                there products and see why we love it so much we made a clone!
+              </p>
+              <a
+                href="https://trello.com/"
+                target="_blank"
+                rel="noreferrer"
+                className={classes.button}
+              >
+                To Trello
+              </a>
+            </div>
           </div>
         </div>
       </div>
