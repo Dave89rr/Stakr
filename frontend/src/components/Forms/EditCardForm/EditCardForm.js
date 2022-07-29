@@ -62,7 +62,7 @@ function EditCardForm({ setDisplay, data, cardOrder, setCardOrder }) {
                     color={color}
                     onChange={(e) => setColor(e.target.value)}
                   >
-                    <option value={data.color}>{data.color}</option>
+                    <option value={data.color}>Choose a color</option>
                     <option value={"White"}>White</option>
                     <option value={"Red"}>Red</option>
                     <option value={"Orange"}>Orange</option>
