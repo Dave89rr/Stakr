@@ -28,7 +28,7 @@ function BoardPage() {
   useEffect(() => {
     (async () => {
       if (workspaces[workspaceId]) {
-        await dispatch(thunkGetAllStacks(boardId));
+        await dispatch(thunkGetAllStacks(boardId, workspaceId));
         setLoaded(true);
       }
       if (workspaces[workspaceId] && workspaces[workspaceId].stacks) {
@@ -102,7 +102,7 @@ function BoardPage() {
       newStackOrder.splice(source.index, 1);
       newStackOrder.splice(destination.index, 0, draggableId);
       sortedStacks = newStackOrder;
-      await dispatch(thunkUpdateStackOrder(sortedStacks, boardId));
+      await dispatch(thunkUpdateStackOrder(sortedStacks, boardId, workspaceId));
       setDisabled(false);
     }
     if (type === "row") {
