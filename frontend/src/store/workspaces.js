@@ -278,7 +278,6 @@ const workspaces = (state = {}, action) => {
     }
 
     case DELETE_CARD: {
-      newState = { ...state };
       const { cardId, workspaceId } = action;
       delete newState[workspaceId].cards[cardId];
       return newState;
@@ -290,7 +289,3 @@ const workspaces = (state = {}, action) => {
 };
 
 export default workspaces;
-
-/* action to get boards/stakcs in here create cases in reducer for them
-reducer will copy state and call reducer
-*/
