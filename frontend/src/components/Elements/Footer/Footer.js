@@ -33,7 +33,7 @@ const Footer = ({ user }) => {
                 <div className={classes.personContainer}>
                     <p>David Rivera</p>
                     <span>
-                        <a href='https://www.google.com'>
+                        <a href='https://www.linkedin.com/in/david-rivera-rocha-6428982b/' target='_blank' rel="noreferrer">
                             <span className={classes.logoTitle}>
                                 Linkedin
                                 <img className={classes.img} src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt='linkedin logo'/>

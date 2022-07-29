@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import NavBar from './components/Elements/Navbar/NavBar';
@@ -42,7 +42,11 @@ function App() {
       <NavBar user={user} />
       <Switch>
         <Route exact path="/">
-          {user ? <Redirect to={`/${user.username}/boards`} /> : <HomePage />}
+          {user ? <Redirect to={`/${user.username}/boards`} /> :
+          <>
+          <HomePage />
+          <Footer user={user}/>
+          </>}
         </Route>
         <Route exact path="/login">
           <LoginPage />
@@ -66,7 +70,6 @@ function App() {
           <Redirect to="/" />
         </Route>
       </Switch>
-      <Footer user={user}/>
     </BrowserRouter>
   );
 }
