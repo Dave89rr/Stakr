@@ -4,7 +4,7 @@ function WorkspaceButton({ name, plural }) {
     <div className={classes.btnContainer}>
       <img
         className={classes.icon}
-        src={`/media/icons/${name}.svg`}
+        src={`/static/icons/${name}.svg`}
         alt={`${name} button`}
       />
       <span>{`${name}${plural}`}</span>

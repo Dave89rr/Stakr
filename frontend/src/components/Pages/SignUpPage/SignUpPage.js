@@ -52,7 +52,7 @@ const SignUpPage = () => {
   return (
     <div className={classes.mainContainer}>
       <div className={classes.formContainer}>
-        <img src="/media/icons/stakr-logo.svg" className={classes.logo} />
+        <img src="/static/icons/stakr-logo.svg" className={classes.logo} />
         <div>
           <form onSubmit={onSignUp} className={classes.form}>
             {errors.length ? (
