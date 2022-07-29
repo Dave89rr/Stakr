@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import WorkspacesForm from '../../Forms/WorkspacesForm/WorkspacesForm';
+import WorkspaceDropdownCard from './WorkspaceDropdownCard'
 import classes from "./Menu.module.css";
 
 function Menu({ innerRef, wsView, setWsView }) {
   const user = useSelector((state) => state.session.user);
+  const workspaces = useSelector((state) => state.workspaces);
 
   const [toggleView, setToggleView] = useState(false);
 
@@ -30,16 +32,17 @@ function Menu({ innerRef, wsView, setWsView }) {
         </span>
         {wsView?
           <div className={classes.wsDropdown}>
-            <p>Workspaces</p>
-            <p>Workspaces</p>
-            <p>Workspaces</p>
-            <p>Workspaces</p>
-            <p>Workspaces</p>
-            <p>Workspaces</p>
-            <p>Workspaces</p>
-            <p>Workspaces</p>
-            <p>Workspaces</p>
-            <p>Workspaces</p>
+            <div className={classes.wsdTitle}>
+              <span>Workspaces</span>
+            </div>
+            <div className={classes.wsdContent}>
+              <p className={classes.wsdContentTitle}>Your Workspaces</p>
+              {Object.values(workspaces).length>0 ?
+                Object.values(workspaces).map(ws => {
+                  return <WorkspaceDropdownCard data={ws}/>
+                })
+              :<p className={classes.noWsp}>No workspaces...</p>}
+            </div>
           </div>:null}
       </div>
       {user && (
