@@ -30,6 +30,12 @@ function HomePage() {
         </div>
         <div className={classes.line}></div>
         <div className={classes.bottom}>
+          <div>
+            <img
+              className={classes.bottomImgs}
+              src="/media/icons/compass.svg"
+            ></img>
+          </div>
           <div className={classes.bottomContainer}>
             <p className={classes.subHeader}>Discover Stakr</p>{" "}
             <p className={classes.subText}>
@@ -45,6 +51,12 @@ function HomePage() {
               Sign up
             </div>
           </div>
+          <div>
+            <img
+              className={classes.bottomImgs}
+              src="/media/icons/solutions.svg"
+            ></img>
+          </div>
           <div className={classes.bottomContainer}>
             <p className={classes.subHeader}>What is Stakr?</p>{" "}
             <p className={classes.subText}>
@@ -59,6 +71,12 @@ function HomePage() {
             >
               Learn More
             </a>
+          </div>
+          <div>
+            <img
+              className={classes.bottomImgs}
+              src="/media/icons/solutions.svg"
+            ></img>
           </div>
           <div className={classes.bottomContainer}>
             <p className={classes.subHeader}>Inspiration</p>{" "}
