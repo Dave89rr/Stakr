@@ -36,11 +36,11 @@ const actionGetCard = (cardId) => {
   };
 };
 
-const actionUpdateCard = (payload, workspaceId) => {
+//current
+const actionUpdateCard = (payload) => {
   return {
     type: UPDATE_CARD,
     payload,
-    workspaceId,
   };
 };
 
@@ -111,12 +111,11 @@ export const thunkUpdateCard = (data, workspaceId) => async (dispatch) => {
 
   if (response.ok) {
     const cardData = await response.json();
-    return dispatch(actionUpdateCard(cardData, workspaceId));
+    return dispatch(actionUpdateCard({ ...cardData, id: workspaceId }));
   }
 };
 
 export const thunkUpdateCardData = (data, workspaceId) => async (dispatch) => {
-  console.log(workspaceId);
   const response = await fetch(`/api/c/updatedata`, {
     method: 'PUT',
     headers: {

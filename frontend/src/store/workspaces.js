@@ -15,17 +15,17 @@ import { CREATE_BOARD } from './boards';
 
 // ==== Types ==== //
 
-const LOGOUT_WORKSPACE = "workspace/LOGOUT_WORKSPACE";
+const LOGOUT_WORKSPACE = 'workspace/LOGOUT_WORKSPACE';
 
-const CREATE_WORKSPACE = "workspace/CREATE_WORKSPACE";
+const CREATE_WORKSPACE = 'workspace/CREATE_WORKSPACE';
 
-const GET_WORKSPACE = "workspace/GET_WORKSPACE";
+const GET_WORKSPACE = 'workspace/GET_WORKSPACE';
 
-const GET_WORKSPACES = "workspace/GET_WORKSPACES";
+const GET_WORKSPACES = 'workspace/GET_WORKSPACES';
 
-const UPDATE_WORKSPACE = "workspace/UPDATE_WORKSPACE";
+const UPDATE_WORKSPACE = 'workspace/UPDATE_WORKSPACE';
 
-const DELETE_WORKSPACE = "workspace/DELETE_WORKSPACE";
+const DELETE_WORKSPACE = 'workspace/DELETE_WORKSPACE';
 
 // ==== Actions ==== //
 
@@ -74,9 +74,9 @@ export const actionLogoutWorkspace = () => {
 
 export const thunkCreateWorkspace = (workspace) => async (dispatch) => {
   const response = await fetch(`/api/w/create`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(workspace),
   });
@@ -89,9 +89,9 @@ export const thunkCreateWorkspace = (workspace) => async (dispatch) => {
 
 export const thunkGetAllWorkspaces = (ownerId) => async (dispatch) => {
   const response = await fetch(`/api/w/all/${ownerId}`, {
-    method: "GET",
+    method: 'GET',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   });
 
@@ -103,9 +103,9 @@ export const thunkGetAllWorkspaces = (ownerId) => async (dispatch) => {
 
 export const thunkGetWorkspace = (workspaceId) => async (dispatch) => {
   const response = await fetch(`/api/w/${workspaceId}`, {
-    method: "GET",
+    method: 'GET',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   });
 
@@ -117,9 +117,9 @@ export const thunkGetWorkspace = (workspaceId) => async (dispatch) => {
 
 export const thunkUpdateWorkspace = (workspace) => async (dispatch) => {
   const response = await fetch(`/api/w/update`, {
-    method: "PUT",
+    method: 'PUT',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(workspace),
   });
@@ -132,9 +132,9 @@ export const thunkUpdateWorkspace = (workspace) => async (dispatch) => {
 
 export const thunkDeleteWorkspace = (workspaceId) => async (dispatch) => {
   const response = await fetch(`/api/w/delete`, {
-    method: "DELETE",
+    method: 'DELETE',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({ workspaceId }),
   });
@@ -252,14 +252,9 @@ const workspaces = (state = {}, action) => {
     }
 
     case UPDATE_CARD: {
-      const card = action.payload.card;
-      const orderList = action.payload.orderList;
-      const otherCards = action.payload.otherCards;
-      const id = action.workspaceId;
-
-      let newCardObj = { ...state[id].cards };
+      const { card, orderList, otherCards, id } = action.payload;
+      let newCardObj = { ...newState[id].cards };
       newCardObj[card.id] = card;
-
       if (otherCards.length && !orderList.includes(otherCards[0])) {
         otherCards.forEach((id, i) => {
           newCardObj[id].position = i;
@@ -272,9 +267,7 @@ const workspaces = (state = {}, action) => {
           newCardObj[id].position = i;
         });
       }
-
       newState[id].cards = newCardObj;
-
       return newState;
     }
 
