@@ -1,5 +1,6 @@
 # Folders #
 ###########
+static
 node_modules
 .vs
 work/m2/w4/test/assessment-for-sprint-04-version-a-pt-8-tdd-and-oop

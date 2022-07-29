@@ -34,7 +34,7 @@ function HomePage() {
             <div>
               <img
                 className={classes.bottomImgs}
-                src="/media/icons/compass.svg"
+                src="/static/icons/compass.svg"
               ></img>
             </div>
             <div className={classes.bottomContainer}>
@@ -57,7 +57,7 @@ function HomePage() {
             <div>
               <img
                 className={classes.bottomImgs}
-                src="/media/icons/solutions.svg"
+                src="/static/icons/solutions.svg"
               ></img>
             </div>
             <div className={classes.bottomContainer}>
@@ -80,7 +80,7 @@ function HomePage() {
             <div>
               <img
                 className={classes.bottomImgs}
-                src="/media/icons/solutions.svg"
+                src="/static/icons/solutions.svg"
               ></img>
             </div>
             <div className={classes.bottomContainer}>

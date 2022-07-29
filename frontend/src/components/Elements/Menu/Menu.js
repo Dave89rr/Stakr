@@ -26,7 +26,7 @@ function Menu({ innerRef, wsView, setWsView }) {
           Workspaces
           <img
             className={classes.dropArrow}
-            src="/media/icons/downarrow-white.svg"
+            src="/static/icons/downarrow-white.svg"
             alt="dropdown menu arrow"
           />
         </span>
