@@ -25,6 +25,10 @@
   color: #172b4d;
   font-size: 14px;
   font-weight: 600;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 }
 
 .stackContent {
@@ -36,6 +40,10 @@
   cursor: pointer;
   color: #172b4d;
   padding-bottom: 3px;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 }
 
 .nameText {
@@ -48,11 +56,33 @@
   align-items: center;
   width: 20px;
   height: 20px;
+  user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
 }
 .trashCan:hover {
-  background-color: #d30303c2;
+  background-color: #b1acac;
   border-radius: 3px;
+}
+
+.plusContainer {
+  display: flex;
+  align-items: center;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+
+.plus {
+  display: flex;
+  height: 4.2%;
+  width: 4.2%;
+  margin-right: 5px;
+  margin-left: 10px;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 }
