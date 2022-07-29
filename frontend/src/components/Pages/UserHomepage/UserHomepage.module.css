@@ -2,6 +2,12 @@
   display: flex;
   flex-direction: row;
 }
+.container * {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
 
 .workspacesMenu {
   display: flex;
@@ -20,6 +26,10 @@
 
 .workspacesView {
   width: 78.86%;
+}
+.workspacesView > h3 {
+  color: #5e6c84;
+  font-size: 16px;
 }
 
 .wsmTitle {

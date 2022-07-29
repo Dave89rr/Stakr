@@ -35,7 +35,12 @@ function WorkspaceCluster({ id }) {
             />
           ) : (
             <Link to={`/w/${data.id}/home`}>
-              <span>{data.name}</span>
+              <div className={classes.workspaceTitleContainer}>
+                <div className={classes.workspaceTitleLetter}>
+                  {data.name[0].toUpperCase()}
+                </div>
+                {data.name}
+              </div>
             </Link>
           )}
           <div className={classes.btnContainer}>

@@ -22,7 +22,7 @@ function UserHomepage() {
             }):<p className={classes.noWsYet}>No workspaces yet!</p>}
         </div>
         <div className={classes.workspacesView}>
-          <h3>Your Workspaces</h3>
+          <h3>YOUR WORKSPACES</h3>
           {Object.values(workspaces).map((ele) => {
             return ele ? <WorkspaceCluster key={ele.id} id={ele.id} /> : null;
           })}

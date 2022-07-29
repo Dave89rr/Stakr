@@ -11,6 +11,10 @@
   justify-content: space-between;
   align-items: center;
 }
+.clusterInteractions > a {
+  color: #172b4d;
+  text-decoration: none;
+}
 
 .btnContainer {
   display: flex;
@@ -31,4 +35,38 @@
   height: 98px;
   border: 1px solid blue;
   margin-bottom: 2%;
+}
+
+.workspaceTitleContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  min-width: 300px;
+
+  margin-bottom: 15px;
+  padding: 6px;
+
+  font-weight: 500;
+  border-radius: 3px;
+
+  transition: background-color .2s ease;
+}
+.workspaceTitleContainer:hover {
+  background-color: rgb(235, 235, 235);
+}
+
+.workspaceTitleLetter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 30px;
+  height: 30px;
+
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 3px;
+  color: white;
+  background: linear-gradient(#403294, #0747a6);
 }
