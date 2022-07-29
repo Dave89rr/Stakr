@@ -23,6 +23,9 @@
 }
 
 .form {
+  position: fixed;
+  top: 25%;
+  left: 40%;
   display: flex;
   border-radius: 3px;
   flex-direction: column;
@@ -32,6 +35,7 @@
   background-color: #ffffff;
   box-shadow: rgb(0 0 0 / 10%) 0 0 10px;
   padding: 60px 60px 0 60px;
+  z-index: 12;
 }
 
 .input {
@@ -106,4 +110,29 @@
   font-weight: 600;
   margin-bottom: 10px;
   padding: 4%;
+}
+
+.imgContainer {
+  position: absolute;
+  z-index: 0;
+  bottom: 0;
+  height: 90%;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.imgBottom {
+  height: 50%;
+  position: absolute;
+  bottom: 0;
+  width: 40%;
+}
+.imgBottomRight {
+  height: 50%;
+  position: absolute;
+  bottom: 0;
+  width: 40%;
+  left: 60%;
 }
