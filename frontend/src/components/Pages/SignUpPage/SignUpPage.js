@@ -102,7 +102,6 @@ const SignUpPage = () => {
                 placeholder="Confirm password"
                 onChange={updateRepeatPassword}
                 value={repeatPassword}
-                required={true}
               ></input>
             </div>
             <button className={classes.signup} type="submit">
