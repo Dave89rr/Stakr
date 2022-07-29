@@ -37,7 +37,7 @@ const LoginPage = () => {
     <div className={classes.mainContainer}>
       <div className={classes.formContainer}>
         <img src="/static/icons/stakr-logo.svg" className={classes.logo} />
-        <div>
+        <div className={classes.formWrapper}>
           <form onSubmit={onLogin} className={classes.form}>
             <div>
               {errors.map((error, ind) => (
@@ -77,6 +77,20 @@ const LoginPage = () => {
               Don't have an account? Sign up
             </p>
           </form>
+        </div>
+        <div className={classes.imgContainer}>
+          <div className={classes.right}>
+            <img
+              className={classes.imgBottom}
+              src="/static/icons/left-bg-login.svg"
+            />
+          </div>
+          <div className={classes.right}>
+            <img
+              className={classes.imgBottomRight}
+              src="/static/icons/right-bg-login.svg"
+            />
+          </div>
         </div>
       </div>
     </div>

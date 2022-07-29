@@ -1,4 +1,4 @@
-import classes from './WorkspaceButton.module.css';
+import classes from "./WorkspaceButton.module.css";
 function WorkspaceButton({ name, plural }) {
   return (
     <div className={classes.btnContainer}>

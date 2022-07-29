@@ -39,7 +39,7 @@ const Footer = ({ user }) => {
                                 <img className={classes.img} src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt='linkedin logo'/>
                             </span>
                         </a>
-                        <a href='https://www.google.com'>
+                        <a href='https://github.com/Dave89rr' target='_blank' rel="noreferrer">
                             <span className={classes.logoTitle}>
                                 Github
                                 <img className={classes.img} src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt='github logo'/>
@@ -67,13 +67,13 @@ const Footer = ({ user }) => {
                 <div className={classes.personContainer}>
                     <p>Justin Stockton</p>
                     <span>
-                        <a href='https://www.google.com'>
+                        <a href='https://github.com/Justin-Stockton' target='_blank' rel="noreferrer">
                         <span className={classes.logoTitle}>
                             Linkedin
                             <img className={classes.img} src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt='linkedin logo'/>
                         </span>
                         </a>
-                        <a href='https://www.google.com'>
+                        <a href='https://github.com/Justin-Stockton' target='_blank' rel="noreferrer">
                         <span className={classes.logoTitle}>
                             Github
                             <img className={classes.img} src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt='github logo'/>
