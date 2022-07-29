@@ -16,13 +16,13 @@ function Menu({ innerRef, wsView, setWsView }) {
   };
 
   const handleDropdown = () => {
-    setWsView(true);
+    setWsView(!wsView);
   }
 
   const loggedinMenu = (
     <div className={classes.wsContainer}>
-      <div ref={innerRef} onClick={() => handleDropdown()}>
-        <span className={classes.wsButton}>
+      <div ref={innerRef}>
+        <span className={classes.wsButton} onClick={() => handleDropdown()}>
           Workspaces
           <img
             className={classes.dropArrow}
@@ -39,7 +39,7 @@ function Menu({ innerRef, wsView, setWsView }) {
               <p className={classes.wsdContentTitle}>Your Workspaces</p>
               {Object.values(workspaces).length>0 ?
                 Object.values(workspaces).map((ws, i) => {
-                  return <WorkspaceDropdownCard data={ws} setWsView={setWsView} wsView={wsView} key={i}/>
+                  return <WorkspaceDropdownCard data={ws} setWsView={setWsView} wsView={wsView} key={i} />
                 })
               :<p className={classes.noWsp}>No workspaces...</p>}
             </div>
