@@ -33,7 +33,12 @@ function Card({ data, pos, disabled, cardOrder, setCardOrder }) {
             />
           </div>
           {display ? (
-            <EditCardForm setDisplay={setDisplay} data={data} cardOrder={cardOrder} setCardOrder={setCardOrder} />
+            <EditCardForm
+              setDisplay={setDisplay}
+              data={data}
+              cardOrder={cardOrder}
+              setCardOrder={setCardOrder}
+            />
           ) : null}
         </div>
       )}
