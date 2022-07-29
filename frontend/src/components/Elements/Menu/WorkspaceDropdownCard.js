@@ -2,7 +2,12 @@ import classes from './WorkspaceDropdownCard.module.css';
 
 const WorkspaceDropdownCard = ({ data }) => {
     return (
-        <p className={classes.cardContainer}>{data.name}</p>
+        <div className={classes.cardContainer}>
+            <div className={classes.letter}>{data.name[0]}</div>
+            <p>
+                {data.name}
+            </p>
+        </div>
     );
 }
 

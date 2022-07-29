@@ -77,6 +77,11 @@
 
   color: #5e6c84;
   font-size: 14px;
+
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 }
 
 .wsdContentTitle {
@@ -85,6 +90,11 @@
   color: #5E6C84;
   font-weight: 500;
   font-size: 12px;
+
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 }
 
 .noWsp {
