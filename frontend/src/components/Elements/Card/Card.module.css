@@ -1,102 +1,114 @@
 .cardContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    width: 100%;
-    padding: 6px 8px 2px;
-    margin-bottom: 8px;
+  width: 100%;
+  padding: 6px 8px 2px;
+  margin-bottom: 8px;
 
-    border-radius: 3px;
-    background-color: #ffffff;
+  border-radius: 3px;
+  background-color: #ffffff;
 
-    color: #172b4d;
+  color: #172b4d;
 }
 .cardContainer:hover {
-    box-shadow: inset 0px 0px 1000px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0px 0px 1000px rgba(0, 0, 0, 0.1);
 }
 
 .dragHandle {
-    width: 100%;
+  width: 100%;
 }
 
 .editButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 25px;
-    height: 22px;
-    margin-bottom: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 22px;
+  margin-bottom: 3px;
 
-    border-radius: 3px;
-    background-color: #f4f5f7be;
-    opacity: 0%;
-    transition: opacity .2s ease;
+  border-radius: 3px;
+  background-color: #f4f5f7be;
+  opacity: 0%;
+  transition: opacity 0.2s ease;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 }
 .editButton:hover {
-    cursor: pointer;
-    background-color: #f4f5f7ed;
+  cursor: pointer;
+  background-color: #f4f5f7ed;
 }
 .cardContainer:hover .editButton {
-    opacity: 100%;
+  opacity: 100%;
 }
 
 .pencil {
-    width: 12px;
-    height: 12px;
+  width: 12px;
+  height: 12px;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 }
 
 .description {
-    margin: 0 0 4px;
-    padding: 0;
+  margin: 0 0 4px;
+  padding: 0;
 
-    font-size: 14px;
-    font-weight: 500;
+  font-size: 14px;
+  font-weight: 500;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 }
 
 /* BG COLORS */
 .White {
-    background-color: #fff;
-    box-shadow: 0 1px 0 #091e4240;
-    color: #172b4d;
+  background-color: #fff;
+  box-shadow: 0 1px 0 #091e4240;
+  color: #172b4d;
 }
 .Red {
-    background-color: #EF7564;
-    box-shadow: 0 1px 0 #091e4240;
-    color: #172b4d;
+  background-color: #ef7564;
+  box-shadow: 0 1px 0 #091e4240;
+  color: #172b4d;
 }
 .Orange {
-    background-color: #FFAF3F;
-    box-shadow: 0 1px 0 #091e4240;
-    color: #172b4d;
+  background-color: #ffaf3f;
+  box-shadow: 0 1px 0 #091e4240;
+  color: #172b4d;
 }
 .Blue {
-    background-color: #5BA4CF;
-    box-shadow: 0 1px 0 #091e4240;
-    color: #172b4d;
+  background-color: #5ba4cf;
+  box-shadow: 0 1px 0 #091e4240;
+  color: #172b4d;
 }
 .Yellow {
-    background-color: #F5DD29;
-    box-shadow: 0 1px 0 #091e4240;
-    color: #172b4d;
+  background-color: #f5dd29;
+  box-shadow: 0 1px 0 #091e4240;
+  color: #172b4d;
 }
 .Green {
-    background-color: #7BC86C;
-    box-shadow: 0 1px 0 #091e4240;
-    color: #172b4d;
+  background-color: #7bc86c;
+  box-shadow: 0 1px 0 #091e4240;
+  color: #172b4d;
 }
 .Purple {
-    background-color: #CD8DE5;
-    box-shadow: 0 1px 0 #091e4240;
-    color: #172b4d;
+  background-color: #cd8de5;
+  box-shadow: 0 1px 0 #091e4240;
+  color: #172b4d;
 }
 .Pink {
-    background-color: #FF8ED4;
-    box-shadow: 0 1px 0 #091e4240;
-    color: #172b4d;
+  background-color: #ff8ed4;
+  box-shadow: 0 1px 0 #091e4240;
+  color: #172b4d;
 }
 .Grey {
-    background-color: #172B4D;
-    box-shadow: 0 1px 0 #091e4240;
-    color: #fff;
+  background-color: #172b4d;
+  box-shadow: 0 1px 0 #091e4240;
+  color: #fff;
 }

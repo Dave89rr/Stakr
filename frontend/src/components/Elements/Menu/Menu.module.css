@@ -79,6 +79,7 @@
   font-size: 14px;
 
   user-select: none;
+  user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
@@ -87,10 +88,11 @@
 .wsdContentTitle {
   margin: 24px 0 12px 0;
 
-  color: #5E6C84;
+  color: #5e6c84;
   font-weight: 500;
   font-size: 12px;
 
+  user-select: none;
   user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;

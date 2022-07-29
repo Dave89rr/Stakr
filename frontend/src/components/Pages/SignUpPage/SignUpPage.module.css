@@ -11,6 +11,10 @@
 .logo {
   height: 100px;
   width: 200px;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 }
 
 .signupText {
@@ -69,6 +73,10 @@
   min-height: 30px;
   margin-top: 30px;
   cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 }
 
 .signup:hover {
@@ -128,6 +136,10 @@
   position: absolute;
   bottom: 0;
   width: 40%;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 }
 .imgBottomRight {
   height: 50%;
@@ -135,4 +147,8 @@
   bottom: 0;
   width: 40%;
   left: 60%;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 }
