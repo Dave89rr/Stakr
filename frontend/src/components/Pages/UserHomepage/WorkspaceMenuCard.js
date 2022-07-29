@@ -1,18 +1,47 @@
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+
 import classes from './UserHomepage.module.css';
+import uniclass from '../pagesuniversal.module.css';
 
 const WorkspaceMenuCard = ({ data }) => {
+    const [dropdown, setDropdown] = useState(false);
+
     return (
-        <div className={classes.cardContainer}>
+    <>
+        <div className={classes.cardContainer} onClick={() => setDropdown(!dropdown)}>
             <div className={classes.letter}>{data.name[0].toUpperCase()}</div>
             <div className={classes.cardText}>
                 {data.name}
-                <img
-                  className={classes.dropArrow}
-                  src="/static/icons/downarrow.svg"
-                  alt="dropdown menu arrow"
-                />
-            </div>
+                {Object.values(data.boards).length>0?
+                    <img
+                      className={classes.dropArrow}
+                      src="/static/icons/downarrow.svg"
+                      alt="dropdown menu arrow"
+                      style={dropdown?{transform:'scale(1, -1)'}:null}
+                    />
+                :null}
+                </div>
         </div>
+        {dropdown ?
+            Object.values(data.boards).map(board => {
+                return (
+                    <NavLink
+                        to={`/b/${board.workspaceId}/${board.id}/${board.name}`}
+                        style={{textDecoration: 'none'}}
+                    >
+                        <div
+                            className={`
+                                ${classes.boardCard}
+                                ${board.color!=='White' ?
+                                    uniclass[board.color] : classes.White }
+                            `}
+                        >{board.name}</div>
+                    </NavLink>
+                );
+            })
+        :null}
+    </>
     );
 }
 

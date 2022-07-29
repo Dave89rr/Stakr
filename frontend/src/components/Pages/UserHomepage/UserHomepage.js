@@ -10,6 +10,7 @@ function UserHomepage() {
   if (!workspaces) {
     return <h1>Loading...</h1>;
   }
+
   return (
     <div className={uniCss.mainContainer}>
       <div className={classes.container}>
