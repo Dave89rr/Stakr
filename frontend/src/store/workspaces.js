@@ -247,7 +247,13 @@ const workspaces = (state = {}, action) => {
 
     case CREATE_CARDS: {
       const { card, workspaceId } = action.payload;
-      newState[workspaceId].cards[card.id] = card;
+      if (newState[workspaceId].cards) {
+        newState[workspaceId].cards[card.id] = card;
+      } else {
+        const cardObj = {}
+        cardObj[card.id] = card
+        newState[workspaceId].cards = cardObj;
+      }
       return newState;
     }
 

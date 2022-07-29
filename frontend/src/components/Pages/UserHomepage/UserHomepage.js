@@ -12,7 +12,13 @@ function UserHomepage() {
   return (
     <div className={uniCss.mainContainer}>
       <div className={classes.container}>
-        <div className={classes.workspacesMenu}></div>
+        <div className={classes.workspacesMenu}>
+          <p className={classes.wsmTitle}>Workspaces</p>
+          {Object.values(workspaces).length>0 ?
+            Object.values(workspaces).map(ws => {
+              return <p>{ws.name}</p>
+            }):<p className={classes.noWsYet}>No workspaces yet!</p>}
+        </div>
         <div className={classes.workspacesView}>
           <h3>Your Workspaces</h3>
           {Object.values(workspaces).map((ele) => {

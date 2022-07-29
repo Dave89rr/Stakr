@@ -4,6 +4,8 @@
 }
 
 .workspacesMenu {
+  display: flex;
+  flex-direction: column;
   width: 21.13%;
   border: 1px dashed blue;
 }
@@ -11,4 +13,18 @@
 .workspacesView {
   width: 78.86%;
   border: 1px dashed red;
+}
+
+.wsmTitle {
+  font-size: 14px;
+  font-weight: 500;
+  color: #5e6c84;
+  user-select: none;
+}
+
+.noWsYet {
+  font-size: 14px;
+  font-weight: 500;
+  color: #5e6c84;
+  user-select: none;
 }
