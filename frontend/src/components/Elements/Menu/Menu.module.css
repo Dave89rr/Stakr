@@ -17,7 +17,7 @@
   margin: 0px 0px 2px 25px;
 }
 
-.wsContainer > span {
+.wsButton {
   display: flex;
   color: white;
   cursor: pointer;
@@ -47,6 +47,20 @@
 
 .createBtn > span {
   pointer-events: none;
+}
+
+.wsDropdown {
+  position: fixed;
+  z-index: 11;
+  top: 48px;
+
+  width: 300px;
+  height: fit-content;
+
+  border: 1px solid rgba(9, 30, 66, 0.1);
+  border-radius: 3px;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 .formContainer {
