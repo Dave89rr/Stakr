@@ -9,7 +9,7 @@
 .topContainer {
   display: flex;
   align-items: center;
-  padding: 0 20% 0 20%;
+  padding: 3% 20% 0 20%;
 }
 
 .textContainer {
@@ -24,16 +24,15 @@
   line-height: 1.25;
   font-weight: 500;
   text-align: left;
-  width: 58.3333%;
+  width: 100%;
   margin: 0;
-  padding-bottom: 20px;
 }
 
 .subHeaderText {
   color: #091e42;
   text-align: left;
   font-size: 20px;
-  width: 58.3333%;
+  width: 90%;
   padding-bottom: 20px;
 }
 
@@ -86,8 +85,8 @@
 }
 
 .img {
-  height: 60%;
-  width: 100%;
+  height: 450.39px;
+  width: 347.98px;
   padding-top: 10%;
 }
 
