@@ -93,7 +93,7 @@
   text-decoration: underline;
 }
 
-.error {
+.error > * {
   display: flex;
   justify-content: center;
   align-items: center;

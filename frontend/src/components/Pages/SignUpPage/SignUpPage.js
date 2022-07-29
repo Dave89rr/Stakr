@@ -4,7 +4,7 @@ import { Redirect, useHistory } from "react-router-dom";
 import { signUp } from "../../../store/session";
 
 import classes from "./SignUpPage.module.css";
-import uniCss from "../pagesuniversal.module.css";
+// import uniCss from "../pagesuniversal.module.css";
 
 const SignUpPage = () => {
   const history = useHistory();
@@ -18,13 +18,15 @@ const SignUpPage = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
+    console.log(errors);
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data);
       }
+    } else {
+      return setErrors(["Passwords didn't match"]);
     }
-    return setErrors(["Passwords didn't match"]);
   };
 
   const updateUsername = (e) => {
