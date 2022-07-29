@@ -56,3 +56,16 @@
   background-color: #b1acac;
   border-radius: 3px;
 }
+
+.plusContainer {
+  display: flex;
+  align-items: center;
+}
+
+.plus {
+  display: flex;
+  height: 4.2%;
+  width: 4.2%;
+  margin-right: 5px;
+  margin-left: 10px;
+}

@@ -76,7 +76,13 @@ const Stack = ({ data, disabled, cards, cardOrder, setCardOrder }) => {
                       className={classes.addCard}
                       onClick={(e) => setForm("True")}
                     >
-                      + New Card
+                      <div className={classes.plusContainer}>
+                        <img
+                          src="/static/icons/plus.svg"
+                          className={classes.plus}
+                        />
+                        New Card
+                      </div>
                     </div>
                   ) : (
                     <CreateCard

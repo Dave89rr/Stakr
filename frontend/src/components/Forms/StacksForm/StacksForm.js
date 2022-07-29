@@ -54,9 +54,17 @@ function StacksForm() {
           setForm(2);
         }}
       >
-        {stacks && Object.values(stacks).length
-          ? "+ Add another stack"
-          : "+ Add stack"}
+        {stacks && Object.values(stacks).length ? (
+          <div className={classes.plusContainer}>
+            <img src="/static/icons/plus.svg" className={classes.plus} /> Add
+            another stack
+          </div>
+        ) : (
+          <div className={classes.plusContainer}>
+            <img src="/static/icons/plus.svg" className={classes.plusFirst} />{" "}
+            Add stack
+          </div>
+        )}
       </div>
     );
   }
