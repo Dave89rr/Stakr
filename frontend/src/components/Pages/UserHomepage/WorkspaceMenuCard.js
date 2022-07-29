@@ -28,7 +28,7 @@ const WorkspaceMenuCard = ({ data }) => {
                 return (
                     <NavLink
                         to={`/b/${board.workspaceId}/${board.id}/${board.name}`}
-                        style={{textDecoration: 'none'}}
+                        style={{textDecoration: 'none', color: (board.color!=='White'?'white':'#172b4d')}}
                     >
                         <div
                             className={`
