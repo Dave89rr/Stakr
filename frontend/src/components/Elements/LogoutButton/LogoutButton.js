@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { logout } from "../../../store/session";
 import { actionLogoutWorkspace } from "../../../store/workspaces";
-import { useHistory } from "react-router-dom";
 
 import classes from "./Logout.module.css";
 
