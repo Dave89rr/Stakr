@@ -14,6 +14,8 @@ function Workspace() {
   let boards;
   if (workspace) {
     boards = Object.values(workspace.boards);
+  } else {
+    return null;
   }
 
   return (
