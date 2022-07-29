@@ -37,7 +37,7 @@ const LoginPage = () => {
     <div className={classes.mainContainer}>
       <div className={classes.formContainer}>
         <img src="/static/icons/stakr-logo.svg" className={classes.logo} />
-        <div>
+        <div className={classes.formWrapper}>
           <form onSubmit={onLogin} className={classes.form}>
             <div>
               {errors.map((error, ind) => (
