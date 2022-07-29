@@ -12,7 +12,6 @@ function EditCardForm({ setDisplay, data, cardOrder, setCardOrder }) {
 
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const card = {
@@ -24,7 +23,6 @@ function EditCardForm({ setDisplay, data, cardOrder, setCardOrder }) {
 
     if (card) {
       dispatch(thunkUpdateCardData(card, workspaceId));
-      console.log(card);
       setDisplay(false);
     }
   };
