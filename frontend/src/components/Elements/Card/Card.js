@@ -27,7 +27,7 @@ function Card({ data, pos, disabled, cardOrder, setCardOrder }) {
           </div>
           <div className={classes.editButton} onClick={() => setDisplay(true)}>
             <img
-              src="/media/icons/pencil.svg"
+              src="/static/icons/pencil.svg"
               alt="pencil"
               className={classes.pencil}
             />

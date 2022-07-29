@@ -36,7 +36,7 @@ const LoginPage = () => {
   return (
     <div className={classes.mainContainer}>
       <div className={classes.formContainer}>
-        <img src="/media/icons/stakr-logo.svg" className={classes.logo} />
+        <img src="/static/icons/stakr-logo.svg" className={classes.logo} />
         <div>
           <form onSubmit={onLogin} className={classes.form}>
             <div>
