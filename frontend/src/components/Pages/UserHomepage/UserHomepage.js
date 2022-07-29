@@ -3,6 +3,7 @@ import uniCss from '../pagesuniversal.module.css';
 import WorkspaceCluster from '../../Elements/WorkspaceCluster';
 
 import { useSelector } from 'react-redux';
+import WorkspaceMenuCard from './WorkspaceMenuCard';
 
 function UserHomepage() {
   let workspaces = useSelector((state) => state.workspaces);
@@ -16,7 +17,7 @@ function UserHomepage() {
           <p className={classes.wsmTitle}>Workspaces</p>
           {Object.values(workspaces).length>0 ?
             Object.values(workspaces).map(ws => {
-              return <p>{ws.name}</p>
+              return <WorkspaceMenuCard data={ws}/>
             }):<p className={classes.noWsYet}>No workspaces yet!</p>}
         </div>
         <div className={classes.workspacesView}>
