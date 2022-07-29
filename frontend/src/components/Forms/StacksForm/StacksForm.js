@@ -83,7 +83,7 @@ function StacksForm() {
                 Add Stack
               </button>
               <div className={classes.formClose} onClick={() => setForm(1)}>
-                X
+                <img src="/static/icons/x.svg" className={classes.formClose} />
               </div>
             </div>
           </div>
