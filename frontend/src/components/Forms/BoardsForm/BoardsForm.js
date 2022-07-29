@@ -15,7 +15,7 @@ function BoardsForm({ wsId, setShowBoardForm, showBoardForm }) {
     const board = {
       username: user.username,
       name,
-      color: 'blue',
+      color: 'White',
       workspaceId: wsId,
     };
 

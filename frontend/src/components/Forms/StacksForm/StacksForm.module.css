@@ -29,3 +29,43 @@
   justify-content: center;
   align-items: center;
 }
+
+.formButton {
+  border: none;
+  background-color: rgb(48, 126, 216);
+  color: white;
+  border-radius: 3px;
+}
+
+.formName {
+  display: flex;
+  width: 100%;
+  border: 2px solid rgb(48, 126, 216);
+  border-radius: 3px;
+}
+
+.formClose {
+  padding-left: 4%;
+
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+
+.formButtonHolder {
+  display: flex;
+  padding: 3px 0 6px 0;
+}
+.formContainer {
+  width: 100%;
+  padding: 9px 6px 6px 6px;
+}
+
+.nameText {
+  padding-top: 3px;
+  font-weight: 500;
+  color: #172b4d;
+}

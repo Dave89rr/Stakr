@@ -1,0 +1,46 @@
+.cardContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+
+    height: fit-content;
+
+    color: #172b4d;
+    background-color: #fff;
+    border-radius: 3px;
+
+    transition: background-color .1s ease;
+
+    cursor: pointer;
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+}
+.cardContainer:hover {
+    background-color: rgb(235, 235, 235);
+}
+
+.letter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-width: 40px;
+    height: 40px;
+
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+
+    border-radius: 3px;
+    background: linear-gradient(#403294, #0747a6);;
+}
+
+.cardContainer > p {
+    margin: 0 5px 0 8px;
+
+    font-size: 14px;
+    font-weight: 500;
+    word-break: break-all;
+}

@@ -34,6 +34,21 @@ def getAll(boardId):
             cards.append(j.toDict())
     return {'cards': cards}
 
+@card.route('/updatedata', methods=['PUT'])
+def update_data():
+    data=request.json
+
+    card = Cards.query.get(data['id'])
+    card.name = data['name']
+    card.color=data['color']
+    card.description = data['description']
+
+    db.session.commit()
+
+    return card.toDict()
+
+
+
 @card.route('/update', methods=['PUT'])
 def update():
     data = request.json
@@ -55,6 +70,10 @@ def update():
             cur.position = data['orderList'].index(i)
 
     db.session.commit()
+
+
+
+
 
     return {
         "card": card.toDict(),

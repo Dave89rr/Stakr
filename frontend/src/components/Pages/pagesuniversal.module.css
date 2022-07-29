@@ -1,5 +1,44 @@
 .mainContainer {
-  width: 57.4%;
+  width: 60%;
   margin: auto;
+  margin-top: 45px;
   border: 1px solid red;
+}
+
+/* BG COLORS */
+.White {
+  background-color: #fff;
+  color: #172b4d;
+}
+.Red {
+  background-color: #b04632;
+  color: #fff;
+}
+.Orange {
+  background-color: #de7b2f;
+  color: #fff;
+}
+.Blue {
+  background-color: #0079bf;
+  color: #fff;
+}
+.Yellow {
+  background-color: rgb(224, 184, 50);
+  color: #fff;
+}
+.Green {
+  background-color: #4bbf6b;
+  color: #fff;
+}
+.Purple {
+  background-color: #89609e;
+  color: #fff;
+}
+.Pink {
+  background-color: rgb(205, 90, 145);
+  color: #fff;
+}
+.Grey {
+  background-color: #838c91;
+  color: #fff;
 }
