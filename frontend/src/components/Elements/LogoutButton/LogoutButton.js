@@ -1,8 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { logout } from "../../../store/session";
 import { actionLogoutWorkspace } from "../../../store/workspaces";
-import { useHistory } from "react-router-dom";
+
+import classes from "./Logout.module.css";
 
 const LogoutButton = () => {
   const history = useHistory();
@@ -13,7 +15,7 @@ const LogoutButton = () => {
     history.push("/");
   };
 
-  return <button onClick={onLogout}>Logout</button>;
+  return <div className={classes.logoutButton} onClick={onLogout}>Logout</div>;
 };
 
 export default LogoutButton;

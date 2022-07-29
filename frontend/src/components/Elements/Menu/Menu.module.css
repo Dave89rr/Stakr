@@ -5,43 +5,102 @@
   flex-direction: row;
   align-items: center;
 }
-.dropArrow {
-  height: 25%;
-  margin-left: 2%;
-}
 .wsContainer {
-  height: 100%;
-  max-height: 45px;
-  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* border: 3px dashed #ff00ff; */
+
+  width: 100%;
+  max-height: 45px;
+  height: 100%;
+
+  margin: 0px 0px 2px 25px;
 }
 
-.wsContainer > span {
+.wsButton {
+  display: flex;
   color: white;
+  cursor: pointer;
+  margin-right: 15px;
+
+  font-size: 14px;
+}
+.dropArrow {
+  width: 12px;
+  margin: 1px 0px 0 6px;
 }
 
 .createBtn {
-  height: 75%;
-  /* border: 1px solid red; */
-  border-radius: 3px;
-  padding-left: 3%;
-  padding-right: 3%;
-  margin-left: 10%;
-  color: white;
-  font-weight: 400;
-  font-size: 0.8em;
-  background-color: rgb(1, 74, 117);
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  height: 75%;
+  margin-left: 20px;
+  padding: 0 15px 0 15px;
+
   cursor: pointer;
+  color: white;
+  font-weight: 400;
+  font-size: 0.8em;
+  border-radius: 3px;
+  background-color: rgb(1, 74, 117);
 }
 
 .createBtn > span {
   pointer-events: none;
+}
+
+.wsDropdown {
+  position: fixed;
+  z-index: 11;
+  top: 48px;
+
+  width: 300px;
+  height: fit-content;
+  padding: 0 12px 12px;
+
+  border: 1px solid rgba(9, 30, 66, 0.1);
+  border-radius: 3px;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.wsdTitle {
+  display: flex;
+  justify-content: center;
+
+  border-bottom: 1px solid rgba(9, 30, 66, 0.1);
+}
+.wsdTitle > span {
+  padding: 10px 0 10px 0;
+
+  color: #5e6c84;
+  font-size: 14px;
+
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+
+.wsdContentTitle {
+  margin: 24px 0 12px 0;
+
+  color: #5E6C84;
+  font-weight: 500;
+  font-size: 12px;
+
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+
+.noWsp {
+  margin: 12px 0 0;
+  color: #5e6c84;
+  text-align: center;
 }
 
 .formContainer {
