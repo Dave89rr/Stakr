@@ -40,12 +40,13 @@
 .input {
   border: 1px solid #e2e4e6;
   background-color: #ffffff;
-  font-size: 18px;
+  font-size: 16px;
   height: 45px;
   width: 50%;
   min-width: 288px;
   border-radius: 3px;
   margin-right: 10px;
+  padding-left: 10px;
 }
 
 .button {
