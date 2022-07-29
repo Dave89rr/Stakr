@@ -55,29 +55,29 @@ function BoardPage() {
         })();
       }, [dispatch, workspaces[workspaceId]]);
 
-      if (!loaded) return null;
+      if (!loaded || !workspaces[workspaceId]) return null;
       let boardData;
-      if (loaded) {
+      if (loaded && workspaces[workspaceId]) {
         boardData = workspaces[workspaceId].boards[boardId]
       }
 
       let stacks;
-      if (loaded) {
+      if (loaded && workspaces[workspaceId]) {
         stacks = workspaces[workspaceId].stacks;
       }
       let sortedStacks;
-      if (workspaces[workspaceId].stacks) {
-    let stackIds = Object.values(stacks).map((ele) => ele.id.toString());
-    let filterStackIds = stackIds.filter(
-      (id) => stacks[id].boardId === parseInt(boardId)
-      );
-      sortedStacks = filterStackIds.sort(
-        (a, b) => stacks[a].position - stacks[b].position
-        );
+      if (workspaces[workspaceId] && workspaces[workspaceId].stacks) {
+        let stackIds = Object.values(stacks).map((ele) => ele.id.toString());
+        let filterStackIds = stackIds.filter(
+         (id) => stacks[id].boardId === parseInt(boardId)
+         );
+          sortedStacks = filterStackIds.sort(
+            (a, b) => stacks[a].position - stacks[b].position
+          );
       }
 
       let cards;
-      if (workspaces[workspaceId].cards) {
+      if (workspaces[workspaceId] && workspaces[workspaceId].cards) {
         cards = workspaces[workspaceId].cards;
       }
 
@@ -163,7 +163,7 @@ function BoardPage() {
   };
 
   let color;
-  if (loaded) color=workspaces[workspaceId].boards[boardId].color;
+  if (loaded && workspaces[workspaceId]) color=workspaces[workspaceId].boards[boardId].color;
 
   return (
     <div className={`${classes.containerWrapper} ${uniclass[color]}`}>

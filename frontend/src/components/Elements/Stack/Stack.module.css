@@ -48,6 +48,9 @@
   align-items: center;
   width: 20px;
   height: 20px;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 }
 .trashCan:hover {
   background-color: #d30303c2;
