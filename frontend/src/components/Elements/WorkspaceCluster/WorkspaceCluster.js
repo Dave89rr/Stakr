@@ -6,6 +6,7 @@ import WsSettings from '../WsSettings/WsSettings';
 import { useState } from 'react';
 import BoardsForm from '../../Forms/BoardsForm';
 import EditWorkspaceForm from '../../Forms/EditWorkspaceForm';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 function WorkspaceCluster({ id }) {
   const [showSettings, setShowSettings] = useState(false);
@@ -33,7 +34,9 @@ function WorkspaceCluster({ id }) {
               setShowSettings={setShowSettings}
             />
           ) : (
-            <span>{data.name}</span>
+            <Link to={`/w/${data.id}/home`}>
+              <span>{data.name}</span>
+            </Link>
           )}
           <div className={classes.btnContainer}>
             <WorkspaceButton name={'board'} plural={'s'} />

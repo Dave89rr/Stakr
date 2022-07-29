@@ -1,12 +1,12 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../store/session";
-import { thunkLogoutWorkspace } from "../../../store/workspaces";
+import { actionLogoutWorkspace } from '../../../store/workspaces';
 
 const LogoutButton = () => {
   const dispatch = useDispatch();
   const onLogout = async (e) => {
-    await dispatch(thunkLogoutWorkspace());
+    await dispatch(actionLogoutWorkspace());
     await dispatch(logout());
   };
 
