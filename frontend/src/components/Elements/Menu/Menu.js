@@ -38,8 +38,8 @@ function Menu({ innerRef, wsView, setWsView }) {
             <div className={classes.wsdContent}>
               <p className={classes.wsdContentTitle}>Your Workspaces</p>
               {Object.values(workspaces).length>0 ?
-                Object.values(workspaces).map(ws => {
-                  return <WorkspaceDropdownCard data={ws}/>
+                Object.values(workspaces).map((ws, i) => {
+                  return <WorkspaceDropdownCard data={ws} setWsView={setWsView} wsView={wsView} key={i}/>
                 })
               :<p className={classes.noWsp}>No workspaces...</p>}
             </div>
