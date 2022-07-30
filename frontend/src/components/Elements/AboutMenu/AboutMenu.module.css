@@ -4,7 +4,7 @@
   left: 0.25%;
   border-radius: 3px;
   width: 16.39%;
-  height: 45.16vh;
+  height: 54vh;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -39,6 +39,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 6%;
 }
 
 .contributorHeader {
@@ -54,19 +55,24 @@
   flex-direction: column;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 9%;
   align-items: flex-start;
 }
 .appContainer {
   width: 90%;
   margin-bottom: 4%;
   margin-left: 7%;
+  color: #0a1f43;
 }
 .innerAppContainer {
   display: flex;
   gap: 6%;
   flex-direction: row;
-  width: 100%;
+  width: 95%;
+  padding: 3%;
+  border-radius: 3px;
+}
+.innerAppContainer:hover {
+  background-color: rgb(230, 230, 230);
 }
 .appName {
   font-size: 1.25em;
@@ -89,5 +95,13 @@
   width: 15px;
 }
 
-.ghLink {
+.ghLink,
+.ghLink:visited {
+  color: #0153cc;
+  font-size: 1.1em;
+}
+
+.ghLink:hover {
+  color: #0166ff;
+  text-decoration: underline;
 }

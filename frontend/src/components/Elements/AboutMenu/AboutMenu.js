@@ -1,15 +1,7 @@
 import classes from './AboutMenu.module.css';
-import { useHistory } from 'react-router-dom';
-function AboutMenu({ setToggleAbout }) {
-  const history = useHistory();
 
-  const xicon = (
-    <img
-      // className={classes.closeMenu}
-      src="/media/icons/x.svg"
-      alt="sample icon"
-    />
-  );
+function AboutMenu({ setToggleAbout }) {
+  const xicon = <img src="/media/icons/x.svg" alt="sample icon" />;
   const financeIcon = (
     <img
       className={classes.appIcon}
@@ -84,11 +76,12 @@ function AboutMenu({ setToggleAbout }) {
         <div className={classes.contributorHeader}>
           <div className={classes.name}>Brandon Flores</div>
           <a
+            className={classes.ghLink}
             href="https://github.com/brandonflores647"
             target="_blank"
             rel="noreferrer"
           >
-            <div className={classes.ghLink}>Github {externalIcon}</div>
+            <span>Github {externalIcon}</span>
           </a>
         </div>
         <div className={classes.contributorIcons}>
@@ -131,11 +124,12 @@ function AboutMenu({ setToggleAbout }) {
         <div className={classes.contributorHeader}>
           <div className={classes.name}>David Rivera</div>
           <a
+            className={classes.ghLink}
             href="https://github.com/Dave89rr"
             target="_blank"
             rel="noreferrer"
           >
-            <div className={classes.ghLink}>Github {externalIcon}</div>
+            <span>Github {externalIcon}</span>
           </a>
         </div>
         <div className={classes.contributorIcons}>
@@ -178,11 +172,12 @@ function AboutMenu({ setToggleAbout }) {
         <div className={classes.contributorHeader}>
           <div className={classes.name}>Justin Stockton</div>
           <a
+            className={classes.ghLink}
             href="https://github.com/Justin-Stockton"
             target="_blank"
             rel="noreferrer"
           >
-            <div className={classes.ghLink}>Github {externalIcon}</div>
+            <span>Github {externalIcon}</span>
           </a>
         </div>
         <div className={classes.contributorIcons}>
