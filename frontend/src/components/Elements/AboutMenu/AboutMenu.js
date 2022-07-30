@@ -1,6 +1,8 @@
 import classes from './AboutMenu.module.css';
-
+import { useHistory } from 'react-router-dom';
 function AboutMenu({ setToggleAbout }) {
+  const history = useHistory();
+
   const xicon = (
     <img
       // className={classes.closeMenu}
@@ -90,18 +92,39 @@ function AboutMenu({ setToggleAbout }) {
           </a>
         </div>
         <div className={classes.contributorIcons}>
-          <div className={classes.appContainer}>
-            <div className={classes.appIcon}>{fairbnbIcon}</div>
-            <div className={classes.appName}>Fairbnb</div>
-          </div>
-          <div className={classes.appContainer}>
-            <div className={classes.appIcon}>{routesIcon}</div>
-            <div className={classes.appName}>Rendering Routes</div>
-          </div>
-          <div className={classes.appContainer}>
-            <div className={classes.appIcon}>{financeIcon}</div>
-            <div className={classes.appName}>Finance Playground</div>
-          </div>
+          <a
+            className={classes.appContainer}
+            href="https://bflores-fairbnb.herokuapp.com/"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <div className={classes.innerAppContainer}>
+              <div className={classes.appIcon}>{fairbnbIcon}</div>
+              <div className={classes.appName}>Fairbnb</div>
+            </div>
+          </a>
+          <a
+            className={classes.appContainer}
+            href="https://rendering-routes.herokuapp.com/"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <div className={classes.innerAppContainer}>
+              <div className={classes.appIcon}>{routesIcon}</div>
+              <div className={classes.appName}>Rendering Routes</div>
+            </div>
+          </a>
+          <a
+            className={classes.appContainer}
+            href="https://finance-playground.herokuapp.com/"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <div className={classes.innerAppContainer}>
+              <div className={classes.appIcon}>{financeIcon}</div>
+              <div className={classes.appName}>Finance Playground</div>
+            </div>
+          </a>
         </div>
       </div>
       <div className={classes.contributorContainer}>
@@ -116,18 +139,39 @@ function AboutMenu({ setToggleAbout }) {
           </a>
         </div>
         <div className={classes.contributorIcons}>
-          <div className={classes.appContainer}>
-            <div className={classes.appIcon}>{rarepntIcon}</div>
-            <div className={classes.appName}>RarePnT</div>
-          </div>
-          <div className={classes.appContainer}>
-            <div className={classes.appIcon}>{mapsIcon}</div>
-            <div className={classes.appName}>GGCMaps</div>
-          </div>
-          <div className={classes.appContainer}>
-            <div className={classes.appIcon}>{gamevaultIcon}</div>
-            <div className={classes.appName}>GameVault</div>
-          </div>
+          <a
+            className={classes.appContainer}
+            href="https://rarepnt.herokuapp.com/"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <div className={classes.innerAppContainer}>
+              <div className={classes.appIcon}>{rarepntIcon}</div>
+              <div className={classes.appName}>RarePnT</div>
+            </div>
+          </a>
+          <a
+            className={classes.appContainer}
+            href="http://ggcmaps.com/"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <div className={classes.innerAppContainer}>
+              <div className={classes.appIcon}>{mapsIcon}</div>
+              <div className={classes.appName}>GGCMaps</div>
+            </div>
+          </a>
+          <a
+            className={classes.appContainer}
+            href="https://gamevault-031422.herokuapp.com/"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <div className={classes.innerAppContainer}>
+              <div className={classes.appIcon}>{gamevaultIcon}</div>
+              <div className={classes.appName}>GameVault</div>
+            </div>
+          </a>
         </div>
       </div>
       <div className={classes.contributorContainer}>
@@ -142,10 +186,17 @@ function AboutMenu({ setToggleAbout }) {
           </a>
         </div>
         <div className={classes.contributorIcons}>
-          <div className={classes.appContainer}>
-            <div className={classes.appIcon}>{pokehuntIcon}</div>
-            <div className={classes.appName}>PokeHunt</div>
-          </div>
+          <a
+            className={classes.appContainer}
+            href="https://jstockton-pokehunt.herokuapp.com/"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <div className={classes.innerAppContainer}>
+              <div className={classes.appIcon}>{pokehuntIcon}</div>
+              <div className={classes.appName}>PokeHunt</div>
+            </div>
+          </a>
         </div>
       </div>
     </div>

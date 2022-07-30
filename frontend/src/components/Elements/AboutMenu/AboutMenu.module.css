@@ -59,11 +59,14 @@
 }
 .appContainer {
   width: 90%;
-  display: flex;
-  flex-direction: row;
-  gap: 6%;
   margin-bottom: 4%;
   margin-left: 7%;
+}
+.innerAppContainer {
+  display: flex;
+  gap: 6%;
+  flex-direction: row;
+  width: 100%;
 }
 .appName {
   font-size: 1.25em;
