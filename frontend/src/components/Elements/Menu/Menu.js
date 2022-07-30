@@ -18,11 +18,10 @@ function Menu({ innerRef, wsView, setWsView }) {
   const handleDropdown = () => {
     setWsView(!wsView);
   };
-
   const loggedinMenu = (
     <div className={classes.wsContainer}>
       <div ref={innerRef}>
-        <span className={classes.wsButton} onClick={() => handleDropdown()}>
+        <span className={classes.wsButton} onClick={() => handleDropdown()} style={{backgroundColor: (wsView?'rgba(255, 255, 255, 0.3)':null)}}>
           Workspaces
           <img
             className={classes.dropArrow}
