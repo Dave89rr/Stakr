@@ -40,10 +40,10 @@ const actionUpdateBoard = (board) => {
   };
 };
 
-const actionDeleteBoard = (boardId) => {
+const actionDeleteBoard = (board) => {
   return {
     type: DELETE_BOARD,
-    boardId,
+    board,
   };
 };
 
@@ -108,16 +108,16 @@ export const thunkUpdateBoard = (board) => async (dispatch) => {
   }
 };
 
-export const thunkDeleteBoard = (boardId) => async (dispatch) => {
+export const thunkDeleteBoard = (board) => async (dispatch) => {
   const response = await fetch(`/api/b/delete`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(boardId),
+    body: JSON.stringify(board),
   });
 
   if (response.ok) {
-    dispatch(actionDeleteBoard(boardId));
+    dispatch(actionDeleteBoard(board));
   }
 };

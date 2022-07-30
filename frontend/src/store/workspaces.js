@@ -195,6 +195,12 @@ const workspaces = (state = {}, action) => {
       return newState;
     }
 
+    case DELETE_BOARD: {
+      const { id, workspaceId } = action.board;
+      delete newState[workspaceId].boards[id];
+      return newState;
+    }
+
     // ==== stacks ==== //
     case GET_STACKS: {
       newState = { ...state };

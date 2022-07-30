@@ -10,6 +10,7 @@ function EditBoardForm({ data, setDisplay }) {
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const board = {
       id: data.id,
       workspaceId: data.workspaceId,
@@ -17,8 +18,6 @@ function EditBoardForm({ data, setDisplay }) {
       name,
       color,
     };
-
-    console.log(data);
 
     dispatch(thunkUpdateBoard(board));
     setDisplay(false);
@@ -81,7 +80,12 @@ function EditBoardForm({ data, setDisplay }) {
               onClick={(e) => {
                 e.preventDefault();
                 setDisplay(false);
-                dispatch(thunkDeleteBoard(data.id));
+                dispatch(
+                  thunkDeleteBoard({
+                    id: data.id,
+                    workspaceId: data.workspaceId,
+                  })
+                );
               }}
             >
               Delete Board
