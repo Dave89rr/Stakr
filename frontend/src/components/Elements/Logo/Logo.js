@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom";
-import classes from "./Logo.module.css";
-function Logo({ user }) {
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import AboutMenu from '../AboutMenu/AboutMenu';
+import classes from './Logo.module.css';
+function Logo() {
+  const [toggleAbout, setToggleAbout] = useState(false);
   const logo = (
     <img
       className={classes.icon}
@@ -17,7 +20,10 @@ function Logo({ user }) {
   );
   return (
     <div className={classes.container}>
-      <Link to="/">{about}</Link>
+      <div onClick={() => setToggleAbout(!toggleAbout)}>
+        <Link to="/">{about}</Link>
+      </div>
+      {toggleAbout ? <AboutMenu /> : null}
       <Link to="/">{logo}</Link>
     </div>
   );
