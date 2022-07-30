@@ -17,8 +17,8 @@ function UserHomepage() {
         <div className={classes.workspacesMenu}>
           <p className={classes.wsmTitle}>Workspaces</p>
           {Object.values(workspaces).length>0 ?
-            Object.values(workspaces).map(ws => {
-              return <WorkspaceMenuCard data={ws}/>
+            Object.values(workspaces).map((ws, i) => {
+              return <WorkspaceMenuCard data={ws} key={i}/>
             }):<p className={classes.noWsYet}>No workspaces yet!</p>}
         </div>
         <div className={classes.workspacesView}>

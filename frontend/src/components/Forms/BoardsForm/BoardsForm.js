@@ -34,22 +34,27 @@ function BoardsForm({ wsId, setShowBoardForm, showBoardForm }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={classes.form}>
+        <input
+          name="name"
+          type="text"
+          placeholder="Board Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          style={{
+            border: (validationErrors.length>0?'1px solid #e33d3d':'1px solid rgb(221, 221, 221)'),
+            borderRadius: '3px',
+            outline: 'none'
+          }}
+        />
         <div>
-          {validationErrors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div>
-        <div>
-          <label htmlFor="name">Name</label>
-          <input
-            name="name"
-            type="text"
-            placeholder="Board Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
           <button type="submit">Create Board</button>
+          <img
+            onClick={() => setShowBoardForm(false)}
+            className={classes.x}
+            src="/static/icons/x.svg"
+            alt="plus"
+          />
         </div>
       </form>
     </>

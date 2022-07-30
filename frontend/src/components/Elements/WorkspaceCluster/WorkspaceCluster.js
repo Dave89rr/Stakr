@@ -68,7 +68,9 @@ function WorkspaceCluster({ id }) {
           ):null}
             <div
               className={classes.createBoardcard}
-              onClick={() => setShowBoardForm(true)}
+              onClick={() => {
+                if (!showBoardForm) setShowBoardForm(true)
+              }}
             >
               {showBoardForm ? (
                 <BoardsForm
@@ -77,7 +79,14 @@ function WorkspaceCluster({ id }) {
                   showBoardForm={showBoardForm}
                 />
               ) : (
-                <span>Create New Board</span>
+                <div className={classes.newBoardText}>
+                  <img
+                    className={classes.plus}
+                    src="/static/icons/plus.svg"
+                    alt="plus"
+                  />
+                  <span>New Board</span>
+                </div>
               )}
             </div>
           </>
