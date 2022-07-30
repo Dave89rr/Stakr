@@ -10,6 +10,12 @@ nav {
   justify-content: space-between;
   align-items: center;
 }
+nav > * {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
 .leftContainer {
   display: flex;
   flex-direction: row;
@@ -47,7 +53,7 @@ nav {
   border-right: 1px solid transparent;
   box-shadow: inset 0px 0px 0px rgba(0, 0, 0, 0.1);
 
-  transition: border-left .25s ease, border-right .25s ease;
+  transition: border-left 0.25s ease, border-right 0.25s ease;
 }
 .userInteractionsContainer > a:hover {
   box-shadow: inset 0px 0px 15px rgba(0, 0, 0, 0.1);
@@ -72,7 +78,7 @@ nav {
   border-right: 1px solid transparent;
   box-shadow: inset 0px 0px 0px rgba(0, 0, 0, 0.1);
 
-  transition: border-left .25s ease, border-right .25s ease;
+  transition: border-left 0.25s ease, border-right 0.25s ease;
 }
 .demoLoginBtn:hover {
   cursor: pointer;

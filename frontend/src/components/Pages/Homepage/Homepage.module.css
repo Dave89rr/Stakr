@@ -61,6 +61,10 @@
   margin-bottom: 4%;
   padding: 12px 15px 12px 15px;
   text-decoration: none;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 }
 
 .button:hover {
@@ -83,12 +87,20 @@
   border-bottom: 1px solid #e2e4e6;
   margin-left: 20%;
   margin-top: 2%;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 }
 
 .img {
   height: 450.39px;
   width: 347.98px;
   padding-top: 10%;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 }
 
 .bottom {
@@ -126,6 +138,10 @@
   width: 62.98px;
   padding-top: 20%;
   margin: 10% 20px 0 4%;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 }
 
 .sectionContainer {

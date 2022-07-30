@@ -6,7 +6,9 @@
   height: 1em;
   margin-left: 15px;
 }
-
+.about {
+  cursor: pointer;
+}
 .container {
   display: flex;
   flex-direction: row;

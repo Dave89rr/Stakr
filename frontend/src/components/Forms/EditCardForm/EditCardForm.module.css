@@ -53,6 +53,7 @@
   margin-left: 71%;
   padding-bottom: 3px;
   cursor: pointer;
+  user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
