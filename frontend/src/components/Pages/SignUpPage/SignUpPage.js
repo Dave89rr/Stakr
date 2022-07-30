@@ -45,6 +45,10 @@ const SignUpPage = () => {
   };
 
   if (user) {
+    console.log(workspaces);
+    if (Object.values(workspaces).length < 1) {
+      return <Redirect to="/create-first-workspace" />;
+    }
     return <Redirect to="/" />;
   }
 
