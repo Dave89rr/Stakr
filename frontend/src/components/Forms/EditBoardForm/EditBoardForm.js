@@ -1,28 +1,36 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { thunkUpdateBoard, thunkDeleteBoard } from "../../../store/boards";
 import classes from "../EditCardForm/EditCardForm.module.css";
 
 function EditBoardForm({ data, setDisplay }) {
-  const [name, setName] = useState(data.name);
-  const [color, setColor] = useState(data.color);
+  const { workspaceId } = useParams();
+  const id = parseInt(workspaceId, 10);
+  console.log(id);
+
+  const board = useSelector((state) => state.workspaces[id].boards[data]);
+  board
+    ? console.log("we got a board", board)
+    : console.log("we got no boards", board);
+  const [name, setName] = useState(data);
+  const [color, setColor] = useState(board.color);
 
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const board = {
-      id: data.id,
-      workspaceId: data.workspaceId,
-      username: data.username,
+    const _board = {
+      id: board.id,
+      workspaceId: board.workspaceId,
+      username: board.username,
       name,
       color,
     };
 
-    dispatch(thunkUpdateBoard(board));
+    dispatch(thunkUpdateBoard(_board));
     setDisplay(false);
   };
-
   return (
     <>
       <div className={classes.background}></div>
@@ -39,7 +47,7 @@ function EditBoardForm({ data, setDisplay }) {
           <div className={classes.formBody}>
             <form onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="name">Name</label>
+                <label htmlFor="name">Name {data.id}</label>
                 <div>
                   <input
                     className={classes.nameField}
@@ -82,8 +90,8 @@ function EditBoardForm({ data, setDisplay }) {
                 setDisplay(false);
                 dispatch(
                   thunkDeleteBoard({
-                    id: data.id,
-                    workspaceId: data.workspaceId,
+                    id: board.id,
+                    workspaceId: workspaceId,
                   })
                 );
               }}

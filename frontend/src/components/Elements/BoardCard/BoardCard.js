@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import EditBoardForm from "../../Forms/EditBoardForm/EditBoardForm";
 
 import classes from "./BoardCard.module.css";
 
 function BoardCard({ data }) {
+  const board = data;
   const [bgc, setBgc] = useState("#ffffff");
   useEffect(() => {
     // ==== handle color ==== //
@@ -42,12 +44,21 @@ function BoardCard({ data }) {
   }, [data.color]);
 
   return (
-    <Link
-      to={`/b/${data.workspaceId}/${data.id}/${data.name}`}
-      style={{ textDecoration: "none" }}
-    >
-      <div className={`${classes.boardcard} ${bgc}`}>{data.name}</div>
-    </Link>
+    <>
+      <div>
+        <Link
+          to={`/b/${data.workspaceId}/${data.id}/${data.name}`}
+          style={{
+            textDecoration: "none",
+            height: "100%",
+            width: "100%",
+            backgroundColor: "Black",
+          }}
+        >
+          <div className={`${classes.boardcard} ${bgc}`}>{data.name}</div>
+        </Link>
+      </div>
+    </>
   );
 }
 
