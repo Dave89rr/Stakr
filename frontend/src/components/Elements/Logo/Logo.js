@@ -20,8 +20,11 @@ function Logo() {
   );
   return (
     <div className={classes.container}>
-      <div onClick={() => setToggleAbout(!toggleAbout)}>
-        <Link to="/">{about}</Link>
+      <div
+        className={classes.about}
+        onClick={() => setToggleAbout(!toggleAbout)}
+      >
+        {about}
       </div>
       {toggleAbout ? <AboutMenu setToggleAbout={setToggleAbout} /> : null}
       <Link to="/">{logo}</Link>
