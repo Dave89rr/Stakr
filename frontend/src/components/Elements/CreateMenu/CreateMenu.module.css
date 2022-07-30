@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.createTitle {
+  color: #778397;
+  display: flex;
+  justify-content: center;
+  width: 98%;
+  font-size: 1.4em;
+  margin-top: 3%;
+  margin-bottom: 4%;
+}
+
+.line {
+  height: 1px;
+  width: 70%;
+  border: 1px solid rgb(210, 210, 210);
+  margin-bottom: 5%;
+}
