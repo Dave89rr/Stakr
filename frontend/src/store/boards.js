@@ -1,14 +1,14 @@
 // ==== Types ==== //
 
-export const CREATE_BOARD = 'board/CREATE_BOARD';
+export const CREATE_BOARD = "board/CREATE_BOARD";
 
-export const GET_BOARD = 'board/GET_BOARD';
+export const GET_BOARD = "board/GET_BOARD";
 
-export const GET_BOARDS = 'board/GET_BOARDS';
+export const GET_BOARDS = "board/GET_BOARDS";
 
-export const UPDATE_BOARD = 'board/UPDATE_BOARD';
+export const UPDATE_BOARD = "board/UPDATE_BOARD";
 
-export const DELETE_BOARD = 'board/DELETE_BOARD';
+export const DELETE_BOARD = "board/DELETE_BOARD";
 
 // ==== Actions ==== //
 
@@ -51,9 +51,9 @@ const actionDeleteBoard = (boardId) => {
 
 export const thunkCreateBoard = (board) => async (dispatch) => {
   const response = await fetch(`/api/b/create`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(board),
   });
@@ -66,9 +66,9 @@ export const thunkCreateBoard = (board) => async (dispatch) => {
 
 export const thunkGetAllBoards = (username) => async (dispatch) => {
   const response = await fetch(`/api/b/all/${username}`, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
 
@@ -80,9 +80,9 @@ export const thunkGetAllBoards = (username) => async (dispatch) => {
 
 export const thunkGetBoard = (boardId) => async (dispatch) => {
   const response = await fetch(`/api/b/${boardId}`, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
 
@@ -93,20 +93,27 @@ export const thunkGetBoard = (boardId) => async (dispatch) => {
 };
 
 export const thunkUpdateBoard = (board) => async (dispatch) => {
-  const response = await fetch(`api/b/update`, {
-    method: 'PUT',
+  const response = await fetch(`/api/b/update`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(board),
   });
 
   if (response.ok) {
-    const boardData = await response.json;
-    dispatch(actionUpdateBoard(boardData));
+    const board = await response.json;
+    console.log(board, "IS THIS THE DROID YOU ARE LOOKING FOR");
+    dispatch(actionUpdateBoard(board));
   }
 };
 
 export const thunkDeleteBoard = (boardId) => async (dispatch) => {
   const response = await fetch(`/api/b/delete`, {
-    method: 'DELETE',
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(boardId),
   });
 

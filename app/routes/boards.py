@@ -40,7 +40,7 @@ def update():
     board.name = data['name']
     board.color = data['color']
     db.session.commit()
-    return 'Board successfully updated!'
+    return board.toDict()
 
 
 @board.route('/delete', methods=['DELETE'])
