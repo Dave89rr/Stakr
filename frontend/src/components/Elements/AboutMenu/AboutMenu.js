@@ -39,21 +39,21 @@ function AboutMenu({ setToggleAbout }) {
   );
   const mapsIcon = (
     <img
-      className={classes.ghIcon}
+      className={classes.appIcon}
       src="/media/icons/ggcmaps.png"
       alt="sample icon"
     />
   );
   const rarepntIcon = (
     <img
-      className={classes.ghIcon}
+      className={classes.appIcon}
       src="/media/icons/rarepnt.svg"
       alt="sample icon"
     />
   );
   const gamevaultIcon = (
     <img
-      className={classes.ghIcon}
+      className={classes.appIcon}
       src="/media/icons/gamevaulticon.svg"
       alt="sample icon"
     />
