@@ -10,4 +10,25 @@
 body {
   margin: 0%;
   padding: 0%;
+  height: 100vh;
+}
+
+#root {
+  height: 100%;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background: #091e4214;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: #bfc4ce;
 }

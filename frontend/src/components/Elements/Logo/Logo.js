@@ -1,17 +1,17 @@
-import { Link } from 'react-router-dom';
-import classes from './Logo.module.css';
+import { Link } from "react-router-dom";
+import classes from "./Logo.module.css";
 function Logo({ user }) {
   const logo = (
     <img
-      className={classes.icons}
-      src="/media/icons/stakr-logo-white.svg"
+      className={classes.icon}
+      src="/static/icons/stakr-logo-white.svg"
       alt="stakr logo"
     />
   );
   const about = (
     <img
-      className={classes.icons}
-      src="/media/icons/abouticon.svg"
+      className={classes.grid}
+      src="/static/icons/abouticon.svg"
       alt="about icon"
     />
   );

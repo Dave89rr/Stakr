@@ -1,0 +1,103 @@
+.addStack {
+  display: flex;
+  flex-direction: column;
+
+  width: 272px;
+  max-height: 5%;
+
+  border-radius: 3px;
+  background-color: #ebecf0;
+  justify-content: center;
+  align-items: center;
+  opacity: 50%;
+}
+
+.addStack:hover {
+  opacity: 100%;
+  cursor: pointer;
+}
+
+.stackForm {
+  display: flex;
+  flex-direction: column;
+
+  width: 272px;
+  height: 72px;
+
+  border-radius: 3px;
+  background-color: #ebecf0;
+  justify-content: center;
+  align-items: center;
+}
+
+.formButton {
+  border: none;
+  background-color: rgb(48, 126, 216);
+  color: white;
+  border-radius: 3px;
+}
+
+.formName {
+  display: flex;
+  width: 100%;
+  border: 2px solid rgb(48, 126, 216);
+  border-radius: 3px;
+}
+
+.formClose {
+  padding-left: 4%;
+
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+
+.formButtonHolder {
+  display: flex;
+  padding: 3px 0 6px 0;
+}
+.formContainer {
+  width: 100%;
+  padding: 9px 6px 6px 6px;
+}
+
+.nameText {
+  padding-top: 3px;
+  font-weight: 500;
+  color: #172b4d;
+}
+
+.plusContainer {
+  display: flex;
+  align-items: center;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+
+.plusFirst {
+  display: flex;
+  height: 15%;
+  /* width: 10%; */
+  margin-right: 5px;
+  margin-left: 10px;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+.plus {
+  display: flex;
+  height: 10%;
+  margin-right: 5px;
+  margin-left: 10px;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
