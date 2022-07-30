@@ -7,7 +7,7 @@ function WorkspaceButton({ name, plural }) {
         src={`/static/icons/${name}.svg`}
         alt={`${name} button`}
       />
-      <span>{`${name}${plural}`}</span>
+      {/* <span>{`${name}${plural}`}</span> */}
     </div>
   );
 }

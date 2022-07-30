@@ -1,4 +1,11 @@
 .editWsContainer {
   display: flex;
   flex-direction: row;
+  margin-left: 10px;
+}
+.editWsContainer > form > input {
+  height: 30px;
+  padding: 0 5px 0 5px;
+  border-radius: 3px;
+  font-weight: 500;
 }
