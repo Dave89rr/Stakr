@@ -27,11 +27,12 @@ function BoardPage() {
 
   useEffect(() => {
     (async () => {
-      if (workspaces[workspaceId]) {
+      if (workspaces[workspaceId] && !workspaces[workspaceId].stacks) {
         await dispatch(thunkGetAllStacks(boardId, workspaceId));
         setLoaded(true);
       }
-      if (workspaces[workspaceId] && workspaces[workspaceId].stacks) {
+      if (workspaces[workspaceId] && workspaces[workspaceId].stacks
+        && !workspaces[workspaceId].cards) {
         await dispatch(thunkGetCards(boardId, workspaceId));
       }
       if (workspaces[workspaceId] && workspaces[workspaceId].cards) {
