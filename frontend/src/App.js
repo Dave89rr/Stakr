@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import NavBar from './components/Elements/Navbar/NavBar';
@@ -11,6 +11,7 @@ import SignUpPage from './components/Pages/SignUpPage';
 import UserHomepage from './components/Pages/UserHomepage';
 import Workspace from './components/Pages/Workspace/Workspace';
 import ProtectedRoute from './components/utils/ProtectedRoute';
+import Footer from './components/Elements/Footer'
 
 import { authenticate } from './store/session';
 import { thunkGetAllWorkspaces } from './store/workspaces';
@@ -41,7 +42,11 @@ function App() {
       <NavBar user={user} />
       <Switch>
         <Route exact path="/">
-          {user ? <Redirect to={`/${user.username}/boards`} /> : <HomePage />}
+          {user ? <Redirect to={`/${user.username}/boards`} /> :
+          <>
+          <HomePage />
+          <Footer user={user}/>
+          </>}
         </Route>
         <Route exact path="/login">
           <LoginPage />

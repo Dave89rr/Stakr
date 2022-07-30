@@ -18,7 +18,6 @@ const SignUpPage = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    console.log(errors);
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
@@ -53,7 +52,7 @@ const SignUpPage = () => {
     <div className={classes.mainContainer}>
       <div className={classes.formContainer}>
         <img src="/static/icons/stakr-logo.svg" className={classes.logo} />
-        <div>
+        <div className={classes.formWrapper}>
           <form onSubmit={onSignUp} className={classes.form}>
             {errors.length ? (
               <div className={classes.error}>

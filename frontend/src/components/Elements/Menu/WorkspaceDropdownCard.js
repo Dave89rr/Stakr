@@ -5,7 +5,7 @@ const WorkspaceDropdownCard = ({ data, setWsView, wsView }) => {
     return (
         <NavLink to={`/w/${data.id}/home`} style={{textDecoration:'none'}}>
             <div className={classes.cardContainer} onClick={() => setWsView(!wsView)}>
-                <div className={classes.letter}>{data.name[0]}</div>
+                <div className={classes.letter}>{data.name[0].toUpperCase()}</div>
                 <p>
                     {data.name}
                 </p>
