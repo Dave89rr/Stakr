@@ -16,9 +16,7 @@ const WsSettings = ({ id, setEditWsId, setEditWsMode }) => {
   };
   return (
     <div className={classes.settingsMenuContainer}>
-      <div>
-        <span>Options</span>
-      </div>
+      <span className={classes.title}>Options</span>
       <div className={classes.btn} onClick={() => toggleEditView(id)}>
         <span>Edit</span>
       </div>

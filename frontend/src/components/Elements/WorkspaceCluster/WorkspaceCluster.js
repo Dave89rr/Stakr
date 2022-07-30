@@ -48,15 +48,15 @@ function WorkspaceCluster({ id }) {
             {/* <WorkspaceButton name={'member'} plural={'s'} /> */}
             <div onClick={() => setShowSettings(!showSettings)}>
               <WorkspaceButton name={'settings'} plural={''} />
+              {showSettings && (
+                <WsSettings
+                  id={id}
+                  settingsState={(showSettings, setShowSettings)}
+                  setEditWsId={setEditWsId}
+                  setEditWsMode={setEditWsMode}
+                />
+              )}
             </div>
-            {showSettings && (
-              <WsSettings
-                id={id}
-                settingsState={(showSettings, setShowSettings)}
-                setEditWsId={setEditWsId}
-                setEditWsMode={setEditWsMode}
-              />
-            )}
           </div>
         </div>
         <div className={classes.boardsContainer}>
