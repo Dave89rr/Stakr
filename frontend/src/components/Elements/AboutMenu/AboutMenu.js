@@ -1,61 +1,61 @@
 import classes from './AboutMenu.module.css';
 
 function AboutMenu({ setToggleAbout }) {
-  const xicon = <img src="/media/icons/x.svg" alt="sample icon" />;
+  const xicon = <img src="/media/icons/x.svg" alt="about menu close button" />;
   const financeIcon = (
     <img
       className={classes.appIcon}
       src="/media/icons/finance-playground-3.png"
-      alt="sample icon"
+      alt="finance playground app icon"
     />
   );
   const routesIcon = (
     <img
       className={classes.appIcon}
       src="/media/icons/renderingroutes.png"
-      alt="sample icon"
+      alt="rendering routes app icon"
     />
   );
   const pokehuntIcon = (
     <img
       className={classes.appIcon}
       src="/media/icons/pokehunt.png"
-      alt="sample icon"
+      alt="pokehunt app icon"
     />
   );
   const fairbnbIcon = (
     <img
       className={classes.appIcon}
       src="/media/icons/fairbnb.svg"
-      alt="sample icon"
+      alt="fairbnb app icon"
     />
   );
   const externalIcon = (
     <img
       className={classes.ghIcon}
       src="/media/icons/externalLink.svg"
-      alt="sample icon"
+      alt="external link icon"
     />
   );
   const mapsIcon = (
     <img
       className={classes.appIcon}
       src="/media/icons/ggcmaps.png"
-      alt="sample icon"
+      alt="ggcmaps app icon"
     />
   );
   const rarepntIcon = (
     <img
       className={classes.appIcon}
       src="/media/icons/rarepnt.svg"
-      alt="sample icon"
+      alt="rarepnt app icon"
     />
   );
   const gamevaultIcon = (
     <img
       className={classes.appIcon}
       src="/media/icons/gamevaulticon.svg"
-      alt="sample icon"
+      alt="gamevault app icon"
     />
   );
   return (
