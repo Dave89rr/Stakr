@@ -5,6 +5,7 @@ import EditBoardForm from "../../Forms/EditBoardForm/EditBoardForm";
 import classes from "./BoardCard.module.css";
 
 function BoardCard({ data }) {
+  const [display, setDisplay2] = useState(1);
   const board = data;
   const [bgc, setBgc] = useState("#ffffff");
   useEffect(() => {
@@ -46,17 +47,43 @@ function BoardCard({ data }) {
   return (
     <>
       <div>
-        <Link
-          to={`/b/${data.workspaceId}/${data.id}/${data.name}`}
-          style={{
-            textDecoration: "none",
-            height: "100%",
-            width: "100%",
-            backgroundColor: "Black",
-          }}
-        >
-          <div className={`${classes.boardcard} ${bgc}`}>{data.name}</div>
-        </Link>
+        {display === 1 ? (
+          // <Link
+          //   to={`/b/${data.workspaceId}/${data.id}/${data.name}`}
+          //   style={{
+          //     textDecoration: "none",
+          //   }}
+          // >
+          <div className={`${classes.boardcard} ${bgc}`}>
+            <div className={classes.boardName}>{data.name}</div>
+
+            <img
+              className={classes.gear}
+              src="/static/icons/settings.svg"
+              onClick={() => {
+                console.log(data);
+                setDisplay2(2);
+              }}
+            />
+          </div>
+        ) : (
+          // </Link>
+          <>
+            <div className={`${classes.boardcard} ${bgc}`}>
+              <div className={classes.boardName}>{data.name}</div>
+
+              <img
+                className={classes.gear}
+                src="/static/icons/settings.svg"
+                onClick={() => {
+                  console.log(data);
+                  setDisplay2(2);
+                }}
+              />
+            </div>
+            <EditBoardForm data={data} setDisplay2={setDisplay2} />
+          </>
+        )}
       </div>
     </>
   );

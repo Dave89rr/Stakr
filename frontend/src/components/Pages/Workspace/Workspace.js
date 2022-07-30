@@ -6,12 +6,10 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 
 import BoardsForm from "../../Forms/BoardsForm";
-import EditBoardForm from "../../Forms/EditBoardForm/EditBoardForm";
 
 function Workspace() {
   const { workspaceId } = useParams();
   const [showBoardForm, setShowBoardForm] = useState(true);
-  const [display, setDisplay] = useState(false);
   let workspace = useSelector((state) => state.workspaces[workspaceId]);
   let boards;
   if (workspace) {

@@ -4,17 +4,15 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { thunkUpdateBoard, thunkDeleteBoard } from "../../../store/boards";
 import classes from "../EditCardForm/EditCardForm.module.css";
 
-function EditBoardForm({ data, setDisplay }) {
-  const { workspaceId } = useParams();
-  const id = parseInt(workspaceId, 10);
-  console.log(id);
-
-  const board = useSelector((state) => state.workspaces[id].boards[data]);
+function EditBoardForm({ data, setDisplay2 }) {
+  const board = useSelector(
+    (state) => state.workspaces[data.workspaceId].boards[data.id]
+  );
   board
     ? console.log("we got a board", board)
     : console.log("we got no boards", board);
-  const [name, setName] = useState(data);
-  const [color, setColor] = useState(board.color);
+  const [name, setName] = useState(data.name);
+  const [color, setColor] = useState(data.color);
 
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
@@ -29,7 +27,7 @@ function EditBoardForm({ data, setDisplay }) {
     };
 
     dispatch(thunkUpdateBoard(_board));
-    setDisplay(false);
+    setDisplay2(1);
   };
   return (
     <>
@@ -39,7 +37,7 @@ function EditBoardForm({ data, setDisplay }) {
           <div
             className={classes.closeModel}
             onClick={(e) => {
-              setDisplay(false);
+              setDisplay2(1);
             }}
           >
             x
@@ -87,11 +85,11 @@ function EditBoardForm({ data, setDisplay }) {
               className={classes.delButton}
               onClick={(e) => {
                 e.preventDefault();
-                setDisplay(false);
+                setDisplay2(1);
                 dispatch(
                   thunkDeleteBoard({
                     id: board.id,
-                    workspaceId: workspaceId,
+                    workspaceId: board.workspaceId,
                   })
                 );
               }}
