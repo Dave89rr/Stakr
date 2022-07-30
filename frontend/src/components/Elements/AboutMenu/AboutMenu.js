@@ -1,6 +1,13 @@
 import classes from './AboutMenu.module.css';
 
-function AboutMenu() {
+function AboutMenu({ setToggleAbout }) {
+  const xicon = (
+    <img
+      // className={classes.closeMenu}
+      src="/media/icons/x.svg"
+      alt="sample icon"
+    />
+  );
   const financeIcon = (
     <img
       className={classes.appIcon}
@@ -63,7 +70,12 @@ function AboutMenu() {
         <div className={classes.title}>
           <span>Discover More from Us</span>
         </div>
-        <span>x</span>
+        <div
+          className={classes.closeMenu}
+          onClick={() => setToggleAbout(false)}
+        >
+          {xicon}
+        </div>
       </div>
       <div className={classes.line}></div>
       <div className={classes.contributorContainer}>

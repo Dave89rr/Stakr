@@ -73,6 +73,13 @@
   height: 25px;
   width: 25px;
 }
+.closeMenu {
+  height: 20px;
+  width: 20px;
+  margin-right: 4%;
+  margin-top: 4%;
+  cursor: pointer;
+}
 
 .ghIcon {
   height: 15px;

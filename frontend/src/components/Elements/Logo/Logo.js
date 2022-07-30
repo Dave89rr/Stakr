@@ -23,7 +23,7 @@ function Logo() {
       <div onClick={() => setToggleAbout(!toggleAbout)}>
         <Link to="/">{about}</Link>
       </div>
-      {toggleAbout ? <AboutMenu /> : null}
+      {toggleAbout ? <AboutMenu setToggleAbout={setToggleAbout} /> : null}
       <Link to="/">{logo}</Link>
     </div>
   );
