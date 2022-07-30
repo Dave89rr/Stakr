@@ -1,19 +1,20 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
-import { signUp } from "../../../store/session";
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Redirect, useHistory } from 'react-router-dom';
+import { signUp } from '../../../store/session';
+import AuthPageBg from '../../Elements/AuthPageBg';
 
-import classes from "./SignUpPage.module.css";
-// import uniCss from "../pagesuniversal.module.css";
+import classes from './SignUpPage.module.css';
 
 const SignUpPage = () => {
   const history = useHistory();
   const [errors, setErrors] = useState([]);
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector((state) => state.session.user);
+  const workspaces = useSelector((state) => state.workspaces);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
@@ -118,20 +119,7 @@ const SignUpPage = () => {
             </p>
           </form>
         </div>
-        <div className={classes.imgContainer}>
-          <div className={classes.right}>
-            <img
-              className={classes.imgBottom}
-              src="/static/icons/left-bg-login.svg"
-            />
-          </div>
-          <div className={classes.right}>
-            <img
-              className={classes.imgBottomRight}
-              src="/static/icons/right-bg-login.svg"
-            />
-          </div>
-        </div>
+        <AuthPageBg />
       </div>
     </div>
   );
