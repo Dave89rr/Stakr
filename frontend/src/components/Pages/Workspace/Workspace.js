@@ -26,10 +26,10 @@ function Workspace() {
       {boards && boards.length > 0 ? (
         boards.map((ele) => {
           return (
-            <div className={classes.cardHolder}>
+            <div className={classes.cardHolder} key={ele.id}>
               <div className={classes.settings}>
                 <div className={classes.card}>
-                  <BoardCard data={ele} key={ele.id} />
+                  <BoardCard data={ele} />
                 </div>
                 <div classes={classes.gearDiv}>
                   <img
