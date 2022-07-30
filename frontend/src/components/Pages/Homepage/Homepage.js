@@ -87,7 +87,7 @@ function HomePage() {
               <p className={classes.subHeader}>Inspiration</p>{" "}
               <p className={classes.subText}>
                 Our inspiration for this project comes from Trello. Go checkout
-                there products and see why we love it so much we made a clone!
+                their products and see why we love it so much we made a clone!
               </p>
               <a
                 href="https://trello.com/"
