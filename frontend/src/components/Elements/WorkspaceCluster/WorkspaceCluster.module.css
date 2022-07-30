@@ -10,17 +10,21 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+  padding-right: 8%;
+
+  width: 100%;
 }
 .clusterInteractions > a {
   color: #172b4d;
   text-decoration: none;
 }
 
-.btnContainer {
+/* .btnContainer {
   display: flex;
   flex-direction: row;
   width: 28%;
-}
+} */
 
 .boardsContainer {
   display: flex;

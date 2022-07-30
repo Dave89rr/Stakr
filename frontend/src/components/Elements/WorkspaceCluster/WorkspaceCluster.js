@@ -44,8 +44,8 @@ function WorkspaceCluster({ id }) {
             </Link>
           )}
           <div className={classes.btnContainer}>
-            <WorkspaceButton name={'board'} plural={'s'} />
-            <WorkspaceButton name={'member'} plural={'s'} />
+            {/* <WorkspaceButton name={'board'} plural={'s'} /> */}
+            {/* <WorkspaceButton name={'member'} plural={'s'} /> */}
             <div onClick={() => setShowSettings(!showSettings)}>
               <WorkspaceButton name={'settings'} plural={''} />
             </div>
