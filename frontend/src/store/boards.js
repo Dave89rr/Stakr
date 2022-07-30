@@ -40,10 +40,10 @@ const actionUpdateBoard = (board) => {
   };
 };
 
-const actionDeleteBoard = (boardId) => {
+const actionDeleteBoard = (board) => {
   return {
     type: DELETE_BOARD,
-    boardId,
+    board,
   };
 };
 
@@ -60,7 +60,7 @@ export const thunkCreateBoard = (board) => async (dispatch) => {
 
   if (response.ok) {
     const board = await response.json();
-    dispatch(actionCreateBoard(board.board));
+    dispatch(actionCreateBoard(board));
   }
 };
 
@@ -93,71 +93,30 @@ export const thunkGetBoard = (boardId) => async (dispatch) => {
 };
 
 export const thunkUpdateBoard = (board) => async (dispatch) => {
-  const response = await fetch(`api/b/update`, {
+  const response = await fetch(`/api/b/update`, {
     method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(board),
   });
 
   if (response.ok) {
-    const boardData = await response.json;
-    dispatch(actionUpdateBoard(boardData));
+    const board = await response.json();
+    dispatch(actionUpdateBoard(board));
   }
 };
 
-export const thunkDeleteBoard = (boardId) => async (dispatch) => {
+export const thunkDeleteBoard = (board) => async (dispatch) => {
   const response = await fetch(`/api/b/delete`, {
     method: "DELETE",
-    body: JSON.stringify(boardId),
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(board),
   });
 
   if (response.ok) {
-    dispatch(actionDeleteBoard(boardId));
+    dispatch(actionDeleteBoard(board));
   }
 };
-
-// ==== Reducers ==== //
-
-const boards = (state = {}, action) => {
-  let newState = {};
-
-  switch (action.type) {
-    case CREATE_BOARD:
-      const brd = action.board;
-      newState = { ...state };
-      newState[brd.id] = {
-        workspaceId: brd.workspaceId,
-        username: brd.username,
-        name: brd.name,
-        color: brd.color,
-      };
-      return newState;
-
-    case GET_BOARD:
-      const board = action.board.board;
-      newState[board.id] = board;
-      return newState;
-
-    case GET_BOARDS:
-      const boards = action.board.board;
-      boards.forEach((board) => {
-        newState[board.id] = board;
-      });
-      return newState;
-
-    case UPDATE_BOARD:
-      newState = { ...state };
-      const boardData = action.board.board;
-      newState[boardData.id] = boardData;
-      return newState;
-
-    case DELETE_BOARD:
-      newState = { ...state };
-      delete newState[action.boardId];
-      return newState;
-
-    default:
-      return state;
-  }
-};
-
-export default boards;

@@ -1,13 +1,13 @@
-import classes from './WorkspaceButton.module.css';
-function WorkspaceButton({ name }) {
+import classes from "./WorkspaceButton.module.css";
+function WorkspaceButton({ name, plural }) {
   return (
     <div className={classes.btnContainer}>
       <img
         className={classes.icon}
-        src={`/media/icons/${name}.svg`}
+        src={`/static/icons/${name}.svg`}
         alt={`${name} button`}
       />
-      <span>{`${name}`}</span>
+      {/* <span>{`${name}${plural}`}</span> */}
     </div>
   );
 }

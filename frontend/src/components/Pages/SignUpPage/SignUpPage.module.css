@@ -1,0 +1,126 @@
+.formContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 100px 0 100px 0;
+  align-items: center;
+}
+
+.logo {
+  height: 100px;
+  width: 200px;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+
+.signupText {
+  display: flex;
+  justify-content: center;
+  color: #536c84;
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.formWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.form {
+  position: fixed;
+  display: flex;
+  border-radius: 3px;
+  flex-direction: column;
+  width: 400px;
+  height: fit-content;
+  padding: 6px;
+  margin-top: 2%;
+  background-color: #ffffff;
+  box-shadow: rgb(0 0 0 / 10%) 0 0 10px;
+  padding: 60px 60px 0 60px;
+  z-index: 12;
+}
+
+.input {
+  border: 2px solid #dfe1e6;
+  background-color: #fafbfc;
+  width: 100%;
+  height: 45px;
+  border-radius: 3px;
+  margin: 6px 0 6px 0;
+}
+
+.signup:disabled {
+  color: #8c8c8c;
+  background-color: #e2e4e6;
+  cursor: default;
+}
+.signup:disabled:hover {
+  color: #8c8c8c;
+  background-color: #e2e4e6;
+}
+
+.signup {
+  border: none;
+  border-radius: 3px;
+  color: #ffffff;
+  background-color: #5aac44;
+  font-size: 15px;
+  font-weight: 600;
+  width: 100%;
+  height: 30px;
+  min-height: 30px;
+  margin-top: 30px;
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+
+.signup:hover {
+  background-color: #61bd4f;
+}
+.input:focus {
+  border: 2px solid #4c9aff;
+  outline: none;
+}
+
+.mainContainer {
+  background-color: #f9fafc;
+  height: 100%;
+}
+
+.loginLink {
+  color: #0052cc;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  height: 20px;
+  cursor: pointer;
+}
+
+.loginLink:hover {
+  text-decoration: underline;
+}
+
+.error > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  background-color: #eb5a46;
+  height: fit-content;
+  width: fit-content;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  padding: 4%;
+}

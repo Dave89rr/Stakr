@@ -2,13 +2,125 @@
   display: flex;
   flex-direction: row;
 }
+.container * {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
 
 .workspacesMenu {
-  width: 21.13%;
-  border: 1px dashed blue;
+  display: flex;
+  flex-direction: column;
+
+  width: 22.13%;
+  margin-right: 20px;
+  padding: 0 5px 0 5px;
+
+  border: 1px solid transparent;
+  transition: border-color .2s ease;
+}
+.workspacesMenu:hover {
+  border-color: rgba(240, 240, 240, 0.9);
 }
 
 .workspacesView {
   width: 78.86%;
-  border: 1px dashed red;
+}
+.workspacesView > h3 {
+  color: #5e6c84;
+  font-size: 16px;
+}
+
+.wsmTitle {
+  font-size: 14px;
+  font-weight: 500;
+  color: #5e6c84;
+  user-select: none;
+}
+
+.noWsYet {
+  font-size: 14px;
+  font-weight: 500;
+  color: #5e6c84;
+  user-select: none;
+}
+
+.cardContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 6px 8px 6px 6px;
+
+  height: 45px;
+
+  color: #172b4d;
+  background-color: #fff;
+  border-radius: 3px;
+
+  transition: background-color .1s ease;
+
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+.cardContainer:hover {
+  background-color: rgb(235, 235, 235);
+}
+
+.letter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-width: 20px;
+  height: 20px;
+  padding-right: 1px;
+
+  color: white;
+  line-height: 0;
+  font-size: 14px;
+  font-weight: 600;
+
+  border-radius: 3px;
+  background: linear-gradient(#403294, #0747a6);;
+}
+
+.cardText {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 5px 1px 8px;
+  width: 100%;
+
+  font-size: 14px;
+  font-weight: 600;
+  word-break: break-all;
+}
+.dropArrow {
+  color: black;
+  width: 12px;
+  margin: 1px 0px 0 6px;
+  transition: transform .2s ease;
+}
+
+.boardCard {
+  display: flex;
+  align-items: center;
+  height: 35px;
+
+  margin-bottom: 5px;
+  padding-left: 5px;
+  padding-bottom: 2px;
+
+  border-radius: 3px;
+  cursor: pointer;
+  transition: box-shadow .2s ease;
+}
+.boardCard:hover {
+  box-shadow: inset 0px 0px 1000px rgba(0, 0, 0, 0.2);
+}
+.White {
+  background-color: rgb(221, 221, 221);
 }

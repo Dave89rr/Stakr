@@ -8,8 +8,10 @@ import {
   thunkGetAllStacks,
   thunkUpdateStackOrder,
 } from "../../../store/stacks";
+import { thunkGetCards, thunkUpdateCard } from "../../../store/cards";
 
 import classes from "./BoardPage.module.css";
+import uniclass from "../pagesuniversal.module.css"
 import Stack from "../../Elements/Stack/Stack";
 import StacksForm from "../../Forms/StacksForm/StacksForm";
 
@@ -21,64 +23,152 @@ function BoardPage() {
 
   const [loaded, setLoaded] = useState(false);
   const [disabled, setDisabled] = useState(false);
+  const [cardOrder, setCardOrder] = useState({});
 
   useEffect(() => {
     (async () => {
       if (workspaces[workspaceId]) {
-        await dispatch(thunkGetAllStacks(boardId));
+        await dispatch(thunkGetAllStacks(boardId, workspaceId));
         setLoaded(true);
       }
-    })();
-  }, [dispatch, workspaces[workspaceId]]);
+      if (workspaces[workspaceId] && workspaces[workspaceId].stacks) {
+        await dispatch(thunkGetCards(boardId, workspaceId));
+      }
+      if (workspaces[workspaceId] && workspaces[workspaceId].cards) {
+        let cards = workspaces[workspaceId].cards;
+        let stacks = workspaces[workspaceId].stacks;
 
-  if (!loaded) return null;
+        let stackIds = Object.values(stacks).map((ele) => ele.id);
+        let filterStackIds = stackIds.filter(
+          (id) => stacks[id].boardId === parseInt(boardId)
+          );
+          let cardsObj = {};
+          filterStackIds.forEach((id) => {
+            let stackCards = Object.values(cards).filter(
+              (ele) => ele.stackId === id
+            ).sort((a, b) => a.position-b.position);
+              cardsObj[id] = stackCards;
+            });
 
-  let stacks;
-  if (loaded) {
-    stacks = workspaces[workspaceId].stacks;
-  }
+            await setCardOrder(cardsObj);
+          }
+        })();
+      }, [dispatch, workspaces[workspaceId]]);
 
-  let sortedStacks;
-  if (workspaces[workspaceId].stacks) {
-    let stackIds = Object.values(stacks).map((ele) => ele.id.toString());
-    let filterStackIds = stackIds.filter(
-      (id) => stacks[id].boardId === parseInt(boardId)
-    );
-    sortedStacks = filterStackIds.sort(
-      (a, b) => stacks[a].position - stacks[b].position
-    );
-  }
+      if (!loaded || !workspaces[workspaceId]) return null;
+      let boardData;
+      if (loaded && workspaces[workspaceId]) {
+        boardData = workspaces[workspaceId].boards[boardId]
+      }
 
-  const onDragStart = () => {
-    setDisabled(true);
-  };
+      let stacks;
+      if (loaded && workspaces[workspaceId]) {
+        stacks = workspaces[workspaceId].stacks;
+      }
+      let sortedStacks;
+      if (workspaces[workspaceId] && workspaces[workspaceId].stacks) {
+        let stackIds = Object.values(stacks).map((ele) => ele.id.toString());
+        let filterStackIds = stackIds.filter(
+         (id) => stacks[id].boardId === parseInt(boardId)
+         );
+          sortedStacks = filterStackIds.sort(
+            (a, b) => stacks[a].position - stacks[b].position
+          );
+      }
 
-  const onDragEnd = async (res) => {
-    const { destination, source, draggableId, type } = res;
+      let cards;
+      if (workspaces[workspaceId] && workspaces[workspaceId].cards) {
+        cards = workspaces[workspaceId].cards;
+      }
 
-    // dont do anything when dragged into the same spot as before
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
-      setDisabled(false);
-      return;
-    }
+      const onDragStart = () => {
+        setDisabled(true);
+      };
 
-    if (type === "column") {
+      const onDragEnd = async (res) => {
+        const { destination, source, draggableId, type } = res;
+
+        if (type === "column") {
+      // dont do anything when dragged into the same spot as before
+      if (
+        destination.droppableId === source.droppableId &&
+        destination.index === source.index
+      ) {
+        setDisabled(false);
+        return;
+      }
+
       const newStackOrder = Array.from(sortedStacks);
       newStackOrder.splice(source.index, 1);
       newStackOrder.splice(destination.index, 0, draggableId);
       sortedStacks = newStackOrder;
-      await dispatch(thunkUpdateStackOrder(sortedStacks, boardId));
+      await dispatch(thunkUpdateStackOrder(sortedStacks, boardId, workspaceId));
+      setDisabled(false);
+    }
+    if (type === "row") {
+      // dont do anything when dragged into the same spot as before
+      if (
+        (destination &&
+          destination.droppableId === source.droppableId &&
+          destination.index === source.index) ||
+        !destination
+      ) {
+        setDisabled(false);
+        return;
+      }
+
+      const cardId = parseInt(res.draggableId.split(":")[1]);
+      const stackId = parseInt(res.destination.droppableId.split(":")[1]);
+
+      let orderList = Object.values(cards)
+        .filter((ele) => {
+          return ele.stackId === stackId;
+        })
+        .map((ele) => ele.id)
+        .sort((a, b) => cards[a].position - cards[b].position);
+
+      if (orderList.includes(cardId)) {
+        orderList.splice(source.index, 1);
+      }
+      orderList.splice(destination.index, 0, cardId);
+
+      const otherCards = Object.values(cards)
+        .filter((ele) => {
+          return (
+            ele.stackId === parseInt(res.source.droppableId.split(":")[1]) &&
+            ele.id !== cardId
+          );
+        })
+        .map((ele) => ele.id)
+        .sort((a, b) => cards[a].position - cards[b].position);
+
+      const newCardOrder = { ...cardOrder };
+      const list = orderList.map((id) => cards[id]);
+      const otherList = otherCards.map((id) => cards[id]);
+      newCardOrder[source.droppableId.split(":")[1]] = otherList;
+      newCardOrder[stackId] = list;
+      setCardOrder(newCardOrder);
+
+      const data = {
+        cardId,
+        stackId,
+        newPos: res.destination.index,
+        orderList,
+        otherCards,
+      };
+
+      await dispatch(thunkUpdateCard(data, workspaceId));
       setDisabled(false);
     }
   };
 
+  let color;
+  if (loaded && workspaces[workspaceId]) color=workspaces[workspaceId].boards[boardId].color;
+
   return (
-    <div className={classes.containerWrapper}>
+    <div className={`${classes.containerWrapper} ${uniclass[color]}`}>
       <h1>
-        BoardPage #{boardId} {workspaceId}
+        {boardData.name}
       </h1>
       <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
         <Droppable droppableId="allStacks" direction="horizontal" type="column">
@@ -88,24 +178,22 @@ function BoardPage() {
               ref={provided.innerRef}
               className={classes.stackContainer}
             >
-              <div className={classes.stackContainer}>
-                {stacks
-                  ? sortedStacks.map((ele) => {
-                      return (
-                        <>
-                          <Stack
-                            data={stacks[ele]}
-                            disabled={disabled}
-                            key={stacks[ele].id}
-                            workspaces={workspaces}
-                          />
-                        </>
-                      );
-                    })
-                  : null}
-                {provided.placeholder}
-                <StacksForm positionNum={sortedStacks.length} />
-              </div>
+              {stacks
+                ? sortedStacks.map((ele) => {
+                    return (
+                      <Stack
+                        data={stacks[ele]}
+                        disabled={disabled}
+                        cards={cards}
+                        cardOrder={cardOrder}
+                        setCardOrder={setCardOrder}
+                        key={stacks[ele].id}
+                      />
+                    );
+                  })
+                : null}
+              {provided.placeholder}
+              <StacksForm />
             </div>
           )}
         </Droppable>

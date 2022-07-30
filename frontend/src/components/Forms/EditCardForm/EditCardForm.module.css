@@ -1,0 +1,100 @@
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: black;
+  padding-top: 5vh;
+  opacity: 70%;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+}
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-top: 5vh;
+
+  height: 100%;
+  width: 100%;
+  z-index: 11;
+}
+.formBody {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  padding: 2% 5%;
+  width: 40%;
+  min-height: 60%;
+  background-color: white;
+  margin: 0 30% 0 30%;
+  z-index: 11;
+  font-size: 150%;
+  border-radius: 20px;
+}
+.textArea {
+  width: 100%;
+  height: 100px;
+  border-radius: 5px;
+  resize: none;
+  padding-left: 5px;
+  font-size: 20px;
+  font-style: italic;
+  color: Black;
+}
+.closeModel {
+  background-color: Grey;
+  min-width: 32.89px;
+  width: 2%;
+  font-size: 32px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  margin-left: 71%;
+  padding-bottom: 3px;
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+
+.nameField {
+  width: 100%;
+  padding-left: 5px;
+  /* background-color: black; */
+  border-radius: 5px;
+  font-size: 18px;
+  font-style: italic;
+  color: Black;
+}
+
+.selectField {
+  width: 100%;
+  height: 2rem;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.delButton {
+  background-color: red;
+  color: black;
+  opacity: none;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  height: 30px;
+}
+
+.subButton {
+  background-color: green;
+  color: black;
+  opacity: none;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  height: 30px;
+  width: 100%;
+}

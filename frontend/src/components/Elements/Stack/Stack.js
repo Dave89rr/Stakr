@@ -1,31 +1,18 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { Draggable } from "react-beautiful-dnd";
+import { useDispatch } from "react-redux";
+import { Droppable, Draggable } from "react-beautiful-dnd";
 
 import Card from "../Card";
-import { thunkGetCards } from "../../../store/cards";
+import { thunkDeleteStack } from "../../../store/stacks";
 
 import classes from "./Stack.module.css";
+import CreateCard from "../../Forms/CreateCard";
 
-const Stack = ({ data, disabled, workspaces }) => {
-  const { workspaceId, boardId } = useParams();
+const Stack = ({ data, disabled, cards, cardOrder, setCardOrder }) => {
+  const { workspaceId } = useParams();
   const dispatch = useDispatch();
-
-  let cards;
-  // console.log(workspaces);
-  if (workspaces[workspaceId].cards) {
-    const allCards = Object.values(workspaces[workspaceId].cards);
-    cards = allCards.filter((ele) => ele.stackId === data.id);
-  }
-
-  useEffect(() => {
-    (async () => {
-      if (workspaces[workspaceId]) {
-        await dispatch(thunkGetCards(data.id, workspaceId));
-      }
-    })();
-  }, [dispatch, workspaces[workspaceId]]);
+  const [form, setForm] = useState("False");
 
   return (
     <Draggable
@@ -43,12 +30,72 @@ const Stack = ({ data, disabled, workspaces }) => {
           <div className={classes.stack}>
             <div className={classes.stackTitle} {...provided.dragHandleProps}>
               {data.name}
+              <div
+                className={classes.trashCan}
+                style={{ cursor: "pointer" }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  const payload = {
+                    stackId: data.id,
+                    workspaceId,
+                  };
+                  dispatch(thunkDeleteStack(payload));
+                }}
+              >
+                <img
+                  src="/static/icons/trashcan.svg"
+                  className={classes.trashCan}
+                />
+              </div>
             </div>
-            <div className={classes.stackContent}>
-              {cards
-                ? cards.map((ele, i) => <Card data={ele} key={i} />)
-                : null}
-            </div>
+            <Droppable
+              droppableId={`drop:${data.id}`}
+              direction="vertical"
+              type="row"
+            >
+              {(provided) => (
+                <div
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                  className={classes.stackContent}
+                >
+                  {cardOrder[data.id]?.map((ele, i) => {
+                    return (
+                      <Card
+                        data={cards[ele.id]}
+                        pos={i}
+                        key={ele.id}
+                        cardOrder={cardOrder}
+                        setCardOrder={setCardOrder}
+                      />
+                    );
+                  })}
+                  {provided.placeholder}
+                  {form === "False" ? (
+                    <div
+                      className={classes.addCard}
+                      onClick={(e) => setForm("True")}
+                    >
+                      <div className={classes.plusContainer}>
+                        <img
+                          src="/static/icons/plus.svg"
+                          className={classes.plus}
+                        />
+                        New Card
+                      </div>
+                    </div>
+                  ) : (
+                    <CreateCard
+                      stackId={data.id}
+                      disabled={disabled}
+                      setForm={setForm}
+                      cardOrder={cardOrder}
+                      setCardOrder={setCardOrder}
+                    />
+                  )}
+                </div>
+              )}
+            </Droppable>
           </div>
         </div>
       )}

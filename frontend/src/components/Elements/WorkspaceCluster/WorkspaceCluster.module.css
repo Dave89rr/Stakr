@@ -5,22 +5,116 @@
   margin-bottom: 5%;
 }
 
+.clusterEditContainer {
+  display: flex;
+  align-items: center;
+
+  padding: 6px;
+  margin-bottom: 15px;
+}
+
 .clusterInteractions {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+  padding-right: 8%;
+
+  width: 100%;
+}
+.clusterInteractions > a {
+  color: #172b4d;
+  text-decoration: none;
 }
 
-.btnContainer {
-  display: flex;
-  flex-direction: row;
-  width: 28%;
+.btnContainer > div {
+  position: relative;
 }
+
 
 .boardsContainer {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 3.4%;
+  gap: 1.5%;
+}
+
+.createBoardcard {
+  border-radius: 3px;
+  width: 194px;
+  height: 98px;
+  margin-bottom: 2%;
+}
+
+.workspaceTitleContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  min-width: 300px;
+
+  margin-bottom: 15px;
+  padding: 6px;
+
+  font-weight: 600;
+  border-radius: 3px;
+
+  transition: background-color .2s ease;
+}
+.workspaceTitleContainer:hover {
+  background-color: rgb(235, 235, 235);
+}
+
+.workspaceTitleLetter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 30px;
+  height: 30px;
+
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 3px;
+  color: white;
+  background: linear-gradient(#403294, #0747a6);
+}
+
+.newBoardText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+  width: 100%;
+  height: 100%;
+
+  cursor: pointer;
+  border-radius: 3px;
+  background-color: rgb(221, 221, 221);
+
+  transition: background-color .2s ease;
+}
+.newBoardText:hover {
+  background-color: rgba(186, 184, 200, 0.83);
+}
+.plus {
+  width: 15px;
+}
+.newBoardText > span {
+  color: #172b4d;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.x {
+  width: 25px;
+  margin-left: 10px;
+  filter: invert(12%) sepia(16%) saturate(5189%) hue-rotate(194deg) brightness(97%) contrast(90%);
+  cursor: pointer;
+  transition: filter .4s ease;
+}
+.x:hover {
+  filter: invert(40%) sepia(71%) saturate(3493%) hue-rotate(338deg) brightness(92%) contrast(92%);
 }
