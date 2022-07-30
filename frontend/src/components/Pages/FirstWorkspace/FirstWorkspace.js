@@ -14,10 +14,9 @@ function FirstWorkspace() {
   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
   const history = useHistory();
-  // Commented out for development
-  //   if (Object.values(workspaces).length > 0) {
-  //     return <Redirect to="/" />;
-  //   }
+  if (Object.values(workspaces).length > 0) {
+    return <Redirect to="/" />;
+  }
   const onCreate = async (e) => {
     e.preventDefault();
     const errors = [];

@@ -5,6 +5,8 @@
   height: 100vh;
   width: 100vw;
   z-index: 10;
+  background-color: #fafbfc;
+  overflow: hidden;
 }
 
 .background {
@@ -13,7 +15,6 @@
 }
 
 .bgContainer {
-  background-color: #fafbfc;
   height: 100%;
   display: flex;
   justify-content: space-between;
@@ -55,10 +56,8 @@
   border-radius: 3px;
   color: #ffffff;
   background-color: #0175b8;
-  /* font-size: 15px; */
-  /* font-weight: 600; */
   width: 100%;
-  height: 30px;
+  height: 3.98vh;
   min-height: 30px;
   margin-top: 2%;
   cursor: pointer;
