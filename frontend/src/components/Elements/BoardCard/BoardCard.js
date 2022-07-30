@@ -5,7 +5,6 @@ import classes from "./BoardCard.module.css";
 
 function BoardCard({ data }) {
   const [bgc, setBgc] = useState("#ffffff");
-  console.log(data);
   useEffect(() => {
     // ==== handle color ==== //
     switch (data.color) {
