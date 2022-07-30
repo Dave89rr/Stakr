@@ -43,21 +43,19 @@ function EditWorkspaceForm({
   return (
     <div className={classes.editWsContainer}>
       <form onSubmit={handleSubmit}>
-        <div>
-          {validationErrors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div>
-        <div>
-          {/* <label htmlFor="name">Name</label> */}
-          <input
-            name="name"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          {/* <button type="submit">Update Name</button> */}
-        </div>
+        {/* <label htmlFor="name">Name</label> */}
+        <input
+          name="name"
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          style={{
+            border: (validationErrors.length>0?'1px solid #e33d3d':'1px solid rgb(221, 221, 221)'),
+            borderRadius: '3px',
+            outline: 'none'
+          }}
+        />
+        {/* <button type="submit">Update Name</button> */}
       </form>
     </div>
   );

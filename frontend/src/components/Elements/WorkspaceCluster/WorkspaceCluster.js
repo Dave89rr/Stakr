@@ -26,13 +26,24 @@ function WorkspaceCluster({ id }) {
       <div className={classes.clusterContainer}>
         <div className={classes.clusterInteractions}>
           {editWsMode && id === editWsId ? (
-            <EditWorkspaceForm
-              id={id}
-              wsname={data.name}
-              setEditWsMode={setEditWsMode}
-              setEditWsId={setEditWsId}
-              setShowSettings={setShowSettings}
-            />
+            <div className={classes.clusterEditContainer}>
+              <div className={classes.workspaceTitleLetter}>
+                {data.name[0].toUpperCase()}
+              </div>
+              <EditWorkspaceForm
+                id={id}
+                wsname={data.name}
+                setEditWsMode={setEditWsMode}
+                setEditWsId={setEditWsId}
+                setShowSettings={setShowSettings}
+              />
+              <img
+                onClick={() => setEditWsId(false)}
+                className={classes.x}
+                src="/static/icons/x.svg"
+                alt="x"
+              />
+            </div>
           ) : (
             <Link to={`/w/${data.id}/home`}>
               <div className={classes.workspaceTitleContainer}>

@@ -5,6 +5,14 @@
   margin-bottom: 5%;
 }
 
+.clusterEditContainer {
+  display: flex;
+  align-items: center;
+
+  padding: 6px;
+  margin-bottom: 15px;
+}
+
 .clusterInteractions {
   display: flex;
   flex-direction: row;
@@ -98,4 +106,15 @@
   color: #172b4d;
   font-size: 16px;
   font-weight: 500;
+}
+
+.x {
+  width: 25px;
+  margin-left: 10px;
+  filter: invert(12%) sepia(16%) saturate(5189%) hue-rotate(194deg) brightness(97%) contrast(90%);
+  cursor: pointer;
+  transition: filter .4s ease;
+}
+.x:hover {
+  filter: invert(40%) sepia(71%) saturate(3493%) hue-rotate(338deg) brightness(92%) contrast(92%);
 }

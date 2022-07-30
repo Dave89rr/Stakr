@@ -53,7 +53,7 @@ function BoardsForm({ wsId, setShowBoardForm, showBoardForm }) {
             onClick={() => setShowBoardForm(false)}
             className={classes.x}
             src="/static/icons/x.svg"
-            alt="plus"
+            alt="x"
           />
         </div>
       </form>
