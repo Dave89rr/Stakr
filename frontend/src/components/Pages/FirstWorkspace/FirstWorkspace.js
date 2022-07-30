@@ -17,6 +17,9 @@ function FirstWorkspace() {
   if (Object.values(workspaces).length > 0) {
     return <Redirect to="/" />;
   }
+  if (!user) {
+    return <Redirect to="/signup" />;
+  }
   const onCreate = async (e) => {
     e.preventDefault();
     const errors = [];

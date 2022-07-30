@@ -19,7 +19,9 @@ const SignUpPage = () => {
 
   useEffect(() => {
     let email = localStorage.getItem('email');
-    setEmail(email);
+    if (email) {
+      setEmail(email);
+    }
   }, []);
 
   const onSignUp = async (e) => {
