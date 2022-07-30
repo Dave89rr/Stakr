@@ -123,7 +123,7 @@ const SignUpPage = () => {
               onClick={() => history.push(`/login`)}
               className={classes.loginLink}
             >
-              Aleardy have an account? Login
+              Already have an account? Login
             </p>
           </form>
         </div>

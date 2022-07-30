@@ -108,7 +108,7 @@ class Stacks(db.Model):
     __tablename__ = "stacks"
 
     id = db.Column(db.Integer, primary_key=True)
-    workspaceId = db.Column(db.Integer, db.ForeignKey("workspaces.id"), nullable=False)
+    workspaceId = db.Column(db.Integer, db.ForeignKey("workspaces.id", ondelete='CASCADE'), nullable=False)
     boardId = db.Column(db.Integer, db.ForeignKey("boards.id", ondelete='CASCADE'), nullable=False)
     username = db.Column(db.String(20),nullable=False)
     name = db.Column(db.String(50),nullable=False)
