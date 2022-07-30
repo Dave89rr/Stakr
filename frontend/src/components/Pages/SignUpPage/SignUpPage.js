@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../../store/session';
@@ -17,6 +17,11 @@ const SignUpPage = () => {
   const workspaces = useSelector((state) => state.workspaces);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    let email = localStorage.getItem('email');
+    setEmail(email);
+  }, []);
+
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
@@ -27,6 +32,7 @@ const SignUpPage = () => {
     } else {
       return setErrors(["Passwords didn't match"]);
     }
+    localStorage.clear();
   };
 
   const updateUsername = (e) => {
