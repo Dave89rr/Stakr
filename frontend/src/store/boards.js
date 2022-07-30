@@ -102,7 +102,6 @@ export const thunkUpdateBoard = (board) => async (dispatch) => {
   });
 
   if (response.ok) {
-    console.log(response.json);
     const board = await response.json();
     dispatch(actionUpdateBoard(board));
   }

@@ -25,7 +25,6 @@ function Workspace() {
       <h1>{workspace.name}</h1>
       {boards && boards.length > 0 ? (
         boards.map((ele) => {
-          console.log(ele);
           return (
             <div className={classes.cardHolder}>
               <div className={classes.settings}>
