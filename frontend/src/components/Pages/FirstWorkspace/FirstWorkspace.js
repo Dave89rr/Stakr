@@ -1,20 +1,41 @@
 import classesFWS from './FirstWorkspace.module.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import AuthPageBg from '../../Elements/AuthPageBg/index.js';
 import classes from '../SignUpPage/SignUpPage.module.css';
 import { useState } from 'react';
+import { thunkCreateWorkspace } from '../../../store/workspaces';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function FirstWorkspace() {
   const workspaces = useSelector((state) => state.workspaces);
-  const [workspace, setWorkspace] = useState('');
+  const user = useSelector((state) => state.session.user);
+  const [name, setName] = useState('');
   const [errors, setErrors] = useState([]);
+  const dispatch = useDispatch();
+  const history = useHistory();
   // Commented out for development
   //   if (Object.values(workspaces).length > 0) {
   //     return <Redirect to="/" />;
   //   }
-  const onCreate = (e) => {
+  const onCreate = async (e) => {
     e.preventDefault();
+    const errors = [];
+    const workspace = {
+      ownerId: user.id,
+      name,
+    };
+
+    if (name.length === 0) {
+      errors.push('Name for a workspace cannot be left blank');
+    }
+    if (errors.length > 0) {
+      setErrors(errors);
+    } else {
+      setErrors([]);
+      dispatch(thunkCreateWorkspace(workspace));
+      history.push('/');
+    }
   };
   return (
     <div className={classesFWS.mainContainer}>
@@ -48,9 +69,9 @@ function FirstWorkspace() {
                 name="workspace"
                 type="text"
                 placeholder="Stakr Workspace"
-                value={workspace}
+                value={name}
                 onChange={(e) => {
-                  setWorkspace(e.target.value);
+                  setName(e.target.value);
                 }}
               />
             </div>
