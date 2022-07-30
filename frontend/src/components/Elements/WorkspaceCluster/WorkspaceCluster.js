@@ -1,13 +1,13 @@
-import WorkspaceButton from '../WorkspaceButton/WorkspaceButton';
-import classes from './WorkspaceCluster.module.css';
-import BoardCard from '../BoardCard';
-import { useSelector } from 'react-redux';
-import WsSettings from '../WsSettings/WsSettings';
-import { useState } from 'react';
-import BoardsForm from '../../Forms/BoardsForm';
-import EditWorkspaceForm from '../../Forms/EditWorkspaceForm';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import { useRef, useEffect } from 'react';
+import WorkspaceButton from "../WorkspaceButton/WorkspaceButton";
+import classes from "./WorkspaceCluster.module.css";
+import BoardCard from "../BoardCard";
+import { useSelector } from "react-redux";
+import WsSettings from "../WsSettings/WsSettings";
+import { useState } from "react";
+import BoardsForm from "../../Forms/BoardsForm";
+import EditWorkspaceForm from "../../Forms/EditWorkspaceForm";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { useRef, useEffect } from "react";
 
 function WorkspaceCluster({ id }) {
   const [showSettings, setShowSettings] = useState(false);
@@ -22,15 +22,14 @@ function WorkspaceCluster({ id }) {
     let checkHandler = (e) => {
       if (!ref.current?.contains(e.target)) {
         setShowSettings(false);
-        console.log('test')
       }
-    }
+    };
 
     document.addEventListener("mousedown", checkHandler);
 
     return () => {
       document.removeEventListener("mousedown", checkHandler);
-    }
+    };
   });
 
   let boards;
@@ -77,7 +76,7 @@ function WorkspaceCluster({ id }) {
             {/* <WorkspaceButton name={'board'} plural={'s'} /> */}
             {/* <WorkspaceButton name={'member'} plural={'s'} /> */}
             <div onClick={() => setShowSettings(!showSettings)}>
-              <WorkspaceButton name={'settings'} plural={''} />
+              <WorkspaceButton name={"settings"} plural={""} />
               {showSettings && (
                 <WsSettings
                   id={id}
@@ -92,15 +91,15 @@ function WorkspaceCluster({ id }) {
         </div>
         <div className={classes.boardsContainer}>
           <>
-          {boards && boards.length > 0 ? (
-            boards.map((ele, i) => {
-              return <BoardCard data={ele} key={i} />;
-            })
-          ):null}
+            {boards && boards.length > 0
+              ? boards.map((ele, i) => {
+                  return <BoardCard data={ele} key={i} />;
+                })
+              : null}
             <div
               className={classes.createBoardcard}
               onClick={() => {
-                if (!showBoardForm) setShowBoardForm(true)
+                if (!showBoardForm) setShowBoardForm(true);
               }}
             >
               {showBoardForm ? (
