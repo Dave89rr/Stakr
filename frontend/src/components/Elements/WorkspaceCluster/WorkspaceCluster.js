@@ -7,6 +7,7 @@ import { useState } from 'react';
 import BoardsForm from '../../Forms/BoardsForm';
 import EditWorkspaceForm from '../../Forms/EditWorkspaceForm';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { useRef, useEffect } from 'react';
 
 function WorkspaceCluster({ id }) {
   const [showSettings, setShowSettings] = useState(false);
@@ -14,6 +15,24 @@ function WorkspaceCluster({ id }) {
   const [editWsMode, setEditWsMode] = useState(true);
   const [editWsId, setEditWsId] = useState(0);
   const data = useSelector((state) => state.workspaces[id]);
+
+  const ref = useRef();
+
+  useEffect(() => {
+    let checkHandler = (e) => {
+      if (!ref.current?.contains(e.target)) {
+        setShowSettings(false);
+        console.log('test')
+      }
+    }
+
+    document.addEventListener("mousedown", checkHandler);
+
+    return () => {
+      document.removeEventListener("mousedown", checkHandler);
+    }
+  });
+
   let boards;
   if (data) {
     boards = Object.values(data.boards);
@@ -38,7 +57,7 @@ function WorkspaceCluster({ id }) {
                 setShowSettings={setShowSettings}
               />
               <img
-                onClick={() => setEditWsId(false)}
+                onClick={() => setEditWsMode(false)}
                 className={classes.x}
                 src="/static/icons/x.svg"
                 alt="x"
@@ -65,6 +84,7 @@ function WorkspaceCluster({ id }) {
                   settingsState={(showSettings, setShowSettings)}
                   setEditWsId={setEditWsId}
                   setEditWsMode={setEditWsMode}
+                  innerRef={ref}
                 />
               )}
             </div>

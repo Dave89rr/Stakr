@@ -4,7 +4,7 @@ import {
   thunkDeleteWorkspace,
 } from '../../../store/workspaces';
 
-const WsSettings = ({ id, setEditWsId, setEditWsMode }) => {
+const WsSettings = ({ id, setEditWsId, setEditWsMode, innerRef }) => {
   const dispatch = useDispatch();
   const handleDelete = (wsId) => {
     dispatch(thunkDeleteWorkspace(wsId));
@@ -15,7 +15,7 @@ const WsSettings = ({ id, setEditWsId, setEditWsMode }) => {
     setEditWsMode(true);
   };
   return (
-    <div className={classes.settingsMenuContainer}>
+    <div className={classes.settingsMenuContainer} ref={innerRef}>
       <span className={classes.title}>Options</span>
       <div className={classes.btn} onClick={() => toggleEditView(id)}>
         <span>Edit</span>
