@@ -190,8 +190,7 @@ const workspaces = (state = {}, action) => {
     }
 
     case UPDATE_BOARD: {
-      const { board } = action.board;
-      console.log(board);
+      const { board } = action;
       newState[board.workspaceId].boards[board.id] = board;
       return newState;
     }
@@ -257,8 +256,8 @@ const workspaces = (state = {}, action) => {
       if (newState[workspaceId].cards) {
         newState[workspaceId].cards[card.id] = card;
       } else {
-        const cardObj = {}
-        cardObj[card.id] = card
+        const cardObj = {};
+        cardObj[card.id] = card;
         newState[workspaceId].cards = cardObj;
       }
       return newState;

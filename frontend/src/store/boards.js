@@ -102,8 +102,8 @@ export const thunkUpdateBoard = (board) => async (dispatch) => {
   });
 
   if (response.ok) {
-    const board = await response.json;
-    console.log(board, "IS THIS THE DROID YOU ARE LOOKING FOR");
+    console.log(response.json);
+    const board = await response.json();
     dispatch(actionUpdateBoard(board));
   }
 };
