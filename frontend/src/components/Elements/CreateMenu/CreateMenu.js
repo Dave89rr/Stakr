@@ -62,24 +62,24 @@ function CreateMenu({ setToggleView, innerRef }) {
     <div className={classes.container}>
       {showMenu ? menuContent : null}
       {showWSF ? (
-        <>
+        <div className={classes.formContainer}>
           <div className={classes.createTitle}>Create Workspace</div>
           <div className={classes.line}></div>
           <WorkspacesForm
             setToggleView={setToggleView}
             setShowWSF={setShowWSF}
           />
-        </>
+        </div>
       ) : null}
       {showBF ? (
-        <>
+        <div className={classes.formContainer}>
           <div className={classes.createTitle}>Create Board</div>
           <div className={classes.line}></div>
           <BoardsCreateMenuForm
             setToggleView={setToggleView}
             setShowBF={setShowBF}
           />
-        </>
+        </div>
       ) : null}
     </div>
   );
