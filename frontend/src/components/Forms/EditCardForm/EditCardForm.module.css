@@ -9,6 +9,17 @@
 
   background-color: rgba(0, 0, 0, 0.7);
 }
+.boardBackground {
+  position: fixed;
+  z-index: 11;
+  top: 45px;
+  left: 0;
+
+  height: 100%;
+  width: 100%;
+
+  background-color: rgba(0, 0, 0, 0.7);
+}
 .container {
   justify-content: center;
   position: absolute;
@@ -20,6 +31,7 @@
   height: 100%;
   width: 100%;
 }
+
 .formBody {
   position: absolute;
   display: flex;

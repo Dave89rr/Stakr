@@ -28,7 +28,7 @@ function EditBoardForm({ data, setDisplay2 }) {
   };
   return (
     <>
-      <div className={classes.background}>
+      <div className={classes.boardBackground}>
         <div className={classes.container}>
           <div className={classes.formBody}>
             <div className={`${classes.modalCap} ${classes[data.color]}`}>
