@@ -1,13 +1,19 @@
 .container {
   display: flex;
   flex-direction: column;
+  width: 100%;
   align-items: center;
 }
 
+.formContainer {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
 .createTitle {
   color: #778397;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   width: 98%;
   font-size: 1.4em;
   margin-top: 3%;
@@ -15,6 +21,7 @@
 }
 
 .line {
+  align-self: center;
   height: 1px;
   width: 70%;
   border: 1px solid rgb(210, 210, 210);

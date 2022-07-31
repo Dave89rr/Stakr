@@ -54,22 +54,22 @@ label > input {
   width: 100%;
   height: 100%;
 }
-.blue {
+.Blue {
   background-color: var(--board-blue);
 }
-.orange {
+.Orange {
   background-color: var(--board-orange);
 }
-.red {
+.Red {
   background-color: var(--board-red);
 }
-.pink {
+.Pink {
   background-color: var(--board-pink);
 }
-.purple {
+.Purple {
   background-color: var(--board-purple);
 }
-.green {
+.Green {
   background-color: var(--board-green);
 }
 .label {
@@ -81,6 +81,7 @@ label > input {
 }
 .inputField {
   height: 2.5em;
+  margin-bottom: 5%;
 }
 
 .miniBoard {
@@ -90,7 +91,6 @@ label > input {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(137, 96, 158);
   border-radius: 3px;
 }
 
