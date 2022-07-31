@@ -36,3 +36,39 @@ a {
   border-radius: 8px;
   background: #bfc4ce;
 }
+
+:root {
+  /************* Board Colors *************/
+  /* White Board */
+  --board-white-font-color: #172b4d;
+  --board-white: rgb(221, 221, 221);
+
+  /* Universal Font Color for any board other than white */
+  --board-font-color: #fff;
+
+  /* Red Board */
+  --board-red: #b04632;
+
+  /* Orange Board */
+  --board-orange: #de7b2f;
+
+  /* Blue Board */
+  --board-blue: #0079bf;
+
+  /* Yellow Board */
+  --board-yellow: #f0cd30;
+
+  /* Green Board */
+  --board-green: #4bbf6b;
+
+  /* Purple Board */
+  --board-purple: #89609e;
+
+  /* Pink Board */
+  --board-pink: #ff8ed4;
+
+  /* Grey Board */
+  --board-grey: #838c91;
+
+  /************* Board Colors *************/
+}
