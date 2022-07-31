@@ -46,7 +46,7 @@ function FirstWorkspace() {
         <div className={classes.formWrapper}>
           <form onSubmit={onCreate} className={classesFWS.form}>
             <div className={classesFWS.topImg}>
-              <img src="/media/icons/first-workspace.svg" />
+              <img src="/static/icons/first-workspace.svg" />
             </div>
             <div className={classesFWS.title}>
               <h2>Let's set up your Workspace</h2>

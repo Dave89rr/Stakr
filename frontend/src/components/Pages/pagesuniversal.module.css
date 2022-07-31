@@ -5,39 +5,39 @@
 }
 
 /* BG COLORS */
-.White {
-  background-color: #fff;
-  color: #172b4d;
+.white {
+  background-color: var(--board-white);
+  color: var(--board-white-font-color);
 }
-.Red {
-  background-color: #b04632;
-  color: #fff;
+.red {
+  background-color: var(--board-red);
+  color: var(--board-font-color);
 }
-.Orange {
-  background-color: #de7b2f;
-  color: #fff;
+.orange {
+  background-color: var(--board-orange);
+  color: var(--board-font-color);
 }
-.Blue {
-  background-color: #0079bf;
-  color: #fff;
+.blue {
+  background-color: var(--board-blue);
+  color: var(--board-font-color);
 }
-.Yellow {
-  background-color: rgb(224, 184, 50);
-  color: #fff;
+.yellow {
+  background-color: var(--board-yellow);
+  color: var(--board-font-color);
 }
-.Green {
-  background-color: #4bbf6b;
-  color: #fff;
+.green {
+  background-color: var(--board-green);
+  color: var(--board-font-color);
 }
-.Purple {
-  background-color: #89609e;
-  color: #fff;
+.purple {
+  background-color: var(--board-purple);
+  color: var(--board-font-color);
 }
-.Pink {
-  background-color: rgb(205, 90, 145);
-  color: #fff;
+.pink {
+  background-color: var(--board-pink);
+  color: var(--board-font-color);
 }
-.Grey {
-  background-color: #838c91;
-  color: #fff;
+.grey {
+  background-color: var(--board-grey);
+  color: var(--board-font-color);
 }

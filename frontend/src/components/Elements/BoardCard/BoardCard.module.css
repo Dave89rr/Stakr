@@ -21,40 +21,40 @@
 
 /* BG COLORS */
 .white {
-  background-color: rgb(221, 221, 221);
-  color: #172b4d;
+  background-color: var(--board-white);
+  color: var(--board-white-font-color);
 }
 .red {
-  background-color: #b04632;
-  color: #fff;
+  background-color: var(--board-red);
+  color: var(--board-font-color);
 }
 .orange {
-  background-color: #de7b2f;
-  color: #fff;
+  background-color: var(--board-orange);
+  color: var(--board-font-color);
 }
 .blue {
-  background-color: #0079bf;
-  color: #fff;
+  background-color: var(--board-blue);
+  color: var(--board-font-color);
 }
 .yellow {
-  background-color: #f0cd30;
-  color: #fff;
+  background-color: var(--board-yellow);
+  color: var(--board-font-color);
 }
 .green {
-  background-color: #4bbf6b;
-  color: #fff;
+  background-color: var(--board-green);
+  color: var(--board-font-color);
 }
 .purple {
-  background-color: #89609e;
-  color: #fff;
+  background-color: var(--board-purple);
+  color: var(--board-font-color);
 }
 .pink {
-  background-color: #ff8ed4;
-  color: #fff;
+  background-color: var(--board-pink);
+  color: var(--board-font-color);
 }
 .grey {
-  background-color: #838c91;
-  color: #fff;
+  background-color: var(--board-grey);
+  color: var(--board-font-color);
 }
 .gear {
   display: flex;
