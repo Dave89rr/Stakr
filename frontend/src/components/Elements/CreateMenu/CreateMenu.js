@@ -3,7 +3,7 @@ import WorkspacesForm from '../../Forms/WorkspacesForm/WorkspacesForm';
 import classes from './CreateMenu.module.css';
 import BoardsCreateMenuForm from '../../Forms/BoardsCreateMenuForm';
 
-function CreateMenu({ setToggleView }) {
+function CreateMenu({ setToggleView, innerRef }) {
   const [showMenu, setShowMenu] = useState(true);
   const [showWSF, setShowWSF] = useState(false);
   const [showBF, setShowBF] = useState(false);
