@@ -143,6 +143,7 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
             className={classes.selectField}
             onChange={(e) => setWorkspaceId(e.target.value)}
           >
+            <option value="">Select Workspace</option>
             {workspacesArr.map((workspace) => {
               return (
                 <option
