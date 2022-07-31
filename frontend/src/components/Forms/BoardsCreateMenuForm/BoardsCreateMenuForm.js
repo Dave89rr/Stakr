@@ -158,7 +158,7 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
           </select>
         </div>
         <button className={classes.submitBtn} type="submit">
-          Create Board
+          Create
         </button>
       </form>
     </div>
