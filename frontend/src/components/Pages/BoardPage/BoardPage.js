@@ -11,7 +11,7 @@ import {
 import { thunkGetCards, thunkUpdateCard } from "../../../store/cards";
 
 import classes from "./BoardPage.module.css";
-import uniclass from "../pagesuniversal.module.css"
+import uniclass from "../pagesuniversal.module.css";
 import Stack from "../../Elements/Stack/Stack";
 import StacksForm from "../../Forms/StacksForm/StacksForm";
 
@@ -41,54 +41,54 @@ function BoardPage() {
         let stackIds = Object.values(stacks).map((ele) => ele.id);
         let filterStackIds = stackIds.filter(
           (id) => stacks[id].boardId === parseInt(boardId)
-          );
-          let cardsObj = {};
-          filterStackIds.forEach((id) => {
-            let stackCards = Object.values(cards).filter(
-              (ele) => ele.stackId === id
-            ).sort((a, b) => a.position-b.position);
-              cardsObj[id] = stackCards;
-            });
+        );
+        let cardsObj = {};
+        filterStackIds.forEach((id) => {
+          let stackCards = Object.values(cards)
+            .filter((ele) => ele.stackId === id)
+            .sort((a, b) => a.position - b.position);
+          cardsObj[id] = stackCards;
+        });
 
-            await setCardOrder(cardsObj);
-          }
-        })();
-      }, [dispatch, workspaces[workspaceId]]);
-
-      if (!loaded || !workspaces[workspaceId]) return null;
-      let boardData;
-      if (loaded && workspaces[workspaceId]) {
-        boardData = workspaces[workspaceId].boards[boardId]
+        await setCardOrder(cardsObj);
       }
+    })();
+  }, [dispatch, workspaces[workspaceId]]);
 
-      let stacks;
-      if (loaded && workspaces[workspaceId]) {
-        stacks = workspaces[workspaceId].stacks;
-      }
-      let sortedStacks;
-      if (workspaces[workspaceId] && workspaces[workspaceId].stacks) {
-        let stackIds = Object.values(stacks).map((ele) => ele.id.toString());
-        let filterStackIds = stackIds.filter(
-         (id) => stacks[id].boardId === parseInt(boardId)
-         );
-          sortedStacks = filterStackIds.sort(
-            (a, b) => stacks[a].position - stacks[b].position
-          );
-      }
+  if (!loaded || !workspaces[workspaceId]) return null;
+  let boardData;
+  if (loaded && workspaces[workspaceId]) {
+    boardData = workspaces[workspaceId].boards[boardId];
+  }
 
-      let cards;
-      if (workspaces[workspaceId] && workspaces[workspaceId].cards) {
-        cards = workspaces[workspaceId].cards;
-      }
+  let stacks;
+  if (loaded && workspaces[workspaceId]) {
+    stacks = workspaces[workspaceId].stacks;
+  }
+  let sortedStacks;
+  if (workspaces[workspaceId] && workspaces[workspaceId].stacks) {
+    let stackIds = Object.values(stacks).map((ele) => ele.id.toString());
+    let filterStackIds = stackIds.filter(
+      (id) => stacks[id].boardId === parseInt(boardId)
+    );
+    sortedStacks = filterStackIds.sort(
+      (a, b) => stacks[a].position - stacks[b].position
+    );
+  }
 
-      const onDragStart = () => {
-        setDisabled(true);
-      };
+  let cards;
+  if (workspaces[workspaceId] && workspaces[workspaceId].cards) {
+    cards = workspaces[workspaceId].cards;
+  }
 
-      const onDragEnd = async (res) => {
-        const { destination, source, draggableId, type } = res;
+  const onDragStart = () => {
+    setDisabled(true);
+  };
 
-        if (type === "column") {
+  const onDragEnd = async (res) => {
+    const { destination, source, draggableId, type } = res;
+
+    if (type === "column") {
       // dont do anything when dragged into the same spot as before
       if (
         (destination &&
@@ -166,13 +166,12 @@ function BoardPage() {
   };
 
   let color;
-  if (loaded && workspaces[workspaceId]) color=workspaces[workspaceId].boards[boardId].color;
+  if (loaded && workspaces[workspaceId])
+    color = workspaces[workspaceId].boards[boardId].color;
 
   return (
     <div className={`${classes.containerWrapper} ${uniclass[color]}`}>
-      <h1>
-        {boardData.name}
-      </h1>
+      <h1 className={`${classes[color]}`}>{boardData.name}</h1>
       <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
         <Droppable droppableId="allStacks" direction="horizontal" type="column">
           {(provided) => (
