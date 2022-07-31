@@ -38,9 +38,23 @@
     position: relative;
     width: 100%;
     height: 10%;
+
+    font-size: 2rem;
+    font-weight: 500;
+    word-wrap: break-word;
+    word-break: break-all;
+
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     border-bottom: 2px solid rgb(148, 148, 148);
+}
+.modalCap > span {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+    margin-left: 20px;
 }
 
 .x {
@@ -54,7 +68,41 @@
     transition: filter .4s ease;
 }
 .x:hover {
-    filter: invert(40%) sepia(71%) saturate(3493%) hue-rotate(338deg) brightness(92%) contrast(92%);
+    filter: invert(40%) sepia(71%) saturate(3493%) hue-rotate(338deg) brightness(92%) contrast(92%) !important;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: 90%;
+
+    padding: 30px;
+    color: #172b4d;
+}
+
+.descriptionContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 100%;
+
+    font-size: 18px;
+}
+.descriptionTitle {
+    padding-bottom: 5px;
+    font-size: 20px;
+    border-bottom: 1px solid rgb(148, 148, 148);
+}
+.description {
+    height: 90%;
+    overflow-y: auto;
+}
+
+.creditText {
+    font-size: 14px;
+    font-weight: 600;
 }
 
 /* BG COLORS */
