@@ -15,7 +15,7 @@ function BoardsForm({ wsId, setShowBoardForm, showBoardForm }) {
     const board = {
       username: user.username,
       name,
-      color: 'White',
+      color: 'Blue',
       workspaceId: wsId,
     };
 
@@ -42,9 +42,12 @@ function BoardsForm({ wsId, setShowBoardForm, showBoardForm }) {
           value={name}
           onChange={(e) => setName(e.target.value)}
           style={{
-            border: (validationErrors.length>0?'1px solid #e33d3d':'1px solid rgb(221, 221, 221)'),
+            border:
+              validationErrors.length > 0
+                ? '1px solid #e33d3d'
+                : '1px solid rgb(221, 221, 221)',
             borderRadius: '3px',
-            outline: 'none'
+            outline: 'none',
           }}
         />
         <div>
