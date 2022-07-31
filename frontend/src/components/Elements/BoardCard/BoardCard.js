@@ -48,23 +48,28 @@ function BoardCard({ data }) {
     <>
       <div>
         {display === 1 ? (
-          // <Link
-          //   to={`/b/${data.workspaceId}/${data.id}/${data.name}`}
-          //   style={{
-          //     textDecoration: "none",
-          //   }}
-          // >
           <div className={`${classes.boardcard} ${bgc}`}>
-            <div className={classes.boardName}>{data.name}</div>
+            <div className={classes.top}>
+              <div className={classes.boardName}>{data.name}</div>
 
-            <img
-              className={classes.gear}
-              src="/static/icons/settings.svg"
-              onClick={() => {
-                console.log(data);
-                setDisplay2(2);
+              <img
+                className={classes.gear}
+                src="/static/icons/settings.svg"
+                onClick={() => {
+                  console.log(data);
+                  setDisplay2(2);
+                }}
+              />
+            </div>
+            <Link
+              to={`/b/${data.workspaceId}/${data.id}/${data.name}`}
+              style={{
+                textDecoration: "none",
+                height: "100%",
               }}
-            />
+            >
+              <div className={classes.test}></div>
+            </Link>
           </div>
         ) : (
           // </Link>
@@ -81,6 +86,7 @@ function BoardCard({ data }) {
                 }}
               />
             </div>
+
             <EditBoardForm data={data} setDisplay2={setDisplay2} />
           </>
         )}

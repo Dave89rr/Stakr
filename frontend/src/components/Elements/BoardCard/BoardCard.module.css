@@ -1,5 +1,6 @@
 .boardcard {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
 
   width: 194px;
@@ -70,6 +71,15 @@
 .boardName {
   word-break: break-all;
   word-wrap: break-word;
-  width: 158px;
-  height: 82px;
+  width: 100%;
+}
+
+.test {
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+
+.top {
+  display: flex;
 }
