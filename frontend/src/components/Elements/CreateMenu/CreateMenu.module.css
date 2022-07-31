@@ -20,3 +20,30 @@
   border: 1px solid rgb(210, 210, 210);
   margin-bottom: 5%;
 }
+
+.stakrIcon {
+  height: 15px;
+  width: 15px;
+}
+.createAction {
+  width: 95%;
+  margin-bottom: 2%;
+  padding: 1%;
+  border-radius: 3px;
+}
+.createAction:hover {
+  background-color: #f5f6f8;
+}
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.createDescription > p {
+  font-size: 0.9em;
+  font-weight: 400;
+  color: #5e6c84;
+}
