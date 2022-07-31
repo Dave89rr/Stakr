@@ -45,7 +45,7 @@ label > input {
   height: 2.5em;
 }
 .radiobtn:checked {
-  background-image: url('../../../../../app/static/icons/check.svg');
+  background-image: var(--check-svg-url);
   background-color: rgba(0, 0, 0, 0.3);
   background-repeat: no-repeat;
   background-size: auto;
@@ -98,4 +98,21 @@ label > input {
   display: flex;
   flex-direction: column;
   margin-bottom: 5%;
+}
+
+.submitBtn {
+  margin-bottom: 5%;
+  border: none;
+  border-radius: 3px;
+  color: #ffffff;
+  background-color: #0175b8;
+  width: 100%;
+  height: 3.98vh;
+  min-height: 30px;
+  margin-top: 5%;
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 }
