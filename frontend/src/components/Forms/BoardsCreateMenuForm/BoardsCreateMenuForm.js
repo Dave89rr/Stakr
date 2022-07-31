@@ -3,13 +3,13 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { thunkCreateBoard } from '../../../store/boards';
 
-function BoardsCreateMenuForm({ setShowBF }) {
+function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
   const [validationErrors, setValidationErrors] = useState([]);
   const [name, setName] = useState('');
   const [color, setColor] = useState('');
   const [workspaceId, setWorkspaceId] = useState('');
   const user = useSelector((state) => state.session.user);
-  const workspaces = useSelector((state) => state.Workspaces);
+  const workspaces = useSelector((state) => state.workspaces);
   const dispatch = useDispatch();
 
   let workspacesArr;
@@ -37,6 +37,7 @@ function BoardsCreateMenuForm({ setShowBF }) {
       dispatch(thunkCreateBoard(board));
       setName('');
       setShowBF(false);
+      setToggleView(false);
     }
   };
 
@@ -52,7 +53,7 @@ function BoardsCreateMenuForm({ setShowBF }) {
         </div>
       </div>
       <form onSubmit={handleSubmit} className={classes.form}>
-        <span className="">Background</span>
+        <span className={classes.label}>Background</span>
         <div className={classes.radioContainer}>
           <div className={classes.radioColor}>
             <label className={`${classes.blue} ${classes.radio}`}>
@@ -122,25 +123,39 @@ function BoardsCreateMenuForm({ setShowBF }) {
           </div>
         </div>
         <div className={classes.input}>
-          <label htmlFor="name">Board Title</label>
+          <label className={classes.label} htmlFor="name">
+            Board Title
+          </label>
           <input
             name="name"
             type="text"
             className={classes.inputField}
-            // placeholder="Board Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            // style={{
-            //   border:
-            //     validationErrors.length > 0
-            //       ? '1px solid #e33d3d'
-            //       : '1px solid rgb(221, 221, 221)',
-            //   borderRadius: '3px',
-            //   outline: 'none',
-            // }}
           />
         </div>
-
+        <div className={classes.intput}>
+          <label className={classes.label} htmlFor="workspace">
+            Workspace
+          </label>
+          <select
+            name="workspace"
+            className={classes.selectField}
+            onChange={(e) => setWorkspaceId(e.target.value)}
+          >
+            {workspacesArr.map((workspace) => {
+              return (
+                <option
+                  className={classes.option}
+                  value={workspace.id}
+                  key={workspace.id}
+                >
+                  {workspace.name}
+                </option>
+              );
+            })}
+          </select>
+        </div>
         <button type="submit">Create Board</button>
       </form>
     </div>

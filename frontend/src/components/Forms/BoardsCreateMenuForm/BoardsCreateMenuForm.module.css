@@ -40,6 +40,10 @@ label > input {
   width: 100%;
   height: 100%;
 }
+.selectField {
+  width: 100%;
+  height: 2.5em;
+}
 .radiobtn:checked {
   background-image: url('../../../../public/static/icons/check.svg');
   background-color: rgba(0, 0, 0, 0.3);
@@ -68,7 +72,9 @@ label > input {
 .green {
   background-color: var(--board-green);
 }
-
+.label {
+  margin-top: 1%;
+}
 .input {
   display: flex;
   flex-direction: column;
