@@ -8,9 +8,7 @@ function EditBoardForm({ data, setDisplay2 }) {
   const board = useSelector(
     (state) => state.workspaces[data.workspaceId].boards[data.id]
   );
-  board
-    ? console.log("we got a board", board)
-    : console.log("we got no boards", board);
+
   const [name, setName] = useState(data.name);
   const [color, setColor] = useState(data.color);
 

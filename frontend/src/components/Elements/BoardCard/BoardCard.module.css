@@ -60,6 +60,7 @@
   display: flex;
   height: 20px;
   width: 20px;
+  border-radius: 3px;
   cursor: pointer;
   transition: transform 1.9s ease;
 }
@@ -74,7 +75,7 @@
   width: 100%;
 }
 
-.test {
+.link {
   height: 100%;
   width: 100%;
   cursor: pointer;

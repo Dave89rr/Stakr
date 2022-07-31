@@ -56,7 +56,6 @@ function BoardCard({ data }) {
                 className={classes.gear}
                 src="/static/icons/settings.svg"
                 onClick={() => {
-                  console.log(data);
                   setDisplay2(2);
                 }}
               />
@@ -68,11 +67,10 @@ function BoardCard({ data }) {
                 height: "100%",
               }}
             >
-              <div className={classes.test}></div>
+              <div className={classes.link}></div>
             </Link>
           </div>
         ) : (
-          // </Link>
           <>
             <div className={`${classes.boardcard} ${bgc}`}>
               <div className={classes.boardName}>{data.name}</div>
@@ -81,12 +79,10 @@ function BoardCard({ data }) {
                 className={classes.gear}
                 src="/static/icons/settings.svg"
                 onClick={() => {
-                  console.log(data);
                   setDisplay2(2);
                 }}
               />
             </div>
-
             <EditBoardForm data={data} setDisplay2={setDisplay2} />
           </>
         )}
