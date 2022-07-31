@@ -1,37 +1,100 @@
 .background {
   position: absolute;
+  z-index: 11;
   top: 0;
   left: 0;
-  background-color: black;
-  padding-top: 5vh;
-  opacity: 70%;
-  height: 100%;
-  width: 100%;
-  z-index: 10;
-}
-.container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding-top: 5vh;
 
   height: 100%;
   width: 100%;
-  z-index: 11;
+
+  background-color: rgba(0, 0, 0, 0.7);
 }
+.boardBackground {
+  position: fixed;
+  z-index: 11;
+  top: 45px;
+  left: 0;
+
+  height: 100%;
+  width: 100%;
+
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.container {
+  justify-content: center;
+  position: absolute;
+  z-index: 11;
+  padding-top: 2%;
+  top: 0;
+  left: 0;
+
+  height: 100%;
+  width: 100%;
+}
+
 .formBody {
   position: absolute;
   display: flex;
   flex-direction: column;
-  padding: 2% 5%;
+  /* padding-top: 25%; */
   width: 40%;
   min-height: 60%;
   background-color: white;
   margin: 0 30% 0 30%;
   z-index: 11;
   font-size: 150%;
+
   border-radius: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  background-color: rgb(240, 240, 240);
+  border-bottom: 3px solid rgb(148, 148, 148);
 }
+.modalCap {
+  position: relative;
+  width: 100%;
+  height: 4rem;
+
+  font-size: 2rem;
+  font-weight: 500;
+  word-wrap: break-word;
+  word-break: break-all;
+
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom: 2px solid rgb(148, 148, 148);
+}
+.modalCap > span {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  width: 80%;
+  height: 100%;
+  margin-left: 20px;
+}
+
+.x {
+  position: absolute;
+  right: 0;
+  width: 35px;
+  margin: 2px 2px 0 0;
+
+  filter: invert(12%) sepia(16%) saturate(5189%) hue-rotate(194deg)
+    brightness(97%) contrast(90%);
+  cursor: pointer;
+  transition: filter 0.4s ease;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+.x:hover {
+  filter: invert(40%) sepia(71%) saturate(3493%) hue-rotate(338deg)
+    brightness(92%) contrast(92%) !important;
+}
+
 .textArea {
   width: 100%;
   height: 100px;
@@ -80,68 +143,83 @@
   background-color: red;
   color: black;
   opacity: none;
-  border-radius: 5px;
-  font-size: 20px;
+  border-radius: 3px;
   font-weight: bold;
   border: none;
   height: 30px;
+  width: 30px;
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 }
 
 .subButton {
   background-color: green;
-  color: black;
+  color: #ffffff;
   opacity: none;
   border-radius: 5px;
   font-size: 20px;
   font-weight: bold;
   border: none;
   height: 30px;
-  width: 100%;
+  width: 20%;
+  margin-right: 2%;
+  user-select: none;
+  cursor: pointer;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+
+.form {
+  padding: 2% 5%;
 }
 
 /* BG COLORS */
 .White {
-  background-color: #fff;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #172b4d;
+  background-color: var(--card-white);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-font-color);
 }
 .Red {
-  background-color: #ef7564;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #172b4d;
+  background-color: var(--card-red);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-font-color);
 }
 .Orange {
-  background-color: #ffaf3f;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #172b4d;
+  background-color: var(--card-orange);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-font-color);
 }
 .Blue {
-  background-color: #5ba4cf;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #172b4d;
+  background-color: var(--card-blue);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-font-color);
 }
 .Yellow {
-  background-color: #f5dd29;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #172b4d;
+  background-color: var(--card-yellow);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-font-color);
 }
 .Green {
-  background-color: #7bc86c;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #172b4d;
+  background-color: var(--card-green);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-font-color);
 }
 .Purple {
-  background-color: #cd8de5;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #172b4d;
+  background-color: var(--card-purple);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-font-color);
 }
 .Pink {
-  background-color: #ff8ed4;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #172b4d;
+  background-color: var(--card-pink);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-font-color);
 }
 .Grey {
-  background-color: #172b4d;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #fff;
+  background-color: var(--card-grey);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-grey-font-color);
 }

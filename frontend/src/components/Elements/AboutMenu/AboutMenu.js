@@ -1,65 +1,65 @@
 import classes from './AboutMenu.module.css';
 
-function AboutMenu({ setToggleAbout }) {
+function AboutMenu({ setToggleAbout, innerRef }) {
   const xicon = <img src="/media/icons/x.svg" alt="about menu close button" />;
   const financeIcon = (
     <img
       className={classes.appIcon}
-      src="/media/icons/finance-playground-3.png"
+      src="/static/icons/finance-playground-3.png"
       alt="finance playground app icon"
     />
   );
   const routesIcon = (
     <img
       className={classes.appIcon}
-      src="/media/icons/renderingroutes.png"
+      src="/static/icons/renderingroutes.png"
       alt="rendering routes app icon"
     />
   );
   const pokehuntIcon = (
     <img
       className={classes.appIcon}
-      src="/media/icons/pokehunt.png"
+      src="/static/icons/pokehunt.png"
       alt="pokehunt app icon"
     />
   );
   const fairbnbIcon = (
     <img
       className={classes.appIcon}
-      src="/media/icons/fairbnb.svg"
+      src="/static/icons/fairbnb.svg"
       alt="fairbnb app icon"
     />
   );
   const externalIcon = (
     <img
       className={classes.ghIcon}
-      src="/media/icons/externalLink.svg"
+      src="/static/icons/externalLink.svg"
       alt="external link icon"
     />
   );
   const mapsIcon = (
     <img
       className={classes.appIcon}
-      src="/media/icons/ggcmaps.png"
+      src="/static/icons/ggcmaps.png"
       alt="ggcmaps app icon"
     />
   );
   const rarepntIcon = (
     <img
       className={classes.appIcon}
-      src="/media/icons/rarepnt.svg"
+      src="/static/icons/rarepnt.svg"
       alt="rarepnt app icon"
     />
   );
   const gamevaultIcon = (
     <img
       className={classes.appIcon}
-      src="/media/icons/gamevaulticon.svg"
+      src="/static/icons/gamevaulticon.svg"
       alt="gamevault app icon"
     />
   );
   return (
-    <div className={classes.aboutMenuContainer}>
+    <div className={classes.aboutMenuContainer} ref={innerRef}>
       <div className={classes.header}>
         <div className={classes.title}>
           <span>Discover More from Us</span>

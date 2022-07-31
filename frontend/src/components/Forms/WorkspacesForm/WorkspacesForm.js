@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { thunkCreateWorkspace } from '../../../store/workspaces';
 
-function WorkspacesForm({ toggleView, setToggleView }) {
+function WorkspacesForm({ setToggleView, setShowWSF }) {
   const [validationErrors, setValidationErrors] = useState([]);
   const [name, setName] = useState('');
   const user = useSelector((state) => state.session.user);
@@ -26,31 +26,44 @@ function WorkspacesForm({ toggleView, setToggleView }) {
       setValidationErrors([]);
       dispatch(thunkCreateWorkspace(workspace));
       setName('');
+      setShowWSF(false);
       setToggleView(false);
     }
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className={classes.container}>
+      <form onSubmit={handleSubmit} className={classes.form}>
+        <div className={classes.errors}>
           {validationErrors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
         </div>
         <div>
-          <label htmlFor="name">Name</label>
+          <span className={classes.title}>Let's Build a Workspace</span>
+          <p>
+            Boost your productivity by making it easier for everyone to access
+            boards in one location.
+          </p>
+        </div>
+        <div className={classes.input}>
+          <label className={classes.label} htmlFor="name">
+            Workspace Name
+          </label>
           <input
             name="name"
             type="text"
             placeholder="Workspace Name"
+            className={classes.inputField}
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <button type="submit">Create WS</button>
+          <button className={classes.submitBtn} type="submit">
+            Create WS
+          </button>
         </div>
       </form>
-    </>
+    </div>
   );
 }
 

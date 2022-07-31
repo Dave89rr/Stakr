@@ -1,4 +1,8 @@
 .boardcard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   width: 194px;
   height: 98px;
 
@@ -6,7 +10,7 @@
   margin-bottom: 6%;
 
   border-radius: 3px;
-  font-weight: 600
+  font-weight: 600;
 }
 .boardcard:hover {
   box-shadow: inset 0px 0px 1000px rgba(0, 0, 0, 0.2);
@@ -17,38 +21,66 @@
 
 /* BG COLORS */
 .white {
-  background-color: rgb(221, 221, 221);
-  color: #172b4d;
+  background-color: var(--board-white);
+  color: var(--board-white-font-color);
 }
 .red {
-  background-color: #b04632;
-  color: #fff;
+  background-color: var(--board-red);
+  color: var(--board-font-color);
 }
 .orange {
-  background-color: #de7b2f;
-  color: #fff;
+  background-color: var(--board-orange);
+  color: var(--board-font-color);
 }
 .blue {
-  background-color: #0079bf;
-  color: #fff;
+  background-color: var(--board-blue);
+  color: var(--board-font-color);
 }
 .yellow {
-  background-color: #f0cd30;
-  color: #fff;
+  background-color: var(--board-yellow);
+  color: var(--board-font-color);
 }
 .green {
-  background-color: #4bbf6b;
-  color: #fff;
+  background-color: var(--board-green);
+  color: var(--board-font-color);
 }
 .purple {
-  background-color: #89609e;
-  color: #fff;
+  background-color: var(--board-purple);
+  color: var(--board-font-color);
 }
 .pink {
-  background-color: #ff8ed4;
-  color: #fff;
+  background-color: var(--board-pink);
+  color: var(--board-font-color);
 }
 .grey {
-  background-color: #838c91;
-  color: #fff;
+  background-color: var(--board-grey);
+  color: var(--board-font-color);
+}
+.gear {
+  display: flex;
+  height: 20px;
+  width: 20px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: transform 1.9s ease;
+}
+
+.gear:hover {
+  transform: rotate(360deg);
+}
+
+.boardName {
+  word-break: break-all;
+  word-wrap: break-word;
+  width: 100%;
+}
+
+.link {
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+
+.top {
+  display: flex;
 }
