@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { thunkUpdateBoard, thunkDeleteBoard } from "../../../store/boards";
 import classes from "../EditCardForm/EditCardForm.module.css";
 
@@ -29,19 +28,25 @@ function EditBoardForm({ data, setDisplay2 }) {
   };
   return (
     <>
-      <div className={classes.background}></div>
-      <div className={classes.container}>
-        <div>
-          <div
-            className={classes.closeModel}
-            onClick={(e) => {
-              setDisplay2(1);
-            }}
-          >
-            x
-          </div>
+      <div className={classes.boardBackground}>
+        <div className={classes.container}>
           <div className={classes.formBody}>
-            <form onSubmit={handleSubmit}>
+            <div className={`${classes.modalCap} ${classes[data.color]}`}>
+              <span>{data.name}</span>
+              <img
+                onClick={() => setDisplay2(1)}
+                className={classes.x}
+                src="/static/icons/x.svg"
+                alt="x"
+                style={{
+                  filter:
+                    data.color === "Grey"
+                      ? "invert(100%) sepia(0%) saturate(7500%) hue-rotate(171deg) brightness(99%) contrast(104%)"
+                      : null,
+                }}
+              />
+            </div>
+            <form className={classes.form} onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="name">Name</label>
                 <div>
@@ -74,26 +79,27 @@ function EditBoardForm({ data, setDisplay2 }) {
                     <option value={"Grey"}>Grey</option>
                   </select>
                 </div>
-                <button type="submit" className={classes.subButton}>
-                  Submit
-                </button>
+                <div className={classes.buttonHolder}>
+                  <button type="submit" className={classes.subButton}>
+                    Submit
+                  </button>
+                  <img
+                    src="/static/icons/trashcan.svg"
+                    className={classes.delButton}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setDisplay2(1);
+                      dispatch(
+                        thunkDeleteBoard({
+                          id: board.id,
+                          workspaceId: board.workspaceId,
+                        })
+                      );
+                    }}
+                  />
+                </div>
               </div>
             </form>
-            <button
-              className={classes.delButton}
-              onClick={(e) => {
-                e.preventDefault();
-                setDisplay2(1);
-                dispatch(
-                  thunkDeleteBoard({
-                    id: board.id,
-                    workspaceId: board.workspaceId,
-                  })
-                );
-              }}
-            >
-              Delete Board
-            </button>
           </div>
         </div>
       </div>
@@ -102,3 +108,20 @@ function EditBoardForm({ data, setDisplay2 }) {
 }
 
 export default EditBoardForm;
+{
+  /* <button
+  className={classes.delButton}
+  onClick={(e) => {
+    e.preventDefault();
+    setDisplay2(1);
+    dispatch(
+      thunkDeleteBoard({
+        id: board.id,
+        workspaceId: board.workspaceId,
+      })
+    );
+  }}
+>
+  Delete Board
+</button> */
+}
