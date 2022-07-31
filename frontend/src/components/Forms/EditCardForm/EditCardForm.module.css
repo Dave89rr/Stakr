@@ -24,7 +24,7 @@
   justify-content: center;
   position: absolute;
   z-index: 11;
-
+  padding-top: 2%;
   top: 0;
   left: 0;
 
@@ -36,7 +36,7 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  /* padding: 2% 5%; */
+  /* padding-top: 25%; */
   width: 40%;
   min-height: 60%;
   background-color: white;
