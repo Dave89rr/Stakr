@@ -1,4 +1,8 @@
 .boardcard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   width: 194px;
   height: 98px;
 
@@ -51,4 +55,32 @@
 .grey {
   background-color: var(--board-grey);
   color: var(--board-font-color);
+}
+.gear {
+  display: flex;
+  height: 20px;
+  width: 20px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: transform 1.9s ease;
+}
+
+.gear:hover {
+  transform: rotate(360deg);
+}
+
+.boardName {
+  word-break: break-all;
+  word-wrap: break-word;
+  width: 100%;
+}
+
+.link {
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+
+.top {
+  display: flex;
 }

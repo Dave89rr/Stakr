@@ -98,3 +98,50 @@
   height: 30px;
   width: 100%;
 }
+
+/* BG COLORS */
+.White {
+  background-color: #fff;
+  box-shadow: 0 1px 0 #091e4240;
+  color: #172b4d;
+}
+.Red {
+  background-color: #ef7564;
+  box-shadow: 0 1px 0 #091e4240;
+  color: #172b4d;
+}
+.Orange {
+  background-color: #ffaf3f;
+  box-shadow: 0 1px 0 #091e4240;
+  color: #172b4d;
+}
+.Blue {
+  background-color: #5ba4cf;
+  box-shadow: 0 1px 0 #091e4240;
+  color: #172b4d;
+}
+.Yellow {
+  background-color: #f5dd29;
+  box-shadow: 0 1px 0 #091e4240;
+  color: #172b4d;
+}
+.Green {
+  background-color: #7bc86c;
+  box-shadow: 0 1px 0 #091e4240;
+  color: #172b4d;
+}
+.Purple {
+  background-color: #cd8de5;
+  box-shadow: 0 1px 0 #091e4240;
+  color: #172b4d;
+}
+.Pink {
+  background-color: #ff8ed4;
+  box-shadow: 0 1px 0 #091e4240;
+  color: #172b4d;
+}
+.Grey {
+  background-color: #172b4d;
+  box-shadow: 0 1px 0 #091e4240;
+  color: #fff;
+}
