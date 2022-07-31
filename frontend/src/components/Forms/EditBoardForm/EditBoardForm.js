@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { thunkUpdateBoard, thunkDeleteBoard } from "../../../store/boards";
 import classes from "../EditCardForm/EditCardForm.module.css";
 
-function EditBoardForm({ data, setDisplay }) {
+function EditBoardForm({ data, setDisplay2 }) {
+  const board = useSelector(
+    (state) => state.workspaces[data.workspaceId].boards[data.id]
+  );
+
   const [name, setName] = useState(data.name);
   const [color, setColor] = useState(data.color);
 
@@ -11,18 +16,17 @@ function EditBoardForm({ data, setDisplay }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const board = {
-      id: data.id,
-      workspaceId: data.workspaceId,
-      username: data.username,
+    const _board = {
+      id: board.id,
+      workspaceId: board.workspaceId,
+      username: board.username,
       name,
       color,
     };
 
-    dispatch(thunkUpdateBoard(board));
-    setDisplay(false);
+    dispatch(thunkUpdateBoard(_board));
+    setDisplay2(1);
   };
-
   return (
     <>
       <div className={classes.background}></div>
@@ -31,7 +35,7 @@ function EditBoardForm({ data, setDisplay }) {
           <div
             className={classes.closeModel}
             onClick={(e) => {
-              setDisplay(false);
+              setDisplay2(1);
             }}
           >
             x
@@ -79,11 +83,11 @@ function EditBoardForm({ data, setDisplay }) {
               className={classes.delButton}
               onClick={(e) => {
                 e.preventDefault();
-                setDisplay(false);
+                setDisplay2(1);
                 dispatch(
                   thunkDeleteBoard({
-                    id: data.id,
-                    workspaceId: data.workspaceId,
+                    id: board.id,
+                    workspaceId: board.workspaceId,
                   })
                 );
               }}

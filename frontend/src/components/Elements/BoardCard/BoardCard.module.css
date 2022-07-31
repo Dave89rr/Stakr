@@ -1,4 +1,8 @@
 .boardcard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   width: 194px;
   height: 98px;
 
@@ -6,7 +10,7 @@
   margin-bottom: 6%;
 
   border-radius: 3px;
-  font-weight: 600
+  font-weight: 600;
 }
 .boardcard:hover {
   box-shadow: inset 0px 0px 1000px rgba(0, 0, 0, 0.2);
@@ -51,4 +55,32 @@
 .grey {
   background-color: #838c91;
   color: #fff;
+}
+.gear {
+  display: flex;
+  height: 20px;
+  width: 20px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: transform 1.9s ease;
+}
+
+.gear:hover {
+  transform: rotate(360deg);
+}
+
+.boardName {
+  word-break: break-all;
+  word-wrap: break-word;
+  width: 100%;
+}
+
+.link {
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+
+.top {
+  display: flex;
 }
