@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { thunkCreateWorkspace } from '../../../store/workspaces';
 
-function WorkspacesForm({ toggleView, setToggleView }) {
+function WorkspacesForm({ setToggleView, setShowWSF }) {
   const [validationErrors, setValidationErrors] = useState([]);
   const [name, setName] = useState('');
   const user = useSelector((state) => state.session.user);
@@ -26,6 +26,7 @@ function WorkspacesForm({ toggleView, setToggleView }) {
       setValidationErrors([]);
       dispatch(thunkCreateWorkspace(workspace));
       setName('');
+      setShowWSF(false);
       setToggleView(false);
     }
   };

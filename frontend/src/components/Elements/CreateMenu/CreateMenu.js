@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import WorkspacesForm from '../../Forms/WorkspacesForm/WorkspacesForm';
 import classes from './CreateMenu.module.css';
+import BoardsCreateMenuForm from '../../Forms/BoardsCreateMenuForm';
 
 function CreateMenu({ setToggleView }) {
   const [showMenu, setShowMenu] = useState(true);
@@ -22,7 +23,8 @@ function CreateMenu({ setToggleView }) {
     />
   );
   const toggleCreateBoard = () => {
-    //
+    setShowBF(true);
+    setShowMenu(false);
   };
   const toggleCreateWorkspace = () => {
     setShowWSF(true);
@@ -61,6 +63,12 @@ function CreateMenu({ setToggleView }) {
       {showMenu ? menuContent : null}
       {showWSF ? (
         <WorkspacesForm setToggleView={setToggleView} setShowWSF={setShowWSF} />
+      ) : null}
+      {showBF ? (
+        <BoardsCreateMenuForm
+          setToggleView={setToggleView}
+          setShowBF={setShowBF}
+        />
       ) : null}
     </div>
   );
