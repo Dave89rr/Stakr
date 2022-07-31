@@ -1,22 +1,4 @@
 .containerWrapper {
-<<<<<<< HEAD
-    position: relative;
-    top: 45px;
-    padding: 10px 10px 10px 20px;
-    height: calc(100% - 45px);
-    margin: 0;
-}
-.containerWrapper > h1 {
-    margin: 0 0 8px 5px;
-    font-size: 24px;
-}
-
-.stackContainer {
-    display: flex;
-    height: calc(100% - 45px);
-    overflow-x: auto;
-    padding: 3px 3px 8px 3px;
-=======
   position: relative;
   top: 45px;
   height: calc(100% - 45px);
@@ -66,5 +48,4 @@
 }
 .Grey {
   border-bottom: 1.4px solid #fff;
->>>>>>> 1edbbd233a9c9cbb80b656a5181f9f5a10e2c3ec
 }
