@@ -91,8 +91,10 @@ function BoardPage() {
         if (type === "column") {
       // dont do anything when dragged into the same spot as before
       if (
-        destination.droppableId === source.droppableId &&
-        destination.index === source.index
+        (destination &&
+          destination.droppableId === source.droppableId &&
+          destination.index === source.index) ||
+        !destination
       ) {
         setDisabled(false);
         return;
