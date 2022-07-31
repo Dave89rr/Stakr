@@ -5,10 +5,10 @@
 .form {
   width: 100%;
 }
-.test {
+.radioColor {
   width: 43px;
   height: 30px;
-  /* border: 1px solid red; */
+  margin: 1%;
   display: flex;
 }
 label > input {
@@ -40,6 +40,10 @@ label > input {
   width: 100%;
   height: 100%;
 }
+.selectField {
+  width: 100%;
+  height: 2.5em;
+}
 .radiobtn:checked {
   background-image: url('../../../../public/static/icons/check.svg');
   background-color: rgba(0, 0, 0, 0.3);
@@ -67,4 +71,31 @@ label > input {
 }
 .green {
   background-color: var(--board-green);
+}
+.label {
+  margin-top: 1%;
+}
+.input {
+  display: flex;
+  flex-direction: column;
+}
+.inputField {
+  height: 2.5em;
+}
+
+.miniBoard {
+  align-self: center;
+  width: 200px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(137, 96, 158);
+  border-radius: 3px;
+}
+
+.miniContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5%;
 }

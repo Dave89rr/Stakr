@@ -3,13 +3,19 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { thunkCreateBoard } from '../../../store/boards';
 
-function BoardsCreateMenuForm({ setShowBF }) {
+function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
   const [validationErrors, setValidationErrors] = useState([]);
   const [name, setName] = useState('');
   const [color, setColor] = useState('');
   const [workspaceId, setWorkspaceId] = useState('');
   const user = useSelector((state) => state.session.user);
+  const workspaces = useSelector((state) => state.workspaces);
   const dispatch = useDispatch();
+
+  let workspacesArr;
+  if (workspaces) {
+    workspacesArr = Object.values(workspaces);
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,15 +37,25 @@ function BoardsCreateMenuForm({ setShowBF }) {
       dispatch(thunkCreateBoard(board));
       setName('');
       setShowBF(false);
+      setToggleView(false);
     }
   };
 
   return (
     <div className={classes.container}>
+      <div className={classes.miniContainer}>
+        <div className={classes.miniBoard}>
+          <img
+            src="https://a.trellocdn.com/prgb/dist/images/board-preview-skeleton.14cda5dc635d1f13bc48.svg"
+            alt=""
+            role="presentation"
+          />
+        </div>
+      </div>
       <form onSubmit={handleSubmit} className={classes.form}>
-        <span className="">Background</span>
+        <span className={classes.label}>Background</span>
         <div className={classes.radioContainer}>
-          <div className={classes.test}>
+          <div className={classes.radioColor}>
             <label className={`${classes.blue} ${classes.radio}`}>
               <input
                 type="radio"
@@ -50,7 +66,7 @@ function BoardsCreateMenuForm({ setShowBF }) {
               />
             </label>
           </div>
-          <div className={classes.test}>
+          <div className={classes.radioColor}>
             <label className={`${classes.orange} ${classes.radio}`}>
               <input
                 type="radio"
@@ -61,7 +77,7 @@ function BoardsCreateMenuForm({ setShowBF }) {
               />
             </label>
           </div>
-          <div className={classes.test}>
+          <div className={classes.radioColor}>
             <label className={`${classes.green} ${classes.radio}`}>
               <input
                 type="radio"
@@ -72,7 +88,7 @@ function BoardsCreateMenuForm({ setShowBF }) {
               />
             </label>
           </div>
-          <div className={classes.test}>
+          <div className={classes.radioColor}>
             <label className={`${classes.red} ${classes.radio}`}>
               <input
                 type="radio"
@@ -83,7 +99,7 @@ function BoardsCreateMenuForm({ setShowBF }) {
               />
             </label>
           </div>
-          <div className={classes.test}>
+          <div className={classes.radioColor}>
             <label className={`${classes.purple} ${classes.radio}`}>
               <input
                 type="radio"
@@ -94,7 +110,7 @@ function BoardsCreateMenuForm({ setShowBF }) {
               />
             </label>
           </div>
-          <div className={classes.test}>
+          <div className={classes.radioColor}>
             <label className={`${classes.pink} ${classes.radio}`}>
               <input
                 type="radio"
@@ -106,22 +122,40 @@ function BoardsCreateMenuForm({ setShowBF }) {
             </label>
           </div>
         </div>
-        <input
-          name="name"
-          type="text"
-          placeholder="Board Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          // style={{
-          //   border:
-          //     validationErrors.length > 0
-          //       ? '1px solid #e33d3d'
-          //       : '1px solid rgb(221, 221, 221)',
-          //   borderRadius: '3px',
-          //   outline: 'none',
-          // }}
-        />
-
+        <div className={classes.input}>
+          <label className={classes.label} htmlFor="name">
+            Board Title
+          </label>
+          <input
+            name="name"
+            type="text"
+            className={classes.inputField}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div className={classes.intput}>
+          <label className={classes.label} htmlFor="workspace">
+            Workspace
+          </label>
+          <select
+            name="workspace"
+            className={classes.selectField}
+            onChange={(e) => setWorkspaceId(e.target.value)}
+          >
+            {workspacesArr.map((workspace) => {
+              return (
+                <option
+                  className={classes.option}
+                  value={workspace.id}
+                  key={workspace.id}
+                >
+                  {workspace.name}
+                </option>
+              );
+            })}
+          </select>
+        </div>
         <button type="submit">Create Board</button>
       </form>
     </div>

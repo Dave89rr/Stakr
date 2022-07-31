@@ -5,39 +5,39 @@
 }
 
 /* BG COLORS */
-.white {
+.White {
   background-color: var(--board-white);
   color: var(--board-white-font-color);
 }
-.red {
+.Red {
   background-color: var(--board-red);
   color: var(--board-font-color);
 }
-.orange {
+.Orange {
   background-color: var(--board-orange);
   color: var(--board-font-color);
 }
-.blue {
+.Blue {
   background-color: var(--board-blue);
   color: var(--board-font-color);
 }
-.yellow {
+.Yellow {
   background-color: var(--board-yellow);
   color: var(--board-font-color);
 }
-.green {
+.Green {
   background-color: var(--board-green);
   color: var(--board-font-color);
 }
-.purple {
+.Purple {
   background-color: var(--board-purple);
   color: var(--board-font-color);
 }
-.pink {
+.Pink {
   background-color: var(--board-pink);
   color: var(--board-font-color);
 }
-.grey {
+.Grey {
   background-color: var(--board-grey);
   color: var(--board-font-color);
 }
