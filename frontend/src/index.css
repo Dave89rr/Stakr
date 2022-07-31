@@ -70,5 +70,36 @@ a {
   /* Grey Board */
   --board-grey: #838c91;
 
-  /************* Board Colors *************/
+  /************* Card Colors *************/
+  --card-box-shadow: 0 1px 0 #091e4240;
+  /* Grey Card */
+  --card-grey: #172b4d;
+  --card-grey-font-color: #fff;
+
+  /* Universal Font Color for any board other than white */
+  --card-font-color: #172b4d;
+
+  /* White Card */
+  --card-white: #fff;
+
+  /* Red Card */
+  --card-red: #ef7564;
+
+  /* Orange Card */
+  --card-orange: #ffaf3f;
+
+  /* Blue Card */
+  --card-blue: #5ba4cf;
+
+  /* Yellow Card */
+  --card-yellow: #f5dd29;
+
+  /* Green Card */
+  --card-green: #7bc86c;
+
+  /* Purple Card */
+  --card-purple: #cd8de5;
+
+  /* Pink Card */
+  --card-pink: #ff8ed4;
 }
