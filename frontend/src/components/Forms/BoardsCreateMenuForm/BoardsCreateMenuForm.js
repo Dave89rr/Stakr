@@ -9,7 +9,13 @@ function BoardsCreateMenuForm({ setShowBF }) {
   const [color, setColor] = useState('');
   const [workspaceId, setWorkspaceId] = useState('');
   const user = useSelector((state) => state.session.user);
+  const workspaces = useSelector((state) => state.Workspaces);
   const dispatch = useDispatch();
+
+  let workspacesArr;
+  if (workspaces) {
+    workspacesArr = Object.values(workspaces);
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,10 +42,19 @@ function BoardsCreateMenuForm({ setShowBF }) {
 
   return (
     <div className={classes.container}>
+      <div className={classes.miniContainer}>
+        <div className={classes.miniBoard}>
+          <img
+            src="https://a.trellocdn.com/prgb/dist/images/board-preview-skeleton.14cda5dc635d1f13bc48.svg"
+            alt=""
+            role="presentation"
+          />
+        </div>
+      </div>
       <form onSubmit={handleSubmit} className={classes.form}>
         <span className="">Background</span>
         <div className={classes.radioContainer}>
-          <div className={classes.test}>
+          <div className={classes.radioColor}>
             <label className={`${classes.blue} ${classes.radio}`}>
               <input
                 type="radio"
@@ -50,7 +65,7 @@ function BoardsCreateMenuForm({ setShowBF }) {
               />
             </label>
           </div>
-          <div className={classes.test}>
+          <div className={classes.radioColor}>
             <label className={`${classes.orange} ${classes.radio}`}>
               <input
                 type="radio"
@@ -61,7 +76,7 @@ function BoardsCreateMenuForm({ setShowBF }) {
               />
             </label>
           </div>
-          <div className={classes.test}>
+          <div className={classes.radioColor}>
             <label className={`${classes.green} ${classes.radio}`}>
               <input
                 type="radio"
@@ -72,7 +87,7 @@ function BoardsCreateMenuForm({ setShowBF }) {
               />
             </label>
           </div>
-          <div className={classes.test}>
+          <div className={classes.radioColor}>
             <label className={`${classes.red} ${classes.radio}`}>
               <input
                 type="radio"
@@ -83,7 +98,7 @@ function BoardsCreateMenuForm({ setShowBF }) {
               />
             </label>
           </div>
-          <div className={classes.test}>
+          <div className={classes.radioColor}>
             <label className={`${classes.purple} ${classes.radio}`}>
               <input
                 type="radio"
@@ -94,7 +109,7 @@ function BoardsCreateMenuForm({ setShowBF }) {
               />
             </label>
           </div>
-          <div className={classes.test}>
+          <div className={classes.radioColor}>
             <label className={`${classes.pink} ${classes.radio}`}>
               <input
                 type="radio"
@@ -106,21 +121,25 @@ function BoardsCreateMenuForm({ setShowBF }) {
             </label>
           </div>
         </div>
-        <input
-          name="name"
-          type="text"
-          placeholder="Board Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          // style={{
-          //   border:
-          //     validationErrors.length > 0
-          //       ? '1px solid #e33d3d'
-          //       : '1px solid rgb(221, 221, 221)',
-          //   borderRadius: '3px',
-          //   outline: 'none',
-          // }}
-        />
+        <div className={classes.input}>
+          <label htmlFor="name">Board Title</label>
+          <input
+            name="name"
+            type="text"
+            className={classes.inputField}
+            // placeholder="Board Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            // style={{
+            //   border:
+            //     validationErrors.length > 0
+            //       ? '1px solid #e33d3d'
+            //       : '1px solid rgb(221, 221, 221)',
+            //   borderRadius: '3px',
+            //   outline: 'none',
+            // }}
+          />
+        </div>
 
         <button type="submit">Create Board</button>
       </form>
