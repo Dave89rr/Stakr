@@ -1,54 +1,93 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import EditBoardForm from "../../Forms/EditBoardForm/EditBoardForm";
 
-import classes from './BoardCard.module.css';
+import classes from "./BoardCard.module.css";
 
 function BoardCard({ data }) {
-
-  const [bgc, setBgc] = useState('#ffffff');
-
+  const [display, setDisplay2] = useState(1);
+  const board = data;
+  const [bgc, setBgc] = useState("#ffffff");
   useEffect(() => {
-    //handle color
-    switch(data.color) {
-      case 'White':
+    // ==== handle color ==== //
+    switch (data.color) {
+      case "White":
         setBgc(classes.white);
         break;
-      case 'Red':
+      case "Red":
         setBgc(classes.red);
         break;
-      case 'Orange':
+      case "Orange":
         setBgc(classes.orange);
         break;
-      case 'Blue':
+      case "Blue":
         setBgc(classes.blue);
         break;
-      case 'Yellow':
+      case "Yellow":
         setBgc(classes.yellow);
         break;
-      case 'Green':
+      case "Green":
         setBgc(classes.green);
         break;
-      case 'Purple':
+      case "Purple":
         setBgc(classes.purple);
         break;
-      case 'Pink':
+      case "Pink":
         setBgc(classes.pink);
         break;
-      case 'Grey':
+      case "Grey":
         setBgc(classes.grey);
         break;
       default:
         setBgc(classes.white);
         break;
     }
-  }, []);
+  }, [data.color]);
 
   return (
-    <Link to={`/b/${data.workspaceId}/${data.id}/${data.name}`} style={{textDecoration:'none'}}>
-      <div className={`${classes.boardcard} ${bgc}`} >
-        {data.name}
+    <>
+      <div>
+        {display === 1 ? (
+          <div className={`${classes.boardcard} ${bgc}`}>
+            <div className={classes.top}>
+              <div className={classes.boardName}>{data.name}</div>
+
+              <img
+                className={classes.gear}
+                src="/static/icons/settings.svg"
+                onClick={() => {
+                  setDisplay2(2);
+                }}
+              />
+            </div>
+            <Link
+              to={`/b/${data.workspaceId}/${data.id}/${data.name}`}
+              style={{
+                textDecoration: "none",
+                height: "100%",
+              }}
+            >
+              <div className={classes.link}></div>
+            </Link>
+          </div>
+        ) : (
+          <>
+            <div className={`${classes.boardcard} ${bgc}`}>
+              <div className={classes.boardName}>{data.name}</div>
+
+              <img
+                className={classes.gear}
+                src="/static/icons/settings.svg"
+                onClick={() => {
+                  setDisplay2(2);
+                }}
+              />
+            </div>
+            <EditBoardForm data={data} setDisplay2={setDisplay2} />
+          </>
+        )}
       </div>
-    </Link>
+    </>
   );
 }
 

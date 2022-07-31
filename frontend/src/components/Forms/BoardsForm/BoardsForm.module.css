@@ -1,0 +1,50 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 6px;
+
+    border-radius: 3px;
+    background-color: rgba(186, 184, 200, 0.83);
+}
+.form input {
+    width: 100%;
+    height: 30px;
+    padding: 0 5px 0 5px;
+    border-radius: 3px;
+}
+
+.form > div {
+    display: flex;
+    justify-content: space-between;
+}
+.form > div > button {
+    color: #172b4d;
+    background-color: white;
+
+    border: 1px solid rgb(202, 202, 202);
+    border-radius: 3px;
+
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+
+    transition: background-color .2s ease;
+}
+.form > div > button:hover {
+    background-color: rgb(243, 243, 243);
+}
+
+.x {
+    width: 25px;
+    filter: invert(12%) sepia(16%) saturate(5189%) hue-rotate(194deg) brightness(97%) contrast(90%);
+    cursor: pointer;
+    transition: filter .4s ease;
+}
+.x:hover {
+    filter: invert(40%) sepia(71%) saturate(3493%) hue-rotate(338deg) brightness(92%) contrast(92%);
+}

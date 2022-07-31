@@ -43,7 +43,9 @@ function EditCardForm({ setDisplay, data, cardOrder, setCardOrder }) {
           <div className={classes.formBody}>
             <form onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="name">Name</label>
+                <label htmlFor="name" style={{ color: "#172b4d" }}>
+                  Name
+                </label>
                 <div>
                   <input
                     className={classes.nameField}
@@ -56,7 +58,9 @@ function EditCardForm({ setDisplay, data, cardOrder, setCardOrder }) {
                   />
                 </div>
                 <div>
-                  <label htmlFor="color">Select a color</label>
+                  <label htmlFor="color" style={{ color: "#172b4d" }}>
+                    Select a color
+                  </label>
                   <select
                     className={classes.selectField}
                     color={color}
@@ -74,7 +78,9 @@ function EditCardForm({ setDisplay, data, cardOrder, setCardOrder }) {
                     <option value={"Grey"}>Grey</option>
                   </select>
                 </div>
-                <label htmlFor="description">Description</label>
+                <label htmlFor="description" style={{ color: "#172b4d" }}>
+                  Description
+                </label>
                 <div>
                   <textarea
                     className={classes.textArea}

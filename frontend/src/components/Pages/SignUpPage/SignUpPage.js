@@ -1,24 +1,31 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
-import { signUp } from "../../../store/session";
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Redirect, useHistory } from 'react-router-dom';
+import { signUp } from '../../../store/session';
+import AuthPageBg from '../../Elements/AuthPageBg';
 
-import classes from "./SignUpPage.module.css";
-// import uniCss from "../pagesuniversal.module.css";
+import classes from './SignUpPage.module.css';
 
 const SignUpPage = () => {
   const history = useHistory();
   const [errors, setErrors] = useState([]);
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector((state) => state.session.user);
+  const workspaces = useSelector((state) => state.workspaces);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    let email = localStorage.getItem('email');
+    if (email) {
+      setEmail(email);
+    }
+  }, []);
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    console.log(errors);
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
@@ -27,6 +34,7 @@ const SignUpPage = () => {
     } else {
       return setErrors(["Passwords didn't match"]);
     }
+    localStorage.clear();
   };
 
   const updateUsername = (e) => {
@@ -46,6 +54,10 @@ const SignUpPage = () => {
   };
 
   if (user) {
+    console.log(workspaces);
+    if (Object.values(workspaces).length < 1) {
+      return <Redirect to="/create-first-workspace" />;
+    }
     return <Redirect to="/" />;
   }
 
@@ -53,7 +65,7 @@ const SignUpPage = () => {
     <div className={classes.mainContainer}>
       <div className={classes.formContainer}>
         <img src="/static/icons/stakr-logo.svg" className={classes.logo} />
-        <div>
+        <div className={classes.formWrapper}>
           <form onSubmit={onSignUp} className={classes.form}>
             {errors.length ? (
               <div className={classes.error}>
@@ -111,10 +123,11 @@ const SignUpPage = () => {
               onClick={() => history.push(`/login`)}
               className={classes.loginLink}
             >
-              Aleardy have an account? Login
+              Already have an account? Login
             </p>
           </form>
         </div>
+        <AuthPageBg />
       </div>
     </div>
   );

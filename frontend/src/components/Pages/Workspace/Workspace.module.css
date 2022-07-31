@@ -1,7 +1,33 @@
 .createBoardcard {
+  display: flex;
   border-radius: 3px;
   width: 194px;
   height: 98px;
   border: 1px solid blue;
   margin-bottom: 2%;
+  position: absolute;
+  z-index: 2;
+}
+
+.cardHolder {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.settings {
+  display: flex;
+}
+
+.gear {
+  position: relative;
+  right: 24px;
+  height: 16px;
+  width: 16px;
+  top: 10px;
+}
+
+.gear:hover {
+  cursor: pointer;
+  transform: rotate(360deg);
+  transition: all 1.9s ease-in-out 0s;
 }

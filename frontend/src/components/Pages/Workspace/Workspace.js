@@ -1,15 +1,15 @@
-import classes from './Workspace.module.css';
-import uniCss from '../pagesuniversal.module.css';
-import BoardCard from '../../Elements/BoardCard';
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import classes from "./Workspace.module.css";
+import uniCss from "../pagesuniversal.module.css";
+import BoardCard from "../../Elements/BoardCard";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useSelector } from "react-redux";
+import { useState } from "react";
 
-import BoardsForm from '../../Forms/BoardsForm';
+import BoardsForm from "../../Forms/BoardsForm";
 
 function Workspace() {
   const { workspaceId } = useParams();
-  const [showBoardForm, setShowBoardForm] = useState(false);
+  const [showBoardForm, setShowBoardForm] = useState(true);
   let workspace = useSelector((state) => state.workspaces[workspaceId]);
   let boards;
   if (workspace) {
@@ -23,7 +23,15 @@ function Workspace() {
       <h1>{workspace.name}</h1>
       {boards && boards.length > 0 ? (
         boards.map((ele, i) => {
-          return <BoardCard data={ele} key={i} />;
+          return (
+            <div className={classes.cardHolder} key={ele.id}>
+              <div className={classes.settings}>
+                <div className={classes.card}>
+                  <BoardCard data={ele} key={i} />
+                </div>
+              </div>
+            </div>
+          );
         })
       ) : (
         <div

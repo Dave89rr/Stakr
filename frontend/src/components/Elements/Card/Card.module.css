@@ -1,102 +1,116 @@
 .cardContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    width: 100%;
-    padding: 6px 8px 2px;
-    margin-bottom: 8px;
+  width: 100%;
+  padding: 6px 8px 2px;
+  margin-bottom: 8px;
 
-    border-radius: 3px;
-    background-color: #ffffff;
+  border-radius: 3px;
+  background-color: #ffffff;
 
-    color: #172b4d;
+  color: #172b4d;
 }
 .cardContainer:hover {
-    box-shadow: inset 0px 0px 1000px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0px 0px 1000px rgba(0, 0, 0, 0.1);
 }
 
 .dragHandle {
-    width: 100%;
+  width: 100%;
 }
 
 .editButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 25px;
-    height: 22px;
-    margin-bottom: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 22px;
+  min-height: 22px;
+  margin-bottom: 3px;
 
-    border-radius: 3px;
-    background-color: #f4f5f7be;
-    opacity: 0%;
-    transition: opacity .2s ease;
+  border-radius: 3px;
+  background-color: #f4f5f7be;
+  opacity: 0%;
+  transition: opacity 0.2s ease;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 }
 .editButton:hover {
-    cursor: pointer;
-    background-color: #f4f5f7ed;
+  cursor: pointer;
+  background-color: #f4f5f7ed;
 }
 .cardContainer:hover .editButton {
-    opacity: 100%;
+  opacity: 100%;
 }
 
 .pencil {
-    width: 12px;
-    height: 12px;
+  width: 12px;
+  height: 12px;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 }
 
 .description {
-    margin: 0 0 4px;
-    padding: 0;
-
-    font-size: 14px;
-    font-weight: 500;
+  margin: 0 0 4px;
+  padding: 0;
+  width: fit-content;
+  word-wrap: break-word;
+  word-break: break-all;
+  font-size: 14px;
+  font-weight: 500;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 }
 
 /* BG COLORS */
 .White {
-    background-color: #fff;
-    box-shadow: 0 1px 0 #091e4240;
-    color: #172b4d;
+  background-color: var(--card-white);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-font-color);
 }
 .Red {
-    background-color: #EF7564;
-    box-shadow: 0 1px 0 #091e4240;
-    color: #172b4d;
+  background-color: var(--card-red);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-font-color);
 }
 .Orange {
-    background-color: #FFAF3F;
-    box-shadow: 0 1px 0 #091e4240;
-    color: #172b4d;
+  background-color: var(--card-orange);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-font-color);
 }
 .Blue {
-    background-color: #5BA4CF;
-    box-shadow: 0 1px 0 #091e4240;
-    color: #172b4d;
+  background-color: var(--card-blue);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-font-color);
 }
 .Yellow {
-    background-color: #F5DD29;
-    box-shadow: 0 1px 0 #091e4240;
-    color: #172b4d;
+  background-color: var(--card-yellow);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-font-color);
 }
 .Green {
-    background-color: #7BC86C;
-    box-shadow: 0 1px 0 #091e4240;
-    color: #172b4d;
+  background-color: var(--card-green);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-font-color);
 }
 .Purple {
-    background-color: #CD8DE5;
-    box-shadow: 0 1px 0 #091e4240;
-    color: #172b4d;
+  background-color: var(--card-purple);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-font-color);
 }
 .Pink {
-    background-color: #FF8ED4;
-    box-shadow: 0 1px 0 #091e4240;
-    color: #172b4d;
+  background-color: var(--card-pink);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-font-color);
 }
 .Grey {
-    background-color: #172B4D;
-    box-shadow: 0 1px 0 #091e4240;
-    color: #fff;
+  background-color: var(--card-grey);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-grey-font-color);
 }

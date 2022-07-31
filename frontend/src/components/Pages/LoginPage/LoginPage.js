@@ -1,15 +1,16 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
-import { login } from "../../../store/session";
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Redirect, useHistory } from 'react-router-dom';
+import { login } from '../../../store/session';
+import AuthPageBg from '../../Elements/AuthPageBg';
 
-import classes from "../SignUpPage/SignUpPage.module.css";
+import classes from '../SignUpPage/SignUpPage.module.css';
 
 const LoginPage = () => {
   const history = useHistory();
   const [errors, setErrors] = useState([]);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
@@ -37,7 +38,7 @@ const LoginPage = () => {
     <div className={classes.mainContainer}>
       <div className={classes.formContainer}>
         <img src="/static/icons/stakr-logo.svg" className={classes.logo} />
-        <div>
+        <div className={classes.formWrapper}>
           <form onSubmit={onLogin} className={classes.form}>
             <div>
               {errors.map((error, ind) => (
@@ -78,6 +79,7 @@ const LoginPage = () => {
             </p>
           </form>
         </div>
+        <AuthPageBg />
       </div>
     </div>
   );
