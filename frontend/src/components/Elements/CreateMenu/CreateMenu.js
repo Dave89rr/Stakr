@@ -15,9 +15,36 @@ function CreateMenu({ setToggleView, innerRef }) {
       alt="stakr icon"
     />
   );
+  const handleBack = () => {
+    setShowBF(false);
+    setShowWSF(false);
+    setShowMenu(true);
+  };
+  const handleClose = () => {
+    setToggleView(false);
+  };
+  const backArrow = (
+    <div onClick={handleBack}>
+      <img
+        className={classes.stakrIcon}
+        src="/static/icons/backarrow.svg"
+        alt="back button"
+      />
+    </div>
+  );
+  const closeIcon = (
+    <div onClick={handleClose}>
+      <img
+        className={classes.stakrIcon}
+        src="/static/icons/x.svg"
+        alt="close menu button"
+      />
+    </div>
+  );
   const workspaceIcon = (
     <img
       className={classes.stakrIcon}
+      style={{ height: '20px' }}
       src="/static/icons/workspaceicon.svg"
       alt="stakr icon"
     />
@@ -32,7 +59,9 @@ function CreateMenu({ setToggleView, innerRef }) {
   };
   const menuContent = (
     <div className={classes.contentContainer}>
-      <div className={classes.createTitle}>Create</div>
+      <div className={classes.createTitle}>
+        <span></span>Create<span></span>
+      </div>
       <div className={classes.line}></div>
       <div className={classes.createAction} onClick={toggleCreateBoard}>
         <span>
@@ -63,7 +92,9 @@ function CreateMenu({ setToggleView, innerRef }) {
       {showMenu ? menuContent : null}
       {showWSF ? (
         <div className={classes.formContainer}>
-          <div className={classes.createTitle}>Create Workspace</div>
+          <div className={classes.createTitle}>
+            <span>{backArrow}</span>Create Workspace<span>{closeIcon}</span>
+          </div>
           <div className={classes.line}></div>
           <WorkspacesForm
             setToggleView={setToggleView}
@@ -73,7 +104,9 @@ function CreateMenu({ setToggleView, innerRef }) {
       ) : null}
       {showBF ? (
         <div className={classes.formContainer}>
-          <div className={classes.createTitle}>Create Board</div>
+          <div className={classes.createTitle}>
+            <span>{backArrow}</span>Create Board<span>{closeIcon}</span>
+          </div>
           <div className={classes.line}></div>
           <BoardsCreateMenuForm
             setToggleView={setToggleView}

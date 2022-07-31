@@ -13,7 +13,7 @@
 .createTitle {
   color: #778397;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   width: 98%;
   font-size: 1.4em;
   margin-top: 3%;
