@@ -51,21 +51,20 @@ label > input {
   height: 100%;
 }
 .blue {
-  background-color: blue;
+  background-color: var(--board-blue);
 }
-
 .orange {
-  background-color: orange;
+  background-color: var(--board-orange);
 }
 .red {
-  background-color: red;
+  background-color: var(--board-red);
 }
 .pink {
-  background-color: pink;
+  background-color: var(--board-pink);
 }
 .purple {
-  background-color: purple;
+  background-color: var(--board-purple);
 }
 .green {
-  background-color: green;
+  background-color: var(--board-green);
 }
