@@ -24,8 +24,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 25px;
-  height: 22px;
+  min-width: 22px;
+  min-height: 22px;
   margin-bottom: 3px;
 
   border-radius: 3px;
@@ -57,7 +57,9 @@
 .description {
   margin: 0 0 4px;
   padding: 0;
-
+  width: fit-content;
+  word-wrap: break-word;
+  word-break: break-all;
   font-size: 14px;
   font-weight: 500;
   user-select: none;
@@ -68,47 +70,47 @@
 
 /* BG COLORS */
 .White {
-  background-color: #fff;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #172b4d;
+  background-color: var(--card-white);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-font-color);
 }
 .Red {
-  background-color: #ef7564;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #172b4d;
+  background-color: var(--card-red);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-font-color);
 }
 .Orange {
-  background-color: #ffaf3f;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #172b4d;
+  background-color: var(--card-orange);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-font-color);
 }
 .Blue {
-  background-color: #5ba4cf;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #172b4d;
+  background-color: var(--card-blue);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-font-color);
 }
 .Yellow {
-  background-color: #f5dd29;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #172b4d;
+  background-color: var(--card-yellow);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-font-color);
 }
 .Green {
-  background-color: #7bc86c;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #172b4d;
+  background-color: var(--card-green);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-font-color);
 }
 .Purple {
-  background-color: #cd8de5;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #172b4d;
+  background-color: var(--card-purple);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-font-color);
 }
 .Pink {
-  background-color: #ff8ed4;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #172b4d;
+  background-color: var(--card-pink);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-font-color);
 }
 .Grey {
-  background-color: #172b4d;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #fff;
+  background-color: var(--card-grey);
+  box-shadow: var(--card-box-shadow);
+  color: var(--card-grey-font-color);
 }
