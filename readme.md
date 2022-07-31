@@ -56,8 +56,4 @@ We love squishing bugs! If you find one, let us know by opening an issue [here](
 
 ## Created By
 
-[Brandon Flores](https://github.com/brandonflores647)
-
-[David Rivera](https://github.com/Dave89rr)
-
-[Justin Stockton](https://github.com/Justin-Stockton)
+[Brandon Flores](https://github.com/brandonflores647), [David Rivera](https://github.com/Dave89rr), and [Justin Stockton](https://github.com/Justin-Stockton)
