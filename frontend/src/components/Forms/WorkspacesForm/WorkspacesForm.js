@@ -32,7 +32,7 @@ function WorkspacesForm({ setToggleView, setShowWSF }) {
   };
 
   return (
-    <>
+    <div>
       <form onSubmit={handleSubmit}>
         <div>
           {validationErrors.map((error, ind) => (
@@ -40,7 +40,7 @@ function WorkspacesForm({ setToggleView, setShowWSF }) {
           ))}
         </div>
         <div>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">Workspace Name</label>
           <input
             name="name"
             type="text"
@@ -51,7 +51,7 @@ function WorkspacesForm({ setToggleView, setShowWSF }) {
           <button type="submit">Create WS</button>
         </div>
       </form>
-    </>
+    </div>
   );
 }
 

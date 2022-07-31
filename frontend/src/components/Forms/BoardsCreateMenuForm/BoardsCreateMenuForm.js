@@ -37,6 +37,54 @@ function BoardsCreateMenuForm({ setShowBF }) {
   return (
     <div className={classes.container}>
       <form onSubmit={handleSubmit}>
+        <div>
+          <input
+            type="radio"
+            value="Blue"
+            checked={color === 'Blue'}
+            onChange={(e) => setColor(e.target.value)}
+          />
+        </div>
+        <div>
+          <input
+            type="radio"
+            value="Orange"
+            checked={color === 'Orange'}
+            onChange={(e) => setColor(e.target.value)}
+          />
+        </div>
+        <div>
+          <input
+            type="radio"
+            value="Green"
+            checked={color === 'Green'}
+            onChange={(e) => setColor(e.target.value)}
+          />
+        </div>
+        <div>
+          <input
+            type="radio"
+            value="Red"
+            checked={color === 'Red'}
+            onChange={(e) => setColor(e.target.value)}
+          />
+        </div>
+        <div>
+          <input
+            type="radio"
+            value="Purple"
+            checked={color === 'Purple'}
+            onChange={(e) => setColor(e.target.value)}
+          />
+        </div>
+        <div>
+          <input
+            type="radio"
+            value="Pink"
+            checked={color === 'Pink'}
+            onChange={(e) => setColor(e.target.value)}
+          />
+        </div>
         <input
           name="name"
           type="text"
@@ -52,6 +100,7 @@ function BoardsCreateMenuForm({ setShowBF }) {
           //   outline: 'none',
           // }}
         />
+
         <button type="submit">Create Board</button>
       </form>
     </div>
