@@ -11,14 +11,14 @@ function CreateMenu({ setToggleView }) {
   const boardIcon = (
     <img
       className={classes.stakrIcon}
-      src="/media/icons/boardicon.svg"
+      src="/static/icons/boardicon.svg"
       alt="stakr icon"
     />
   );
   const workspaceIcon = (
     <img
       className={classes.stakrIcon}
-      src="/media/icons/workspaceicon.svg"
+      src="/static/icons/workspaceicon.svg"
       alt="stakr icon"
     />
   );
