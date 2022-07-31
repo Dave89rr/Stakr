@@ -104,5 +104,5 @@ a {
   --card-pink: #ff8ed4;
 
   /* Checkmark SVG */
-  --check-svg-url: url('/public/static/icons/check.svg');
+  --check-svg-url: url('/static/icons/check.svg');
 }
