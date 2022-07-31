@@ -36,54 +36,75 @@ function BoardsCreateMenuForm({ setShowBF }) {
 
   return (
     <div className={classes.container}>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <input
-            type="radio"
-            value="Blue"
-            checked={color === 'Blue'}
-            onChange={(e) => setColor(e.target.value)}
-          />
-        </div>
-        <div>
-          <input
-            type="radio"
-            value="Orange"
-            checked={color === 'Orange'}
-            onChange={(e) => setColor(e.target.value)}
-          />
-        </div>
-        <div>
-          <input
-            type="radio"
-            value="Green"
-            checked={color === 'Green'}
-            onChange={(e) => setColor(e.target.value)}
-          />
-        </div>
-        <div>
-          <input
-            type="radio"
-            value="Red"
-            checked={color === 'Red'}
-            onChange={(e) => setColor(e.target.value)}
-          />
-        </div>
-        <div>
-          <input
-            type="radio"
-            value="Purple"
-            checked={color === 'Purple'}
-            onChange={(e) => setColor(e.target.value)}
-          />
-        </div>
-        <div>
-          <input
-            type="radio"
-            value="Pink"
-            checked={color === 'Pink'}
-            onChange={(e) => setColor(e.target.value)}
-          />
+      <form onSubmit={handleSubmit} className={classes.form}>
+        <span className="">Background</span>
+        <div className={classes.radioContainer}>
+          <div className={classes.test}>
+            <label className={`${classes.blue} ${classes.radio}`}>
+              <input
+                type="radio"
+                value="Blue"
+                className={classes.radiobtn}
+                checked={color === 'Blue'}
+                onChange={(e) => setColor(e.target.value)}
+              />
+            </label>
+          </div>
+          <div className={classes.test}>
+            <label className={`${classes.orange} ${classes.radio}`}>
+              <input
+                type="radio"
+                value="Orange"
+                className={classes.radiobtn}
+                checked={color === 'Orange'}
+                onChange={(e) => setColor(e.target.value)}
+              />
+            </label>
+          </div>
+          <div className={classes.test}>
+            <label className={`${classes.green} ${classes.radio}`}>
+              <input
+                type="radio"
+                value="Green"
+                className={classes.radiobtn}
+                checked={color === 'Green'}
+                onChange={(e) => setColor(e.target.value)}
+              />
+            </label>
+          </div>
+          <div className={classes.test}>
+            <label className={`${classes.red} ${classes.radio}`}>
+              <input
+                type="radio"
+                value="Red"
+                className={classes.radiobtn}
+                checked={color === 'Red'}
+                onChange={(e) => setColor(e.target.value)}
+              />
+            </label>
+          </div>
+          <div className={classes.test}>
+            <label className={`${classes.purple} ${classes.radio}`}>
+              <input
+                type="radio"
+                value="Purple"
+                className={classes.radiobtn}
+                checked={color === 'Purple'}
+                onChange={(e) => setColor(e.target.value)}
+              />
+            </label>
+          </div>
+          <div className={classes.test}>
+            <label className={`${classes.pink} ${classes.radio}`}>
+              <input
+                type="radio"
+                value="Pink"
+                className={classes.radiobtn}
+                checked={color === 'Pink'}
+                onChange={(e) => setColor(e.target.value)}
+              />
+            </label>
+          </div>
         </div>
         <input
           name="name"
