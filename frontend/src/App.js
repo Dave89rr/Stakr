@@ -15,6 +15,7 @@ import Footer from './components/Elements/Footer'
 
 import { authenticate } from './store/session';
 import { thunkGetAllWorkspaces } from './store/workspaces';
+import FirstWorkspace from './components/Pages/FirstWorkspace';
 
 function App() {
   const user = useSelector((state) => state.session.user);
@@ -53,6 +54,9 @@ function App() {
         </Route>
         <Route exact path="/signup">
           <SignUpPage />
+        </Route>
+        <Route exact path="/create-first-workspace">
+          <FirstWorkspace />
         </Route>
         <ProtectedRoute exact path="/:username/boards">
           <UserHomepage />
