@@ -1,7 +1,7 @@
 import classes from './AboutMenu.module.css';
 
-function AboutMenu({ setToggleAbout }) {
-  const xicon = <img src="/static/icons/x.svg" alt="about menu close button" />;
+function AboutMenu({ setToggleAbout, innerRef }) {
+  const xicon = <img src="/media/icons/x.svg" alt="about menu close button" />;
   const financeIcon = (
     <img
       className={classes.appIcon}
@@ -59,7 +59,7 @@ function AboutMenu({ setToggleAbout }) {
     />
   );
   return (
-    <div className={classes.aboutMenuContainer}>
+    <div className={classes.aboutMenuContainer} ref={innerRef}>
       <div className={classes.header}>
         <div className={classes.title}>
           <span>Discover More from Us</span>

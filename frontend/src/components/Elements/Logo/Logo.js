@@ -2,8 +2,16 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AboutMenu from '../AboutMenu/AboutMenu';
 import classes from './Logo.module.css';
+
+import { useClickOutside } from '../Navbar/NavBar';
+
 function Logo() {
   const [toggleAbout, setToggleAbout] = useState(false);
+
+  const aboutRef = useClickOutside(() => {
+    setToggleAbout(false);
+  });
+
   const logo = (
     <img
       className={classes.icon}
@@ -26,7 +34,7 @@ function Logo() {
       >
         {about}
       </div>
-      {toggleAbout ? <AboutMenu setToggleAbout={setToggleAbout} /> : null}
+      {toggleAbout ? <AboutMenu setToggleAbout={setToggleAbout} innerRef={aboutRef} /> : null}
       <Link to="/">{logo}</Link>
     </div>
   );
