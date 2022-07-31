@@ -6,7 +6,7 @@
 
 /* BG COLORS */
 .White {
-  background-color: var(--board-white);
+  background-color: #fff;
   color: var(--board-white-font-color);
 }
 .Red {
