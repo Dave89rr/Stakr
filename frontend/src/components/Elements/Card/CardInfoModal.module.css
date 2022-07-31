@@ -1,6 +1,6 @@
 .background {
     position: absolute;
-    z-index: 10;
+    z-index: 11;
     top: 0;
     left: 0;
 
@@ -26,6 +26,8 @@
     height: 80%;
     margin-top: 1%;
 
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
     background-color: rgb(240, 240, 240);
@@ -33,54 +35,62 @@
 }
 
 .modalCap {
+    position: relative;
     width: 100%;
-    height: 8%;
-    border-bottom: 1px solid rgb(148, 148, 148);
+    height: 10%;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom: 2px solid rgb(148, 148, 148);
+}
+
+.x {
+    position: absolute;
+    right: 0;
+    width: 35px;
+    margin: 2px 2px 0 0;
+
+    filter: invert(12%) sepia(16%) saturate(5189%) hue-rotate(194deg) brightness(97%) contrast(90%);
+    cursor: pointer;
+    transition: filter .4s ease;
+}
+.x:hover {
+    filter: invert(40%) sepia(71%) saturate(3493%) hue-rotate(338deg) brightness(92%) contrast(92%);
 }
 
 /* BG COLORS */
 .White {
     background-color: #fff;
-    box-shadow: 0 1px 0 #091e4240;
     color: #172b4d;
 }
 .Red {
-  background-color: #ef7564;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #172b4d;
+    background-color: #ef7564;
+    color: #172b4d;
 }
 .Orange {
-  background-color: #ffaf3f;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #172b4d;
+    background-color: #ffaf3f;
+    color: #172b4d;
 }
 .Blue {
-  background-color: #5ba4cf;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #172b4d;
+    background-color: #5ba4cf;
+    color: #172b4d;
 }
 .Yellow {
-  background-color: #f5dd29;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #172b4d;
+    background-color: #f5dd29;
+    color: #172b4d;
 }
 .Green {
-  background-color: #7bc86c;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #172b4d;
+    background-color: #7bc86c;
+    color: #172b4d;
 }
 .Purple {
-  background-color: #cd8de5;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #172b4d;
+    background-color: #cd8de5;
+    color: #172b4d;
 }
 .Pink {
-  background-color: #ff8ed4;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #172b4d;
+    background-color: #ff8ed4;
+    color: #172b4d;
 }
 .Grey {
-  background-color: #172b4d;
-  box-shadow: 0 1px 0 #091e4240;
-  color: #fff;
+    background-color: #172b4d;
+    color: #fff;
 }

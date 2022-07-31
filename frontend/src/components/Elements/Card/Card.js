@@ -47,7 +47,7 @@ function Card({ data, pos, disabled, cardOrder, setCardOrder}) {
         </div>
       )}
     </Draggable>
-    <CardInfoModal cardModal={cardModal} data={data}/>
+    <CardInfoModal cardModal={cardModal} data={data} setCardModal={setCardModal}/>
     </>
   );
 }
