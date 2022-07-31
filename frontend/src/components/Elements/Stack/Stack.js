@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
 import Card from "../Card";
-import { thunkDeleteStack } from "../../../store/stacks";
+import { thunkDeleteStack, thunkUpdateStackOrder } from "../../../store/stacks";
 
 import classes from "./Stack.module.css";
 import CreateCard from "../../Forms/CreateCard";
 
-const Stack = ({ data, disabled, cards, cardOrder, setCardOrder }) => {
-  const { workspaceId } = useParams();
+const Stack = ({ data, disabled, cards, cardOrder, setCardOrder, sortedStacks }) => {
+  const workspaces = useSelector((state) => state.workspaces);
+  const { boardId, workspaceId } = useParams();
   const dispatch = useDispatch();
   const [form, setForm] = useState("False");
 
@@ -33,13 +34,17 @@ const Stack = ({ data, disabled, cards, cardOrder, setCardOrder }) => {
               <div
                 className={classes.trashCan}
                 style={{ cursor: "pointer" }}
-                onClick={(e) => {
+                onClick={async (e) => {
                   e.preventDefault();
                   const payload = {
                     stackId: data.id,
                     workspaceId,
                   };
-                  dispatch(thunkDeleteStack(payload));
+                  await dispatch(thunkDeleteStack(payload));
+                  const newOrder = Array.from(sortedStacks);
+                  newOrder.splice(sortedStacks.indexOf((data.id).toString()), 1);
+                  sortedStacks = newOrder;
+                  await dispatch(thunkUpdateStackOrder(sortedStacks, boardId, workspaceId));
                 }}
               >
                 <img

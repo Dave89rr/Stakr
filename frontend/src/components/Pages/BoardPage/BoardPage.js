@@ -104,6 +104,7 @@ function BoardPage() {
       newStackOrder.splice(source.index, 1);
       newStackOrder.splice(destination.index, 0, draggableId);
       sortedStacks = newStackOrder;
+      console.log('bp', sortedStacks)
       await dispatch(thunkUpdateStackOrder(sortedStacks, boardId, workspaceId));
       setDisabled(false);
     }
@@ -189,6 +190,7 @@ function BoardPage() {
                         cards={cards}
                         cardOrder={cardOrder}
                         setCardOrder={setCardOrder}
+                        sortedStacks={sortedStacks}
                         key={stacks[ele].id}
                       />
                     );
