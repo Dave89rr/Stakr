@@ -47,6 +47,13 @@ def updateOrder():
     newStacks = []
 
     for i in data['stacks']:
+        print("""
+
+        """)
+        print(i)
+        print("""
+
+        """)
         stack = Stacks.query.get(i)
         if not (stack.position == data['stacks'].index(str(stack.toDict()['id']))):
             stack.position = data['stacks'].index(str(stack.toDict()['id']))

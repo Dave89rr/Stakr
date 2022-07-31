@@ -3,25 +3,26 @@
   flex-direction: column;
 
   width: 272px;
-  max-height: 5%;
+  height: 40px;
 
   border-radius: 3px;
-  background-color: #ebecf0;
+  background-color: #ebecf056;
   justify-content: center;
   align-items: center;
-  opacity: 50%;
+
+  transition: background-color .1s ease;
 }
 
 .addStack:hover {
-  opacity: 100%;
   cursor: pointer;
+  background-color: #ebecf083;
 }
 
 .stackForm {
   display: flex;
   flex-direction: column;
 
-  width: 272px;
+  min-width: 272px;
   height: 72px;
 
   border-radius: 3px;
@@ -35,6 +36,7 @@
   background-color: rgb(48, 126, 216);
   color: white;
   border-radius: 3px;
+  cursor: pointer;
 }
 
 .formName {
@@ -42,6 +44,12 @@
   width: 100%;
   border: 2px solid rgb(48, 126, 216);
   border-radius: 3px;
+}
+
+.formCloseContainer {
+  margin-left: 4%;
+  height: 20px;
+  width: 20px;
 }
 
 .formClose {
@@ -54,6 +62,11 @@
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
+
+  transition: filter .2s ease;
+}
+.formClose:hover {
+  filter: invert(40%) sepia(71%) saturate(3493%) hue-rotate(338deg) brightness(92%) contrast(92%) !important;
 }
 
 .formButtonHolder {
@@ -62,6 +75,8 @@
 }
 .formContainer {
   width: 100%;
+  min-width: 272px;
+  /* margin-right: 20px; */
   padding: 9px 6px 6px 6px;
 }
 
@@ -73,7 +88,10 @@
 
 .plusContainer {
   display: flex;
+  min-width: 272px;
   align-items: center;
+  height: 100%;
+  margin-left: 2%;
   user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
@@ -82,8 +100,6 @@
 
 .plusFirst {
   display: flex;
-  height: 15%;
-  /* width: 10%; */
   margin-right: 5px;
   margin-left: 10px;
   user-select: none;
@@ -93,9 +109,20 @@
 }
 .plus {
   display: flex;
-  height: 10%;
+  height: 16px;
   margin-right: 5px;
   margin-left: 10px;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+.darkPlus {
+  display: flex;
+  height: 30%;
+  margin-right: 5px;
+  margin-left: 10px;
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(268deg) brightness(100%) contrast(100%);
   user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
