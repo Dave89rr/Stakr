@@ -6,7 +6,7 @@
   height: 5%;
 
   border-radius: 3px;
-  background-color: #ebecf0;
+  background-color: #ebecf055;
   justify-content: center;
   align-items: center;
   opacity: 50%;
@@ -14,15 +14,15 @@
 }
 
 .addStack:hover {
-  opacity: 100%;
   cursor: pointer;
+  background-color: #ebecf083;
 }
 
 .stackForm {
   display: flex;
   flex-direction: column;
 
-  width: 272px;
+  min-width: 272px;
   height: 72px;
 
   border-radius: 3px;
@@ -78,6 +78,8 @@
   display: flex;
   min-width: 272px;
   align-items: center;
+  height: 100%;
+  margin-left: 2%;
   user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
@@ -86,8 +88,6 @@
 
 .plusFirst {
   display: flex;
-  height: 15%;
-  /* width: 10%; */
   margin-right: 5px;
   margin-left: 10px;
   user-select: none;
@@ -100,6 +100,8 @@
   height: 16px;
   margin-right: 5px;
   margin-left: 10px;
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(268deg)
+    brightness(100%) contrast(100%);
   user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;

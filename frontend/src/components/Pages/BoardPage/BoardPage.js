@@ -91,8 +91,10 @@ function BoardPage() {
     if (type === "column") {
       // dont do anything when dragged into the same spot as before
       if (
-        destination.droppableId === source.droppableId &&
-        destination.index === source.index
+        (destination &&
+          destination.droppableId === source.droppableId &&
+          destination.index === source.index) ||
+        !destination
       ) {
         setDisabled(false);
         return;
@@ -102,6 +104,7 @@ function BoardPage() {
       newStackOrder.splice(source.index, 1);
       newStackOrder.splice(destination.index, 0, draggableId);
       sortedStacks = newStackOrder;
+      console.log('bp', sortedStacks)
       await dispatch(thunkUpdateStackOrder(sortedStacks, boardId, workspaceId));
       setDisabled(false);
     }
@@ -186,6 +189,7 @@ function BoardPage() {
                         cards={cards}
                         cardOrder={cardOrder}
                         setCardOrder={setCardOrder}
+                        sortedStacks={sortedStacks}
                         key={stacks[ele].id}
                       />
                     );
