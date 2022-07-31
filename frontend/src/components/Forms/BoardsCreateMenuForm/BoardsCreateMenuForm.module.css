@@ -1,0 +1,118 @@
+.container {
+  width: 100%;
+}
+
+.form {
+  width: 100%;
+}
+.radioColor {
+  width: 43px;
+  height: 30px;
+  margin: 1%;
+  display: flex;
+}
+label > input {
+  margin: 0;
+}
+.radiobtn {
+  width: 100%;
+  height: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  border-radius: 4px;
+}
+.radioContainer {
+  margin-top: 2%;
+  margin-bottom: 4%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+.radio {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  border-radius: 4px;
+  width: 100%;
+  height: 100%;
+}
+.selectField {
+  width: 100%;
+  height: 2.5em;
+}
+.radiobtn:checked {
+  background-image: var(--check-svg-url);
+  background-color: rgba(0, 0, 0, 0.3);
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+}
+.blue {
+  background-color: var(--board-blue);
+}
+.orange {
+  background-color: var(--board-orange);
+}
+.red {
+  background-color: var(--board-red);
+}
+.pink {
+  background-color: var(--board-pink);
+}
+.purple {
+  background-color: var(--board-purple);
+}
+.green {
+  background-color: var(--board-green);
+}
+.label {
+  margin-top: 1%;
+}
+.input {
+  display: flex;
+  flex-direction: column;
+}
+.inputField {
+  height: 2.5em;
+}
+
+.miniBoard {
+  align-self: center;
+  width: 200px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(137, 96, 158);
+  border-radius: 3px;
+}
+
+.miniContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5%;
+}
+
+.submitBtn {
+  margin-bottom: 5%;
+  border: none;
+  border-radius: 3px;
+  color: #ffffff;
+  background-color: #0175b8;
+  width: 100%;
+  height: 3.98vh;
+  min-height: 30px;
+  margin-top: 5%;
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}

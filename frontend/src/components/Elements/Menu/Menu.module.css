@@ -22,8 +22,13 @@
   color: white;
   cursor: pointer;
   margin-right: 15px;
-
+  padding: 7px 10px 7px 10px;
+  border-radius: 3px;
   font-size: 14px;
+  transition: background-color .2s ease;
+}
+.wsButton:hover {
+  background-color: rgba(255, 255, 255, 0.3);
 }
 .dropArrow {
   width: 12px;
@@ -106,13 +111,15 @@
 }
 
 .formContainer {
-  display: absolute;
-  top: 0px;
-  right: 0px;
+  position: absolute;
+  top: 48px;
+  left: 15.45vw;
+  width: 15.82vw;
   border-radius: 3px;
   background-color: white;
-  border: 1px solid red;
-  margin-left: 50px;
-  margin-top: 250px;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgb(175, 175, 175);
 }

@@ -43,7 +43,7 @@ function EditBoardForm({ data, setDisplay2 }) {
           <div className={classes.formBody}>
             <form onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="name">Name {data.id}</label>
+                <label htmlFor="name">Name</label>
                 <div>
                   <input
                     className={classes.nameField}

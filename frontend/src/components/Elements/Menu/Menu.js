@@ -1,11 +1,14 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
-import WorkspacesForm from "../../Forms/WorkspacesForm/WorkspacesForm";
-import WorkspaceDropdownCard from "./WorkspaceDropdownCard";
-import classes from "./Menu.module.css";
+import WorkspacesForm from '../../Forms/WorkspacesForm/WorkspacesForm';
+import WorkspaceDropdownCard from './WorkspaceDropdownCard';
+import classes from './Menu.module.css';
+import CreateMenu from '../CreateMenu';
 
-function Menu({ innerRef, wsView, setWsView }) {
+import { useClickOutside } from '../Navbar/NavBar';
+
+function Menu({ wsRef, wsView, setWsView }) {
   const user = useSelector((state) => state.session.user);
   const workspaces = useSelector((state) => state.workspaces);
 
@@ -19,10 +22,14 @@ function Menu({ innerRef, wsView, setWsView }) {
     setWsView(!wsView);
   };
 
+  let createRef = useClickOutside(() => {
+    setToggleView(false);
+  });
+
   const loggedinMenu = (
     <div className={classes.wsContainer}>
-      <div ref={innerRef}>
-        <span className={classes.wsButton} onClick={() => handleDropdown()}>
+      <div ref={wsRef}>
+        <span className={classes.wsButton} onClick={() => handleDropdown()} style={{backgroundColor: (wsView?'rgba(255, 255, 255, 0.3)':null)}}>
           Workspaces
           <img
             className={classes.dropArrow}
@@ -61,11 +68,8 @@ function Menu({ innerRef, wsView, setWsView }) {
         </div>
       )}
       {toggleView && (
-        <div className={classes.formContainer}>
-          <WorkspacesForm
-            toggleView={toggleView}
-            setToggleView={setToggleView}
-          />
+        <div className={classes.formContainer} ref={createRef}>
+          <CreateMenu toggleView={toggleView} setToggleView={setToggleView}/>
         </div>
       )}
     </div>

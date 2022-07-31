@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { login } from '../../../store/session';
 
-let useClickOutside = (handler) => {
+export let useClickOutside = (handler) => {
   let domNode = useRef();
 
   useEffect(() => {
@@ -42,7 +42,7 @@ function NavBar({ user }) {
     <nav>
       <div className={classes.leftContainer}>
         <Logo user={user} />
-        {user?<Menu innerRef={ref} wsView={wsView} setWsView={setWsView}/>:null}
+        {user?<Menu wsRef={ref} wsView={wsView} setWsView={setWsView} useClickOutside={() => useClickOutside} />:null}
       </div>
       <div className={classes.userInteractionsContainer}>
         {user ? (

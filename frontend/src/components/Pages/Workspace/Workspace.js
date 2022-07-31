@@ -24,7 +24,7 @@ function Workspace() {
       {boards && boards.length > 0 ? (
         boards.map((ele, i) => {
           return (
-            <div className={classes.cardHolder}>
+            <div className={classes.cardHolder} key={ele.id}>
               <div className={classes.settings}>
                 <div className={classes.card}>
                   <BoardCard data={ele} key={i} />

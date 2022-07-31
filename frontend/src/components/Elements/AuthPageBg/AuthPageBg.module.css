@@ -1,0 +1,30 @@
+.imgContainer {
+  position: absolute;
+  z-index: 0;
+  bottom: 0;
+  height: 90%;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.imgBottom {
+  height: 50%;
+  position: absolute;
+  bottom: 0;
+  left: 2%;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+.imgBottomRight {
+  height: 43%;
+  position: absolute;
+  bottom: 0;
+  right: 2%;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}

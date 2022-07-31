@@ -1,15 +1,18 @@
 import { Draggable } from "react-beautiful-dnd";
-import EditCardForm from "../../Forms/EditCardForm";
 import { useState } from "react";
+import EditCardForm from "../../Forms/EditCardForm";
+import CardInfoModal from "./CardInfoModal";
 
 import classes from "./Card.module.css";
 
-function Card({ data, pos, disabled, cardOrder, setCardOrder }) {
+function Card({ data, pos, disabled, cardOrder, setCardOrder}) {
   const [display, setDisplay] = useState(false);
+  const [cardModal, setCardModal] = useState(false);
 
   if (!data) return null;
 
   return (
+    <>
     <Draggable
       draggableId={`drag:${data.id}`}
       index={pos}
@@ -21,6 +24,7 @@ function Card({ data, pos, disabled, cardOrder, setCardOrder }) {
           ref={provided.innerRef}
           {...provided.draggableProps}
           className={`${classes.cardContainer} ${classes[data.color]}`}
+          onDoubleClick={() => setCardModal(true)}
         >
           <div className={classes.dragHandle} {...provided.dragHandleProps}>
             <p className={classes.description}>{data.name}</p>
@@ -43,6 +47,8 @@ function Card({ data, pos, disabled, cardOrder, setCardOrder }) {
         </div>
       )}
     </Draggable>
+    {cardModal?<CardInfoModal cardModal={cardModal} data={data} setCardModal={setCardModal}/>:null}
+    </>
   );
 }
 
