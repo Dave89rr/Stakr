@@ -1,8 +1,15 @@
-import classes from "./Homepage.module.css";
-import { useHistory } from "react-router-dom";
+import classes from './Homepage.module.css';
+import { useHistory } from 'react-router-dom';
+import { useState } from 'react';
 
 function HomePage() {
   const history = useHistory();
+  const [email, setEmail] = useState('');
+  const homePageSignUp = (e) => {
+    e.preventDefault();
+    localStorage.setItem('email', email);
+    history.push('/signup');
+  };
   return (
     <div className={classes.mainContainer}>
       <div className={classes.gradient}>
@@ -17,8 +24,17 @@ function HomePage() {
               unique—accomplish it all with Stakr.
             </p>
             <div>
-              <input className={classes.input} placeholder="Email"></input>
-              <button className={classes.button}>Sign up - it's free</button>
+              <form onSubmit={homePageSignUp}>
+                <input
+                  className={classes.input}
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                ></input>
+                <button type="submit" className={classes.button}>
+                  Sign up - it's free
+                </button>
+              </form>
             </div>
           </div>
           <div>
@@ -38,7 +54,7 @@ function HomePage() {
               ></img>
             </div>
             <div className={classes.bottomContainer}>
-              <p className={classes.subHeader}>Discover Stakr</p>{" "}
+              <p className={classes.subHeader}>Discover Stakr</p>{' '}
               <p className={classes.subText}>
                 The productivity tool teams love, paired with the features and
                 security needed for scale.
@@ -46,7 +62,7 @@ function HomePage() {
               <div
                 className={classes.button}
                 onClick={(e) => {
-                  history.push("/signup");
+                  history.push('/signup');
                 }}
               >
                 Sign up
@@ -61,7 +77,7 @@ function HomePage() {
               ></img>
             </div>
             <div className={classes.bottomContainer}>
-              <p className={classes.subHeader}>What is Stakr?</p>{" "}
+              <p className={classes.subHeader}>What is Stakr?</p>{' '}
               <p className={classes.subText}>
                 Stakr is the visual tool that empowers your team to manage any
                 type of project, workflow, or task tracking.
@@ -84,7 +100,7 @@ function HomePage() {
               ></img>
             </div>
             <div className={classes.bottomContainer}>
-              <p className={classes.subHeader}>Inspiration</p>{" "}
+              <p className={classes.subHeader}>Inspiration</p>{' '}
               <p className={classes.subText}>
                 Our inspiration for this project comes from Trello. Go checkout
                 their products and see why we love it so much we made a clone!

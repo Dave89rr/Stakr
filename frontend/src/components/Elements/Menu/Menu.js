@@ -1,9 +1,10 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
-import WorkspacesForm from "../../Forms/WorkspacesForm/WorkspacesForm";
-import WorkspaceDropdownCard from "./WorkspaceDropdownCard";
-import classes from "./Menu.module.css";
+import WorkspacesForm from '../../Forms/WorkspacesForm/WorkspacesForm';
+import WorkspaceDropdownCard from './WorkspaceDropdownCard';
+import classes from './Menu.module.css';
+import CreateMenu from '../CreateMenu';
 
 function Menu({ innerRef, wsView, setWsView }) {
   const user = useSelector((state) => state.session.user);
@@ -61,10 +62,7 @@ function Menu({ innerRef, wsView, setWsView }) {
       )}
       {toggleView && (
         <div className={classes.formContainer}>
-          <WorkspacesForm
-            toggleView={toggleView}
-            setToggleView={setToggleView}
-          />
+          <CreateMenu toggleView={toggleView} setToggleView={setToggleView} />
         </div>
       )}
     </div>

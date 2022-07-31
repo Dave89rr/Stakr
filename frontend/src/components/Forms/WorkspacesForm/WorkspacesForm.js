@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { thunkCreateWorkspace } from '../../../store/workspaces';
 
-function WorkspacesForm({ toggleView, setToggleView }) {
+function WorkspacesForm({ setToggleView, setShowWSF }) {
   const [validationErrors, setValidationErrors] = useState([]);
   const [name, setName] = useState('');
   const user = useSelector((state) => state.session.user);
@@ -26,12 +26,13 @@ function WorkspacesForm({ toggleView, setToggleView }) {
       setValidationErrors([]);
       dispatch(thunkCreateWorkspace(workspace));
       setName('');
+      setShowWSF(false);
       setToggleView(false);
     }
   };
 
   return (
-    <>
+    <div>
       <form onSubmit={handleSubmit}>
         <div>
           {validationErrors.map((error, ind) => (
@@ -39,7 +40,7 @@ function WorkspacesForm({ toggleView, setToggleView }) {
           ))}
         </div>
         <div>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">Workspace Name</label>
           <input
             name="name"
             type="text"
@@ -50,7 +51,7 @@ function WorkspacesForm({ toggleView, setToggleView }) {
           <button type="submit">Create WS</button>
         </div>
       </form>
-    </>
+    </div>
   );
 }
 
