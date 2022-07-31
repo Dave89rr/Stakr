@@ -1,6 +1,6 @@
 .stackWrapper {
   height: fit-content;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .stack {
@@ -12,6 +12,11 @@
 
   border-radius: 3px;
   background-color: #ebecf0;
+
+  transition: box-shadow .1s .1s ease;
+}
+.stack:active {
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.2);
 }
 
 .stackTitle {
@@ -69,10 +74,21 @@
 .plusContainer {
   display: flex;
   align-items: center;
+
+  margin-bottom: 3px;
+  padding: 5px;
+
+  font-size: 14px;
+  color: #5e6c84;
+  border-radius: 3px;
+
   user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
+}
+.plusContainer:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .plus {
@@ -82,6 +98,7 @@
   margin-right: 5px;
   margin-left: 10px;
   user-select: none;
+  filter: invert(45%) sepia(26%) saturate(410%) hue-rotate(179deg) brightness(86%) contrast(88%);
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
