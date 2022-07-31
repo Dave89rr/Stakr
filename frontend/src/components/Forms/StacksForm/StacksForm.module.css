@@ -38,6 +38,7 @@
   background-color: rgb(48, 126, 216);
   color: white;
   border-radius: 3px;
+  cursor: pointer;
 }
 
 .formName {
@@ -45,6 +46,12 @@
   width: 100%;
   border: 2px solid rgb(48, 126, 216);
   border-radius: 3px;
+}
+
+.formCloseContainer {
+  margin-left: 4%;
+  height: 20px;
+  width: 20px;
 }
 
 .formClose {
@@ -57,6 +64,11 @@
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
+
+  transition: filter .2s ease;
+}
+.formClose:hover {
+  filter: invert(40%) sepia(71%) saturate(3493%) hue-rotate(338deg) brightness(92%) contrast(92%) !important;
 }
 
 .formButtonHolder {
@@ -95,6 +107,16 @@
   -webkit-user-select: none;
 }
 .plus {
+  display: flex;
+  height: 30%;
+  margin-right: 5px;
+  margin-left: 10px;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+.darkPlus {
   display: flex;
   height: 30%;
   margin-right: 5px;
