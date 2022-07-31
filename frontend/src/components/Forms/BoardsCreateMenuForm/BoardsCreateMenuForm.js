@@ -6,7 +6,7 @@ import { thunkCreateBoard } from '../../../store/boards';
 function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
   const [validationErrors, setValidationErrors] = useState([]);
   const [name, setName] = useState('');
-  const [color, setColor] = useState('');
+  const [color, setColor] = useState('Blue');
   const [workspaceId, setWorkspaceId] = useState('');
   const user = useSelector((state) => state.session.user);
   const workspaces = useSelector((state) => state.workspaces);
@@ -44,7 +44,7 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
   return (
     <div className={classes.container}>
       <div className={classes.miniContainer}>
-        <div className={classes.miniBoard}>
+        <div className={`${classes.miniBoard} ${classes[`${color}`]}`}>
           <img
             src="https://a.trellocdn.com/prgb/dist/images/board-preview-skeleton.14cda5dc635d1f13bc48.svg"
             alt=""
@@ -56,7 +56,7 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
         <span className={classes.label}>Background</span>
         <div className={classes.radioContainer}>
           <div className={classes.radioColor}>
-            <label className={`${classes.blue} ${classes.radio}`}>
+            <label className={`${classes.Blue} ${classes.radio}`}>
               <input
                 type="radio"
                 value="Blue"
@@ -67,7 +67,7 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
             </label>
           </div>
           <div className={classes.radioColor}>
-            <label className={`${classes.orange} ${classes.radio}`}>
+            <label className={`${classes.Orange} ${classes.radio}`}>
               <input
                 type="radio"
                 value="Orange"
@@ -78,7 +78,7 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
             </label>
           </div>
           <div className={classes.radioColor}>
-            <label className={`${classes.green} ${classes.radio}`}>
+            <label className={`${classes.Green} ${classes.radio}`}>
               <input
                 type="radio"
                 value="Green"
@@ -89,7 +89,7 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
             </label>
           </div>
           <div className={classes.radioColor}>
-            <label className={`${classes.red} ${classes.radio}`}>
+            <label className={`${classes.Red} ${classes.radio}`}>
               <input
                 type="radio"
                 value="Red"
@@ -100,7 +100,7 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
             </label>
           </div>
           <div className={classes.radioColor}>
-            <label className={`${classes.purple} ${classes.radio}`}>
+            <label className={`${classes.Purple} ${classes.radio}`}>
               <input
                 type="radio"
                 value="Purple"
@@ -111,7 +111,7 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
             </label>
           </div>
           <div className={classes.radioColor}>
-            <label className={`${classes.pink} ${classes.radio}`}>
+            <label className={`${classes.Pink} ${classes.radio}`}>
               <input
                 type="radio"
                 value="Pink"
