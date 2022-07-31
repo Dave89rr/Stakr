@@ -24,8 +24,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 25px;
-  height: 22px;
+  min-width: 22px;
+  min-height: 22px;
   margin-bottom: 3px;
 
   border-radius: 3px;
@@ -57,7 +57,9 @@
 .description {
   margin: 0 0 4px;
   padding: 0;
-
+  width: fit-content;
+  word-wrap: break-word;
+  word-break: break-all;
   font-size: 14px;
   font-weight: 500;
   user-select: none;
