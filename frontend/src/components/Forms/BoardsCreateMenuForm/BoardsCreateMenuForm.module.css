@@ -102,17 +102,20 @@ label > input {
 .miniBoard {
   align-self: center;
   width: 200px;
-  height: 120px;
+  padding-top: 4%;
+  padding-bottom: 4%;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 3px;
+  max-width: 100%;
 }
 
 .miniContainer {
   display: flex;
   flex-direction: column;
   margin-bottom: 5%;
+  max-width: 100%;
 }
 
 .submitBtn {
@@ -130,4 +133,8 @@ label > input {
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
+}
+
+.boardImg {
+  max-width: 90%;
 }

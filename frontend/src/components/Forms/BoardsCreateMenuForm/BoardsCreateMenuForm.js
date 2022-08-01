@@ -50,6 +50,7 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
       <div className={classes.miniContainer}>
         <div className={`${classes.miniBoard} ${classes[`${color}`]}`}>
           <img
+            className={classes.boardImg}
             src="https://a.trellocdn.com/prgb/dist/images/board-preview-skeleton.14cda5dc635d1f13bc48.svg"
             alt=""
             role="presentation"
