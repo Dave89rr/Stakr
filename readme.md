@@ -54,6 +54,25 @@ To fix a bug or add a feature, follow these steps:
 
 We love squishing bugs! If you find one, let us know by opening an issue [here](https://github.com/Dave89rr/Stakr/issues). Be sure to be clear in the description of the bug (i.e. what was input into the field that caused the bug, or where you were/ what you were doing at the time you spotted the bug). Screenshots or recordings greatly help to narrow down what the problem could be!
 
+## Stakr in action!
+### Signup process
+![2022-07-31-22-12-41](https://user-images.githubusercontent.com/100805072/182061161-87b79bb0-6309-4f3e-9ca0-7b772e04c66c.gif)
+
+### Creating boards
+![2022-07-31-22-14-39](https://user-images.githubusercontent.com/100805072/182061254-c0d8b3e2-23da-451d-87fc-298ebafa0409.gif)
+
+### Creating stacks
+![2022-07-31-22-15-54](https://user-images.githubusercontent.com/100805072/182061279-82d89134-c0ec-479f-9bad-0b2a122c7a39.gif)
+
+### Creating cards
+![2022-07-31-22-16-39](https://user-images.githubusercontent.com/100805072/182061330-7eed74b0-902e-4544-93de-bd2b50620347.gif)
+
+### Creating another workspace
+![2022-07-31-22-17-24](https://user-images.githubusercontent.com/100805072/182061377-713e5c0d-6f80-42c5-9d94-bd10e02ebef8.gif)
+
+### Editing a card
+![2022-07-31-22-21-14](https://user-images.githubusercontent.com/100805072/182061413-87c69488-10f7-4845-b62f-248d0c17c450.gif)
+
 ## Created By
 
 [Brandon Flores](https://github.com/brandonflores647), [David Rivera](https://github.com/Dave89rr), and [Justin Stockton](https://github.com/Justin-Stockton)
