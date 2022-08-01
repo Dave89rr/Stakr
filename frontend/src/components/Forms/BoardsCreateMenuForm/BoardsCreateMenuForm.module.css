@@ -138,3 +138,13 @@ label > input {
 .boardImg {
   max-width: 90%;
 }
+
+.none {
+  /* does nothing */
+  color: black;
+}
+
+.fieldError {
+  box-shadow: inset 0px 1px 8px rgba(255, 0, 0, 0.3);
+  border: 1px solid red;
+}
