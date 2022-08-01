@@ -56,6 +56,7 @@
 }
 .wsTitle {
   margin-top: 7%;
+  color: #172b4d;
   display: flex;
   gap: 2%;
   flex-direction: row;
