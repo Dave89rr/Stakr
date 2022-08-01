@@ -23,6 +23,7 @@ label > input {
   -o-appearance: none;
   appearance: none;
   border-radius: 4px;
+  cursor: pointer;
 }
 .radioContainer {
   margin-top: 2%;
@@ -43,10 +44,11 @@ label > input {
 .selectField {
   width: 100%;
   height: 2.5em;
+  cursor: pointer;
 }
 .radiobtn:checked {
-  background-image: var(--check-svg-url);
   background-color: rgba(0, 0, 0, 0.3);
+  background-image: var(--check-svg-url);
   background-repeat: no-repeat;
   background-size: auto;
   background-position: center;
@@ -54,6 +56,19 @@ label > input {
   width: 100%;
   height: 100%;
 }
+
+.check {
+  margin-left: -100%;
+  z-index: 100;
+  height: 30px;
+  width: 39px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Colors */
 .Blue {
   background-color: var(--board-blue);
 }
@@ -87,17 +102,20 @@ label > input {
 .miniBoard {
   align-self: center;
   width: 200px;
-  height: 120px;
+  padding-top: 4%;
+  padding-bottom: 4%;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 3px;
+  max-width: 100%;
 }
 
 .miniContainer {
   display: flex;
   flex-direction: column;
   margin-bottom: 5%;
+  max-width: 100%;
 }
 
 .submitBtn {
@@ -115,4 +133,18 @@ label > input {
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
+}
+
+.boardImg {
+  max-width: 90%;
+}
+
+.none {
+  /* does nothing */
+  color: black;
+}
+
+.fieldError {
+  box-shadow: inset 0px 1px 8px rgba(255, 0, 0, 0.3);
+  border: 1px solid red;
 }

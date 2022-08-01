@@ -4,7 +4,9 @@
   width: 100%;
   align-items: center;
 }
-
+.userInteraction {
+  cursor: pointer;
+}
 .formContainer {
   width: 90%;
   display: flex;
@@ -37,6 +39,7 @@
   margin-bottom: 2%;
   padding: 1%;
   border-radius: 3px;
+  cursor: pointer;
 }
 .createAction:hover {
   background-color: #f5f6f8;
