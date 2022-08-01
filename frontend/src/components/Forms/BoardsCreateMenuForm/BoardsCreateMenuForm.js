@@ -6,6 +6,8 @@ import { thunkCreateBoard } from '../../../store/boards';
 function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
   const [validationErrors, setValidationErrors] = useState([]);
   const [name, setName] = useState('');
+  const [inputErr, setInputErr] = useState('none');
+  const [selectErr, setSelectErr] = useState('none');
   const [color, setColor] = useState('Blue');
   const [workspaceId, setWorkspaceId] = useState('');
   const user = useSelector((state) => state.session.user);
@@ -28,10 +30,23 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
     };
 
     if (name.length === 0) {
-      errors.push('Name for a board cannot be left blank');
+      errors.push('Name');
+      console.log(errors);
+    }
+    if (workspaceId === '') {
+      errors.push('Workspace');
     }
     if (errors.length > 0) {
-      setValidationErrors(errors);
+      if (errors.includes('Name')) {
+        setInputErr('fieldError');
+      } else {
+        setInputErr('none');
+      }
+      if (errors.includes('Workspace')) {
+        setSelectErr('fieldError');
+      } else {
+        setSelectErr('none');
+      }
     } else {
       setValidationErrors([]);
       dispatch(thunkCreateBoard(board));
@@ -50,6 +65,7 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
       <div className={classes.miniContainer}>
         <div className={`${classes.miniBoard} ${classes[`${color}`]}`}>
           <img
+            className={classes.boardImg}
             src="https://a.trellocdn.com/prgb/dist/images/board-preview-skeleton.14cda5dc635d1f13bc48.svg"
             alt=""
             role="presentation"
@@ -151,7 +167,7 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
           <input
             name="name"
             type="text"
-            className={classes.inputField}
+            className={`${classes.inputField} ${classes[inputErr]}`}
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -162,7 +178,7 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
           </label>
           <select
             name="workspace"
-            className={classes.selectField}
+            className={`${classes.selectField} ${classes[selectErr]}`}
             onChange={(e) => setWorkspaceId(e.target.value)}
           >
             <option value="">Select Workspace</option>
