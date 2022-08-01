@@ -1,15 +1,15 @@
-import classes from './BoardsCreateMenuForm.module.css';
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { thunkCreateBoard } from '../../../store/boards';
+import classes from "./BoardsCreateMenuForm.module.css";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { thunkCreateBoard } from "../../../store/boards";
 
 function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
   const [validationErrors, setValidationErrors] = useState([]);
-  const [name, setName] = useState('');
-  const [inputErr, setInputErr] = useState('none');
-  const [selectErr, setSelectErr] = useState('none');
-  const [color, setColor] = useState('Blue');
-  const [workspaceId, setWorkspaceId] = useState('');
+  const [name, setName] = useState("");
+  const [inputErr, setInputErr] = useState("none");
+  const [selectErr, setSelectErr] = useState("none");
+  const [color, setColor] = useState("Blue");
+  const [workspaceId, setWorkspaceId] = useState("");
   const user = useSelector((state) => state.session.user);
   const workspaces = useSelector((state) => state.workspaces);
   const dispatch = useDispatch();
@@ -30,27 +30,26 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
     };
 
     if (name.length === 0) {
-      errors.push('Name');
-      console.log(errors);
+      errors.push("Name");
     }
-    if (workspaceId === '') {
-      errors.push('Workspace');
+    if (workspaceId === "") {
+      errors.push("Workspace");
     }
     if (errors.length > 0) {
-      if (errors.includes('Name')) {
-        setInputErr('fieldError');
+      if (errors.includes("Name")) {
+        setInputErr("fieldError");
       } else {
-        setInputErr('none');
+        setInputErr("none");
       }
-      if (errors.includes('Workspace')) {
-        setSelectErr('fieldError');
+      if (errors.includes("Workspace")) {
+        setSelectErr("fieldError");
       } else {
-        setSelectErr('none');
+        setSelectErr("none");
       }
     } else {
       setValidationErrors([]);
       dispatch(thunkCreateBoard(board));
-      setName('');
+      setName("");
       setShowBF(false);
       setToggleView(false);
     }
@@ -81,10 +80,10 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
                 type="radio"
                 value="Blue"
                 className={classes.radiobtn}
-                checked={color === 'Blue'}
+                checked={color === "Blue"}
                 onChange={(e) => setColor(e.target.value)}
               />
-              {color === 'Blue' ? (
+              {color === "Blue" ? (
                 <div className={classes.check}>{check}</div>
               ) : null}
             </label>
@@ -95,10 +94,10 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
                 type="radio"
                 value="Orange"
                 className={classes.radiobtn}
-                checked={color === 'Orange'}
+                checked={color === "Orange"}
                 onChange={(e) => setColor(e.target.value)}
               />
-              {color === 'Orange' ? (
+              {color === "Orange" ? (
                 <div className={classes.check}>{check}</div>
               ) : null}
             </label>
@@ -109,10 +108,10 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
                 type="radio"
                 value="Green"
                 className={classes.radiobtn}
-                checked={color === 'Green'}
+                checked={color === "Green"}
                 onChange={(e) => setColor(e.target.value)}
               />
-              {color === 'Green' ? (
+              {color === "Green" ? (
                 <div className={classes.check}>{check}</div>
               ) : null}
             </label>
@@ -123,10 +122,10 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
                 type="radio"
                 value="Red"
                 className={classes.radiobtn}
-                checked={color === 'Red'}
+                checked={color === "Red"}
                 onChange={(e) => setColor(e.target.value)}
               />
-              {color === 'Red' ? (
+              {color === "Red" ? (
                 <div className={classes.check}>{check}</div>
               ) : null}
             </label>
@@ -137,10 +136,10 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
                 type="radio"
                 value="Purple"
                 className={classes.radiobtn}
-                checked={color === 'Purple'}
+                checked={color === "Purple"}
                 onChange={(e) => setColor(e.target.value)}
               />
-              {color === 'Purple' ? (
+              {color === "Purple" ? (
                 <div className={classes.check}>{check}</div>
               ) : null}
             </label>
@@ -151,10 +150,10 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
                 type="radio"
                 value="Pink"
                 className={classes.radiobtn}
-                checked={color === 'Pink'}
+                checked={color === "Pink"}
                 onChange={(e) => setColor(e.target.value)}
               />
-              {color === 'Pink' ? (
+              {color === "Pink" ? (
                 <div className={classes.check}>{check}</div>
               ) : null}
             </label>
