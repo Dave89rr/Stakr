@@ -61,7 +61,7 @@ function StacksForm() {
           </div>
         ) : (
           <div className={classes.plusContainer}>
-            <img src="/static/icons/plus.svg" className={classes.plusFirst} />{" "}
+            <img src="/static/icons/plus.svg" className={`${workspaces.boards[boardId].color!=='White'?classes.darkPlus:classes.plusFirst}`} />{" "}
             Add stack
           </div>
         )}
