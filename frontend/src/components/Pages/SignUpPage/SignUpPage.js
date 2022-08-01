@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
-import { signUp } from '../../../store/session';
-import AuthPageBg from '../../Elements/AuthPageBg';
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Redirect, useHistory } from "react-router-dom";
+import { signUp } from "../../../store/session";
+import AuthPageBg from "../../Elements/AuthPageBg";
 
-import classes from './SignUpPage.module.css';
+import classes from "./SignUpPage.module.css";
 
 const SignUpPage = () => {
   const history = useHistory();
   const [errors, setErrors] = useState([]);
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
   const user = useSelector((state) => state.session.user);
   const workspaces = useSelector((state) => state.workspaces);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    let email = localStorage.getItem('email');
+    let email = localStorage.getItem("email");
     if (email) {
       setEmail(email);
     }
@@ -54,7 +54,6 @@ const SignUpPage = () => {
   };
 
   if (user) {
-    console.log(workspaces);
     if (Object.values(workspaces).length < 1) {
       return <Redirect to="/create-first-workspace" />;
     }
