@@ -1,7 +1,7 @@
 import classes from './AboutMenu.module.css';
 
 function AboutMenu({ setToggleAbout, innerRef }) {
-  const xicon = <img src="/media/icons/x.svg" alt="about menu close button" />;
+  const xicon = <img src="/static/icons/x.svg" alt="about menu close button" />;
   const financeIcon = (
     <img
       className={classes.appIcon}

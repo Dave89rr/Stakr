@@ -45,3 +45,11 @@
   -khtml-user-select: none;
   -webkit-user-select: none;
 }
+
+.errors {
+  background-color: #eb5a46;
+  padding: 2%;
+  margin-bottom: 3%;
+  border-radius: 3px;
+  color: white;
+}

@@ -56,12 +56,12 @@ function StacksForm() {
       >
         {stacks && Object.values(stacks).length ? (
           <div className={classes.plusContainer}>
-            <img src="/static/icons/plus.svg" className={classes.plus} /> Add
+            <img src="/static/icons/plus.svg" className={`${workspaces.boards[boardId].color!=='White'?classes.darkPlus:classes.plus}`} /> Add
             another stack
           </div>
         ) : (
           <div className={classes.plusContainer}>
-            <img src="/static/icons/plus.svg" className={classes.plusFirst} />{" "}
+            <img src="/static/icons/plus.svg" className={`${workspaces.boards[boardId].color!=='White'?classes.darkPlus:classes.plusFirst}`} />{" "}
             Add stack
           </div>
         )}
@@ -90,7 +90,7 @@ function StacksForm() {
               <button className={classes.formButton} type="submit">
                 Add Stack
               </button>
-              <div className={classes.formClose} onClick={() => setForm(1)}>
+              <div className={classes.formCloseContainer} onClick={() => setForm(1)}>
                 <img src="/static/icons/x.svg" className={classes.formClose} />
               </div>
             </div>

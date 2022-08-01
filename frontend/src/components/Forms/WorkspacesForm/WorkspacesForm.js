@@ -34,11 +34,13 @@ function WorkspacesForm({ setToggleView, setShowWSF }) {
   return (
     <div className={classes.container}>
       <form onSubmit={handleSubmit} className={classes.form}>
-        <div className={classes.errors}>
-          {validationErrors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div>
+        {validationErrors.length > 0 ? (
+          <div className={classes.errors}>
+            {validationErrors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
+          </div>
+        ) : null}
         <div>
           <span className={classes.title}>Let's Build a Workspace</span>
           <p>

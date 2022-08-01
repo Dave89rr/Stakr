@@ -93,7 +93,9 @@ function CreateMenu({ setToggleView, innerRef }) {
       {showWSF ? (
         <div className={classes.formContainer}>
           <div className={classes.createTitle}>
-            <span>{backArrow}</span>Create Workspace<span>{closeIcon}</span>
+            <div className={classes.userInteraction}>{backArrow}</div>
+            <span>Create Workspace</span>
+            <div className={classes.userInteraction}>{closeIcon}</div>
           </div>
           <div className={classes.line}></div>
           <WorkspacesForm
@@ -105,7 +107,9 @@ function CreateMenu({ setToggleView, innerRef }) {
       {showBF ? (
         <div className={classes.formContainer}>
           <div className={classes.createTitle}>
-            <span>{backArrow}</span>Create Board<span>{closeIcon}</span>
+            <div className={classes.userInteraction}>{backArrow}</div>
+            <span>Create Board</span>
+            <div className={classes.userInteraction}>{closeIcon}</div>
           </div>
           <div className={classes.line}></div>
           <BoardsCreateMenuForm
