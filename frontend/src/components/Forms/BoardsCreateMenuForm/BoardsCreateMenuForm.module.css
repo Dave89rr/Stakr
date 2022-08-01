@@ -45,8 +45,8 @@ label > input {
   height: 2.5em;
 }
 .radiobtn:checked {
-  background-image: var(--check-svg-url);
   background-color: rgba(0, 0, 0, 0.3);
+  background-image: var(--check-svg-url);
   background-repeat: no-repeat;
   background-size: auto;
   background-position: center;
@@ -54,6 +54,19 @@ label > input {
   width: 100%;
   height: 100%;
 }
+
+.check {
+  margin-left: -100%;
+  z-index: 100;
+  height: 30px;
+  width: 39px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Colors */
 .Blue {
   background-color: var(--board-blue);
 }

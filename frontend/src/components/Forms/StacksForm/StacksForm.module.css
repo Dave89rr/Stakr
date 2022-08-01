@@ -2,17 +2,15 @@
   display: flex;
   flex-direction: column;
 
-  min-width: 272px;
-  max-height: 40px;
+  width: 272px;
+  height: 40px;
 
   border-radius: 3px;
-  background-color: #ebecf055;
+  background-color: #ebecf056;
   justify-content: center;
-  align-items: left;
+  align-items: center;
 
-  font-size: 15px;
-
-  transition: background-color .2s ease;
+  transition: background-color .1s ease;
 }
 
 .addStack:hover {
@@ -77,6 +75,8 @@
 }
 .formContainer {
   width: 100%;
+  min-width: 272px;
+  /* margin-right: 20px; */
   padding: 9px 6px 6px 6px;
 }
 
@@ -88,6 +88,7 @@
 
 .plusContainer {
   display: flex;
+  min-width: 272px;
   align-items: center;
   height: 100%;
   margin-left: 2%;
@@ -108,7 +109,7 @@
 }
 .plus {
   display: flex;
-  height: 30%;
+  height: 16px;
   margin-right: 5px;
   margin-left: 10px;
   user-select: none;

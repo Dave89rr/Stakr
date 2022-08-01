@@ -41,6 +41,10 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
     }
   };
 
+  const check = (
+    <img src="/static/icons/check.svg" alt="color selection indicator" />
+  );
+
   return (
     <div className={classes.container}>
       <div className={classes.miniContainer}>
@@ -64,6 +68,9 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
                 checked={color === 'Blue'}
                 onChange={(e) => setColor(e.target.value)}
               />
+              {color === 'Blue' ? (
+                <div className={classes.check}>{check}</div>
+              ) : null}
             </label>
           </div>
           <div className={classes.radioColor}>
@@ -75,6 +82,9 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
                 checked={color === 'Orange'}
                 onChange={(e) => setColor(e.target.value)}
               />
+              {color === 'Orange' ? (
+                <div className={classes.check}>{check}</div>
+              ) : null}
             </label>
           </div>
           <div className={classes.radioColor}>
@@ -86,6 +96,9 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
                 checked={color === 'Green'}
                 onChange={(e) => setColor(e.target.value)}
               />
+              {color === 'Green' ? (
+                <div className={classes.check}>{check}</div>
+              ) : null}
             </label>
           </div>
           <div className={classes.radioColor}>
@@ -97,6 +110,9 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
                 checked={color === 'Red'}
                 onChange={(e) => setColor(e.target.value)}
               />
+              {color === 'Red' ? (
+                <div className={classes.check}>{check}</div>
+              ) : null}
             </label>
           </div>
           <div className={classes.radioColor}>
@@ -108,6 +124,9 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
                 checked={color === 'Purple'}
                 onChange={(e) => setColor(e.target.value)}
               />
+              {color === 'Purple' ? (
+                <div className={classes.check}>{check}</div>
+              ) : null}
             </label>
           </div>
           <div className={classes.radioColor}>
@@ -119,6 +138,9 @@ function BoardsCreateMenuForm({ setShowBF, setToggleView }) {
                 checked={color === 'Pink'}
                 onChange={(e) => setColor(e.target.value)}
               />
+              {color === 'Pink' ? (
+                <div className={classes.check}>{check}</div>
+              ) : null}
             </label>
           </div>
         </div>
