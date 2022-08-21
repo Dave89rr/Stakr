@@ -1,6 +1,7 @@
 .mainContainer {
-  height: 100%;
   width: 100%;
+  height: fit-content;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,6 +9,9 @@
 }
 
 .splashContentWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   padding-top: 45px;
 }
@@ -107,7 +111,7 @@
   display: flex;
   justify-content: space-evenly;
   margin: 1% 1% 1% 1%;
-  padding: 0 18%;
+  width: 60%;
   height: fit-content;
 }
 
