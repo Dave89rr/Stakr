@@ -24,7 +24,7 @@
   justify-content: center;
   position: absolute;
   z-index: 11;
-  padding-top: 2%;
+  padding-top: 4%;
   top: 0;
   left: 0;
 
@@ -36,21 +36,21 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  /* padding-top: 25%; */
+
   width: 40%;
-  min-height: 60%;
+  min-height: fit-content;
   background-color: white;
   margin: 0 30% 0 30%;
   z-index: 11;
-  font-size: 150%;
+  font-size: 120%;
 
   border-radius: 20px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
   background-color: rgb(240, 240, 240);
-  border-bottom: 3px solid rgb(148, 148, 148);
+  border-bottom: 2px solid rgb(148, 148, 148);
 }
 .modalCap {
   position: relative;
@@ -62,9 +62,9 @@
   word-wrap: break-word;
   word-break: break-all;
 
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-  border-bottom: 2px solid rgb(148, 148, 148);
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  /* border-bottom: 2px solid rgb(148, 148, 148); */
 }
 .modalCap > span {
   position: absolute;
@@ -72,41 +72,53 @@
   align-items: center;
   width: 80%;
   height: 100%;
-  margin-left: 20px;
+  margin-left: 5%;
+  font-size: 80%;
+}
+
+.form {
+  padding: 2% 5%;
 }
 
 .x {
   position: absolute;
   right: 0;
-  width: 35px;
-  margin: 2px 2px 0 0;
+  width: 32px;
+
+  margin: 2px;
+  padding: 5px;
 
   filter: invert(12%) sepia(16%) saturate(5189%) hue-rotate(194deg)
     brightness(97%) contrast(90%);
   cursor: pointer;
-  transition: filter 0.4s ease;
+  transition: filter 0.4s ease, background-color 0.15s ease;
   user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
+  border-radius: 30px;
 }
 .x:hover {
-  filter: invert(40%) sepia(71%) saturate(3493%) hue-rotate(338deg)
-    brightness(92%) contrast(92%) !important;
+  /* filter: invert(40%) sepia(71%) saturate(3493%) hue-rotate(338deg)
+    brightness(92%) contrast(92%) !important; */
+  background-color: rgba(0, 0, 0, 0.2);
 }
 .buttonHolder {
   display: flex;
+  justify-content: space-between;
   margin-top: 2%;
+  margin-bottom: 1%;
 }
 .textArea {
   width: 100%;
-  height: 100px;
+  min-height: 150px;
   border-radius: 5px;
   resize: none;
   padding-left: 5px;
   font-size: 20px;
   font-style: italic;
   color: Black;
+  margin-top: 5px;
 }
 .closeModel {
   background-color: Grey;
@@ -127,12 +139,14 @@
 
 .nameField {
   width: 100%;
-  padding-left: 5px;
-  /* background-color: black; */
+  padding: 5px;
   border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
   font-size: 18px;
-  font-style: italic;
   color: Black;
+  margin-bottom: 2%;
+  margin-top: 5px;
 }
 
 .selectField {
@@ -140,45 +154,55 @@
   height: 2rem;
   font-size: 18px;
   border-radius: 5px;
+  margin-bottom: 2%;
+  margin-top: 5px;
 }
 
 .delButton {
-  background-color: red;
-  color: black;
-  opacity: none;
+  height: 35px;
+  width: 35px;
+
+  padding: 5px;
+
   border-radius: 3px;
-  font-weight: bold;
-  border: none;
-  height: 30px;
-  width: 30px;
+
   cursor: pointer;
   user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
+
+  transition: background-color .15s ease;
+}
+.delButton:hover {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .subButton {
-  background-color: green;
-  color: #ffffff;
-  opacity: none;
-  border-radius: 5px;
-  font-size: 20px;
-  font-weight: bold;
-  border: none;
-  height: 30px;
-  width: 20%;
+  height: 35px;
+
   margin-right: 2%;
+  padding: 0 15px 0 15px;
+
+  color: #ffffff;
+  background-color: #0079bf;
+
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+
   user-select: none;
   cursor: pointer;
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
+
+  transition: background-color .15s ease;
+}
+.subButton:hover {
+  background-color: #006faf;
 }
 
-.form {
-  padding: 2% 5%;
-}
 
 /* BG COLORS */
 .White {
@@ -225,4 +249,15 @@
   background-color: var(--card-grey);
   box-shadow: var(--card-box-shadow);
   color: var(--card-grey-font-color);
+}
+
+@media only screen and (min-width: 2220px) {
+  .formBody {
+    width: 30%;
+    margin-left: 35%;
+    margin-right: 35%;
+  }
+  .container {
+    padding-top: 6%;
+  }
 }
