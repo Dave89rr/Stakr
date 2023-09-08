@@ -43,7 +43,7 @@ To fix a bug or add a feature, follow these steps:
 - Clone [the project](https://github.com/Dave89rr/Stakr.git).
 - Create a DB and a DB User with ownership of the DB.
 - Create a .env file using the .env.example provided in the project.
-- cd into the fronted directory by running `cd frontend/` in your terminal then run `npm install`
+- cd into the frontend directory by running `cd frontend/` in your terminal then run `npm install`
 - Now in the root directory run `install --python "$PYENV_ROOT/versions/3.9.4/bin/python"` followed by `pipenv shell`.
 - Next you will need to set up your backend in your root terminal run `flask db migrate` followed by `flask db upgrade` and finally `flask seed all`.
   - You can now run the command `flask run` and your backend will start up connected to an already seeded database.
